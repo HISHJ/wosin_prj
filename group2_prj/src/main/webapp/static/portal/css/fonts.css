@@ -1,0 +1,14 @@
+/*
+* Noto Sans KR (korean) http://www.google.com/fonts/earlyaccess
+ */
+ @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700&display=swap&subset=korean');
+ @font-face {
+   font-family:'sc_m';
+   font-style: normal;
+   font-weight: 500;
+   src: url(../fonts/SCENBasicClassic-Medium.eot); 
+   src: url(../fonts/SCENBasicClassic-Medium.eot?#iefix) format('embedded-opentype'), 
+       url(../fonts/SCENBasicClassic-Medium.woff) format('woff'), 
+       url(../fonts/SCENBasicClassic-Medium.ttf) format('truetype'); 
+ }
+ .ff-sc_m{font-family: 'sc_m',Noto Sans KR','Malgun Gothic','Dotum';transform : rotate(0.04deg); }

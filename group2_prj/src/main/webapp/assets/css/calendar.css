@@ -1,0 +1,297 @@
+@media (max-width:1450px){
+  #sub_page.w100 > .inner{padding-left: 0;padding-right:  0;}
+  .inner{padding-left: 0.938rem;padding-right:  0.938rem;}
+}
+
+.performanceCalendar{
+  width:80%;
+}
+
+.performanceCalendar__item {
+  border: 1px solid #e2e2e2;
+  padding: 30px 0 0;
+}
+
+#sub_page {
+  padding: 80px 0 115px 0;
+}
+
+.inner{max-width: 1400px;margin: 0 auto;}
+
+.tabs-st1 {
+  font-size: 1.200em;
+  margin-bottom: 2.500em;
+  border: 1px solid #000;
+  text-align: center;
+  word-break: keep-all;
+  line-height: 1.18;
+}
+
+.tabs-st1.li3 > li {
+  width: 33.3333333333%;
+}
+
+.tabs-st1 > li.active {
+  background: #000;
+  color: #fff;
+}
+
+.tabs-st1 > li {
+  float: left;
+  width: 20%;
+  position: relative;
+  background: #fff;
+}
+
+.t_steps .color-purple, .hall-btn_w .color-purple, .ticket_com .color-navy, .c200172 .link span, .color-reddish-purple, .location .cont_w .color-navy, .facility .flex .color-purple, .facility .flex .color-navy {
+  color: #AE4A00;
+}
+
+.mobile-txt {
+  display: none;
+}
+
+.performanceCalendar__item {
+  border: 1px solid #e2e2e2;
+  padding: 30px 0 0;
+}
+
+.performanceCalendar__info {
+  margin: 0 0 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.performanceCalendar__info button.prev {
+  margin-right: 20px;
+  background-image: url(../../images/calendarIcon_06.png);
+
+}
+
+.performanceCalendar__info button {
+  display: block;
+  text-indent: -9999px;
+  overflow: hidden;
+  width: 22px;
+  height: 22px;
+  background-color: #000;
+  border-radius: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+button, label {
+  cursor: pointer;
+}
+
+button, input[type="button"] {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  font-size: 1em;
+}
+
+.performanceCalendar__info select:nth-of-type(1) {
+  width: 100px;
+  margin-right: 20px;
+}
+
+.performanceCalendar__info select {
+  font-size: 22px;
+  color: #010101;
+  font-weight: 600;
+  border-width: 0 0 1px 0;
+  border-color: #000;
+  border-style: solid;
+}
+
+select {
+  border: 1px solid #ccc;
+  border-radius: 0px;
+  -moz-border-radius: 0px;
+  -webkit-border-radius: 0px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font: inherit;
+  font-size: 1em;
+  background: #fff url("../../commons/img/common/select.png") 95% center no-repeat;
+  padding: 0 15px 0 5px;
+}
+
+option {
+  font-weight: normal;
+  display: block;
+  white-space: nowrap;
+  min-height: 1.2em;
+  padding: 0px 2px 1px;
+}
+
+.performanceCalendar__info select:nth-of-type(2) {
+  width: 70px;
+}
+
+.performanceCalendar__info button.next {
+  margin-left: 20px;
+  background-image: url("../../images/calendarIcon_09.png");
+}
+
+.performanceCalendar__table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.performanceCalendar__table .item li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.performanceCalendar__table .item li {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.performanceCalendar__table .item li.m::before {
+  content: 'M';
+  color: #fff;
+  background: #ff2929;
+}
+
+.performanceCalendar__table .item li::before {
+  display: flex;
+  min-width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+.performanceCalendar__table .item li > a {
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  color: #010101;
+}
+
+.performanceCalendar__table td:nth-child(n + 5) .itemLayer {
+  left: auto;
+  right: 0;
+}
+
+.performanceCalendar__table .itemLayer {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: #f5f5f5;
+  border: 1px solid #030303;
+  padding: 40px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.performanceCalendar__table .itemLayer__close {
+  margin-left: auto;
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: url(/static/portal/img/perform/calendar/calendarIcon_15.png) no-repeat 0 0;
+  text-indent: -9999px;
+  overflow: hidden;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.performanceCalendar__table .itemLayer__wrap {
+  display: flex;
+}
+.performanceCalendar__table .itemLayer__img {
+  width: 173px;
+  line-height: 1;
+}
+
+.performanceCalendar__table .itemLayer__cont {
+  flex: 1;
+  margin-left: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.performanceCalendar__table .itemLayer__img img {
+  box-shadow: 3px 3px 7px rgb(0 0 0 / 20%);
+}
+
+.performanceCalendar__table .itemLayer__cont {
+  flex: 1;
+  margin-left: 35px;
+  display: flex;
+  flex-direction: column;
+}
+
+.performanceCalendar__table .item li.ch::before {
+  content: 'CH';
+  color: #fff;
+  background: #ffa801;
+}
+
+.performanceCalendar__table .item li > a {
+  white-space: nowrap;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  color: #010101;
+}
+
+.performanceCalendar__table td:nth-child(n + 5) .itemLayer {
+  left: auto;
+  right: 0;
+}
+
+.performanceCalendar__table .itemLayer {
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: all .4s;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: #f5f5f5;
+  border: 1px solid #030303;
+  padding: 40px;
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+}
+
+.performanceCalendar__table thead th:nth-child(1) {
+  color: #ef0000;
+}
+
+.performanceCalendar__table thead th {
+  font-size: 14px;
+  color: #000;
+  font-weight: 600;
+  line-height: 1;
+  padding: 0 0 20px;
+  border: 0;
+  text-align: center;
+}

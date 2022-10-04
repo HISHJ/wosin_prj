@@ -1,0 +1,170 @@
+@charset "utf-8";
+/* CSS Document */
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+.ff-g{font-family: 'GmarketSansMedium'}
+html{font-size:16px;}
+body{
+	font-family:'Noto Sans KR', sans-serif;
+	line-height: 1.5;
+  color: #111;
+	overflow-y: scroll;
+  font-weight: 400;
+	letter-spacing: -0.03em
+}
+.roboto{font-family: 'Roboto'}
+/* .dot{font-family: 'dotum';} */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video,img {
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+html,body{height: 100%;}
+
+/* 공통 */
+a{text-decoration:none; color: inherit}
+a:focus{outline:2px solid black;}
+input[type="text"],input[type="password"],textarea{
+	appearance:none ;-webkit-appearance:none;-moz-appearance:none;
+	border:1px solid #ccc;
+	border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
+	font: inherit;
+}
+input[type="button"]{
+	appearance:none ;-webkit-appearance:none;-moz-appearance:none;
+	border-radius: 0; -moz-border-radius: 0; -webkit-border-radius: 0;
+	font: inherit;
+	border: 0
+}
+input[type="checkbox"]{margin: 0;}
+input[type="radio"],input[type="checkbox"],label{vertical-align: middle;}
+select{
+	border: 1px solid #ccc;
+	border-radius: 0px;
+	-moz-border-radius: 0px;
+	-webkit-border-radius: 0px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	font: inherit;
+	font-size: 1em;
+	background: #fff url('https://www.sejongpac.or.kr/static/commons/img/common/select.png') 95% center no-repeat;
+	padding: 0 15px 0 5px;
+}
+select::-ms-expand {
+    display: none;
+}
+*{box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;}
+/* img{max-width: 100%} */
+.mt0{margin-top:0px !important}
+.mt10{margin-top:10px !important}
+.mt15{margin-top:15px !important}
+.mt20{margin-top:20px !important}
+.mt30{margin-top:30px !important}
+.mt40{margin-top:40px !important}
+.mt50{margin-top:50px !important}
+
+.mt1p{margin-top: 1% !important}
+.mt2p{margin-top: 2% !important}
+.mt3p{margin-top: 3% !important}
+.mt4p{margin-top: 4% !important}
+.mt5p{margin-top: 5% !important}
+.mt6p{margin-top: 6% !important}
+.mt7p{margin-top: 7% !important}
+.mt8p{margin-top: 8% !important}
+.mt9p{margin-top: 9% !important}
+.mt10p{margin-top: 10% !important}
+.mb0{margin-bottom: 0 !important}
+h1,h2,h3,h4,h5{font-size: 1em}
+button,input[type="button"]{
+	margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+	font:inherit;
+	font-size: 1em
+}
+button,label{cursor: pointer;}
+address,em{font-style: normal}
+
+.align_l{text-align: left}
+.align_c{text-align: center}
+.align_r{text-align: right}
+.fl{float: left !important}
+.fr{float: right !important}
+.clearfix:after{content: ''; display: block; clear: both}
+.mobile{display: none}
+
+/* 세로 가운데 정렬 */
+.table{display: table; width: 100%; height: 100%}
+.vertical{display: table-cell; vertical-align: middle;}
+#action_ifrm{
+	position: absolute;
+	left: 20px;
+	top: 3000px;
+	display: none;
+}
+.ellipsis{display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.hide,caption,legend,.hidden{position:absolute;left:-300px;width:0;height:0;margin:0;padding:0;background:none;line-height:0;overflow: hidden}
+.accessibilityWrap dd a{display:block;position:absolute;top:-10000px;left:0;z-index:500;width:100%;font-size:1.3em;text-align:center}
+.accessibilityWrap dd a:hover,.accessibilityWrap dd a:focus,.accessibilityWrap dd a:active{position:absolute;top:0;z-index:500;padding:15px 0;background:#1d60a7;font-weight:bold;color:#fff}
+.w100p{width: 100%}
+#wrap{position: relative;overflow: hidden;}
+.modal{display: none}
+.slick-dots{text-align:center}
+.slick-dots li{display: inline-block}
+.slick-dots button{display:block;white-space: nowrap;overflow: hidden;text-indent: -999px}
+.tablet{display: none !important}
+.mobile{display: none !important}
+.block-pc{display: block}
+.pc{display: block;}
+.trans{
+	-moz-transition: all .3s ease-in-out;
+  -webkit-transition: all .3s ease-in-out;
+  -o-transition: all .3s ease-in-out;
+  -ms-transition: all .3s ease-in-out;
+  transition: all .3s ease-in-out;
+}
+.slick-arrow{white-space: nowrap;overflow: hidden;text-indent: -999px;display: block}
+.inner{max-width: 1400px;margin: 0 auto;}
+
+.w100{width: 100% !important}
+.tal{text-align: left !important;}
+.tac{text-align: center !important;}
+.tar{text-align: right !important;}

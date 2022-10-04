@@ -1,0 +1,176 @@
+@media (max-width: 1450px){
+.inner {
+    padding-left: 0.938rem;
+    padding-right: 0.938rem;
+}
+}
+
+.member_join {
+  font-weight: 300;
+}
+
+.member_com {
+  padding-top: 1.5em;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+form {
+  display: block;
+  margin-top: 0em;
+}
+
+#cont {
+  display: block;
+  width: 100%;
+}
+
+#sub_page {
+  padding: 80px 0 115px 0;
+}
+
+#sub_page > .inner {
+  position: relative;
+}
+
+input {
+  writing-mode: horizontal-tb !important;
+ 
+  text-rendering: auto;
+  color: fieldtext;
+  letter-spacing: normal;
+  word-spacing: normal;
+  line-height: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  appearance: auto;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  background-color: field;
+  margin: 0em;
+  padding: 1px 2px;
+  border-width: 2px;
+  border-style: inset;
+  border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+  border-image: initial;
+}
+
+input[type="hidden" i] {
+  appearance: none;
+  background-color: initial;
+  cursor: default;
+  display: none !important;
+  padding: initial;
+  border: initial;
+  border-color: initial;
+  border-radius: initial;
+}
+
+.member_join .group:first-child {
+  margin-top: 0;
+}
+
+.member_join .group {
+  margin-top: 70px;
+}
+
+.rel.tit-st4 {
+  margin-bottom: 1em;
+}
+
+.tit-st4 {
+  font-size: 38px;
+  font-size: 2.375rem;
+  line-height: 1.15;
+  margin-bottom: .67em;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  position: relative;
+}
+
+.rel.tit-st4 .ab {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.tit-st4 .ab {
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+
+.color-gold, .color-purple {
+  color: #AE4A00;
+}
+
+.member_join .sect {
+  border-top: 1px solid #000;
+}
+
+.member_join .item {
+  display: table;
+  width: 100%;
+  padding: 1em;
+  border-bottom: 1px solid #000;
+  min-height: 5.813em;
+}
+
+.member_join .t {
+  width: 13em;
+  font-weight: 400;
+}
+
+.member_join .item > * {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+button, label {
+  cursor: pointer;
+}
+
+input[type="radio"], input[type="checkbox"], label {
+  vertical-align: middle;
+}
+
+.member_join .item > * {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.member_join .txt.ml {
+  margin-left: 1em;
+}
+
+.member_join .txt {
+  color: #999;
+}
+
+.member_join .t {
+  width: 13em;
+  font-weight: 400;
+}
+
+.member_join .manAgeSet .txt {
+  color: #630560;
+  font-weight: bold;
+  display: inline-block;
+}
+
+.member_join .manAgeSet .bg-black {
+  height: 3.750em;
+  min-width: 140px;
+  padding: 0 15px;
+  margin-left: 10px;
+}

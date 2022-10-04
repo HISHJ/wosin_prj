@@ -1,0 +1,89 @@
+@media (max-width: 1024px){
+#depth_w .dep1 > li .depth {
+    padding-top: 3.59rem;
+}
+
+@media (max-width:640px){
+  html{font-size: 14px}
+  .block-m{display: block;}
+  .mobile{display: block !important}
+  #depth_w{font-size: 13px;}
+  #depth_w .dep1 .rel > a{height: 3rem}
+  #depth_w .dep1 > li .depth{padding-top: 2.9rem;}
+}
+
+#top_nav,#gnb > li,#depth_w .dep1 > .home{display: none;}
+#depth_w .dep1 > li{padding-right: 0;width: 50%;min-width: 0}
+	#depth_w .dep1.li1 > li{width: 100%; background-position: right center;}
+	#depth_w .dep1 > li{background: #fff;padding-left: 0;}
+	#depth_w .dep1 .rel > a{height: 3.7rem}
+	#depth_w .dep1 > li .depth{padding-top: 3.59rem;}
+	#depth_w .dep1 .rel > a,#depth_w .dep1 > li .depth a{padding: 0 10px}
+	#depth_w .dep1 > li:nth-child(4),#depth_w .dep1 > li:nth-child(5){border-top: 1px solid #ccc;}
+	/* #depth_w .dep1 .rel > a{padding-left: 0;} */
+	#depth_w .dep1.li3 > li:last-child{width: 100%}
+	#depth_w .dep1.li3 > li:last-child .rel > a{background-position-x: 96.7%};
+}
+
+#depth_w .dep1 > li .rel {
+  position: relative;
+}
+
+#depth_w .dep1 > li .depth {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 59px 0 0;
+  line-height: 1.15;
+  border: 1px solid #222222;
+  width: 100%;
+  display: none;
+  z-index: 9999 !important;
+}
+
+#depth_w .dep1 .rel > a {
+  padding: 0 20px;
+  background: url("../../images/depth.gif") 93% center no-repeat;
+  padding-right: 2.5em;
+  position: relative;
+  z-index: 1;
+}
+
+#depth_w .dep1 > .home > span, #depth_w .rel > a {
+  display: table;
+  height: 60px;
+  width: 100%;
+}
+
+#depth_w a {
+  display: block;
+}
+
+#depth_w .rel > a >span, #depth_w .dep1 > .home > span > span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#depth_w .dep1 > li .depth > li:first-child {
+  padding-top: 0;
+}
+
+#depth_w .dep1 > li .depth > li {
+  padding-top: 1em;
+  background: #fff;
+}
+
+#depth_w .dep1 > li {
+  float: left;
+  background: url("../../images/depth_arrow.gif") left center no-repeat;
+  position: relative;
+  padding: 0 10px 0 20px;
+  line-height: 1.15;
+  min-width: 200px;
+}
+
+.clearfix:after {
+  content: '';
+  display: block;
+  clear: both;
+}

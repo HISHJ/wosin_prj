@@ -1,0 +1,898 @@
+
+/* home */
+body{
+    background-color: white;
+    color:#000;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  
+  a{
+  
+    text-decoration: none;
+    color:#000;
+  }
+  
+  ul li{
+    list-style: none;
+  }
+  
+  #sub_page{padding: 80px 0 115px 0}
+  #sub_page > .inner{position: relative;}
+  
+  
+  #depth_w{
+    font-size:14px;
+    position: relative;
+    z-index: 9999;
+    height:60px;
+  }
+  
+  /*div.rel{
+    background-color: #fff;
+  }*/
+  
+  .inner{
+   
+    max-width:1400px;
+    margin:0 auto;
+  }
+  
+  .clearfix::after{
+    content:'';
+    display: block;
+    clear: both;
+  }
+  
+  #depth_w .dep1 > .home > span,
+  #depth_w .rel > a{
+    display: table;
+    height:60px;
+    width:100%;
+  
+  }
+  
+  #depth_w .rel > a > span{
+   
+    z-index: 9999;
+  }
+  
+  #depth_w .rel > a > span,
+  #depth_w .dep1 > .home > span > span{
+    display: table-cell;
+    vertical-align: middle;
+   
+  }
+  
+  #depth_w .dep1 > li .rel{
+    position: relative;
+  }
+  
+  
+  
+  #depth_2 .dep1 .rel > a{
+  padding:0 20px;
+  background:url(../../images/depth.gif) 93% center no-repeat;
+  padding-right:2.5em;
+  position:relative;
+  z-index: 1;
+  
+  }
+  
+  #depth_w .dep1 > li > .depth > li:first-child{
+    padding-top:0;
+  }
+  
+  /*#depth_w .dep1 > li .depth > li{
+    background:#fff;
+    z-index: 9999;
+  }*/
+  
+  #depth_w .dep1 > li .depth{
+    position:absolute;
+    left:0;
+    top:0;
+    padding:59px 0 0;
+    line-height: 1.15;
+    border:5px solid #222222; 
+    width:100%;
+    display: none;
+    z-index: 9999;; 
+  }
+  
+  
+  #dapth_w .dep1 > li{
+    float: left;
+    background: url('../../images/depth_arrow.gif') left center no-repeat;
+    position: relative;
+    padding:0 10px 0 20px;
+    line-height: 1.15;
+    min-width: 200px;
+  }
+  
+  ul{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+  }
+  
+  ul.dot{
+    /* //display: flex; */
+    align-items: center;
+  
+  }
+
+  ul {
+    display: block;
+    list-style-type: disc;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+}
+
+li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+}
+
+
+
+
+
+  /*layout css*/
+  #depth_w{border-bottom: 1px solid #000;font-size: 14px;position: relative;z-index: 149}
+#depth_w a{display: block;}
+#depth_w .dep1 > li{float: left;background: url('../img/common/depth_arrow.gif') left center no-repeat;position: relative;padding: 0 10px 0 20px;line-height: 1.15;min-width: 200px}
+#depth_w .dep1 > .home{background: url('../../common/home.gif') left center no-repeat;padding-left:30px;min-width: 1px}
+#depth_w .dep1 .rel > a{padding: 0 20px;background: url('../../common/depth.gif') 93% center no-repeat;padding-right: 2.5em;position: relative;z-index: 1;}
+#depth_w .dep1 > .home > span,#depth_w .rel > a{display: table;height: 60px;width: 100%}
+#depth_w .rel > a >span,#depth_w .dep1 > .home > span > span{display: table-cell;vertical-align: middle;}
+
+#depth_w .dep1 > li .rel{position: relative;}
+#depth_w .dep1 > li .depth{position: absolute;left: 0;top:0;padding: 59px 0 0;line-height: 1.15;border:1px solid #222222; width: 100%;display: none;z-index: 150;}
+#depth_w .dep1 > li .depth > li{padding-top: 1em;background: #fff}
+#depth_w .dep1 > li .depth a{padding: 0 20px;}
+#depth_w .dep1 > li .depth > li:first-child{padding-top: 0;}
+#depth_w .dep1 > li .depth > li:last-child{padding-bottom: 20px;}
+#depth_w .dep1 > li .depth .active{color:#0e0e71;font-weight: 500;}
+/* #depth_w .dep1 > li.on{} */
+#depth_w.on .dep1 .rel > a{background-image: url('../img/common/depth_on.gif')}
+
+/*responsive*/
+
+
+@media (max-width:1450px){
+    #sub_page.w100 > .inner{padding-left: 0;padding-right:  0;}
+    .inner{padding-left: 0.938rem;padding-right:  0.938rem;}
+     #sub_page .sub_w{padding-left: 0;padding-right: 0;}
+     #sub_page.w100 .sub_w{padding-left: 0.938rem;padding-right:  0.938rem;}
+    .block-pc{display: inline;}
+}
+
+/* 홈 끝 */
+
+
+/* script */
+script {
+  display: none;
+}
+
+
+
+/* 티켓구입방법시작*/
+
+
+
+/* cont */
+
+/*layout new*/
+#cont{
+    display: block;
+    width: 100%;
+  
+}
+
+
+
+/* responsive.css font */
+
+@media (max-width:1180px){
+  html{font-size: 15px}
+  #logo a{width: 11.250em}
+  #header{padding-right:200px}
+  #top_nav > ul > li:nth-child(6){margin-left: 25%;}
+#top_nav > ul > li:last-child .depth2{width: 185px;}
+#top_nav > ul > li:last-child .depth3{left: 184px;width: 150px;}
+  #gnb .btn{width: 1.667em;height: 1.667em}
+  #gnb{margin-top: -.8435em;}
+  #top_nav{font-size: 19px;}
+  #gnb > li{margin-left: 7px;}
+
+
+.cate-faq{margin-bottom: 1em;}
+  .bbs-category .txt{position: static;margin-bottom: 1em;}
+  .bbs-category .bbs-sch{float: none;width: 100%}
+  .bbs-category .bbs-sch_w{width: 100%;float: none;}
+  .bbs-category.sel .fr{float: none !important;margin-left: -1%;}
+  .bbs-category.sel select{width: 49%;margin-left: 1%;}
+.member_join .email .e2{width: 45%}
+.member_join .email > li:first-child,.member_join .email .e3{width: 25%}
+.member_join .email .e3{margin-left: 2%;}
+
+.member_join .add .select{display: block;margin: .5em 0 1em 0;}
+.member_join .birth_w .solar{display: block;margin: .5em 0 0 0;}
+.member_join .ck.wide{display: flex;
+  flex-wrap: wrap;}
+
+  .bbs-category.select{padding-left: 7.9em;}
+  .bbs-category.btn_w{padding-right: 9.7em;}
+  .bbs-sch_w-st1 > .btn{width: 10em;position: absolute;right: 0;top:0;background: #fff}
+  .bbs-category.select select{position: absolute;left: 0;top:0;width: 8em;background-position: 87% center}
+  .bbs-faq .q{padding: 0 1em}
+  .bbs-faq .num{width: 3.5em}
+  .bbs-faq .sort{width: 5em}
+
+  .bbs-perform_survey .t1{width: 4.5em}
+  .bbs-perform_survey .t2{width: 3em}
+
+  .bbs-perform_survey .tbl-st1 th, .bbs-perform_survey .tbl-st1 td{padding: 10px 5px}
+
+
+}
+
+@media (max-width: 640px){
+html {
+    font-size: 14px;
+}
+}
+
+/* sub_page */
+
+/* new.css */
+#sub_page {
+    padding: 80px 0 115px 0;
+}
+
+/* 사용자 에이전시 */
+div{
+  display: block;
+
+} 
+
+#sub_page > .inner {
+    position: relative;
+}
+
+
+
+/* responsive new.css */
+
+
+@media (max-width:1450px){
+  .inner  {
+    padding-left: 0.938rem;
+    padding-right: 0.938rem;
+
+  }
+  
+  }
+
+@media (max-width: 640px){
+#sub_page {
+    padding: 2.5rem 0 5rem 0;
+}
+
+}
+
+
+
+/* new.css */
+
+
+/* ticket_com inner*/
+
+@media (max-width: 1450px){
+.inner {
+    padding-left: 0.938rem;
+    padding-right: 0.938rem;
+}
+}
+
+/* new.css */
+.ticket_com {
+  font-size: 1.125em;
+  font-weight: 300;
+}
+.ticket_com .group:first-child {
+  margin-top: 0;
+}
+
+/* 인터넷 예매 */
+/* responsive new.css */
+
+
+
+.ticket_com .group{padding: 3rem}
+
+
+
+@media (max-width: 1024px){
+.ticket_com .group {
+    padding: 3rem;}
+}
+
+
+
+@media (max-width: 640px){
+.ticket_com .group {
+    padding: 1rem;
+}
+}
+
+@media (max-width: 1024px){
+.ticket_com .tit:before {
+  left: -3rem;
+}
+}
+@media (max-width: 640px){
+  .ticket_com .tit:before {
+    left: -1rem;
+  }
+}
+
+
+
+
+
+/* new.css */
+
+
+.ticket_com .group {
+  padding: 70px;
+  margin-top: 20px;
+  border: 1px solid #000;
+}
+
+
+.ticket_com .tit:before {
+  position: absolute;
+  left: -70px;
+  top: 8px;
+  width: 4px;
+  height: 0.789em;
+  background: #000;
+  content: '';
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+ul {
+  list-style-type: disc;
+}
+
+.ticket_com .tit, .ticket_com .tit2 {
+  font-size: 2.111em;
+  line-height: 1.15;
+  margin-bottom: 1em;
+  position: relative;
+  font-weight: 300;
+}
+
+
+
+
+.ticket_com .tit span {
+  display: block;
+  font-size: 18px;
+  font-size: 1.125rem;
+  margin-top: 1em;
+}
+
+.ticket_com .t1 dd {
+  margin-left: .67em;
+}
+
+
+
+
+
+/* 인터넷 예매 내용 ->예매시간부터*/
+dl {
+  display: block;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+dt {
+  display: block;
+}
+
+dd {
+  display: block;
+  margin-inline-start: 40px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+
+ul ol {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
+
+ol {
+  list-style-type: decimal !important;
+}
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  display: block;
+  list-style-type: decimal !important;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+ol li{
+  list-style-type: decimal !important;
+}
+
+ol li::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+    text-align: start !important;
+    text-align-last: start !important;
+}
+
+
+
+
+
+/* responsive .css */
+
+
+
+@media (max-width: 640px){
+.ticket_com .group {
+    padding: 1rem;
+}
+}
+
+@media (max-width: 640px){
+.sketch_write .t h3, .tit-st4, .tabs_map_w .p_t, .facility .flex .t, .facility .store .top .tit, .happy_call .tit, .lost_article .steps .t, .ticket_com .tit, .etq .t {
+    font-size: 1.5em;
+}
+}
+
+@media (max-width: 1024px){
+  .sketch_write .t h3, .tit-st4, .tabs_map_w .p_t, .facility .flex .t, .facility .store .top .tit, .happy_call .tit, .lost_article .steps .t, .ticket_com .tit, .etq .t {
+      font-size: 1.8em;}
+  }
+  
+  
+  
+/* new.css */
+.ticket_com .t1 dt:first-child {
+  margin-top: 0;
+}
+
+.ticket_com .t1 dt {
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+  margin-top: 2em;
+}
+
+.ticket_com .t {
+  display: block;
+  margin-bottom: .5em;
+  font-size: 1.25em;
+}
+.ticket_com .t1 dd {
+  margin-left: .67em;
+}
+
+
+.bul-decimal {
+  list-style: decimal !important;
+  margin-left: 1em;
+}
+
+
+.ticket_com .t1 .bul-decimal > li {
+  margin-top: 1.5em;
+}
+
+.bul-decimal > li:first-child {
+  margin-top: 0 !important;
+}
+
+.bul-decimal > li {
+  margin-top: .3em;
+}
+
+.ticket_com .sect {
+  margin-top: 1.8em;
+}
+
+.ticket_com .color-purple {
+  color: #AE4A00;
+}
+
+.color-gold, .color-purple {
+  color: #AE4A00;
+}
+
+.ticket_com .t2.bul-dot > li {
+  margin-top: 15px;
+}
+
+.bul-dot > li:first-child {
+  margin-top: 0 !important;
+}
+
+.bul-dot > li, .bul-dot > dd {
+  position: relative;
+  padding-left: .78em;
+  margin-top: .3em;
+}
+
+.bul-dot > li:before, .bul-dot > dd:before {
+  position: absolute;
+  left: 0;
+  top: .7em;
+  width: 3px;
+  height: 3px;
+  content: '';
+  background: #000;
+}
+
+
+
+
+.ticket_com .t2 .bul-decimal {
+  font-size: 16px;
+  font-size: 1rem;
+  margin-top: 1em;
+}
+
+
+/* 장애인 할인 */
+
+
+/* responsive.css */
+
+
+/* new.css */
+.ticket_com strong.color-navy {
+  color: #000;
+}
+
+.t_steps .color-purple, .hall-btn_w .color-purple, .ticket_com .color-navy, .c200172 .link span, .color-reddish-purple, .location .cont_w .color-navy, .facility .flex .color-purple, .facility .flex .color-navy {
+  color: #AE4A00;
+}
+.color-navy {
+  color: #AE4A00;
+}
+
+/* 티켓구입방법 끝 */
+
+
+
+
+
+/*sub_new.css*/
+.ticket_com{font-size: 1.125em;font-weight: 300;}
+.ticket_com .group{padding: 70px;margin-top: 20px; border:1px solid #000}
+.ticket_com .group:first-child{margin-top: 0;}
+.ticket_com .tit,.ticket_com .tit2{font-size: 2.111em;line-height: 1.15;margin-bottom: 1em;position: relative;font-weight: 300;}
+.ticket_com .tit:before{position: absolute;left: -70px;top:8px;width: 4px;height:0.789em;background: #000;content: ''}
+.ticket_com .tit span{display: block;font-size: 18px;font-size: 1.125rem;margin-top: 1em;}
+.ticket_com .t1 dt{font-weight: 700;color:#000;margin-bottom: 10px;margin-top: 2em;}
+.ticket_com .t1 dt:first-child{margin-top: 0;}
+.ticket_com .t1 dd{margin-left: .67em;}
+.ticket_com .t1 .bul-decimal > li{margin-top: 1.5em;}
+.ticket_com h4.bul-dot{font-weight: 300;margin-bottom: .5em;}
+.ticket_com .color-purple{color: #AE4A00}
+
+.ticket_com .sect{margin-top: 1.8em;}
+.ticket_com .sect2{margin-top: 3em;}
+
+.ticket_com .sect:first-child{margin-top: 0;}
+.ticket_com .bul-stars.b,.ticket_com .bul-stars > li{padding-left: .5em}
+.ticket_com .bul-stars.mt{margin-top: 1.5em;}
+
+.ticket_com .t{display: block;margin-bottom: .5em; font-size: 1.25em;}
+.ticket_com .btn-link{margin-left: .3em;}
+.ticket_com .t2 .bul-decimal{font-size: 16px;font-size: 1rem;margin-top: 1em;}
+.ticket_com .t2.bul-dot > li{margin-top: 15px;}
+.ticket_com .t2 .rel{position: relative;padding-left: 6.3em;}
+.ticket_com .t2 .rel strong{position: absolute;left: .78em;top:0}
+.ticket_com .txt{margin-bottom: 2.15em;font-weight: 700;}
+.ticket_com .small{font-size: 16px;font-size: 1rem;margin-top:0.625em;}
+
+
+/* 티켓수령방법 */
+
+
+/* 현장수령 버튼부분 */
+/* layout.css */
+#cont {
+  display: block;
+  width: 100%;
+}
+
+
+/* responsive.css */
+
+
+/* sub new.css */
+#cont {
+  display: block;
+  width: 100%;
+}
+
+#sub_page {
+  padding: 80px 0 115px 0;
+}
+
+/* @media (max-width: 1450px)
+.inner {
+  padding-left: 0.938rem;
+  padding-right: 0.938rem;
+}  참조만*/
+
+.tabs-st1 {
+  font-size: 2em;
+  margin-bottom: 2.5em;
+  
+  text-align: center;
+  word-break: keep-all;
+  line-height: 2;
+}
+
+
+.tabs-st1.li2 > li {
+  width: 100%;
+}
+
+.tabs-st1 > li.active {
+  background: #000;
+  
+}
+
+
+.tabs-st1 > li {
+  border: 0;
+  border-top : 1px solid #000;
+  border-left : 1px solid #000;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+  
+}
+
+.ticket_com .t2.bul-dot > li {
+  margin-top: 15px;
+}
+
+.ticket_com .color-purple {
+  color: #AE4A00;
+}
+
+.ticket_com .group:first-child {
+  margin-top: 0;
+}
+
+.ticket_com {
+  font-size: 1.125em;
+  font-weight: 300;
+}
+
+.ticket_com .group {
+  padding: 70px;
+  margin-top: 20px;
+  border: 1px solid #000;
+}
+
+.ticket_com .tit, .ticket_com .tit2 {
+  font-size: 2.111em;
+  line-height: 1.15;
+  margin-bottom: 1em;
+  position: relative;
+  font-weight: 300;
+}
+
+.ticket_com .txt {
+  margin-bottom: 2.15em;
+  font-weight: 700;
+}
+
+.ticket_com .tit:before {
+  position: absolute;
+  left: -70px;
+  top: 8px;
+  width: 4px;
+  height: 0.789em;
+  background: #000;
+  content: '';
+}
+.tabs-st1 a > span {
+  display: table-cell;
+  vertical-align: middle;
+  color:#fff;
+}
+
+
+/* 예매약관 */
+
+/* sub new.css */
+.join_agree.info_t {
+  font-weight: 300;
+}
+.join_agree {
+  font-weight: 300;
+}
+
+.tit-st4 {
+  font-size: 38px;
+  font-size: 2.375rem;
+  line-height: 1.15;
+  margin-bottom: .67em;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  position: relative;
+}
+
+h3 {
+  display: block;
+  font-size: 1.17em;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+.join_agree.info_t .box {
+  height: 35em;
+}
+.join_agree .box {
+  border: 1px solid #000;
+  padding: 40px 50px;
+  height: 15.625em;
+  overflow-y: auto;
+}
+
+b {
+  font-weight: bold;
+}
+
+/* responsive.css */
+@media (max-width: 1024px){
+.join_agree .box {
+    padding: 5%;
+}
+}
+
+
+/* 예매취소,수수료 */
+/* responsive.css */
+@media (max-width: 640px){
+.ticket_com .tbl-st1 {
+    font-size: 1rem;
+}
+}
+
+@media (max-width: 640px){
+.ticket_com .tbl-st1 th, .ticket_com .tbl-st1 td {
+    padding: 10px;
+}
+}
+
+
+
+@media (max-width: 640px){
+.tbl-st1 th, .tbl-st1 td {
+    padding: 10px 5px;
+}
+}
+
+@media (max-width: 1024px){
+.ticket_com .tbl-st1 td {
+    font-size: 16px;
+    font-size: 1rem;
+}
+}
+
+
+/* sub new.css */
+.tbl-st1 {
+  width: 100%;
+  border-top: 1px solid #000;
+  border-left: 1px solid #000;
+  word-break: break-word;
+}
+
+
+
+table {
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 2px;
+  border-color: grey;
+}
+
+caption {
+  display: table-caption;
+  text-align: -webkit-center;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+.tbl-st1 th, .tbl-st1 td {
+  padding: 1em;
+  text-align: center;
+}
+
+.tbl-st1 th {
+  background: #000;
+  font-weight: 700;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  color: #fff;
+}
+
+
+
+.tbl-st1 th:last-child {
+  border-right: 1px solid #000;
+}
+
+tbody {
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+td {
+  display: table-cell;
+  vertical-align: inherit;
+}
+.tbl-st1 td {
+  background: #fff;
+  border-right: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+

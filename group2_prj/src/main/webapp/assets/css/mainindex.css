@@ -1,0 +1,46 @@
+#cont{
+  display: block;
+  width:100%;
+}
+
+#main{
+  font-weight:300;
+}
+
+#main_visual{
+  position:relative;
+}
+
+#main_visual .in_w{
+  position: relative;
+}
+
+#main_visual .in_w > .in{
+  position:relative;
+  width:2000px;
+  left:50%;
+  margin-left:-1000px;
+
+}
+
+/*JS로 구현될 영역*/
+li.item{
+  width:2000px;
+  position:relative;
+  left:0px;
+  top:0px;
+  z-index:999;
+  opacity:1;
+}
+
+li.item figure img{
+  max-width:100%;
+
+}
+
+
+
+
+
+
+

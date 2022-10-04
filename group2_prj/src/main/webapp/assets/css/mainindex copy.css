@@ -1,0 +1,423 @@
+body{
+  background-color: white;;
+    font-family: 'Noto Sans KR', sans-serif;
+    line-height: 1.5;
+    color: #111;
+    overflow-y: scroll;
+    font-weight: 400;
+    letter-spacing: -0.03em;
+}
+
+div#main{
+  /* border:5px solid gold; */
+}
+
+#page-wrapper{
+  width:inherit;
+  overflow: hidden;
+}
+
+#page-wrapper > section{
+  margin-bottom: -30px !important;
+}
+
+/* #main_visual .btn_w{position: absolute;} */
+
+a{
+  text-decoration: none;;
+  color:#111;
+}
+
+div.slider-single div.img-box-f >  img{
+  height:100%;
+  /* height:10%; */
+  width: 100%;;
+}
+
+
+
+/*First slide*/
+
+
+div.column{
+ 
+  position: relative;
+}
+
+.div_slider_nav{
+  height:200px;
+  width:inherit;
+  /* position: relative; */
+  position:absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  text-align: center;
+  margin-left:-50px !important;
+
+  
+  
+}
+
+div.nav_wrap{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color:rgba(0, 0, 0, 0.8);
+  width:inheritl;
+  height:210px;
+  margin-top:-210px;
+
+  
+}
+
+
+div.slider-nav{
+  position: absolute;
+  width:1000px;
+  margin:0 auto;
+
+  left:5%;
+}
+
+.img-box.box_s{
+  width:97px !important; 
+  margin-left:30px;
+  
+ 
+  /* left:0;
+  top:0; */
+  
+  /* margin-left:-200px;
+  margin-right:-200px; */
+}
+
+.img-box.box_s img{
+  width:97px;
+  box-sizing: border-box;
+  padding:0px;
+  position: relative;
+  opacity: 0.6;;
+
+}
+.slick-slide
+{
+    display: none;
+   float: left;
+    height: 100%;
+    min-height: 1px;
+    display: flex;
+    
+    justify-content: center;
+    align-items: center;
+}
+
+/*오류원인✔️*/
+.box_s_img::before {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #fff;
+  content: '';
+  z-index: 1;
+}
+
+
+.box_s_img:after {
+  background: rgba(0,0,0,.3);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  content: '';
+}
+
+/* .box_s_img:hover{
+  transform: scale(1.15);
+  border:2px solid #fff;
+} */
+
+.active-color{
+  transform: scale(1.15);
+  border:2px solid #fff;
+}
+
+.box_s_img:hover{
+  transform: scale(1.15);
+  border:2px solid #fff;
+}
+
+/*시작,멈춤버튼*/
+.btn_wrap{
+  position: absolute;
+  right:5%;
+  top:40%;
+  border:none !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.play,button.stop{
+  background: none !important;
+}
+
+span.play,span.stop{
+  font-size:30px;
+}
+
+span.play:hover,
+span.stop:hover
+{
+  transform: scale(1.15);
+}
+
+/* span.play:hover
+{
+  font-size:40px;
+} */
+
+div.slider-nav{
+ 
+  width:100%;
+  margin:0 auto;
+  position: absolute; 
+  padding-top:20px;
+  padding-bottom:20px;
+  bottom:0px;
+}
+
+/*상세보기 버튼*/
+div.img-box-f{
+  position: relative;
+  text-align: center;
+}
+
+div.btn-wrap{
+  
+  width:500px;
+  height:100px;
+  top:320px;
+  left:175px;
+  margin-top:200px;
+  position: absolute;
+}
+
+div.btn-wrap a{
+  color:#333;
+}
+
+button.go_show_con{
+ position: absolute;
+ bottom:0%;
+ left:50%;
+ background-color: whitesmoke !important;
+ border:2px solid #333;;
+ color:#333 !important;
+ transition: background-color 0.3s;
+}
+
+button.go_show_con:hover{
+  background-color:#333 !important;
+  color:#fff !important;
+  border:2px solid  #fff;;
+  transition: background-color 0.3s;
+}
+
+
+/*아이콘 영역*/
+ul.icon_s{
+  margin-top:100px;
+  margin-bottom:100px;
+
+}
+
+ul.icon_s div.icon_s_inner{
+  text-align: center;
+  width: inherit;
+
+} 
+
+ul.icon_s div.icon_s_inner div.icon_s_in{
+ 
+  width:300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  
+}
+
+ul.icon_s div.icon_s_inner div.icon_s_in a{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+div.img img:hover{ 
+transform: scale(1.15);
+}
+
+
+/*slider css*/
+/* Slider */
+.slick-slider
+{
+    position: relative;
+
+    display: block;
+    box-sizing: border-box;
+
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -ms-touch-action: pan-y;
+        touch-action: pan-y;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+
+.slick-list
+{
+    position: relative;
+
+    /* display: block; */
+    overflow: hidden;
+
+    margin: 0;
+    padding: 0;
+}
+.slick-list:focus
+{
+    outline: none;
+}
+.slick-list.dragging
+{
+    cursor: pointer;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list
+{
+    -webkit-transform: translate3d(0, 0, 0);
+       -moz-transform: translate3d(0, 0, 0);
+        -ms-transform: translate3d(0, 0, 0);
+         -o-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+}
+
+.clearfix:after{content: ''; display: block; clear: both}
+
+
+
+slick-active a > div.img > img:hover {margin-top: 0;}
+
+div.inner_m{
+  margin-top:-50px;
+  margin-bottom:20px;
+}
+
+
+
+
+/*마지막 슬라이드 영역*/
+#m2 .hover {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 1.125rem;
+  background: rgba(0,0,0,.8);
+  display: none;
+}
+
+.table {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.slick-initialized .slick-slide {
+  display: block;
+}
+
+#m2 .s .rel {
+  display: block;
+  margin: 0 10px;
+  position: relative;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.vertical {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+#m2 .hover .d {
+  color: #fff;
+  background: none;
+  border: 2px solid #fff;
+}
+
+#m2 .hover a {
+  width: 4.444em;
+  height: 4.444em;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 4.444em;
+  font-weight: 500;
+  display: inline-block;
+  margin: 0 2px;
+  font-weight: 400;
+}
+
+
+
+/*-------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
