@@ -31,8 +31,8 @@
  <!-- 1.parmeter를 받을 VO생성   -->
 
 <!-- useBean을 사용하여 MemberDAO와 MemberVO를 불러온다 -->
-<jsp:useBean id="mbrDAO" class="prj2DAO.MemberDAO" scope="page"/>   
-<jsp:useBean id="mbVO" class="prj2DAO.MemberVO" scope="page"/>
+<jsp:useBean id="mbrDAO" class="kr.co.sist.common.dao.MemberDAO" scope="page"/>   
+<jsp:useBean id="mbVO" class="ko.co.sist.vo.MemberVO" scope="page"/>
 <!-- VO에 있는 모든 값을 set해줌  -->
 <jsp:setProperty property="*" name="mbVO"/>
 
@@ -70,7 +70,7 @@
 <jsp:getProperty property="status" name="mbVO"/> 
  --%>
 
-
+<%-- <%=mbVO %> setProperty확인용 --%>
 
 
  <% 

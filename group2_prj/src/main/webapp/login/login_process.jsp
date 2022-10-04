@@ -1,5 +1,5 @@
-<%@page import="prj2DAO.MemberDAO"%>
-<%@page import="prj2DAO.MemberVO"%>
+<%@page import="kr.co.sist.common.dao.AdminMemberDAO"%>
+<%@page import="ko.co.sist.vo.MemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
     
@@ -33,8 +33,8 @@
  <!-- 1.parmeter를 받을 VO생성   -->
 
 <!-- useBean을 사용하여 MemberDAO와 MemberVO를 불러온다 -->
-<jsp:useBean id="mbrDAO" class="prj2DAO.MemberDAO" scope="page"/>   
-<jsp:useBean id="mbVO" class="prj2DAO.MemberVO" scope="page"/>
+<jsp:useBean id="mbrDAO" class="kr.co.sist.common.dao.MemberDAO" scope="page"/>   
+<jsp:useBean id="mbVO" class="ko.co.sist.vo.MemberVO" scope="page"/>
 <!-- VO에 있는 모든 값을 set해줌  -->
 <jsp:setProperty property="*" name="mbVO"/>
 
@@ -56,19 +56,19 @@ if(result){
 	session.setAttribute("memberId", mbVO.getMemberId()); 
  	String id=(String)session.getAttribute("memberId"); 
 	
-	out.println(id);
-/* 	response.sendRedirect("http://localhost/jsp_prj/design%20final%20intergration/index.html");//url추후변경 */
+/* 	out.println(id); */
+/* 	response.sendRedirect("http://localhost/group2_prj/main/index.html");//url추후변경 */
 	
 %>	<script>
 		alert("${param.memberId}님 환영합니다.")
-		 location.href="http://localhost/jsp_prj/design%20final%20intergration/index.html"; 
+		 location.href="http://localhost/group2_prj/main/index.html"; 
 	</script>
 
 
 <%}else{%>
 	<script>
 		alert("아이디 또는 비밀번호를 확인해주세요.");
-		location.href="http://localhost/jsp_prj/design%20final%20intergration/login.html";
+		location.href="http://localhost/group2_prj/login/login.html";
 	</script>
 	
 <%}//end if%>
