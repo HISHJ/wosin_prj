@@ -1,0 +1,704 @@
+<!DOCTYPE HTML>
+<!--
+	Dopetrope by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>회원가입</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets\css\reset.css">
+		<link rel="stylesheet" href="assets\css\subheader.css">
+		<link rel="stylesheet" href="assets\css\headerFooter.css">
+		<link rel="stylesheet" href="assets\css\login.css">
+		<link rel="stylesheet" href="assets\css\signup.css">
+	
+	 <link rel="stylesheet" type="text/css" href="static/portal/css/sub_new.css">
+   <link rel="stylesheet" type="text/css" href="static/portal/css/style.css">
+   <link rel="stylesheet" type="text/css" href="static/portal/css/layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="static/portal/css/bbs_new.css">
+	 
+		<!--google icons-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<!--google fonts-->
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+		<!--제이쿼리-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<!-- datepicker 시작-->
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  		<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  		<script>
+			  $( function() {
+			    $( "#datepicker" ).datepicker({
+			    	showOn: "button",
+			    	buttonImage:"http://localhost/html_prj/design%20final%20intergration/common/btn-book_b.png",
+			    	  dayNamesMin: [ "일", "월", "화", "수", "목", "금", "토" ],
+			    		preText:"이전월",
+			    		nextText:"다음월",appendText: "(yyyy-mm-dd)",
+			    		dateFormat:"yy-mm-dd"
+			
+				});
+			    	
+			
+			  } );
+		</script>
+		
+		
+		<script>
+		$(function(){
+			$("input:checkbox[name='save_id']").prop("checked", true);
+		});
+
+
+		</script>
+		<style>
+			section#header{
+      /* background-image:  url("../../images/subvisual-200001.jpg"); */
+      background: url("images/subvisual-common.jpg") no-repeat ; 
+      background-size: 100%; 
+      background-attachment: fixed;
+
+  
+      }
+
+
+			li.item_birth{
+			
+				display: flex;
+				align-items:center;
+			}
+
+
+
+			input#password,
+			input#repassword
+			{
+				border-radius: 5px !important;;
+			}
+
+			.member_join .item {
+    	display: table !important;
+    	width: 100%;
+    	padding: 1em;
+    	border-bottom: 1px solid #000;
+    	min-height: 5.813em;
+    }
+    
+
+		.t{
+			/* s */
+			padding:0px;
+		}
+
+	
+
+		div.tel_cont {
+    display: flex;
+    flex-direction: row !important;
+}
+
+#nav{
+	margin-right:120px;
+}
+input[type="date"]::-webkit-clear-button, input[type="date"]::-webkit-inner-spin-button { 
+ display: none; 
+} 
+
+input[type="date"] { 
+		display: table !important;
+    	width: 100%;
+    	padding: 1em;
+    	border-bottom: 1px solid #000;
+    	min-height: 3.75em;
+    	border-radius: 5px ;
+}
+
+		</style>
+	</head>
+	<body class="homepage is-preload">
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			<section id="header">
+			
+				<!-- Logo -->
+					
+				<!-- Nav -->
+					<nav id="nav">
+						<!-- left -->
+						<ul id="header_left">
+							<li class="current">
+								<a href="page1.html">공연정보</a>
+								<ul>
+									<li><a href="page1.html">공연일정</a></li>
+									<!-- <li><a href="calendar.html">일정조회</a></li> -->
+									<!-- <li><a href="#">예매</a></li> -->
+									<li><a href="page2.html">공연정보상세보기</a></li>
+									<li><a href="page7.html">좌석배치도</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="">예매정보</a>
+								<ul>
+									<li><a href="subpage-ticketmethod.html">티켓구입방법</a></li>
+									<li><a href="subpage-ticketreceive.html">티켓수령방법</a></li>
+									<li><a href="subpage-ticketcancel.html">예매취소,변경안내</a></li>
+									<li><a href="subpage-ticketprovision .html">예매약관</a></li>					
+								</ul>
+							</li>
+							<li>
+								<a href="page9.html">고객센터</a>
+								<ul>
+									<li><a href="page9.html">FAQ</a></li>
+									<li><a href="#">관람예절</a></li>				
+								</ul>
+							</li>
+							<li><a href="subpage-way.html">오시는 길</a></li>
+							
+							
+						</ul>
+
+						<ul id="header_center">
+							<h1 id="logo">
+								<a href="index.html">
+								우신문화회관
+								</a>
+								</h1>	
+							
+						</ul>
+
+						<!--right  -->
+						<ul id="header_right">
+							<li class="current"><a href="login.html">LOGIN</a></li>
+							<li><a href="ticket.html">티켓</a></li>
+							<li class="calender">
+								<a href="calendar.html">
+									<span class="material-symbols-outlined md_20">
+										calendar_month
+										</span>
+							 </a>
+							</li>
+							<li class="search_icon"><a href="#">
+								<span class="material-symbols-outlined md_20">
+									search
+									</span>
+							</a></li>
+						</ul>
+					</nav>
+
+
+						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
+						<div id="sut-t_wrap">
+						<h2 id="sub-t">
+							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">회원가입</strong>
+						</h2>
+					</div>
+					</section>
+
+						<!--------------------------------------위까지가 헤더----------------------------------------->
+
+				
+				</section>
+
+		<!-- 로그인 영역 -->
+		<div id="depth_w">
+			<div class="inner">
+				<ul class="clrearfox dot dep1 li2">
+					<li class="home">
+						<span>
+							<span>HOME</span>
+						</span>
+					</li>
+					<li>
+						<div class="rel">
+							<a href="#">
+								<span>회원서비스</span>
+							</a>
+							<!-- display:none -->
+							<ul class="depth" >
+								<li>
+									<a href="page1.html">공연정보</a>
+								</li>
+								<li>
+									<a href="subpage-ticketmethod.html">예매정보</a>
+								</li>
+								<li>
+									<a href="subpage-FAQ1.html">고객센터</a>
+								</li>
+								<li>
+									<a href="subpage-way.html">오시는길</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<li>
+							<div class="rel">
+							<a href="signup.html"><span>회원가입</span></a>
+							<ul class="depth">
+							<li><a href="login.html" ><span>로그인</span></a></li>
+							<li><a href="signup.html" ><span>회원가입</span></a></li>
+							<li><a href="find_id.html" ><span>아이디 찾기</span></a></li>
+							<li><a href="find_password.html" ><span>패스워드 찾기</span></a></li>
+						
+							</ul>
+							</div>
+						</li>
+					
+					</li>
+				</ul>
+			</div>
+
+		</div>
+			<!-- 로그인 영역끝 -->
+				
+				<script>
+					$(window).resize(function(){
+						if ( $(window).width() > 1024 ){
+							$("#depth_w .rel").hover(function(){
+								$(this).closest("#depth_w").addClass("on")
+								$(this).find(".depth").show();
+							},function(){
+								$(this).closest("#depth_w").removeClass("on")
+								$(this).find(".depth").hide();
+							})
+							$("#depth_w .rel > a").focus(function(){
+								$(this).closest("#depth_w").addClass("on")
+								$(this).next(".depth").show();
+							})
+							$("#depth_w .depth > li:last-child a").focusout(function(){
+								$(this).closest("#depth_w").removeClass("on")
+								$("#depth_w .depth").stop(true,true).slideUp(150);
+							})
+						}else {
+							$("#depth_w .rel").click(function(){
+								$(this).closest("#depth_w").toggleClass("on")
+								$(this).find(".depth").toggle();
+							})
+						}
+					}).resize();
+					</script>
+				<div id="cont">
+					<div id="sub_page">
+						<div class="inner">
+							
+						</div>
+				
+						<script>
+						var loc = $("#depth_w > div > ul > li").length - 1;
+						$("#depth_w .dep1").addClass("li"+loc);
+				
+						var len = $(".tabs-st1 li").length;
+						$(".tabs-st1").addClass("li"+len);
+						</script>
+				
+						<div class="sub_page">
+						
+				
+				
+				
+				
+						
+			
+						</ul>
+					</div>
+				</div>
+				<script>
+				$(window).resize(function(){
+					if ( $(window).width() > 1024 ){
+						$("#depth_w .rel").hover(function(){
+							$(this).closest("#depth_w").addClass("on")
+							$(this).find(".depth").show();
+						},function(){
+							$(this).closest("#depth_w").removeClass("on")
+							$(this).find(".depth").hide();
+						})
+						$("#depth_w .rel > a").focus(function(){
+							$(this).closest("#depth_w").addClass("on")
+							$(this).next(".depth").show();
+						})
+						$("#depth_w .depth > li:last-child a").focusout(function(){
+							$(this).closest("#depth_w").removeClass("on")
+							$("#depth_w .depth").stop(true,true).slideUp(150);
+						})
+					}else {
+						$("#depth_w .rel").click(function(){
+							$(this).closest("#depth_w").toggleClass("on")
+							$(this).find(".depth").toggle();
+						})
+					}
+				}).resize();
+				</script>
+			<div id="cont">
+				<div id="sub_page">
+					<div class="inner">
+						
+					</div>
+			
+					<script>
+					var loc = $("#depth_w > div > ul > li").length - 1;
+					$("#depth_w .dep1").addClass("li"+loc);
+			
+					var len = $(".tabs-st1 li").length;
+					$(".tabs-st1").addClass("li"+len);
+					</script>
+			
+					<div class="sub_page">
+					
+			
+			
+			
+			
+			
+			
+			<script src="/static/commons/js/validUtil.js"></script>
+			
+			
+			
+				
+			
+			
+			
+			<script src="/static/jslibrary/miya_validator.js"></script>
+			<script>
+			
+			 $(function(){	
+					$("#su_up").click(function(){
+							$("#board").submit();
+					});
+					
+					
+				});
+				
+					
+				
+			</script>
+			
+			<!-- {(joinExtCode,K)(joinExtID,1234528163)(joinExtEmail,hojin0703@nate.com)(joinExtName,김호진)(joinExtBirthDay,)(joinExtGender,)} -->
+			<form name="board" id="board" method="post" action="http://localhost/jsp_prj/prj2/signup_process.jsp">
+					<input type="hidden" id="menuNo" name="menuNo" value="200144" />
+					<input type="hidden" name="extId" id="extId" value="" />
+					<input type="hidden" name="extCode" id="extCode" value="" />
+			
+					<input type="hidden" id="stipulationType" name="stipulation_type" value="" />
+					<input type="hidden" id="effectiveDate" name="effective_date" value="" />
+			
+					<input type="hidden" id="parentName" name="parentName" value="" />
+					<input type="hidden" id="parentDupinfo" name="parentDupinfo" value="" />
+					<input type="hidden" id="parentBirthday" name="parentBirthday" value="" />
+					<input type="hidden" id="parentAuthGubun" name="parentAuthGubun" value="" />
+			
+					<input type="hidden" id="joinType" name="joinType" value="" />
+			
+					<input type="hidden" name="regIdCheckFl" value="N" />
+					<input type="hidden" name="joinTypeCode" value="0001" />
+					<input type="hidden" name="receiveSms" value="" />
+					<input type="hidden" name="receivmemberEmail" value="" />
+			
+					<input type="hidden" name="regNoDate" id="regNoDate" value="" />
+					<input type="hidden" name="dupinfo" id="dupinfo" value="" />
+					<input type="hidden" name="siteType" id="siteType" value="" />
+					
+			
+			<article class="member_join inner member_com">
+				<div class="group">
+					<h3 class="tit-st4 rel">기본정보입력 <span class="ab f16 color-purple">* 필수 입력 값</span></h3>
+					<ul class="sect">
+						<li class="item">
+							<label for="memberName" class="t">이름 <span class="color-purple">*</span></label>
+							<div class="cont">
+								<input type="text" name="name" id="memberName" value="" />
+								<span class="txt ml">예매 등 서비스의 원활한 이용을 위해서 반드시 본명을 입력해주시기 바랍니다.</span>
+							</div>
+						</li>
+						<li class="item">
+							<label for="memberId" class="t">ID <span class="color-purple">*</span></label>
+							<div class="cont ck_id">
+								<input type="text" value="" name="memberId" id="memberId" value="" />
+								<input type="hidden" name="chkmemberIdYN" id="chkmemberIdYN" value="N"/>
+								<button type="button" class="bg-black chkmemberId">중복확인</button>
+								<span class="txt ml">특수문자를 제외한 영문, 숫자 4~20자 이내</span>
+							</div>
+						</li>
+						<li class="item">
+							<label for="password" class="t">비밀번호  <span class="color-purple">*</span></label>
+							<div class="cont">
+								<input type="password" name="pwd" id="password" />
+								<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내</span>
+							</div>
+						</li>
+						<li class="item">
+							<label for="repassword" class="t">비밀번호 확인  <span class="color-purple">*</span></label>
+							<div class="cont">
+								<input type="password" name="repassword" id="repassword" />
+								<span class="txt ml">확인을 위해 한번 더 입력하시기 바랍니다.</span>
+							</div>
+						</li>
+						<li class="item item_birth" >
+							<label  class="t">생년월일  <span class="color-purple">*</span></label>
+							<!-- <strong class="t">생년월일  <span class="color-purple">*</span></strong> -->
+							<div class="cont">
+								<div class="birth_w clearfix">
+									<ul class="clearfix birth">
+											<li>
+											<p><input type="date" name="birth" id="datepicker"  style="width:320px;" /></p>
+											</li>
+									</ul>
+			
+								</div>
+							</div>
+			
+						</li>
+						<!-- <li class="item manAgeSet" style="display: none">
+							<label for="parent" class="t">부모님동의 <span class="color-purple">*</span></label>
+							<div class="cont">
+								<span class="txt">만 14세 미만의 어린이는 보호자 동의가 필요합니다.</span>
+								<button type="button" class="bg-black" onclick="javascript:checkPlusPopup();return false;">부모님 휴대전화 인증</button>
+							</div>
+						</li> -->
+						<li class="item">
+							<label for="genderFlag" class="t">성별 <span class="color-purple">*</span></label>
+							<div class="cont">
+								<select name="gender" id="genderFlag" class="small">
+									<option value="">성별</option>
+									<option value="M" >남자</option>
+									<option value="F" >여자</option>
+								</select>
+							</div>
+						</li>
+						<li class="item">
+							<label class="t">주소 <span class="color-purple">*</span></label>
+							<!-- <strong class="t">주소 <span class="color-purple">*</span></strong> -->
+							<div class="cont">
+								<ul class="add">
+									<li class="clearfix a1">
+										<div class="zipcode">
+											<label for="memberZipCd" class="hide">우편번호</label>
+											<input type="text" name="zipcode" id="memberZipCd" value="" /> 
+											<button id="addrBtn" type="button" class="bg-black" title="새창으로 열립니다.">우편번호 찾기</button>
+											<script>
+												$("#addrBtn").click(function() {
+													goPopup();
+													return false;
+												});
+											</script>
+										</div>
+									</li>
+									<li class="clearfix a2">
+										<span class="l">
+											<label for="memberAddr1" class="hide">주소</label>
+											<input type="text" name="addr1" id="memberAddr1" value="" />
+										</span>
+										<span class="r">
+											<label for="memberAddr2" class="hide">나머지 주소</label>
+											<input type="text" name="addr2" id="memberAddr2" value="" class="long" />
+										</span>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="item">
+							<label class="t">이메일<span class="color-purple">*</span></label>
+							<!-- <strong class="t">이메일 <span class="color-purple">*</span></strong> -->
+							<div class="cont">
+								<ul class="memberEmail clearfix">
+									<li class="e1"><label for="memberEmail" class="hide">이메일 아이디와 주소</label>
+										
+										
+											<input type="text" name="email" id="memberEmail" value="" />
+										
+			
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li class="item">
+							<label class="t">휴대폰<span class="color-purple">*</span></strong></label>
+							<!-- <strong class="t">휴대폰  <span class="color-purple">*</span></strong> -->
+							<div class="cont tel_cont">
+								<div class="tel_w">
+								<ul class="clearfix tel">
+									<li>
+										<label for="tel3" class="hide">휴대폰</label>
+										<input type="text" name="phone" id="tel3" class="small"  style="width:320px;"  />
+									</li>
+								</ul>
+								
+								<input type="hidden" name="memberCel" id="memberCel" value="">
+								</div>
+								<!-- <div class="tel_confirm" style="margin-top:10px;">
+									<label for="smsAuthNumber" class="hide">인증번호 입력</label>
+									<input type="text" name="smsAuthNumber" id="smsAuthNumber" placeholder="인증번호 6자리 숫자 입력" maxlength="6"/>
+									<input type="hidden" name="serverAuth" id="serverAuth" />
+								</div> -->
+							</div>
+						</li>
+						<li class="item">
+							<label class="t">전화번호<span class="color-purple">*</span></label>
+							<div class="cont">
+								<ul class="clearfix tel">
+									
+									<li>
+										<label for="memberTel3" class="hide">전화번호</label>
+										<input type="text" name="hPhone" id="memberTel3" class="small" value=""  style="width:320px;" />
+									</li>
+								</ul>
+								<input type="hidden" name="memberTel" id="memberTel" value="" />
+							</div>
+						</li>
+						
+					</ul>
+					<div class="agree_w f18">
+						<dl>
+							<dt class="bul-dot b">우신문화회관에서 제공하는 정보를 메일로 받아보시겠습니까?</dt>
+							<dd class="ck_com">
+							
+								<input type="radio" name="mailChk" id="agree1"  value="Y" />
+								 <label for="agree1" class="radio_lab lab_left lab_w">예</label>
+							
+								<input type="radio" name="mailChk" id="agree2"  value="N" />
+								 <label for="agree2" class="radio_lab">아니오</label>
+								 
+							</dd>
+						</dl>
+						<dl>
+							<dt class="bul-dot b">우신문화회관에서 제공하는 정보를 SMS 서비스로 받아보시겠습니까? </dt>
+							<dd class="ck_com">
+								<input type="radio" name="smsChk" id="agreeSms1"  value="Y" /> 
+								<label for="agreeSms1" class="radio_lab lab_left">예</label>
+								<input type="radio" name="smsChk" id="agreeSms2"  value="N" /> 
+								<label for="agreeSms2" class="radio_lab">아니오</label>
+							</dd>
+						</dl>
+					</div>
+				
+					<div class="bbs-btn_w clearfix tac">
+						<button  class="bbs-btn-st2 bg-purple3" class="su_up">등록</button>
+						<a href="http://localhost/jsp_prj/design%20final%20intergration/index.html" class="bbs-btn-st2 bg-black_r" id="su_cancle">취소</a>
+						
+					</div>
+
+				</div>	
+				</article>
+				
+				</form>
+
+				
+			
+			
+			<form name="form_chk" method="post">
+				<input type="hidden" name="m" value="checkplusSerivce">						<!-- 필수 데이타로, 누락하시면 안됩니다. -->
+				<input type="hidden" name="EncodeData" value="AgAFRzY2OTlecEucLY2x581zMvmVX/R9ejFU7qHruF5GRJQ6lDw2qEGBS6kaH0geIGMa2q9CDDCTXGOxZ9e14WVJQFZLRNW3IIiTjXqIBrbFgHSBQk/n7Obw4eGFPegyMxnjcR4cf1YSkT0CXRsreRN6wIFG9k+8BXYrk3jjCWzZB0TQc22KP0s6cBn66cQY+LmhWxlAYFFxqp+EgqwAKXZ++D67/zSJ3nt7r9gcyuyVrrKHByQLY4arAKr1kOrYLSxdyxgBPi+lN3+L50sz0CaMIXuIM0kOB+Tp9Y83cpK/WFb6DbEcZKFJ5rYEeJczS+heVlyM9NaUX+qqaNQ/8O66htABY3NOSLYDbvRQ2klwY/RJ9dqYIm5ck14r+VnB5+X1AOrY0t1vv3se0dVydB+XcbgCbwVcWU1cJ+xLX0Kj6oS65Rr2Ni6cCmrb6sJFJEys7ypnHrykqz7SzpGzjpNUXohHhALSrwOE7eOkA78yFTeiPSSDOw==">		<!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
+			</form>
+			
+			<script>
+				function isKid(birthday) {
+					var nowage = birthday;
+					var now = new Date();
+					var year = now.getFullYear();
+					var mon = (now.getMonth() + 1) > 9 ? '' + (now.getMonth() + 1) : '0' + (now.getMonth() + 1);
+					var day = now.getDate() > 9 ? '' + now.getDate() : '0' + now.getDate();
+					var todays = year + mon + day;
+					var dif = todays - parseInt(nowage) - 140000;
+			
+					if (dif >= 0) {
+						return false;
+					} else {
+						return true;
+					}
+				}
+				function isDate(dayStr) {
+					var valid = false;
+					if(dayStr.search(/\d{4}-(0[1-9]|1[0-2])-([0-3][0-9])/)==0) {
+						var arrDay = dayStr.split("-");
+						var year = parseInt(arrDay[0]);
+						var month = parseInt(arrDay[1].replace(/^0(\d)/g,"$1"));
+						var day = parseInt(arrDay[2].replace(/^0(\d)/g,"$1"));
+						var d = new Date(year,month-1,day);
+						if(d.getMonth() == month-1 && d.getDate() == day ) valid = true ;
+					}
+					return valid;
+				}
+			
+				function lpad(val, padLength, padString){
+					while(val.length < padLength){
+						val = padString + val;
+					}
+					return val;
+				}
+			
+				$('[name=birthdayYear], [name=birthdayMonth], [name=birthdayDay]').change(function(event) {
+					if (isDate($('[name=birthdayYear]').val() + '-' + lpad($('[name=birthdayMonth]').val(),2,'0') + '-' + lpad($('[name=birthdayDay]').val(),2,'0')))
+					{
+						if (isKid($('[name=birthdayYear]').val() + '' + lpad($('[name=birthdayMonth]').val(),2,'0') + '' + lpad($('[name=birthdayDay]').val(),2,'0')))
+						{
+							$('.manAgeSet').show()
+						}
+						else{
+							$('.manAgeSet').hide()
+						}
+					}
+					else{
+						$('.manAgeSet').hide()
+					}
+				});
+			
+			</script>
+			
+			
+					</div>
+				</div>
+			
+			</div><!-- #cont -->
+
+				<!----------------------------------------------여기서부터 끝까지 footer-------------------------------------------->
+
+			<!-- Footer -->
+				<section id="footer">
+					<div class="footer_line"></div>
+					<div class="container">
+						<div class="row">
+							<div class="col-8 col-12-medium">
+								<section>
+									<header>
+										<h2>
+											<a href="index.html">
+												<img class="footer_logo" src="common\logo_white.png" alt="우신문화회관">
+											</a>
+										</h2>
+										<div class="l">
+											<address>
+												재단법인 우신문화회관 서울특별시 쌍용구 우신대로 175 (우신로) (우)03172
+											  <br/>
+											  대표자 : 최정민 유원준 정선홍 하지윤 유설빈 사업자등록번호 : 101-12-12345
+												<br/>
+												통신판매업신고 : 서울쌍용-0988호
+											</address>
+											<p class="copyright">
+												COPYRIGHT(C) WOOSHIN CENTER FOR THE PERFORMING ARTS. ALL RIGHTS RESERVED</p>
+											</p>
+										</div>
+
+							</div>
+						</div>
+					</div>
+				</section>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
