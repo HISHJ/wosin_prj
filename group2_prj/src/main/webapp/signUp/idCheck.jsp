@@ -1,3 +1,4 @@
+<%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
 <!DOCTYPE html>
@@ -31,14 +32,13 @@ request.setCharacterEncoding("UTF-8");
 
 %>
 
- <jsp:useBean id="mbrDAO" class="kr.co.sist.common.dao.MemberDAO" scope="page"/>
-<jsp:useBean id="mbVO" class="ko.co.sist.vo.MemberVO" scope="page"/>
 
+<jsp:useBean id="mbVO" class="ko.co.sist.vo.MemberVO" scope="page"/>
 <jsp:setProperty property="memberId" name="mbVO"/>
 <div align="center">
 	<br/><b>${param.memberId }</b>
 <% 
-
+MemberDAO mbrDAO = MemberDAO.getInstance();
 boolean result=mbrDAO.selectChkId(mbVO);
 
 if(result) {

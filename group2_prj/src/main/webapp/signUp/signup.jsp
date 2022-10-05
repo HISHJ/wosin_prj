@@ -33,8 +33,8 @@
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
-		
+		<!-- 우편번호API -->
+		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 		
 		<script>
 		$(function(){
@@ -356,11 +356,15 @@ input[type="date"] {
 
 			/* 회원가입 유효성 검사 */
 			$(function(){
+			
+				
+				
 				
 				$("#repassword").focusout(function(){
 					//비밀번호와 비밀번호 확인의 값이 같은지를 비교
 					chkPass();
-				});
+				});//pass
+				
 				
 			});//ready
 			
@@ -389,64 +393,135 @@ input[type="date"] {
 				var name=$("#memberName").val();
 				if(name.trim()==""){
 					alert("이름을 입력해주세요.")
-					frm.name.focus();
+					$("#memberName").focus();
 					return false;
 				}//name
 				
 				var id=$("#memberId").val();	
 				if(id.trim()==""){
 					alert("아이디를 입력해주세요.");
-					frm.memberId.focus();
+					$("#memberId").focus();
 					return false;
 				}
+
+		
 				
 				//아이디 특수문자 제외 영문,숫자 4~20자이내+중복검사 필수
-				 if(!id.match('^[a-zA-Z0-9]{4,20}$')||id.length>3||id.length<21) {
+				 if(!id.match('^[a-zA-Z0-9]{4,20}$')) {
 						 alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 사용 가능합니다.');
 						$('#memberId').focus();
 						 return false;
 					 }//idcheck
 				
+				
+				if(frm.chkmemberIdYN.value=="N"){
+					alert("아이디 중복검사를 해주세요.");		
+					$('#memberId').focus();
+					return false;
+				}//idcheck
+				
 				var pass=$("#password").val();
 				var pass2=$("#repassword").val();
-				if(pass.trim()==""){
-					alert("비밀번호를 입력해주세요.")
-					frm.pass.focus()
-					return;
-				}//pass
 				
+				if(pass.trim()==""){
+					alert("비밀번호를 입력해주세요.");
+					$("#password").focus();
+					return false;
+				}
+				 var num = pass.search(/[0-9]/);
+				 var eng = pass.search(/[a-zA-Z]/);
+				 var spe= pass.search(/[~!@#$%^&*()_+|<>?:{}]/); 
+					//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
+					if(pass.length < 7 || pass.length > 21){
+							  alert("8자리 ~ 21자리 이내로 입력해주세요.");
+							  $("#password").focus();
+							  return false;
+						}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+							  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+							  $("#password").focus();
+							  return false;
+						}//유효성 검사 */
 				if(pass2.trim()==""){
 					alert("비밀번호를 한번 더 확인해주세요.")
-					frm.pass.focus()
-					return;
-				}//pass
-				//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
-				
-				 var num = pw.search(/[0-9]/g);
- 				var eng = pw.search(/[a-z]/ig);
- 				/*  */
- 				 var spe = pw.search(/[`~!@@#$%^&*|\\\'₩";:₩/?]/gi)
-				
-				if(pass.length<7||pass.length>21){
-					alert("8자리 ~ 20자리 이내로 입력해주세요.");
-					  return;
-				}else if((num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
-					alert("영문,숫자,특수문자중 2가지 이상을 혼합하여 입력해주세요.");
-					return ;
-				}//end if
+					$("#repassword").focus();
+					
+					return false;
+				}//pass2
 			
-				var birth=$("#datepicker").val();	
+				
+			var birth=$("#datepicker").val();	
 				if(birth.trim()==""){
 					alert("생년월일을 입력해주세요.");
-					frm.birth.focus();
-					return;
-				}//birth
+					$("#datepicker").focus();
+					return false ;
+				}//
 				
+			var gender=$("#genderFlag").val();
+			if(gender.trim()==""){
+				alert("성별을 입력해주세요.");
+				$("#genderFlag").focus();
+				return false ;
+			}//gender
+			
+			var zipcode=$("#memberZipCd").val();
+			if(zipcode.trim()==""){
+				alert("우편번호를 입력해주세요..");
+				$("#memberZipCd").focus();
+				return false ;
+			}//zipcode
 				
+			var addr1=$("#memberAddr1").val();
+			if(addr1.trim()==""){
+				alert("주소를 입력해주세요..");
+				$("#memberAddr1").focus();
+				return false ;
+			}//addr1
+			var addr2=$("#memberAddr2").val();
+			if(addr2.trim()==""){
+				alert("주소를 입력해주세요..");
+				$("#memberAddr2").focus();
+				return false ;
+			}//addr2
+			
+			var email=$("#memberEmail").val();
+			if(email.trim()==""){
+				alert("이메일을 입력해주세요.");
+				$("#memberEmail").focus();
+				return false ;
+			}//email
+				
+			var phone=$("#phone").val();
+			if(phone.trim()==""){
+				alert("휴대폰 번호를 입력해주세요.");
+				$("#phone").focus();
+				return false ;
+			}//phone
+			
+			var hPhone=$("#hPhone").val();
+			if(hPhone.trim()==""){
+				alert("전화번호를 입력해주세요.");
+				$("#hPhone").focus();
+				return false ;
+			}//hPhone
+			
 		
+			var mailChk =$(':radio[name=mailChk]:checked' );
+			if(mailChk.length<1){
+				alert("메일수신여부를 체크해주세요.");
+				return false;
 				
+			}//mailChk
+			
+			var smsChk =$(':radio[name=smsChk]:checked' );
+			if(smsChk.length<1){
+				alert("SMS수신여부를 체크해주세요.");
+				return false;
 				
+			}//smsChk
+			if(!confirm("등록하시겠습니까?")){
+				$("#board").submit();
 				
+			}//confirm
 				
 			}//check
 			
@@ -456,20 +531,156 @@ input[type="date"] {
 					frm=document.board;
 				if(memberId==""){
 					alert("아이디를 입력해주세요.");
-					frm.memberId.focus();
-					return;
+					$("#memberId").focus();
+					
+					return false;
 				}
 				
 				url="http://localhost/group2_prj/signUp/idCheck.jsp?memberId="+memberId;
 				window.open(url,"http://localhost/group2_prj/signUp/idCheck.jsp", "width=300, height=150")
-				
+				$("#chkmemberIdYN").val("Y");
 				
 			}//idCheck
+			
+			/* 우편번호시작 API */
+			 function execDaumPostcode() {
+			        new daum.Postcode({
+			            oncomplete: function(data) {
+			                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+			
+			                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+			                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+			                var roadAddr = data.roadAddress; // 도로명 주소 변수
+			                var extraRoadAddr = ''; // 참고 항목 변수
+			
+			                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+			                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+			                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+			                    extraRoadAddr += data.bname;
+			                }
+			                // 건물명이 있고, 공동주택일 경우 추가한다.
+			                if(data.buildingName !== '' && data.apartment === 'Y'){
+			                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+			                }
+			                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+			                if(extraRoadAddr !== ''){
+			                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+			                }
+			
+			                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+			                document.getElementById("memberZipCd").value = data.zonecode;
+			                document.getElementById("memberAddr1").value = roadAddr
+			                //커서를 상세주소로 이동
+			                document.getElementById("memberAddr2").focus();
+			     
+			
+			            }
+			        }).open();
+			    }//execDaumPostcode() 
+			    
+			/* 휴대전화 하이폰 추가  */  
+			function PhoneNumber(obj) {
 
+				    var number = obj.value.replace(/[^0-9]/g, "");
+				    var phone = "";
+			
+				    if(number.length < 4) {
+				        return number;
+				    } else if(number.length < 7) {
+				        phone += number.substr(0, 3);
+				        phone += "-";
+				        phone += number.substr(3);
+				        
+				        
+				    } else if(number.length < 11) {
+				        phone += number.substr(0, 3);
+				        phone += "-";
+				        phone += number.substr(3, 3);
+				        phone += "-";
+				        phone += number.substr(6);
+				    } else {
+				        phone += number.substr(0, 3);
+				        phone += "-";
+				        phone += number.substr(3, 4);
+				        phone += "-";
+				        phone += number.substr(7);
+				    }
+				    obj.value = phone;
+				    return false;
+				}//PhoneNumber
+		
+			/* 전화번호 하이픈추가  */
+				function hPhoneNumber(obj) {
+
+				    var number = obj.value.replace(/[^0-9]/g, "");
+				    var phone = "";
+				    
+			if(number.substr(0,2)==02){
+				    if(number.length < 3) {
+				        return number;
+				    } else if(number.length < 6) {
+				        phone += number.substr(0, 2);
+				        phone += "-";
+				        phone += number.substr(2);
+				        
+				    } else if(number.length < 10) {
+				        phone += number.substr(0, 2);
+				        phone += "-";
+				        phone += number.substr(2, 3);
+				        phone += "-";
+				        phone += number.substr(5);
+				        
+				     
+				    } else {
+				        phone += number.substr(0, 2);
+				        phone += "-";
+				        phone += number.substr(2, 4);
+				        phone += "-";
+				        phone += number.substr(6,4);
+				        
+				        
+				    }
+			}else{
+				if(number.length < 4) {
+			        return number;
+			    } else if(number.length < 7) {
+			        phone += number.substr(0, 3);
+			        phone += "-";
+			        phone += number.substr(3);
+			        
+			
+			        
+			    } else if(number.length < 11) {
+			        phone += number.substr(0, 3);
+			        phone += "-";
+			        phone += number.substr(3, 3);
+			        phone += "-";
+			        phone += number.substr(6);
+			        
+			       
+			        
+			    } else {
+			        phone += number.substr(0, 3);
+			        phone += "-";
+			        phone += number.substr(3, 4);
+			        phone += "-";
+			        phone += number.substr(7);
+			        
+			      
+			    }
 				
+			}//else
+				    obj.value = phone;
+					return false;
+				}//PhoneNumber
+		
+						    
+
 			</script>
+			
+			
 			<!-- action="http://localhost/jsp_prj/design%20final%20intergration/signup_process.jsp" -->
-			<form name="board" id="board" method="post" >
+			<form name="board" id="board" method="post" action="http://localhost/group2_prj/signUp/signup_process.jsp" >
 			<!-- {(joinExtCode,K)(joinExtID,1234528163)(joinExtEmail,hojin0703@nate.com)(joinExtName,김호진)(joinExtBirthDay,)(joinExtGender,)} -->
 					<input type="hidden" id="menuNo" name="menuNo" value="200144" />
 					<input type="hidden" name="extId" id="extId" value="" />
@@ -494,8 +705,6 @@ input[type="date"] {
 					<input type="hidden" name="dupinfo" id="dupinfo" value="" />
 					<input type="hidden" name="siteType" id="siteType" value="" />
 					
-			
-			<form name="board" id="board" method="post" action="http://localhost/jsp_prj/design%20final%20intergration/signup_process.jsp">
 			<article class="member_join inner member_com">
 				<div class="group">
 					<h3 class="tit-st4 rel">기본정보입력 <span class="ab f16 color-purple">* 필수 입력 값</span></h3>
@@ -559,8 +768,8 @@ input[type="date"] {
 							<div class="cont">
 								<select name="gender" id="genderFlag" class="small">
 									<option value="">성별</option>
-									<option value="M" >남자</option>
-									<option value="F" >여자</option>
+									<option value="남자" >남자</option>
+									<option value="여자" >여자</option>
 								</select>
 							</div>
 						</li>
@@ -573,13 +782,8 @@ input[type="date"] {
 										<div class="zipcode">
 											<label for="memberZipCd" class="hide">우편번호</label>
 											<input type="text" name="zipcode" id="memberZipCd" value="" /> 
-											<button id="addrBtn" type="button" class="bg-black" title="새창으로 열립니다.">우편번호 찾기</button>
-											<script>
-												$("#addrBtn").click(function() {
-													goPopup();
-													return false;
-												});
-											</script>
+											<button id="addrBtn" type="button" class="bg-black" title="새창으로 열립니다." onclick="execDaumPostcode()">우편번호 찾기</button>
+											
 										</div>
 									</li>
 									<li class="clearfix a2">
@@ -600,7 +804,7 @@ input[type="date"] {
 							<!-- <strong class="t">이메일 <span class="color-purple">*</span></strong> -->
 							<div class="cont">
 								<ul class="memberEmail clearfix">
-									<li class="e1"><label for="memberEmail" class="hide">이메일 아이디와 주소</label>
+									<li class="e1"><label for="memberEmail" class="hide">이메일 </label>
 										
 										
 											<input type="text" name="email" id="memberEmail" value="" />
@@ -618,7 +822,7 @@ input[type="date"] {
 								<ul class="clearfix tel">
 									<li>
 										<label for="tel3" class="hide">휴대폰</label>
-										<input type="text" name="phone" id="tel3" class="small"  style="width:320px;"  />
+										<input type="text" onkeyup="PhoneNumber(this)" id="phone" name="phone" class="small"  maxlength="13" style="width:320px;"  />
 									</li>
 								</ul>
 								
@@ -638,7 +842,7 @@ input[type="date"] {
 									
 									<li>
 										<label for="memberTel3" class="hide">전화번호</label>
-										<input type="text" name="hPhone" id="memberTel3" class="small" value=""  style="width:320px;" />
+										<input type="text" onkeyup="hPhoneNumber(this)" name="hPhone" id="hPhone" class="small" value=""  maxlength="13" style="width:320px;" />
 									</li>
 								</ul>
 								<input type="hidden" name="memberTel" id="memberTel" value="" />
@@ -671,8 +875,8 @@ input[type="date"] {
 					</div>
 				
 					<div class="bbs-btn_w clearfix tac">
-						<button  class="bbs-btn-st2 bg-purple3 btnSignup" onclick="check()">등록</button>
-						<a href="http://localhost/jsp_prj/design%20final%20intergration/index.html" class="bbs-btn-st2 bg-black_r" id="su_cancle">취소</a>
+						<button  class="bbs-btn-st2 bg-purple3 btnSignup" onclick="return check()">등록</button>
+						<a href="http://localhost/jsp_prj/design%20final%20intergration/index.html" class="bbs-btn-st2 bg-black_r" id="btnSignupC">취소</a>
 						
 					</div>
 
