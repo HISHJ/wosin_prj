@@ -361,7 +361,7 @@ return cnt;//데이터베이스오류
 
 //회원가입할때 id중복확인
 
-public boolean selectChkId(String memberId) throws SQLException {
+public boolean selectChkId(MemberVO mbVO) throws SQLException {
 	
 	boolean result=false;
 	Connection con=null;
@@ -373,7 +373,7 @@ public boolean selectChkId(String memberId) throws SQLException {
 		String selectChk= "select memberid from member where memberId=?";
 		pstmt=con.prepareStatement(selectChk);
 		
-		pstmt.setString(1,memberId);
+		pstmt.setString(1,mbVO.getMemberId());
 	
 		rs=pstmt.executeQuery();
 		
