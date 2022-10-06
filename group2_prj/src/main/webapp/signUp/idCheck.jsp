@@ -33,7 +33,7 @@ request.setCharacterEncoding("UTF-8");
 %>
 
 
-<jsp:useBean id="mbVO" class="ko.co.sist.vo.MemberVO" scope="page"/>
+<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
 <jsp:setProperty property="memberId" name="mbVO"/>
 <div align="center">
 	<br/><b>${param.memberId }</b>

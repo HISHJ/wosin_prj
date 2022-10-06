@@ -5,9 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import ko.co.sist.vo.MemberVO;
-import ko.co.sist.vo.QuitMemberVO;
 import kr.co.sist.common.dao.DbConnection;
+import kr.co.sist.vo.MemberVO;
+import kr.co.sist.vo.QuitMemberVO;
 
 
 

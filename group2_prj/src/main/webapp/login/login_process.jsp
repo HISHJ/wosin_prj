@@ -35,7 +35,7 @@
 
 <!-- useBean을 사용하여 MemberDAO와 MemberVO를 불러온다 -->
 
-<jsp:useBean id="mbVO" class="ko.co.sist.vo.MemberVO" scope="session"/>
+<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 <!-- VO에 있는 모든 값을 set해줌  -->
 <jsp:setProperty property="*" name="mbVO"/>
 
@@ -50,13 +50,12 @@
 
 <% 
 MemberDAO mbrDAO= MemberDAO.getInstance();
-
 boolean result = mbrDAO.login(mbVO);
 
 if(result){
 	//로그인 성공
-	session.setAttribute("memberId", mbVO.getMemberId()); 
- 	String id=(String)session.getAttribute("memberId"); 
+	session.setAttribute("memberId", mbVO.getMemberId());  
+ /* 	String id=(String)session.getAttribute("memberId");  */
 	
 /* 	out.println(id); 세션확인용*/
 	

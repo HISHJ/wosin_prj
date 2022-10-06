@@ -200,7 +200,7 @@
 					
 					<!-- useBean을 사용하여 MemberDAO와 MemberVO를 불러온다 -->
 				   
-					<jsp:useBean id="mbVO" class="ko.co.sist.vo.MemberVO" scope="page"/>
+					<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
 					<!-- VO에 있는 모든 값을 set해줌  -->
 					<%-- <jsp:setProperty property="*" name="mbVO"/>
 					 --%>

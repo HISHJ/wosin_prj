@@ -1,4 +1,4 @@
-package ko.co.sist.vo;
+package kr.co.sist.vo;
 
 import java.sql.Date; // sql맞던가?
 
