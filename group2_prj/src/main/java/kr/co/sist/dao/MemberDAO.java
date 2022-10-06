@@ -306,7 +306,7 @@ public int updateMember(MemberVO mbVO) throws SQLException {
 
 public int insertMember(MemberVO mbVO) throws SQLException {
 	
-	int cnt=0;
+	
 	Connection con=null;
 	PreparedStatement pstmt=null;
 	DbConnection dc = DbConnection.getInstance();
