@@ -7,8 +7,6 @@
 
     
     
-    <!-- 문제 -->
-    <!-- 버튼클릭시 페이지 이동 안함 (함수) -->
 <%
 AdminShowVO asVO= new AdminShowVO();
 AdminShowDAO asDAO=AdminShowDAO.getInstance();
@@ -42,10 +40,10 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
 	    	$("input[name='status']:radio").click(function () {
 	            //라디오 버튼 값을 가져온다.
 	            var status = this.value;
-	            var url="http://localhost/jsp_prj/design%20intergration/showBoard.jsp";
+	            var url="http://localhost/group2_prj/admin/showBoard.jsp";
 	            url =url+"?status="+status;
 	            
-	           //alert(url);
+	           alert(url);
 
 	            //radio 버튼이 도망? 가고 url은 바뀌는데 select되는 애는 변함없음 
 	            location.href=url;
@@ -54,15 +52,16 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
 	    	});
 	    	
 	    	//검색버튼2.상태 >>>>>>>얘는 alert도 안뜸;
-	    	$(document).on('click', '#showSatusSearchBtn', function(){
+	    	/* $(document).on('click', '#showSatusSearchBtn', function(){
 	    		e.preventDefault();
 	    		var url = "http://localhost/jsp_prj/design%20intergration/showBoard.jsp";
 	    		url = url + "?status=" + $('#status').val();
 	    		
-	    		alert(url);
-	    		/* location.href = url;
-	    		console.log(url); */
-	    	});
+	    		//alert(url);
+	    		location.href = url;
+	    		console.log(url);
+	    	}); */
+	    	
 	    	
    		});//ready
 		   	

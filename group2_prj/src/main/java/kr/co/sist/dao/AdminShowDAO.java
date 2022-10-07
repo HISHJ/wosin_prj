@@ -72,8 +72,8 @@ public class AdminShowDAO {
 				asVO2=new AdminShowVO();
 				asVO2.setShowId(rs.getString("s_showId"));
 				asVO2.setName(rs.getString("s_name"));
-				asVO2.setGenreId(rs.getString("g_genreId"));
 				asVO2.setPrice(rs.getInt("s_price"));
+				asVO2.setGenreId(rs.getString("g_genreId"));
 				asVO2.setRatingId(rs.getString("r_ratingId"));
 				asVO2.setStatus(rs.getString("s_status"));
 				list.add(asVO2);
@@ -210,7 +210,7 @@ public class AdminShowDAO {
 			//
 			String query=" update show "
 					+ " set name=?, genreId=?, startDate=?, endDate=?, runningTime=?, ratingId=?, price=?, thImg=?, mImg=?, infoImg=?, status=?  "
-					+ " where showID='"+asVO.getShowId()+"' "; //where절 이게 맞나 jsp에서 어떻게 받아와야하지
+					+ " where showID=? "; //where절 이게 맞나 jsp에서 어떻게 받아와야하지
 			
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, asVO.getName());
@@ -224,6 +224,7 @@ public class AdminShowDAO {
 			pstmt.setString(9, asVO.getmImg());
 			pstmt.setString(10, asVO.getInfoImg());
 			pstmt.setString(11, asVO.getStatus());
+			pstmt.setString(12, asVO.getShowId());
 			
 			pstmt.executeUpdate();
 		}finally {

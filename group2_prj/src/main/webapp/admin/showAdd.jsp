@@ -5,7 +5,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="showAdd"%>
     
-<!-- alert만 뜨고 추가 안됨; DAO다시보기... -->
     
 <%
 request.setCharacterEncoding("UTF-8");
@@ -35,14 +34,16 @@ AdminShowVO asVO= new AdminShowVO();
     	
     	
     	function addBtn() {
+    		
     		var name=$("#name").val();
     		//pk값 유효성 검증
 			if(name.trim()==""){ //null 아니라 ""로 처리
 				alert("공연명은 필수입력입니다");
 			//insert하기
 			}else{
-				$("#frm").submit();	
 				alert("공연이 추가되었습니다"); // 이러고 페이지 이동하는데 ...
+				$("#frm").submit();	
+				//location.href="showBoard.jsp";
 			}
     		
 			

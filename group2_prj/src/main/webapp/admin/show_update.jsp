@@ -1,3 +1,5 @@
+<%@page import="javax.tools.DocumentationTool.Location"%>
+<%@page import="org.apache.tomcat.jni.Local"%>
 <%@page import="kr.co.sist.dao.AdminShowDAO"%>
 <%@page import="kr.co.sist.vo.AdminShowVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -21,7 +23,7 @@
 					<jsp:setProperty property="infoImg" name="asVO"/>
 					<jsp:setProperty property="status" name="asVO"/> 
 					
-					<%-- <jsp:getProperty property="name" name="asVO"/>
+					 <jsp:getProperty property="name" name="asVO"/>
 					<jsp:getProperty property="showId" name="asVO"/>
 					<jsp:getProperty property="genreId" name="asVO"/>
 					<jsp:getProperty property="startDate" name="asVO"/>
@@ -32,12 +34,12 @@
 					<jsp:getProperty property="thImg" name="asVO"/>
 					<jsp:getProperty property="mImg" name="asVO"/>
 					<jsp:getProperty property="infoImg" name="asVO"/>
-					<jsp:getProperty property="status" name="asVO"/>  --%>
+					<jsp:getProperty property="status" name="asVO"/>
 					
 					
 					<% 
 					AdminShowDAO asDAO = AdminShowDAO.getInstance();
-					int cnt = asDAO.updateShow(asVO); %>
+					int cnt = asDAO.updateShow(asVO);%> <!-- DAO손보기 -->
 
 
 </body>
