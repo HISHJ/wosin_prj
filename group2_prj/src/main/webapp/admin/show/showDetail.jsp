@@ -4,18 +4,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="showDetail.jsp"%>
  
- <!-- 해결완 -->
- <!-- 뭐지 .... 이거만 실행시키면 오류뜨고  board에서 클릭해서 들어와야하네 >> 파라미터로 받아와서 그런가봐--> 
 
  <!-- 문제야 -->
  <!-- 1.공연 종료일이 안받아와지는 애들이 몇 있음. 데이터는 있는데  -->
  <!-- 2. selected 하고싶은애들 scriptlet으로 해결 안되나?  >> 걍 쓰면됐었다 ...ㅎㅎ 해결완-->
     
 <%
-String showId=request.getParameter("showId"); //아...세션으로 줘야하나 삭제버튼 꺼내놓지 말라헸으니까
+String showId=request.getParameter("showId"); 
 AdminShowVO asVO= new AdminShowVO();
 AdminShowDAO asDAO=AdminShowDAO.getInstance();
-AdminShowVO showDetail=asDAO.selectShowDetail(showId);  //이거 같은데?
+AdminShowVO showDetail=asDAO.selectShowDetail(showId); 
 int delet=asDAO.deleteShow(showId);  
 %>
 <!DOCTYPE html>
