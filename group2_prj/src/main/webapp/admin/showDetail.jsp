@@ -16,7 +16,6 @@ String showId=request.getParameter("showId");
 AdminShowVO asVO= new AdminShowVO();
 AdminShowDAO asDAO=AdminShowDAO.getInstance();
 AdminShowVO showDetail=asDAO.selectShowDetail(showId);  //이거 같은데?
-log( showDetail.toString() );
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -34,14 +33,22 @@ log( showDetail.toString() );
         
         </style>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        <!--제이쿼리-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script type="text/javascript">
-        $(function() {
+       
+		function updateBtn() {
+    		var name=$("#name").val();
+    		//pk값 유효성 검증
+			if(name.trim()==""){ //null 아니라 ""로 처리
+				alert("공연명은 필수입력입니다");
+			//insert하러 가자
+			}else{
+				$("#frm").submit();	
+				alert("공연이 수정되었습니다");
+			}
 			
-		});
-        
-        function modifyClick() {
-        	$("#frm").submit();
-		}//
+		}//aadBtn
         
         
         
@@ -60,7 +67,7 @@ log( showDetail.toString() );
                                     <div class="card-header navyv bg-dark"><h3 class="text-start text-white font-weight-light my-4 " style="font-weight: bold;">공연 상세정보</h3></div>
                                     <div class="card-body">
                                        
-                                    <form>
+                                    <form id="frm" action="show_update.jsp">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-4"><img src=<%=showDetail.getmImg() %> class="img-thumbnail" alt="썸네일이미지"></div>
@@ -71,7 +78,7 @@ log( showDetail.toString() );
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>공연명</b></div> <div class="col-6"><input name="showId" type="text" class="dataTable-input" value="<%=showDetail.getName() %>" placeholder="공연명을 입력해주세요"></div>
+                                            <div class="col-2"><b>공연명</b></div> <div class="col-6"><input id="name" name="name" type="text" class="dataTable-input" value="<%=showDetail.getName() %>" placeholder="공연명을 입력해주세요"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -177,7 +184,7 @@ log( showDetail.toString() );
                                             
                                                 <div class="mt-4 mb-0">
                                                     <div class="col text-center">
-                                                        <a href="showBoard.jsp" class="btn btn-secondary btn-sm" onclick="modifyClick" >변경</a>
+                                                        <a class="btn btn-secondary btn-sm" onclick="updateBtn()" >변경</a>
                                                         <a href="showBoard.jsp" class="btn btn-default btn-sm" >취소</a>
                                                     </div>
                                                 </div>

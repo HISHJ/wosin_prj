@@ -37,4 +37,8 @@
 					
 					<% 
 					AdminShowDAO asDAO = AdminShowDAO.getInstance();
-					int cnt = asDAO.insertShow(asVO); %>
+					int cnt = asDAO.updateShow(asVO); %>
+
+
+</body>
+</html>

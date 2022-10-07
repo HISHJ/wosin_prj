@@ -34,11 +34,20 @@ AdminShowVO asVO= new AdminShowVO();
     	<script type="text/javascript">
     	
     	
-    	//if로 입력안된 값들 처리하기
     	function addBtn() {
-			$("#frm").submit();
-			//location.href="show_insert.jsp";
+    		var name=$("#name").val();
+    		//pk값 유효성 검증
+			if(name.trim()==""){ //null 아니라 ""로 처리
+				alert("공연명은 필수입력입니다");
+			//insert하기
+			}else{
+				$("#frm").submit();	
+				alert("공연이 추가되었습니다"); // 이러고 페이지 이동하는데 ...
+			}
+    		
+			
 		}//aadBtn
+		
     	
     	</script>
     
@@ -63,7 +72,7 @@ AdminShowVO asVO= new AdminShowVO();
                                         </div>  
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>공연명</b></div> <div class="col-6"><input name="showId" type="text" class="dataTable-input" value="제발돼라" placeholder="공연명을 입력해주세요"></div>
+                                            <div class="col-2"><b>공연명</b></div> <div class="col-6"><input id="name" name="name" type="text" class="dataTable-input" value="제발돼라" placeholder="공연명을 입력해주세요"></div>
                                            
                                         </div>
                                         <div class="dataTable-top"></div>
@@ -150,7 +159,7 @@ AdminShowVO asVO= new AdminShowVO();
                                             
                                                 <div class="mt-4 mb-0">
                                                     <div class="col text-center">
-                                                        <a onclick="addBtn()" class="btn btn-secondary btn-sm">추가</a>
+                                                        <a class="btn btn-secondary btn-sm" onclick="addBtn()" >추가</a>
                                                         <a class="btn btn-default btn-sm" href="showBoard.jsp">취소</a>
                                                     </div>
                                                 </div>
