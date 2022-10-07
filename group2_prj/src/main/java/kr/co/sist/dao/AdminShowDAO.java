@@ -51,8 +51,8 @@ public class AdminShowDAO {
 		try {
 			con=db.getConn();
 			
-			String query=" select s.showId s_showId, s.name s_name, g.genreType g_genreType, s.price s_price, r.ratingType r_ratingType, s.status s_status "
-					+ "from show s, genre g, rating r "  //여기 genre는 있는데 셀렉에 장르 원소가 없으면 cartesian 되는거 아님? 아니네ㅎ
+			String query=" select s.showId s_showId, s.name s_name, g.genreId g_genreId, s.price s_price, r.ratingId r_ratingId, s.status s_status "
+					+ "from show s, genre g, rating r "  
 					+ "where (s.genreId=g.genreId and s.ratingId=r.ratingId) ";
 			
 			if(asVO.getName()!=null){
@@ -72,9 +72,9 @@ public class AdminShowDAO {
 				asVO2=new AdminShowVO();
 				asVO2.setShowId(rs.getString("s_showId"));
 				asVO2.setName(rs.getString("s_name"));
-				asVO2.setGenreId(rs.getString("g_genreType"));
+				asVO2.setGenreId(rs.getString("g_genreId"));
 				asVO2.setPrice(rs.getInt("s_price"));
-				asVO2.setRatingId(rs.getString("r_ratingType"));
+				asVO2.setRatingId(rs.getString("r_ratingId"));
 				asVO2.setStatus(rs.getString("s_status"));
 				list.add(asVO2);
 			}
@@ -107,7 +107,7 @@ public class AdminShowDAO {
 			con=db.getConn();
 			
 			//select id, type
-			String query=" select s.showId s_showId, s.name s_name, s.startDate s_startDate, s.endDate s_endDate, s.runningTime s_runningTime, s.price s_price, s.thImg s_thImg, s.mImg s_mImg, s.infoImg s_infoImg, s.status s_status, r.ratingType r_ratingType, g.genreType g_genreType, s.inputdate s_inputdate "
+			String query=" select s.showId s_showId, s.name s_name, s.startDate s_startDate, s.endDate s_endDate, s.runningTime s_runningTime, s.price s_price, s.thImg s_thImg, s.mImg s_mImg, s.infoImg s_infoImg, s.status s_status, r.ratingId r_ratingId, g.genreId g_genreId, s.inputdate s_inputdate "
 					+ " from show s, rating r, genre g "
 					+ " where (s.ratingId=r.ratingId and s.genreId=g.genreId) and s.showId=? ";
 			pstmt = con.prepareStatement(query);
@@ -118,11 +118,11 @@ public class AdminShowDAO {
 				asVO=new AdminShowVO();
 				asVO.setShowId(rs.getString("s_showId"));
 				asVO.setName(rs.getString("s_name"));
-				asVO.setGenreId(rs.getString("g_genreType")); //이거 말씀이신가요 ?! 
+				asVO.setGenreId(rs.getString("g_genreId"));
 				asVO.setStartDate(rs.getString("s_startDate"));
 				asVO.setEndDate(rs.getString("s_endDate"));
 				asVO.setRunningTime(rs.getString("s_runningTime"));
-				asVO.setRatingId(rs.getString("r_ratingType"));
+				asVO.setRatingId(rs.getString("r_ratingId"));
 				asVO.setPrice(rs.getInt("s_price"));
 				asVO.setThImg(rs.getString("s_thImg"));
 				asVO.setmImg(rs.getString("s_mImg"));
@@ -148,12 +148,13 @@ public class AdminShowDAO {
 	//return: int
 	//공연코드는 시퀀스로 받기> 시퀀스 테이블 생성하기
 	public int insertShow(AdminShowVO asVO) throws SQLException {
+		int i=0;
 		
 		
 		DbConnection db=DbConnection.getInstance();
 		Connection con=null;
 		PreparedStatement pstmt=null;
-//		resultset은 select에서만 
+		ResultSet rs=null;
 		
 		try{
 			con=db.getConn();
@@ -163,7 +164,6 @@ public class AdminShowDAO {
 					+ " values (concat('sh_',lpad(show_seq.nextval,7,0)),?,?,?,?,?,?,?,?,?,?,?,to_char(sysdate,'yyyy-mm-dd')) ";
 			
 			pstmt = con.prepareStatement(query);
-			
 			pstmt.setString(1, asVO.getName());
 			pstmt.setString(2, asVO.getGenreId());
 			pstmt.setString(3, asVO.getStartDate());
@@ -176,19 +176,17 @@ public class AdminShowDAO {
 			pstmt.setString(10, asVO.getInfoImg());
 			pstmt.setString(11, asVO.getStatus());
 			
-			return pstmt.executeUpdate();
+			pstmt.executeUpdate();
+			
+			rs = pstmt.executeQuery(" select concat('sh_',lpad(show_seq.currval,7,0)) from dual ");
+			rs.next();
 			
 			
-			
-		}catch(Exception e){
-			
-			e.printStackTrace();
 		}finally {
-		
-			db.dbClose(null, pstmt, con);
+			db.dbClose(rs, pstmt, con);
 		}
 		
-		return -1;
+		return i;
 	}//insertShow
 	
 	
