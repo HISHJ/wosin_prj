@@ -31,22 +31,21 @@
 <body>
 <%request.setCharacterEncoding("UTF-8"); %>
 
- <!-- 1.parmeter를 받을 VO생성   -->
 
-<!-- useBean을 사용하여 MemberDAO와 MemberVO를 불러온다 -->
+
+<!-- useBean을 사용하여  MemberVO를 불러온다 -->
 
 <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 <!-- VO에 있는 모든 값을 set해줌  -->
-<jsp:setProperty property="*" name="mbVO"/>
-
- 
-
 <%-- <jsp:setProperty property="*" name="mbVO"/> --%>
-<jsp:setProperty property="memberId" name="mbVO" />
-<jsp:setProperty property="pwd" name="mbVO" />   
 
  
-<%--   <jsp:getProperty property="name" name="mbVO"%=request.getParameter("name") %>"/> --%>
+
+ <jsp:setProperty property="*" name="mbVO"/> 
+<%--  <jsp:setProperty property="memberId" name="mbVO" />
+<jsp:setProperty property="pwd" name="mbVO" />    --%>
+
+
 
 <% 
 MemberDAO mbrDAO= MemberDAO.getInstance();

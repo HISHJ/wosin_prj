@@ -115,14 +115,18 @@ public class MemberDAO {
 	
 	
 //	아이디 찾기
+	
 	public MemberVO selectMemberId(MemberVO mbVO) throws SQLException {
+		
+		
+		
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
 		DbConnection dc=DbConnection.getInstance();
 		try {
 			con=dc.getConn();
-			String idFind= "select memberId,to_char(inputdate,'yyyy-MM-dd')mdate, from member where name=? and phone=?";
+			String idFind= "select memberId,to_char(inputdate,'yyyy-MM-dd')mdate from member where name=? and phone=?";
 			pstmt=con.prepareStatement(idFind);
 			//회원가입할때 to_char(inputdate,'yyy-MM-dd')하면 select할때는 to_char 안해도 되지 않을까?
 			pstmt.setString(1,mbVO.getName());
@@ -132,21 +136,22 @@ public class MemberDAO {
 			
 			//일치했을때
 			if(rs.next()) {
-			mbVO=new MemberVO();
-			mbVO.setMemberId(rs.getString("memberId"));
-			//mbVO.setInputdate(rs.getDate("inputdate"));
-			mbVO.setMdate(rs.getString("mdate"));
-			//to_char로 나타내면 date->string으로 바꿔야함???
+				mbVO.setMemberId(rs.getString("memberId"));
+				mbVO.setMdate(rs.getString("mdate"));
+				
+				
+				
+				
 			}//end if 
-	
+			
 		}finally {
-		
+			
 			dc.dbClose(rs, pstmt, con);
 			
 		}//end catch
 		
 		return mbVO;
-	
+		
 	}//mbVO
 //	비밀번호 찾기
 	public MemberVO selectMemberPass(MemberVO mbVO) throws SQLException {
@@ -156,7 +161,7 @@ public class MemberDAO {
 		DbConnection dc=DbConnection.getInstance();
 		try {
 			con=dc.getConn();
-			String passFind= "select memberid,name,phone from member where memberId=? and name=? and phone=?";
+			String passFind= "select memberId,pwd from member where memberId=? and name=? and phone=?";
 			pstmt=con.prepareStatement(passFind);
 			
 			pstmt.setString(1,mbVO.getMemberId());
@@ -169,8 +174,7 @@ public class MemberDAO {
 			if(rs.next()) {
 				mbVO=new MemberVO();
 				mbVO.setMemberId(rs.getString("memberId"));
-				mbVO.setName(rs.getString("name"));
-				mbVO.setPhone(rs.getString("phone"));
+				mbVO.setPwd(rs.getString("pwd"));
 			
 				
 				}//end if 
@@ -397,6 +401,43 @@ public boolean selectChkId(MemberVO mbVO) throws SQLException {
 	
 }
 
+
+//회원가입완료창 - > 이거는 앞에 로그인/마이페이지 method 가지고와도될듯!
+public MemberVO selectMbFinish (MemberVO mbVO) throws SQLException {
+	
+	Connection con=null;
+	PreparedStatement pstmt=null;
+	ResultSet rs=null;
+	
+	DbConnection dc=DbConnection.getInstance();
+	
+	try {
+		con=dc.getConn();
+		String selectMbF = "select name, memberId from member where memberId=? ";
+		pstmt=con.prepareStatement(selectMbF);
+		
+		pstmt.setString(1,mbVO.getMemberId());
+		rs=pstmt.executeQuery();
+		
+		if(rs.next()) {
+			
+			mbVO=new MemberVO();
+			mbVO.setName(rs.getString("name"));
+			mbVO.setMemberId(rs.getString("memberId"));
+			
+				
+		}//end if
+	}finally{
+		
+		dc.dbClose(rs, pstmt, con);
+	}//end
+	
+	
+	
+	//return이 어렵따...
+	return mbVO;
+
+}//
 
 
 

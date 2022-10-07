@@ -1,6 +1,7 @@
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,39 +21,35 @@
 
 
 <script type="text/javascript">
-
-
-
 </script>
 </head>
-<body> 
-<%
-request.setCharacterEncoding("UTF-8");
+<body>
+<!-- 세션 값 받아오기 useBean : scope="session"사용하면 필요없을듯! -->
+<%-- <%String id=(String)session.getAttribute("memberId"); %> --%>
 
 
-%>
+ <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+ <jsp:setProperty property="pwd" name="mbVO"/>
 
-<!-- 아이디중복체크 수업 후 디자인 추가 예정. -->
-<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
-<jsp:setProperty property="memberId" name="mbVO"/>
-<div align="center">
-	<br/><b>${param.memberId }</b>
-<% 
-MemberDAO mbrDAO = MemberDAO.getInstance();
-boolean result=mbrDAO.selectChkId(mbVO);
 
-if(result) {
-	out.println("는 이미 존재하는 ID입니다.<p/>");
+
+  <%
+	int updatePassCnt=0;	
+	MemberDAO mbrDAO=MemberDAO.getInstance();
+	updatePassCnt= mbrDAO.updatePass(mbVO.getMemberId(), mbVO.getPwd());
 	
-	
-}else{
-	out.println("는 사용 가능 합니다.<p/>");
-	
-}
+if(updatePassCnt==-1){	
+%>   
+<script>
+	alert("비밀번호를 다시 확인해주세요.");
+	location.href="http://localhost/group2_prj/login/passModify.jsp"
 
-%>
-<a href="#" onclick="self.close()">닫기</a>
-</div>
+</script>
+<%}else{ %>
+<script>
+	alert("비밀번호 변경 완료되었습니다.");
+	location.href="http://localhost/group2_prj/main/index.html";
+</script>
+<%} %>
 </body>
 </html>
-

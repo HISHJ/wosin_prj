@@ -356,7 +356,11 @@ input[type="date"] {
 
 			/* 회원가입 유효성 검사 */
 			$(function(){
-			
+				$("#btnSignup").click(function(){
+						check();
+						
+					
+				});//click
 				
 				
 				
@@ -440,7 +444,14 @@ input[type="date"] {
 							  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
 							  $("#password").focus();
 							  return false;
-						}//유효성 검사 */
+						}
+				 
+				 if(pass2!=pass){
+					 alert("비밀번호를 다시 확인해주세요.")
+					$("#repassword").focus();
+					 return false;
+				 }
+				 
 				if(pass2.trim()==""){
 					alert("비밀번호를 한번 더 확인해주세요.")
 					$("#repassword").focus();
@@ -875,8 +886,8 @@ input[type="date"] {
 					</div>
 				
 					<div class="bbs-btn_w clearfix tac">
-						<button  class="bbs-btn-st2 bg-purple3 btnSignup" onclick="return check()">등록</button>
-						<a href="http://localhost/jsp_prj/design%20final%20intergration/index.html" class="bbs-btn-st2 bg-black_r" id="btnSignupC">취소</a>
+						<button type="button" class="bbs-btn-st2 bg-purple3"id="btnSignup" >등록</button>
+						<button type="button" class="bbs-btn-st2 bg-black_r" id="btnSignupC">취소</button>
 						
 					</div>
 
