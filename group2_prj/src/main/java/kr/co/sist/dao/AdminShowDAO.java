@@ -39,7 +39,7 @@ public class AdminShowDAO {
 	
 	//매개변수: 공연명, 장르, 상태
 	//return: 공연코드
-	public List<AdminShowVO> selectShow(AdminShowVO asVO) throws SQLException{
+	/*public List<AdminShowVO> selectShow(AdminShowVO asVO) throws SQLException{
 		List<AdminShowVO> list=new ArrayList<AdminShowVO>();
 		AdminShowVO asVO2=null;
 		
@@ -85,10 +85,62 @@ public class AdminShowDAO {
 		}
 		
 		return list;
+	}//selectShow */
+	
+	
+	//쿼리문 고치는 중
+	public List<AdminShowVO> selectShow(AdminShowVO asVO) throws SQLException{
+		List<AdminShowVO> list=new ArrayList<AdminShowVO>();
+		AdminShowVO asVO2=null;
+		
+		DbConnection db=DbConnection.getInstance();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		try {
+			con=db.getConn();
+			
+			String query=" select s.showId s_showId, s.name s_name, g.genreId g_genreId, s.price s_price, r.ratingId r_ratingId, s.status s_status "
+					+ "from show s, genre g, rating r "  
+					+ "where (s.genreId=g.genreId and s.ratingId=r.ratingId) ";
+			
+			/*if(asVO.getName()!=null){
+				query+=" and s.name='"+asVO.getName()+"'";
+			}*/
+			if(asVO.getGenreId()!=null){
+				query+=" and g.genreId=? ";
+			}
+			if(asVO.getStatus()!=null){
+				query+=" and s.status=? ";
+			}
+			pstmt = con.prepareStatement(query); //이거를 if문 위로 올려야 하나 ? 여기 맞아요네 ㅎㅎ 감사합닏
+			pstmt.setString(1, asVO.getGenreId());
+			pstmt.setString(1, asVO.getStatus());
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				asVO2=new AdminShowVO();
+				asVO2.setShowId(rs.getString("s_showId"));
+				asVO2.setName(rs.getString("s_name"));
+				asVO2.setPrice(rs.getInt("s_price"));
+				asVO2.setGenreId(rs.getString("g_genreId"));
+				asVO2.setRatingId(rs.getString("r_ratingId"));
+				asVO2.setStatus(rs.getString("s_status"));
+				list.add(asVO2);
+			}
+			
+		}finally {
+			db.dbClose(rs, pstmt, con);
+			
+		}
+		
+		return list;
 	}//selectShow
 	
 	
-	//쿼리문 확인완료(id>type 수정완)
+	//쿼리문 확인완료
 	//공연상세보기(공연코드)
 	//매겨변수: 공연코드
 	//return: 12개) 공연코드, 공연명, 장르, 시작일, 종료일, 관람시간, 관람등급, 금액, 
@@ -210,7 +262,7 @@ public class AdminShowDAO {
 			//
 			String query=" update show "
 					+ " set name=?, genreId=?, startDate=?, endDate=?, runningTime=?, ratingId=?, price=?, thImg=?, mImg=?, infoImg=?, status=?  "
-					+ " where showID=? "; //where절 이게 맞나 jsp에서 어떻게 받아와야하지
+					+ " where showId=? "; //where절 이게 맞나 jsp에서 어떻게 받아와야하지
 			
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, asVO.getName());
@@ -249,7 +301,7 @@ public class AdminShowDAO {
 		try{
 			con=db.getConn();
 			
-			String query="delete from show where showID=? ";
+			String query=" delete from show where showId=? ";
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, showId);
 			

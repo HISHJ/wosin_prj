@@ -3,15 +3,14 @@
 <%@page import="java.util.List"%>
 <%@page import="kr.co.sist.vo.AdminShowVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="scriptlet의 사용"%>
+    pageEncoding="UTF-8" info=""%>
 
-    
-    
 <%
 AdminShowVO asVO= new AdminShowVO();
 AdminShowDAO asDAO=AdminShowDAO.getInstance();
 List<AdminShowVO> list=asDAO.selectShow(asVO);  
 %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -31,36 +30,24 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
 
 		$(function(){
     	
-	    	//추가버튼 클릭시 페이지 이동
 	    	$("#addBtn").click(function(){
 				location.href = "showAdd.jsp"; //안가는데 ? 제이쿼리 js 안받아서 그랬던것
-			});
+			});//추가
     	
 	    	
+	    	//우선 목표는 dao가 적용되나 안적용되나까지 
 	    	$("input[name='status']:radio").click(function () {
 	            //라디오 버튼 값을 가져온다.
 	            var status = this.value;
-	            var url="http://localhost/group2_prj/admin/showBoard.jsp";
-	            url =url+"?status="+status;
-	            
-	           alert(url);
-
-	            //radio 버튼이 도망? 가고 url은 바뀌는데 select되는 애는 변함없음 
-	            location.href=url;
-	            console.log(url); 
+	            <%-- <%=list.set(1,status)%> --%>
 	                            
-	    	});
+	    	});//상태 검색
 	    	
-	    	//검색버튼2.상태 >>>>>>>얘는 alert도 안뜸;
-	    	/* $(document).on('click', '#showSatusSearchBtn', function(){
-	    		e.preventDefault();
-	    		var url = "http://localhost/jsp_prj/design%20intergration/showBoard.jsp";
-	    		url = url + "?status=" + $('#status').val();
+	    	$("#genreSearchBtn").click(function() {
+				var
 	    		
-	    		//alert(url);
-	    		location.href = url;
-	    		console.log(url);
-	    	}); */
+	    		
+			});//장르 검색
 	    	
 	    	
    		});//ready
@@ -140,7 +127,6 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
                         <ol class="breadcrumb mb-4">
                             <li class="breadcrumb-item active">show mamgement board</li>
                         </ol>
-                        <form name="frm" id="frm">
                         <div class="card mb-4">
                             <div class="card-header">
                                 <i class="fas fa-table me-1"></i>
@@ -151,16 +137,33 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
                                <!-- 뭐 추가하면 템플릿 양식을 깨트림;;; -->
                                <!-- 해결 </table> 바로 밑에 버튼 만들면 됨 -->
                            
+                        	<form name="frm" id="frm">
+                        	<!-- 값넘겨줄건데... hidden으로 value값 지정해주는게 맞나   -->
+                        	<%for(int i=0; i<list.size();i++){ %>
+                        	<input type="hidden" id="showId" name="showId" value="<%=list.get(i).getShowId()%>">
+                        	<input type="hidden" id="" name="" value="">
+                        	<input type="hidden" id="" name="" value="">
+                        	<input type="hidden" id="" name="" value="">
+                        	<input type="hidden" id="" name="" value="">
+                        	<input type="hidden" id="" name="" value="">
+                        	<input type="hidden" id="" name="" value="">
+                        	<input type="hidden" id="" name="" value="">
+                        	<input type="hidden" id="" name="" value="">
+                        	<input type="hidden" id="" name="" value="">
+                        	<input type="hidden" id="" name="" value="">
+                        	<input type="hidden" id="" name="" value="">
+                        	<%} %>
+                        	
                            	 <div class="dataTable-top"></div>
                                <div>
                                 <label>장르　</label>
-                                <select name="genreType" class="dataTable-selector" aria-label="Default select example">
+                                <select name="genreId" class="dataTable-selector" aria-label="Default select example">
 								  <%String[] genreArr={"G1","G2","G3","G4","G5","G6"}; %>
 								  <%for(int i=0; i<genreArr.length; i++){ %>
 								  <option><%=genreArr[i] %></option>
 								  <%} %>
 								</select><input type="button" id="genreSearchBtn" name="genreSearchBtn" value="검색">
-                               </div>
+                               </div>,
                                
                            
                                 <div class="dataTable-top"></div>
@@ -168,7 +171,7 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
                                	 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="option1" 
                                     		checked="checked">
-                                    <label class="form-check-label" for="inlineRadio1">전체</label>
+                                    <label class="form-check-label" for="inlineRadio1" val>전체</label>
                                   </div>
                                   <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="공연중">
@@ -183,9 +186,9 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
                                     <label class="form-check-label" for="inlineRadio2">공연종료</label>
                                   </div>
                                   <input type="button" id="statusSearchBtn" name="statusSearchBtn" value="검색">
+                           		</form>
                            	 </div>
                             </div>
-                            </form>
                        
                                 <table id="datatablesSimple">
                                     <thead>

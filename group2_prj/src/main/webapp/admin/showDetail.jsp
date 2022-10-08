@@ -10,11 +10,11 @@
  <!-- 2. selected 하고싶은애들 scriptlet으로 해결 안되나?  >> 걍 쓰면됐었다 ...ㅎㅎ 해결완-->
     
 <%
+request.setCharacterEncoding("UTF-8");
 String showId=request.getParameter("showId"); 
 AdminShowVO asVO= new AdminShowVO();
 AdminShowDAO asDAO=AdminShowDAO.getInstance();
 AdminShowVO showDetail=asDAO.selectShowDetail(showId); 
-int delet=asDAO.deleteShow(showId);  
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,31 +36,40 @@ int delet=asDAO.deleteShow(showId);
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script type="text/javascript">
        
-		function modifyClick() {
-    		var name=$("#name").val();
-    		//pk값 유효성 검증
-			if(name.trim()==""){ //null 아니라 ""로 처리
-				alert("공연명은 필수입력입니다");
-			//insert하러 가자
-			}else{
-				$("#frm").submit();	
-				alert("공연이 수정되었습니다");
-			}
+       
+        $(function() {
+        	$("#removeBtn").click(function() {
+        		var name=$("#name").val();
+        		
+        		var result=confirm("공연을 삭제하시겠습니까");
+    			
+    			if(result==true){
+    				$("#frm").submit();	
+    				alert("'"+name+"'가 삭제되었습니다");
+    			}
+				
+			});//삭제
+        	
 			
-		}//변경버튼 클릭
-		
-		function removeClick() {
-			var result=confirm("공연을 삭제하시겠습니까");
+        	$("#modifyBtn").click(function() {
+        		var name=$("#name").val();
+				
+        		//공연명 not null이어서 이렇게 처리해줌
+        		if(name.trim()==""){ //null 아니라 ""로 처리
+    				alert("공연명은 필수입력입니다");
+    			
+    			}else{
+    				$("#frm").submit();	
+    				alert("공연이 수정되었습니다");
+    			}
+			});//변경
 			
-			if(result==true){
-				$("#frm").submit();	
-				alert("공연이 삭제되었습니다");
-			}
 			
-		}//공연삭제하기
-		
-		
-        
+			$("#cancelBtn").click(function() {
+				location.href="showBoard.jsp";
+			});//취소
+			
+		});//ready
         
         
         </script>
@@ -85,11 +94,13 @@ int delet=asDAO.deleteShow(showId);
                                         </div> 
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>공연코드</b></div> <div class="col-3"><input type="text" id="showId" name="showId" class="dataTable-input" value="<%=showDetail.getShowId() %>" disabled="disabled"></div>
+                                            <div class="col-2"><b>공연코드</b></div>
+                                            <div class="col-3"><input type="text" id="showId" name="showId" class="dataTable-input" 
+                                            value="<%=showDetail.getShowId() %>" readonly="readonly"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>공연명</b></div> <div class="col-6"><input id="name" name="name" type="text" class="dataTable-input" value="<%=showDetail.getName() %>" placeholder="공연명을 입력해주세요"></div>
+                                            <div class="col-2"><b>공연명</b></div> <div class="col-6"><input type="text" id="name" name="name" class="dataTable-input" value="<%=showDetail.getName() %>" placeholder="공연명을 입력해주세요"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -186,21 +197,18 @@ int delet=asDAO.deleteShow(showId);
                                         	<div class="col-2"><b>공연추가일</b></div> <div class="col-6"><%=showDetail.getInputDate() %></div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>공연삭제</b></div> <div class="col-4"><input type="button" onclick="removeClick()" value="삭제하기"></div>
+                                            <div class="col-2"><b>공연삭제</b></div> <div class="col-4">
+                                            <input type="submit" id="removeBtn" formaction="show_remove.jsp" value="삭제하기"></div>
                                         </div>
                                         
-                                        
-                                        
-                                            
-                                            
-                                                <div class="mt-4 mb-0">
-                                                    <div class="col text-center">
-                                                        <a class="btn btn-secondary btn-sm" onclick="modifyClick()" >변경</a>
-                                                        <a href="showBoard.jsp" class="btn btn-default btn-sm" >취소</a>
-                                                    </div>
-                                                </div>
+                                         <div class="mt-4 mb-0">
+                                            <div class="col text-center">
+                                                <input type="submit" class="btn btn-secondary btn-sm" id="modifyBtn" formaction="show_update.jsp" value="변경">
+                                                <input type="button" class="btn btn-default btn-sm" id="cancelBtn" formaction="showBoard.jsp" value="취소">
                                             </div>
-                                    </form>  
+                                          </div>
+                                       </div>
+                                   	</form>  
 
                                                 
                                     </div>
