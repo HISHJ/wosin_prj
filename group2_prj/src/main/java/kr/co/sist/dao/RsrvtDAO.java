@@ -1,4 +1,4 @@
-package userDAO;
+package kr.co.sist.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -53,7 +53,7 @@ public class RsrvtDAO {
 			selectRservt.append(" select to_char(r.inputdate,'yyyy-mm-dd') r_inputdate, r.rsrvtid r_rsrvtid, sho.name sho_name, r.showdate r_showdate, r.totalcnt r_totalcnt, r.totalpice r_totalprice, r.status r_status ")
 			            .append(" from rsrvt r, show sho, member m ")
 			            .append(" where (r.memberid = m.memberid and r.showid = sho.showid) and m.memberid = ? "
-			            		+ " and r.inputdate between (sysdate - (interval '7' day)) and sysdate");
+			            		+ " and r.inputdate between (sysdate - (interval '1' month)) and sysdate");
 //						.append(" order by ? ");
 			
 		pstmt = con.prepareStatement(selectRservt.toString());
@@ -75,6 +75,55 @@ public class RsrvtDAO {
 			rsrvtVO.setRsrvtStatus(rs.getString("r_status"));
 			
 			defaultRsrvtlist.add(rsrvtVO);
+				
+		}
+			
+		}finally {
+			dc.dbClose(rs, pstmt, con);
+		}
+		
+		
+		
+		return defaultRsrvtlist;	
+	}//selectShow
+	
+	public RsrvtInfoVO selectDefaultRsrvt2(String id) throws SQLException {
+		RsrvtInfoVO defaultRsrvtlist = null;
+		
+		DbConnection dc = DbConnection.getInstance();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			con = dc.getConn();
+			StringBuilder selectRservt = new StringBuilder();
+			selectRservt.append(" select to_char(r.inputdate,'yyyy-mm-dd') r_inputdate, r.rsrvtid r_rsrvtid, sho.name sho_name, r.showdate r_showdate, r.totalcnt r_totalcnt, r.totalpice r_totalprice, r.status r_status ")
+			            .append(" from rsrvt r, show sho, member m ")
+			            .append(" where (r.memberid = m.memberid and r.showid = sho.showid) and m.memberid = ? "
+			            		+ " and r.inputdate between (sysdate - (interval '1' month)) and sysdate");
+//						.append(" order by ? ");
+			
+		pstmt = con.prepareStatement(selectRservt.toString());
+		pstmt.setString(1, id);
+	
+		
+		rs = pstmt.executeQuery();
+		RsrvtInfoVO rsrvtVO = null;
+		
+		if(rs.next()) {
+			rsrvtVO = new RsrvtInfoVO();
+			
+			rsrvtVO.setRsrvtInputDate(rs.getDate("r_inputdate"));
+			rsrvtVO.setRsrvtId(rs.getString("r_rsrvtid"));
+			rsrvtVO.setShowName(rs.getString("sho_name"));
+			rsrvtVO.setShowDate(rs.getString("r_showdate"));
+			rsrvtVO.setRsrvtTotalCnt(rs.getInt("r_totalcnt"));		
+			rsrvtVO.setTotalPrice(rs.getInt("r_totalprice"));
+			rsrvtVO.setRsrvtStatus(rs.getString("r_status"));
+			
+			//defaultRsrvtlist.add(rsrvtVO);
 				
 		}
 			
@@ -145,8 +194,8 @@ public class RsrvtDAO {
 	//예매상세내역(예매코드)
 	//조인했을 때 공연처음날짜 끝날자 사이의 값이 나오지 않는다.
 	// 원래는 단일행인데 좌석번호때문에 LIST로 바꿔놓음(나중에 바꿔)
-	public List<RsrvtInfoVO> selectRsrvtDetail(String str) throws SQLException {
-		List<RsrvtInfoVO> rVO= new ArrayList<RsrvtInfoVO>();;
+/*	public RsrvtInfoVO selectRsrvtDetail(String str) throws SQLException {
+		RsrvtInfoVO rVO= null;
 		
 		DbConnection dc = DbConnection.getInstance();
 
@@ -158,33 +207,74 @@ public class RsrvtDAO {
 		try {
 			con = dc.getConn();
 			StringBuilder selectRsrvtDetail = new StringBuilder();
-			selectRsrvtDetail.append(" select r.rsrvtid r_rsrvtid, sw.name sw_name, r.membername r_membername, r.memberid r_memberid, r.totalcnt r_totalcnt, st.seatid st_seatid, r.inputdate r_inputdate,\r\n"
-					                 + " m.phone m_phone, m.email m_email, r.totalpice r_totalprice,r.status r_status ")					
-			                 .append(" from rsrvt r, show sw, seat st, member m ")
-			                 .append(" where (r.rsrvtid = st.rsrvtid) and (m.memberid = r.memberid) and (sw.showid = r.showid) and r.rsrvtid = ? ");
+			selectRsrvtDetail.append(" select r_rsrvtid, listagg(s_seatid,',') s_seatid, sho_showid, r_membername ,r_showdate, r_totalcnt, sho_name, r_totalpice ")					
+			                 .append(" from rsrvt_u_detail ")
+			                 .append(" where r_rsrvtid = ? ")
+			                 .append(" group by r_rsrvtid, sho_showid, r_membername, r_showdate, r_totalcnt, sho_name, r_totalpice ");
 			
 			pstmt = con.prepareStatement(selectRsrvtDetail.toString());
 			pstmt.setString(1, str);
 			
 			
 			rs = pstmt.executeQuery();
-			RsrvtInfoVO rsrvtVO = null;
 			
-			while(rs.next()) {
-				rsrvtVO = new RsrvtInfoVO();
-				rsrvtVO.setRsrvtId(rs.getString("r_rsrvtid"));
-				rsrvtVO.setShowName(rs.getString("sw_name"));
-				rsrvtVO.setMemberName(rs.getString("r_membername"));
-				rsrvtVO.setMemberId(rs.getString("r_memberid"));
-				rsrvtVO.setRsrvtTotalCnt(rs.getInt("r_totalcnt"));
-				rsrvtVO.setSeatId(rs.getString("st_seatid"));
-				rsrvtVO.setRsrvtInputDate(rs.getDate("r_inputdate"));
-				rsrvtVO.setRsrvtPhoneNumber(rs.getString("m_phone"));
-				rsrvtVO.setRsrvtEmail(rs.getString("m_email"));
-				rsrvtVO.setTotalPrice(rs.getInt("r_totalprice"));
-				rsrvtVO.setRsrvtStatus(rs.getString("r_status"));
+			if(rs.next()) {
+				rVO = new RsrvtInfoVO();
+				rVO.setRsrvtId(rs.getString("r_rsrvtid"));
+				rVO.setSeatId(rs.getString("s_seatid"));
+				rVO.setShowId(rs.getString("sho_showid"));
+				rVO.setMemberName(rs.getString("r_membername"));
+				rVO.setShowDate(rs.getString("r_showdate"));
+				rVO.setRsrvtTotalCnt(rs.getInt("r_totalcnt"));
+				rVO.setShowName(rs.getString("sho_name"));
+				rVO.setTotalPrice(rs.getInt("r_totalpice"));			
 				
-				rVO.add(rsrvtVO);
+				//rVO.add(rsrvtVO);
+		
+			}
+		}finally {
+			dc.dbClose(rs, pstmt, con);
+		}
+		return rVO;
+	}//selectRsrvtDetail*/
+	
+	public RsrvtInfoVO selectRsrvtDetail(String str) throws SQLException {
+		RsrvtInfoVO rVO= null;
+		
+		DbConnection dc = DbConnection.getInstance();
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			con = dc.getConn();
+			StringBuilder selectRsrvtDetail = new StringBuilder();
+			selectRsrvtDetail.append(" select r_rsrvtid, listagg(s_seatid,',') s_seatid, sho_showid, r_membername ,r_showdate, r_totalcnt, sho_name, r_totalpice ")					
+			                 .append(" from rsrvt_u_detail ")
+			                 .append(" where r_rsrvtid = ? ")
+			                 .append(" group by r_rsrvtid, sho_showid, r_membername, r_showdate, r_totalcnt, sho_name, r_totalpice ");
+			
+			pstmt = con.prepareStatement(selectRsrvtDetail.toString());
+
+			pstmt.setString(1, str);
+			
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				rVO = new RsrvtInfoVO();
+				rVO.setRsrvtId(rs.getString("r_rsrvtid"));
+				rVO.setSeatId(rs.getString("s_seatid"));
+				rVO.setShowId(rs.getString("sho_showid"));
+				rVO.setMemberName(rs.getString("r_membername"));
+				rVO.setShowDate(rs.getString("r_showdate"));
+				rVO.setRsrvtTotalCnt(rs.getInt("r_totalcnt"));
+				rVO.setShowName(rs.getString("sho_name"));
+				rVO.setTotalPrice(rs.getInt("r_totalpice"));			
+				
+				//rVO.add(rsrvtVO);
 		
 			}
 		}finally {
@@ -195,7 +285,7 @@ public class RsrvtDAO {
 	
 	//✔검증완료거
 	//예매내역삭제(예매코드)
-	public int deleteRsrvt(String str) throws SQLException {
+	/*public int deleteRsrvt(String str) throws SQLException {
 		int deleteR=0;
 		
 		DbConnection dc = DbConnection.getInstance();
@@ -216,10 +306,46 @@ public class RsrvtDAO {
 		}	
 		
 		return deleteR;
-	}//deleteRsrvt
+	}//deleteRsrvt*/
+	
+	//예매상태 변경
+	public int updateRsrvt(RsrvtInfoVO rVO) throws SQLException{
+		int updateCnt=0;
+		
+		DbConnection dc = DbConnection.getInstance();
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			con = dc.getConn();
+			StringBuilder updateCpEmp = new StringBuilder();
+			
+			updateCpEmp
+			.append(" update rsrvt")
+			.append(" set status = ?")
+			.append(" where rsrvtid = ?");
+			
+			pstmt = con.prepareStatement(updateCpEmp.toString());
+			
+			pstmt.setString(1, rVO.getRsrvtStatus());
+			pstmt.setString(2, rVO.getRsrvtId());
+			
+			updateCnt = pstmt.executeUpdate();
+			
+		}finally {
+			dc.dbClose(null, pstmt, con);
+		}
+		return updateCnt;
+	}
+
+	
+	
 	
 	//✔검증완료a
-	//예매내역삭제 - 좌석 편
+	//예매내역삭제 - 좌석 편 (예매상태로 유효성검사 해야할 듯)
+	//이 예매코드의 예매상태가 "예매완료"라면 delete X
+	//"예매취소"라면 delete
 	public int deleteSeat(String str) throws SQLException {
 		int deleteS=0;
 		
