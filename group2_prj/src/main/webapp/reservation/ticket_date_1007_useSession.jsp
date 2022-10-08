@@ -18,8 +18,8 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets\css\reset.css">
 		<link rel="stylesheet" href="assets\css\subheader.css">
@@ -64,24 +64,7 @@
 				$("#ok_close").click(function(){
 					window.location.reload();
 			})
-
-			
-				//상세보기팝업창
-				$("#datail_btn").click(function(){
-					$('#viewDatail_Popup_wrap').bPopup();
-					
-				})
-	
-				 $("#close_btn").click(function(){
-					//window.location.reload();
-					//location.href="ticket_date_1006.jsp"; // 닫기버튼 누르면 본 페이지로 이동
-				 })	
-					
-			/* }) */
-
-			
-			
-     
+		
 		//날짜 값전달
 
 });//end ready		
@@ -112,9 +95,19 @@
 			
 		}//end submit
 		
+	  function detailPopup(){
+		  $('#viewDatail_Popup_wrap').bPopup(); 
+		}
+		
+	 /*function stopAppeal(){
+		 if("#rsvt_c_btn").click(function(){
+			  
+		  }) 
+	 }	*/
+		
 		
 		 //취소 팝업창
-      function modiRsrvt(){
+     /* function modiRsrvt(){
 				$("#rsvt_c_btn").click(function(){
 					$('#rsvt_c2_Popup_wrap').bPopup({
             closeClass:'ok_c2_btn',
@@ -132,11 +125,15 @@
 					window.location.reload();
 			})
 	
-	}//취소
+	}//취소*/
 	
 	function closePopup(){
-		setDate1()
+		
+		 setDate1();
+		 
 	}//closePopup
+	
+
 		
 		
 	
@@ -200,14 +197,8 @@ String rsId="";
 String status = ""; 
 String rId ="";//세션 넣을 변수(예약번호)
 //세션 넣을 리스트
-List<String> rIdList = new ArrayList<String>();
 RsrvtInfoVO rVOList= null;
-
-
 %>   
-
-
- 
 
 		<div id="page-wrapper">
 
@@ -378,7 +369,10 @@ RsrvtInfoVO rVOList= null;
 								<input type="hidden" name="findStartDate" id="findStartDate" />
 								<input type="hidden" name="findEndDate" id="findEndDate" />
 								<!-- 검색일자를 합치는 용도 -->
+								<!-- 예약번호 -->
 								<input type="hidden" name="rId" id="rId" />
+								<!-- 예매상태 -->
+								<input type="hidden" name="rStatus" id="rStatus"/>
 								
 								<article class="pop_w pop_ok" id="cancel_pop" >
 									<div class="in pop-st1 pop_width">
@@ -529,86 +523,62 @@ RsrvtInfoVO rVOList= null;
   															
    													     if(RList.isEmpty()){%>
    													    	<span>조회결과가 없습니다.</span>  
-   													    <%} 
-														// 리스트에 존재하는 VO를 꺼내와서 StringBuilder에 저장
+   													    <%}
    														 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
   														 String date = null;
   														
   														 for(RsrvtInfoVO rsVO : RList){
-  															if (rsVO.getRsrvtInputDate() != null) { // 조회된 날짜가 있다면
-  																date = sdf.format(rsVO.getRsrvtInputDate()); // format의 반환형은 String / ()안에 들어갈 데이터형은 Date
+  															if (rsVO.getRsrvtInputDate() != null) { 
+  																date = sdf.format(rsVO.getRsrvtInputDate()); 
   															} // end if
   													 	 rsId = rsVO.getRsrvtId();
   													 	 status = rsVO.getRsrvtStatus();
   													 	 session.setAttribute("rsId", rsId);
   													 	 session.setAttribute("rStatus", status);
   														 rId = (String) session.getAttribute("rsId");
-  														 //System.out.println(rId);
-  														 rIdList.add(rId);
-  														 //rVOList= rDAO.selectRsrvtDetail(rId);
-  														 
-  														 %>
-   
-														
-											
-											
-													
+  														 String rStatus = (String) session.getAttribute("rStatus");														 
+  														 %>												
 														<tr>
 															<td><%=date%></td>
 															<td><%= rId %><br/>  
 															<button type="button" id="datail_btn" class="bg-black2 btn-st3 bg_can" onclick="viewDetail_pop('<%= rId %>');">상세내역</button> 
-															<%-- <button type="button" id="datail_btn" class="bg-black2 btn-st3 bg_can" onclick="javascript:location.href='ticket_date_1006_useSession3.jsp?rsrvtid=<%=rId%>';">상세내역</button>  --%>
-														    <!--  <button type="button" id="datail_btn" class="bg-black2 btn-st3 bg_can" onclick="javascript:fn_BookDetailPopup('fjWZzAADDnUtToTniiFS35eqSjeMDzKnq35m9%2Bl0pI4%3D');">상세내역</button> --> 
 															</td>
 															<td class="tal" style="text-align:center !important;"><%=rsVO.getShowName()%></td>
 															<td class="tal" style="text-align:center !important;"><%=rsVO.getShowDate()%><br />
 																</td>
 															<td>
 																<%=rsVO.getRsrvtTotalCnt()%>매<br />
-																
-															
 															</td>
-															<!-- <td>현장</td> -->
 															<td><%=rsVO.getTotalPrice()%>
-																<!-- 미입금 -->
 															</td>
 															<td>
 															  <%=rsVO.getRsrvtStatus() %><br />
-																                         
-															  <button type="button" id="rsvt_c_btn" class="bg-black2 btn-st3 bg_can" onclick="modiRsrvt();">취소하기</button>
+																   <%--  <button type="button" id="rsvt_c_btn" class="bg-black2 btn-st3 bg_can"  onclick="viewDetail_pop('<%= rId %>');">취소하기</button>   --%>                    
+															<button type="button" id="rsvt_c_btn" class="bg-black2 btn-st3 bg_can" onclick="modiRsrvt('<%=rId%>','<%=rStatus%>');">취소하기</button>
 <%-- 															  <button type="button" id="rsvt_c_btn" class="bg-black2 btn-st3 bg_can" onclick="javascript:location.href='ticket_date_1006_useSession3.jsp?rsrvtid=<%=rId%>">취소하기</button> --%>
-															 <!--<button type="button" id="rsvt_c_btn" class="bg-black2 btn-st3 bg_can" onclick="javascript:fn_BookCancelPopup('fjWZzAADDnUtToTniiFS35eqSjeMDzKnq35m9%2Bl0pI4%3D');">취소하기</button>  --> 
-																	
 															</td>
-												
 														</tr>
 														  <%
 														 date="";
 														}%>  
-								
 													</tbody>
 												</table>
 												<%}//end if %>
 												</div>
 												<ul class="paging"><li class="active"><a href="#">1</a></li></ul>
 											</div>
-								
 											</div>
-									</article>
+										</article>
 										</form>
-									
-								</section>
+									</section>
 		
 							
 <!-- 주의사항 FORM -->
 <article id="cautionPopup_wrap">
 	<div class="in pop-st1 pop-ex caution" >
-		<!-- <a href="#popup"></a> -->
 		<div class="tit-st2 tit_pop">
 			<h2>주의사항 꼭 읽어보세요</h2>
-			
 		</div>
-			
 
 			<ul class="bul-dot dot">
 				<li><strong>티켓 취소 가능 시간</strong> </li>
@@ -625,49 +595,24 @@ RsrvtInfoVO rVOList= null;
 				</li>
 			</ul>
 			
-
 			<div class="ok_c_btn">
 				<button type="button" class="btn-st1 bg-purple" id="ok_close">확인</button>
-
 			</div>
-
 		</div>
-		
-	
-
 </article>
-<!-- SEARCH FORM -->
-<% System.out.println(rIdList); %>	
-<% System.out.println(rId); %>
  <!-- 상세보기 팝업 -->
- <%-- <c:if test="${ not empty session.rsId }"> --%>
  <script type="text/javascript">
  function viewDetail_pop(r_num){  // 버튼을 클릭하면 상세보기 팝업이 아니라, 값을 가져와야 함(조회된 날짜)
 	 $("#rId").val(r_num);//조회하려는 번호(예매번호)
-	 setDate1();  // 선택한 날짜 
-
- }
+	 setDate1();  // 선택한 날짜 	
+}
  </script>
 <% 
-String reserNum=request.getParameter("rId"); //예약번호
-if(reserNum != null && !"".equals(reserNum)){%>
- <script type="text/javascript">
- $(function(){
- $('#viewDatail_Popup_wrap').bPopup();
- });
- </script>
+String reserNum=request.getParameter("rId"); //예약번호(hidden을 통해 전송된 값을 가져옴)
+if(reserNum != null && !"".equals(reserNum)){%> 
  <%
-
 //상세내역 조회
-//String rsrvtid = request.getParameter("rsrvtid");
-//RsrvtInfoVO rVOList = rDAO.selectRsrvtDetail(rsrvtid);
-//RsrvtInfoVO rVOList= null;
-//rVOList= rDAO.selectRsrvtDetail(rIdList);
-rVOList = rDAO.selectRsrvtDetail(reserNum);
-
-/*if(rid == rid){
-//if(rid != ""){*/
-	
+rVOList = rDAO.selectRsrvtDetail(reserNum);	
  %>
   <article id="viewDatail_Popup_wrap">
 	<div class="in pop-st1 pop-ex caution" >
@@ -675,12 +620,7 @@ rVOList = rDAO.selectRsrvtDetail(reserNum);
 			<h2>상세내역</h2>
 			<button type="button" class="close-st1"> CLOSE</button>
 		</div>
-
-		
 			<table class="detail_tabl bul-dot" border="none">
-		
-
-			
 				<tr>
 					<th>예매코드</th>
 					<th><%= rVOList.getRsrvtId() %></th>
@@ -706,77 +646,90 @@ rVOList = rDAO.selectRsrvtDetail(reserNum);
 					<th>총 결제내역 </th>
 					<td><%=rVOList.getTotalPrice() %></td>
 				</tr>
-
-	
 			</table>
-			
-
 			<button type="button" class="btn-st1 bg-purple btn_close close_btn" id="close_btn" onClick="closePopup();">닫기</button>
-		<!-- </div>  -->
 		</div>
 </article>
+ <script type="text/javascript">
+  detailPopup();
+ </script>
 <%} %>
- <%-- <%} %>   --%>
-<%-- </c:if> --%>
+<!--상세보기 팝업끝-->
 
-
-<!--상세보기 팝업-->
-<form action="" method="post" id="canFrm" name="canFrm">
 <!--취소 팝업-->
+<form action="" method="post" id="canFrm" name="canFrm"> 
 <script type="text/javascript">
 $(function(){
-	$(".ok_c2_btn").click(function(){
-		$("#canFrm").submit();
-	})
-//}
-	
+	$(".ok_c2_btn").click(function(){ //팝업창 내의 확인버튼을 누르면
+		$("#canFrm").submit(); //업데이트 된 값이 서버로 전달됨
+	})	
 });
-
-
-
 </script>
- <%
-//유효성검증하자 (값이 null인 경우)
-//날짜가 예매 후 7일 이후인 경우
-//rId = (String) session.getAttribute("rsId");
+
+<script type="text/javascript">
+function modiRsrvt(r_num,status){
+	 $("#rId").val(r_num);//조회하려는 번호(예매번호)
+	 $("#rStatus").val(status);//예매상태
+	setDate1();  // 선택한 날짜 
+}
+</script>
+<%
 String[] statusArr = {"예매완료","예매취소"};
-String rStatus = (String) session.getAttribute("rStatus");
-//예매 업데이트
-//String change="";
-/*for(int i=0;i<statusArr.length;i++){
-	if(!(rStatus.equals(statusArr[i]))){
-	      change = statusArr[i];
-	}//endif
-}//end for*/
-//rStatus = statusArr[1];
- /* if(rStatus.equals(statusArr[1])){%>
+String reserveNum = request.getParameter("rId");
+String rStatus="";
+
+if(reserveNum != null && !"".equals(reserveNum)){ 
+rStatus = request.getParameter("rStatus");
+}%>
+<% 
+if(rStatus.equals(statusArr[1])){%>
 	<script type="text/javascript">
 	$("#rsvt_c_btn").click(function(){	
-	  alert("취소된 예매는 다시 복구할 수 없습니다. ");
+	  alert("한번 취소된 예매는 다시 복구할 수 없습니다. ");
 	  return;
 	})
 	</script>
-	
-<%return; } */
-rStatus =statusArr[1];
+<%}else{%>
+ <script type="text/javascript">
+  $(function(){
+	  $("#rsvt_c_btn").click(function(){
+			$('#rsvt_c2_Popup_wrap').bPopup({
+	      closeClass:'ok_c2_btn',
+	      follow: [false, false] //x, y
+	  });
+
+		  $('#rsvt_c_Popup_wrap').bPopup({
+	      closeClass:'ok_c_btn',
+	      follow: [false, false] //x, y
+	  });
+	 
+			})
+
+		 $("#no_c_btn").click(function(){
+			 setDate1();  // 선택한 날짜 	
+			 //	window.location.reload();
+		  })
+}); 
+ </script>
+<%}%>
+<% 
+rStatus=statusArr[1]; //예매취소로만 업데이트가능하도록
 RsrvtInfoVO rVO2 = new RsrvtInfoVO();
-rVO2.setRsrvtId(rId);
+rVO2.setRsrvtId(reserveNum);
 rVO2.setRsrvtStatus(rStatus);
 %>
 <article id="rsvt_c_Popup_wrap">
 	<div class="tit-st2 tit_pop pop-rsvt_c">
-		<span><%=rId %>번 예매내역을 <%=rStatus%>로 변경하시겠습니까?</span>
+	<span><%=rId %>번 예매내역을 <%= rStatus%>하시겠습니까?</span> 
 	</div>
-		<div class="rsvt_btn_wrap">
-			
+		<div class="rsvt_btn_wrap">			
 			<button type="button" id="ok_c_btn" class="ok_c_btn bg-black2"> 확인</button>
 			<button type="button" id="no_c_btn" class="no_c_btn bg-gray" onclick="alert('취소하셨습니다.');" > 취소</button>
 		</div>
 </article> 
-
 <!--취소팝업-->
  <!--예약취소 확정 팝업-->
-<% //어떻게..? 값ㅇ
+<% 
 int rowCnt = rDAO.updateRsrvt(rVO2);
 String printMsg = rVO2.getRsrvtId() + "번 예약코드는 예매내역을 변경할 수 없습니다.";
 if(rowCnt ==1){
@@ -785,25 +738,15 @@ if(rowCnt ==1){
 %>
 <article id="rsvt_c2_Popup_wrap" style="border:1px solid #333;">
 	<div class="tit-st2 tit_pop pop-rsvt_c">
-		<span><%= printMsg %></span>
-	</div>
-		
-		<div class="rsvt_btn_wrap">
-			
-			<button type="button" class="ok_c2_btn bg-black2"> 확인</button>
-			
-		</div>
-	
-	
-
-		
+		<span><%=printMsg %></span> 
+	</div>		
+		<div class="rsvt_btn_wrap">			
+			<button type="button" class="ok_c2_btn bg-black2"> 확인</button>			
+		</div>	
 </article>
-</form>
-
-
-
-
-							
+</form> 
+<!--취소팝업 끝-->
+					
 								<section id="pop_bg_refund">
 									
 								</section>
@@ -820,10 +763,6 @@ if(rowCnt ==1){
 									
 								</section>
 							<input type="hidden" id="reUrl" name="reUrl" value= />
-
-			
-
-	
 
 				<!----------------------------------------------여기서부터 끝까지 footer-------------------------------------------->
 
@@ -859,15 +798,7 @@ if(rowCnt ==1){
 				</section>
 
 		</div>
-		<%-- <script type="text/javascript">
-		$(function(){
-		$("#close_btn").click(function(){
-			//window.location.reload();
-			location.href="ticket.jsp?rsrvtid=<%=rsId%>&findStartDate=<%=findStartDate%>&findEndDate=<%=findEndDate%>";
-		})
-		})
-		</script> --%>
-
+	
 		<!-- Scripts -->
 			<script src="assets/js/jquery.dropotron.min.js"></script>
 			<script src="assets/js/browser.min.js"></script>
