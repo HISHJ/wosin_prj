@@ -5,10 +5,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
 
+
 <%
-AdminShowVO asVO= new AdminShowVO();
-AdminShowDAO asDAO=AdminShowDAO.getInstance();
-List<AdminShowVO> list=asDAO.selectShow(asVO);  
+//AdminShowVO asVO= new AdminShowVO();
+AdminShowDAO asDAO=AdminShowDAO.getInstance(); //dao객체 선언
+request.setCharacterEncoding("UTF-8");
+String genreId = request.getParameter("genreId");
+String status = request.getParameter("status");
+List<AdminShowVO> list=asDAO.selectShow(genreId,status); //select method 호출 
 %>
 
 <!DOCTYPE html>
@@ -37,16 +41,14 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
 	    	
 	    	//우선 목표는 dao가 적용되나 안적용되나까지 
 	    	$("input[name='status']:radio").click(function () {
-	            //라디오 버튼 값을 가져온다.
-	            var status = this.value;
-	            <%-- <%=list.set(1,status)%> --%>
+	    		$("#frm").submit();
+	    		alert("클릭");
 	                            
 	    	});//상태 검색
 	    	
 	    	$("#genreSearchBtn").click(function() {
-				var
-	    		
-	    		
+	    		$("#frm").submit();
+	    		alert("장르클릭");
 			});//장르 검색
 	    	
 	    	
@@ -139,7 +141,7 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
                            
                         	<form name="frm" id="frm">
                         	<!-- 값넘겨줄건데... hidden으로 value값 지정해주는게 맞나   -->
-                        	<%for(int i=0; i<list.size();i++){ %>
+                        	<%-- <%for(int i=0; i<list.size();i++){ %>
                         	<input type="hidden" id="showId" name="showId" value="<%=list.get(i).getShowId()%>">
                         	<input type="hidden" id="" name="" value="">
                         	<input type="hidden" id="" name="" value="">
@@ -152,13 +154,14 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
                         	<input type="hidden" id="" name="" value="">
                         	<input type="hidden" id="" name="" value="">
                         	<input type="hidden" id="" name="" value="">
-                        	<%} %>
+                        	<%} %>  --%>
+                        	
                         	
                            	 <div class="dataTable-top"></div>
                                <div>
                                 <label>장르　</label>
                                 <select name="genreId" class="dataTable-selector" aria-label="Default select example">
-								  <%String[] genreArr={"G1","G2","G3","G4","G5","G6"}; %>
+								  <%String[] genreArr={"전체","G1","G2","G3","G4","G5","G6"}; %>
 								  <%for(int i=0; i<genreArr.length; i++){ %>
 								  <option><%=genreArr[i] %></option>
 								  <%} %>
@@ -169,9 +172,9 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
                                 <div class="dataTable-top"></div>
                                 <label>상태　</label>
                                	 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="option1" 
+                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="전체" 
                                     		checked="checked">
-                                    <label class="form-check-label" for="inlineRadio1" val>전체</label>
+                                    <label class="form-check-label" for="inlineRadio1" >전체</label>
                                   </div>
                                   <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="공연중">
@@ -214,14 +217,14 @@ List<AdminShowVO> list=asDAO.selectShow(asVO);
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <%for(int i=0; i<list.size();i++){ %>
+                                    <%for(AdminShowVO asVO: list){ %>
                                         <tr>
-                                            <td><%=list.get(i).getShowId() %></td>
-                                            <td><%=list.get(i).getName() %></td>
-                                            <td><%=list.get(i).getGenreId() %></td>
-                                            <td><%=list.get(i).getPrice() %>원</td>
-                                            <td><%=list.get(i).getRatingId() %></td>
-                                            <td><a href="showDetail.jsp?showId=<%=list.get(i).getShowId() %>"><input type="button" value="상세보기" class="showDetailBtn"></a></td>
+                                            <td><%=asVO.getShowId() %></td>
+                                            <td><%=asVO.getName() %></td>
+                                            <td><%=asVO.getGenreId() %></td>
+                                            <td><%=asVO.getPrice() %>원</td>
+                                            <td><%=asVO.getRatingId() %></td>
+                                            <td><a href="showDetail.jsp?showId=<%=asVO.getShowId() %>"><input type="button" value="상세보기" class="showDetailBtn"></a></td>
                                         </tr>
                                        <%} %>
                                     </tbody>

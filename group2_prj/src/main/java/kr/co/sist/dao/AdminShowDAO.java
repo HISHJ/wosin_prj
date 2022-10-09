@@ -39,7 +39,7 @@ public class AdminShowDAO {
 	
 	//매개변수: 공연명, 장르, 상태
 	//return: 공연코드
-	/*public List<AdminShowVO> selectShow(AdminShowVO asVO) throws SQLException{
+		/*public List<AdminShowVO> selectShow(AdminShowVO asVO) throws SQLException{
 		List<AdminShowVO> list=new ArrayList<AdminShowVO>();
 		AdminShowVO asVO2=null;
 		
@@ -64,8 +64,10 @@ public class AdminShowDAO {
 			if(asVO.getStatus()!=null){
 				query+=" and s.status='"+asVO.getStatus()+"'";
 			}
-			pstmt = con.prepareStatement(query); //이거를 if문 위로 올려야 하나 ? 여기 맞아요네 ㅎㅎ 감사합닏
 			
+			//(장르, 상태 잘 찍었나 )
+			System.out.println("select: "+query);
+			pstmt = con.prepareStatement(query); //이거를 if문 위로 올려야 하나 ? 여기 맞아요네 ㅎㅎ 감사합닏
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -87,9 +89,8 @@ public class AdminShowDAO {
 		return list;
 	}//selectShow */
 	
-	
-	//쿼리문 고치는 중
-	public List<AdminShowVO> selectShow(AdminShowVO asVO) throws SQLException{
+		//변수 장르, 상태만 받아서 list뿌려주기 
+		public List<AdminShowVO> selectShow(String genreId, String status) throws SQLException{
 		List<AdminShowVO> list=new ArrayList<AdminShowVO>();
 		AdminShowVO asVO2=null;
 		
@@ -105,19 +106,21 @@ public class AdminShowDAO {
 					+ "from show s, genre g, rating r "  
 					+ "where (s.genreId=g.genreId and s.ratingId=r.ratingId) ";
 			
-			/*if(asVO.getName()!=null){
-				query+=" and s.name='"+asVO.getName()+"'";
-			}*/
-			if(asVO.getGenreId()!=null){
-				query+=" and g.genreId=? ";
-			}
-			if(asVO.getStatus()!=null){
-				query+=" and s.status=? ";
-			}
-			pstmt = con.prepareStatement(query); //이거를 if문 위로 올려야 하나 ? 여기 맞아요네 ㅎㅎ 감사합닏
-			pstmt.setString(1, asVO.getGenreId());
-			pstmt.setString(1, asVO.getStatus());
 			
+			if(genreId.equals("전체")){
+				query+=" ";
+			}else {
+				query+=" and g.genreId='"+genreId+"'";
+			}
+			
+			if(status.equals("전체")){
+				query+=" ";
+			}else {
+				query+=" and s.status='"+status+"'";
+			}
+			
+			//(장르, 상태 잘 찍었나 )
+			pstmt = con.prepareStatement(query); //이거를 if문 위로 올려야 하나 ? 여기 맞아요네 ㅎㅎ 감사합닏
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -131,13 +134,15 @@ public class AdminShowDAO {
 				list.add(asVO2);
 			}
 			
+			
 		}finally {
 			db.dbClose(rs, pstmt, con);
 			
 		}
 		
 		return list;
-	}//selectShow
+	}//selectShow */
+	
 	
 	
 	//쿼리문 확인완료

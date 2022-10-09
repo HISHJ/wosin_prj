@@ -87,7 +87,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                     <div class="card-header navyv bg-dark"><h3 class="text-start text-white font-weight-light my-4 " style="font-weight: bold;">공연 상세정보</h3></div>
                                     <div class="card-body">
                                        
-                                    <form id="frm" action="show_remove.jsp">
+                                    <form id="frm" >
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-4"><img src=<%=showDetail.getmImg() %> class="img-thumbnail" alt="썸네일이미지"></div>
@@ -167,7 +167,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>썸네일이미지</b></div> <div class="col-4"><input type="file" name="thImg" value="파일선택"></div>
+                                            <div class="col-2"><b>썸네일이미지</b></div> <div class="col-4"><input type="file" name="thImg" value="파일선택" ></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -204,7 +204,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                          <div class="mt-4 mb-0">
                                             <div class="col text-center">
                                                 <input type="submit" class="btn btn-secondary btn-sm" id="modifyBtn" formaction="show_update.jsp" value="변경">
-                                                <input type="button" class="btn btn-default btn-sm" id="cancelBtn" formaction="showBoard.jsp" value="취소">
+                                                <input type="button" class="btn btn-default btn-sm" id="cancelBtn" value="취소">
                                             </div>
                                           </div>
                                        </div>
