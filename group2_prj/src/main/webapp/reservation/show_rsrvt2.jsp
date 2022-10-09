@@ -87,34 +87,63 @@
 				$("#rsrvtInfoFrm").submit();
 			});
 		});
-		function seatChk(seatNum){
-			oTbl = document.getElementById("chkSeatNum");
-			/* test(seatNum); */
-			if(seatNum.checked == true){ // check할때
-				/* alert(seatNum.value); */
-				/* alert(oTbl); */
-				var oRow = oTbl.insertRow();
-				oRow.onmouseover = function(){oTbl.clickedRowIndex=this.rowIndex};
-				var oCell = oRow.insertCell();
-				
-				var frmTag = "<input type='text' name='selectedSeat' style='width:50px; height:30px;' readonly='readonly' value='"+seatNum.value+"'>";
-				frmTag += "<input type='button' value='삭제' onclick='removeRow("+seatNum.value+")' style='cursor:hand; color:#555555; background-color:#555555; margin-left:10px;'>";
-				
-				oCell.innerHTML = frmTag;
-				
-				
-			}else{ // check풀때
-				
-				oTbl.deleteRow(oTbl.clickedRowIndex);
-				/* var unChk = document.getElementById("chk_"+seatNum);
-				alert(unChk); */
-				
-			}
-			// 삭제를 누르면 체크박스도 해제되어야하고      삭제를 누른다는건 ? removeRow
-			// 체크박스를 해제하면 아래 좌석번호도 삭제되어야한다.    체크박스를 해제한다는건? else
-			rowCnt();
-			
-		};
+		  function seatChk(seatNum){
+		         oTbl = document.getElementById("chkSeatNum");
+		         /* test(seatNum); */
+		         if(seatNum.checked == true){ // check할때
+		            /* alert(seatNum.value); */
+		            /* alert(oTbl); */
+		            // oRow 테스트 Ocell없애고 td에 아이디주기
+		            var oRow = oTbl.insertRow();
+		            oRow.onmouseover = function(){oTbl.clickedRowIndex=this.rowIndex};
+		            var oCell = oRow.insertCell();
+		            
+		            //var frmTag = "<td name='chkRow' id='chk_"+seatNum.value+"' value='chk_"+seatNum.value+"'><input type='text'  name='selectedSeat' style='width:50px; height:30px;' readonly='readonly' value='"+seatNum.value+"'>";
+		            //frmTag += "<input type='button' value='삭제' onclick='removeRow("+seatNum.value+")' style='cursor:hand; color:#555555; background-color:#555555; margin-left:10px;'></td>";
+		            var frmTag = "<td name='chkRow' id='chk_"+seatNum.value+"' value='chk_"+seatNum.value+"'>"+seatNum.value;
+		            frmTag += "<input type='button' value='삭제' onclick='removeRow("+seatNum.value+")' style='cursor:hand; color:#555555; background-color:#555555; margin-left:10px;'></td>";
+		            
+		            oRow.innerHTML = frmTag;
+		            
+		            
+		         }else{ // check풀때         10-09 버그발견 : check박스 풀 때 계속 제일 위의열이 없어짐.
+		            //alert(seatNum.value);
+		            
+		            ////////////////////
+		            //체크박스를 해제할경우 oTbl의 deleteRow를 하는데
+		            //몇번째인덱스인지 구해야한다
+		            var selectedRows = document.getElementsByName("chkRow");
+		               //alert("row : "+selectedRows.length);
+		               //alert("row : "+selectedRows[0]);
+		            for(var i=0;i<selectedRows.length;i++){
+		               if(selectedRows[i].innerText==seatNum.value){
+		                  //alert("innerText:"+selectedRows[i].innerText+", seatNum.value:"+seatNum.value);
+		                  //alert(i);
+		                  oTbl.deleteRow(i);
+		                  
+		               }
+		               //alert("row : "+selectedRows[i].innerText);
+		               /*if("chk_"+seatNum.value==selectedRows[i]){
+		                  alert(i);
+		               }*/
+		               //alert("chk_"+seatNum.value);
+		            }
+		            //oTbl.deleteRow(oTbl.clickedRowIndex);
+		            
+		            //String ppqq = document.getElementById("chk_"+seatNum.value);
+		            //alert(ppqq);
+		            
+//		            oTbl.deleteRow(oTbl.clickedRowIndex);
+		            //alert(oTbl.clickedRowIndex+seatNum.value);
+		            //oTbl.deleteRow(oTbl.clickedRowIndex);
+		            /////////////////////
+		            
+		         }
+		         // 삭제를 누르면 체크박스도 해제되어야하고      삭제를 누른다는건 ? removeRow
+		         // 체크박스를 해제하면 아래 좌석번호도 삭제되어야한다.    체크박스를 해제한다는건? else
+		         rowCnt();
+		         
+		      };
 		/* function test(seatNum){
 			alert(seatNum.value);
 		} */
