@@ -1,3 +1,5 @@
+<%@page import="kr.co.sis.vo.ShowVO"%>
+<%@page import="ko.co.sis.dao.MainDAO"%>
 <%@page import="kr.co.sis.vo.RsrvtInfoVO"%>
 <%@page import="java.util.List"%>
 <%@page import="ko.co.sis.dao.RsrvtDAO"%>
@@ -9,25 +11,30 @@
     
 <%  /* 여기서는 select 말고 상영일정이랑, 시간을 뿌려줘야되는데 무슨DAO쓰더라 */
 	/* String swId = request.getParameter("showId"); */
-/* 	String swId = (String)session.getAttribute("showId");
+ 	String swId = (String)session.getAttribute("showId");
 	MainDAO mDAO = MainDAO.getInstance();
-	ShowVO sVO = mDAO.selectShowMain(swId);*/
+	ShowVO sVO = mDAO.selectShowMain(swId); // 다주는 메서드
+	
+	pageContext.setAttribute("sVO", sVO);
+	//System.out.println(swId);
+	//System.out.println(sVO.getName());
+	
 	
 	
 	//String schId = (String)session.getAttribute("schtest");
 	String schId = request.getParameter("schtest");
+	session.setAttribute("schTest", schId);
 	
 	RsrvtDAO rDAO = RsrvtDAO.getInstance();
 	List<String> seatList = rDAO.selectSeat(schId);
 	
 	pageContext.setAttribute("seatList",seatList);
 	
-	System.out.println(seatList.size());
-	System.out.println(schId);
+	//System.out.println(seatList.size());
+	//System.out.println(schId);
 	
 	
 %>        
-    
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -48,18 +55,81 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!--google fonts-->
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.dropotron.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		
+		<!-- tap관련 추가한거 -->
+		<script src="assets/js/tab.js"></script>
 		<style>
 			#nav{
 				margin-right:150px;
 			}
 		</style>
 		<script>
+		////////////////////////////////////////////
 		$(function(){
-			function seatChk(seatNum){
+			$("#rsrvtBtn").click(function(){
+				// 유효성검증코드들 추가필요 
+				var obj = document.getElementById("rsrvtInfoFrm");
+				var seats = obj.seat;
+				// alert(seats.length); 16
 				
+				if($("[name='seat']:checked").length==0){
+					alert("좌석을 선택해주세요.")
+					return;
+				};
+				
+				$("#rsrvtInfoFrm").submit();
+			});
+		});
+		function seatChk(seatNum){
+			oTbl = document.getElementById("chkSeatNum");
+			/* test(seatNum); */
+			if(seatNum.checked == true){ // check할때
+				/* alert(seatNum.value); */
+				/* alert(oTbl); */
+				var oRow = oTbl.insertRow();
+				oRow.onmouseover = function(){oTbl.clickedRowIndex=this.rowIndex};
+				var oCell = oRow.insertCell();
+				
+				var frmTag = "<input type='text' name='selectedSeat' style='width:50px; height:30px;' readonly='readonly' value='"+seatNum.value+"'>";
+				frmTag += "<input type='button' value='삭제' onclick='removeRow("+seatNum.value+")' style='cursor:hand; color:#555555; background-color:#555555; margin-left:10px;'>";
+				
+				oCell.innerHTML = frmTag;
+				
+				
+			}else{ // check풀때
+				
+				oTbl.deleteRow(oTbl.clickedRowIndex);
+				/* var unChk = document.getElementById("chk_"+seatNum);
+				alert(unChk); */
 				
 			}
-		});
+			// 삭제를 누르면 체크박스도 해제되어야하고      삭제를 누른다는건 ? removeRow
+			// 체크박스를 해제하면 아래 좌석번호도 삭제되어야한다.    체크박스를 해제한다는건? else
+			rowCnt();
+			
+		};
+		/* function test(seatNum){
+			alert(seatNum.value);
+		} */
+		function removeRow(s){
+			oTbl.deleteRow(oTbl.clickedRowIndex);
+			document.getElementById("st_"+s).checked = false;
+			/* seatNum.checked=false; */
+			rowCnt();
+		}
+		
+		function rowCnt(){
+			var rows = document.getElementById("chkSeatNum").getElementsByTagName("tr");
+			/* alert(rows.length); */
+			document.getElementById("totalSeat").value = rows.length;
+		}
 		</script>
 	</head>
 	<body class="homepage is-preload">
@@ -145,6 +215,7 @@
 						<!--------------------------------------위까지가 헤더----------------------------------------->
 				<!-- Main -->
 				<section id="main">
+				<!-- <form id="rsrvtInfoFrm" method="post" action="show_rsrvt3.jsp"> -->
 					<div class="container">
 						<div class="row">
 							<div class="col-4 col-12-medium">
@@ -153,16 +224,16 @@
 									<section class="box">
 										<a class="image featured"><img src="poster/rj.jpeg" alt="" /></a>
 										<header>
-											<h3 class="h3">오페라 '로미오와 줄리엣'</h3>
+											<h3 class="h3"><%=sVO.getName() %></h3>
 										</header>
 									</section>
 									<section class="box">
 										<ul class="divided">
-											<li>기간　　2022.09.22~2022.09.25</li>
+											<li>기간　　<%=sVO.getStartDate() %> ~ <%=sVO.getEndDate() %></li>
 											<li>장소　　우신문화회관 대극장</li>
-											<li>연령　　만0세</li>
-											<li>티켓　　80,000원</li>
-											<li>공연시간　　140분</li>
+											<li>연령　　<%=sVO.getRatingId() %></li>
+											<li>티켓　　<%=sVO.getPrice() %>원</li>
+											<li>공연시간　　<%=sVO.getRunningTime() %></li>
 										</ul>
 									</section>
 
@@ -199,7 +270,7 @@
 										<header>
 											<h3 class="h3">좌석선택</h3>
 										</header>
-										<form>
+										<form id="rsrvtInfoFrm" method="post" action="show_rsrvt3.jsp">
 										<footer>
 											<%-- <c:forEach var="seat" begin="1" end="16" step="1">
 												<c:if test="${fn:length(seatList)==0}">
@@ -225,9 +296,10 @@
 														//System.out.println(seatList.get(j).equals(Integer.toString(i)));	
 														//System.out.println(seatList.get(j).equals(String.valueOf(i)));	
 													//}
-												}sdfsdf%>
-												<input type="checkbox" value="<%=i%>" id="st_<%=i%>"
-												style="appearance:checkbox; " onclick="seatChk('${i}')" <%=dis %>>
+												}%>
+												<input type="checkbox" name="seat" value="<%=i%>" id="st_<%=i%>"
+												<%-- style="appearance:checkbox; " onclick="seatChk('<%=i %>')" <%=dis %>> --%>
+												style="appearance:checkbox; " onclick="seatChk(this)" <%=dis %>>
 												
 												<%if(i%4==0){%>
 												<br>
@@ -240,32 +312,31 @@
 										<header>
 											<h3 class="h3">선택한 좌석 정보</h3>
 										</header>
-										<ul class="divided">
+										<table id="chkSeatNum">
+										</table>
+										<!-- <ul class="divided">
 											<li>1A
 												<button type="button" class="xbutton" onclick="deleteSeat()" title="취소">
 													<img src="https://flexfile.sejongpac.or.kr/Flex/Rsv/102103/img/pop/btn-del.png" alt="좌석취소버튼">
 												</button>
 											</li>
-											<li>2A
-												<button type="button" class="xbutton" onclick="deleteSeat()" title="취소">
-													<img src="https://flexfile.sejongpac.or.kr/Flex/Rsv/102103/img/pop/btn-del.png" alt="좌석취소버튼">
-												</button>
-											</li>
-										</ul>
+										</ul> -->
 									</section>
 									<section class="box" style="margin-bottom: 30px">
 										<header>
 											<h3 class="h3">선택한 총 좌석수</h3>
 										</header>
+										
 										<ul class="divided">
-											<li>n　개</li>
+											<li><input type="text" id="totalSeat" value="0" name="seatCnt" id="seatCnt"  readonly="readonly" style="border:none; width:30px;" />개</li>
 										</ul>
 									</section>
-								<a href="page3.html" class="button alt button_minBack">이전</a>
-								<a href="page5.html" class="button alt button_minNext">다음</a>
+								<a href="javascript:history.back();">이전</a>
+								<input type="button" value="다음" id="rsrvtBtn" style="background-color:#555555;">
 							</div>
 						</div>
 					</div>
+				<!-- </form> -->
 				</section>
 		
 
@@ -304,16 +375,7 @@
 
 		</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		
 			
-			<!-- tap관련 추가한거 -->
-			<script src="assets/js/tab.js"></script>
-
 	</body>
 </html>
