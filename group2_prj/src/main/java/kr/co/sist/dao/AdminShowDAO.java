@@ -28,18 +28,11 @@ public class AdminShowDAO {
 	}//getInstance
 	
 	
-	//공연조회
-	//우선 keep or 3개만 받음
-	//Q. 검색시 테이블 헤드 목록 다 받아올 수 있는데...이거 매개변수로 다 넣을까
-	// 	 그리고 검색 종류가 테이블 헤드에 나오는거 좋을거같음 
-	//A. 매개변수>>> 걍 3개만 받기로. 검색창 쓰는게 목적이 아니라 배운거 쓰는게 목적이니까
-	//Q. 검색이 void일때는 all 처리 어떻게 해주나?
-	//A.
-	//Q.VO VO 어떻게 처리함 ...?
 	
-	//매개변수: 공연명, 장르, 상태
-	//return: 공연코드
-		/*public List<AdminShowVO> selectShow(AdminShowVO asVO) throws SQLException{
+		//공연 조회
+		//공연명, 장르, 상태만 받아서 list뿌려주기 
+		//이놈이 찐으로 쓸 놈 
+		public List<AdminShowVO> selectShow(String name,String genreId, String status) throws SQLException{
 		List<AdminShowVO> list=new ArrayList<AdminShowVO>();
 		AdminShowVO asVO2=null;
 		
@@ -55,19 +48,55 @@ public class AdminShowDAO {
 					+ "from show s, genre g, rating r "  
 					+ "where (s.genreId=g.genreId and s.ratingId=r.ratingId) ";
 			
-			if(asVO.getName()!=null){
-				query+=" and s.name='"+asVO.getName()+"'";
-			}
-			if(asVO.getGenreId()!=null){
-				query+=" and g.genreId='"+asVO.getGenreId()+"'";
-			}
-			if(asVO.getStatus()!=null){
-				query+=" and s.status='"+asVO.getStatus()+"'";
-			}
-			
-			//(장르, 상태 잘 찍었나 )
-			System.out.println("select: "+query);
-			pstmt = con.prepareStatement(query); //이거를 if문 위로 올려야 하나 ? 여기 맞아요네 ㅎㅎ 감사합닏
+			   
+			   if(name!=null) {
+					query+=" and s.name Like'%"+name.trim()+"%' ";
+			   }
+			   if(genreId!=null) {
+				   query+=" and g.genreId='"+genreId+"' ";
+			   }
+			   if(status!=null) {
+				   query+=" and s.status='"+status+"' ";
+			   }
+			  
+			   
+			   
+			   /* 왜또 안되는데 ㅠㅠ
+			   //기본값(전체,전체)
+			   if(genreId.equals(all)&&status.equals(all)) {
+				   query+=" ";
+			   }
+			   
+			   //장르만 선택시
+			   if(!genreId.equals(all)&&status.equals(all)) {
+				   query+=" and g.genreId='"+genreId+"' ";
+			   }
+			   
+			   //상태만 선택시
+			   if(genreId.equals(all)&&!status.equals(all)) {
+				   query+=" and s.status='"+status+"' ";
+			   }
+			   
+			   //둘다 선택시
+			   if(!genreId.equals(all)&&!status.equals(all)) {
+				   query+=" and g.genreId='"+genreId+"' and s.status='"+status+"' ";
+			   }
+			    */
+			   
+			   /*오류 무덤 ....
+			    
+			   if(genreId.equals("전체")&&status.equals("전체")) {
+				   System.out.println("이뤌이다");
+			   }//그냥 오류뜸(첫로딩)
+			   
+			   if(genreId=="전체"&&status=="전체") {
+				 System.out.println("이놈이 맞다!");
+			   }//출력안됨(첫로딩) 하나해도 안들어감
+			   
+			   */
+
+			   
+			pstmt = con.prepareStatement(query); 
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -87,62 +116,9 @@ public class AdminShowDAO {
 		}
 		
 		return list;
-	}//selectShow */
+	}//selectShow 
 	
-		//변수 장르, 상태만 받아서 list뿌려주기 
-		public List<AdminShowVO> selectShow(String genreId, String status) throws SQLException{
-		List<AdminShowVO> list=new ArrayList<AdminShowVO>();
-		AdminShowVO asVO2=null;
 		
-		DbConnection db=DbConnection.getInstance();
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		try {
-			con=db.getConn();
-			
-			String query=" select s.showId s_showId, s.name s_name, g.genreId g_genreId, s.price s_price, r.ratingId r_ratingId, s.status s_status "
-					+ "from show s, genre g, rating r "  
-					+ "where (s.genreId=g.genreId and s.ratingId=r.ratingId) ";
-			
-			
-			if(genreId.equals("전체")){
-				query+=" ";
-			}else {
-				query+=" and g.genreId='"+genreId+"'";
-			}
-			
-			if(status.equals("전체")){
-				query+=" ";
-			}else {
-				query+=" and s.status='"+status+"'";
-			}
-			
-			//(장르, 상태 잘 찍었나 )
-			pstmt = con.prepareStatement(query); //이거를 if문 위로 올려야 하나 ? 여기 맞아요네 ㅎㅎ 감사합닏
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				asVO2=new AdminShowVO();
-				asVO2.setShowId(rs.getString("s_showId"));
-				asVO2.setName(rs.getString("s_name"));
-				asVO2.setPrice(rs.getInt("s_price"));
-				asVO2.setGenreId(rs.getString("g_genreId"));
-				asVO2.setRatingId(rs.getString("r_ratingId"));
-				asVO2.setStatus(rs.getString("s_status"));
-				list.add(asVO2);
-			}
-			
-			
-		}finally {
-			db.dbClose(rs, pstmt, con);
-			
-		}
-		
-		return list;
-	}//selectShow */
-	
 	
 	
 	//쿼리문 확인완료

@@ -12,7 +12,7 @@
 <%
 request.setCharacterEncoding("UTF-8");
 String showId=request.getParameter("showId"); 
-AdminShowVO asVO= new AdminShowVO();
+AdminShowVO asVO= new AdminShowVO(); //<<문제시 얘가 범인
 AdminShowDAO asDAO=AdminShowDAO.getInstance();
 AdminShowVO showDetail=asDAO.selectShowDetail(showId); 
 %>

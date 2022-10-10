@@ -6,17 +6,21 @@
     pageEncoding="UTF-8" info=""%>
 
 
-<%
-//AdminShowVO asVO= new AdminShowVO();
+<%-- <%
+//selectShow(asVO)꺼
+AdminShowVO asVO= new AdminShowVO();
 AdminShowDAO asDAO=AdminShowDAO.getInstance(); //dao객체 선언
+List<AdminShowVO> list=asDAO.selectShow(asVO); //select method 호출 
+%> --%>
+
+<%
+//selectShow(String genreId, String status)꺼
 request.setCharacterEncoding("UTF-8");
-/* request.setAttribute("generId", "G2");
-String genreId = (String)request.getAttribute("generId");
-request.setAttribute("status","공연중");
-String status = (String)request.getAttribute("status"); */
- String genreId = request.getParameter("genreId"); 
- String status = request.getParameter("status"); 
-List<AdminShowVO> list=asDAO.selectShow(genreId,status); //select method 호출 
+String name = request.getParameter("name");
+String genreId = request.getParameter("genreId");
+String status = request.getParameter("status");
+AdminShowDAO asDAO=AdminShowDAO.getInstance(); 
+List<AdminShowVO> list=asDAO.selectShow(name,genreId,status);
 %>
 
 <!DOCTYPE html>
@@ -44,16 +48,19 @@ List<AdminShowVO> list=asDAO.selectShow(genreId,status); //select method 호출
     	
 	    	
 	    	//우선 목표는 dao가 적용되나 안적용되나까지 
-	    	$("input[name='status']:radio").click(function () {
-	    		$("#frm").submit();
-	    		alert("클릭");
-	                            
-	    	});//상태 검색
+	    	//$("input[name='status']:radio").click(function () {
 	    	
+	    	$("#nameSearchBtn").click(function() {
+	    		$("#nameFrm").submit();
+			});//공연명 검색
+			
 	    	$("#genreSearchBtn").click(function() {
-	    		$("#frm").submit();
-	    		alert("장르클릭");
+	    		$("#genreFrm").submit();
 			});//장르 검색
+			
+	    	$("#statusSearchBtn").click(function() {
+	    		$("#statusFrm").submit();
+	    	});//상태 검색
 	    	
 	    	
    		});//ready
@@ -127,7 +134,6 @@ List<AdminShowVO> list=asDAO.selectShow(genreId,status); //select method 호출
                 </nav>
             </div>
             <div id="layoutSidenav_content">
-                <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">공연관리</h1>
                         <ol class="breadcrumb mb-4">
@@ -143,43 +149,29 @@ List<AdminShowVO> list=asDAO.selectShow(genreId,status); //select method 호출
                                <!-- 뭐 추가하면 템플릿 양식을 깨트림;;; -->
                                <!-- 해결 </table> 바로 밑에 버튼 만들면 됨 -->
                            
-                        	<form name="frm" id="frm">
-                        	<!-- 값넘겨줄건데... hidden으로 value값 지정해주는게 맞나   -->
-                        	<%-- <%for(int i=0; i<list.size();i++){ %>
-                        	<input type="hidden" id="showId" name="showId" value="<%=list.get(i).getShowId()%>">
-                        	<input type="hidden" id="" name="" value="">
-                        	<input type="hidden" id="" name="" value="">
-                        	<input type="hidden" id="" name="" value="">
-                        	<input type="hidden" id="" name="" value="">
-                        	<input type="hidden" id="" name="" value="">
-                        	<input type="hidden" id="" name="" value="">
-                        	<input type="hidden" id="" name="" value="">
-                        	<input type="hidden" id="" name="" value="">
-                        	<input type="hidden" id="" name="" value="">
-                        	<input type="hidden" id="" name="" value="">
-                        	<input type="hidden" id="" name="" value="">
-                        	<%} %>  --%>
-                        	
-                        	
+                        	<form name="nameFrm" id="nameFrm">
+                           	 <div class="dataTable-top"></div>
+                                <label>공연명　</label>
+                           	  	<input type="text"  name="name" class="dataTable-input" style="width: auto; display: inline-block;"> 
+                                <input type="button" id="nameSearchBtn" name="nameSearchBtn" value="검색">
+                             </form>
+                              
+                        	<form name="genreFrm" id="genreFrm">
                            	 <div class="dataTable-top"></div>
                                <div>
-                                <label>장르　</label>
+                                <label>장르　　</label>
                                 <select name="genreId" class="dataTable-selector" aria-label="Default select example">
-								  <%String[] genreArr={"전체","G1","G2","G3","G4","G5","G6"}; %>
+								  <%String[] genreArr={"G1","G2","G3","G4","G5","G6"}; %>
 								  <%for(int i=0; i<genreArr.length; i++){ %>
 								  <option><%=genreArr[i] %></option>
 								  <%} %>
 								</select><input type="button" id="genreSearchBtn" name="genreSearchBtn" value="검색">
-                               </div>,
-                               
+                               </div>
+                              </form>
                            
+                        	 <form name="statusFrm" id="statusFrm">
                                 <div class="dataTable-top"></div>
-                                <label>상태　</label>
-                               	 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="status" id="inlineRadio1" value="전체" 
-                                    		checked="checked">
-                                    <label class="form-check-label" for="inlineRadio1" >전체</label>
-                                  </div>
+                                <label>상태　　</label>
                                   <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="공연중">
                                     <label class="form-check-label" for="inlineRadio2">공연중</label>
@@ -194,8 +186,10 @@ List<AdminShowVO> list=asDAO.selectShow(genreId,status); //select method 호출
                                   </div>
                                   <input type="button" id="statusSearchBtn" name="statusSearchBtn" value="검색">
                            		</form>
+                              <a href="showBoard.jsp"><button id="addBtn" type="button" class="btn btn-outline-dark float-end mx-md-4" >전체보기</button></a>
                            	 </div>
-                            </div>
+                           </div>
+                            
                        
                                 <table id="datatablesSimple">
                                     <thead>
@@ -204,7 +198,7 @@ List<AdminShowVO> list=asDAO.selectShow(genreId,status); //select method 호출
                                             <th>공연명</th>
                                             <th>장르</th>
                                             <th>금액</th>
-                                            <th>관람등급</th>
+                                            <th>상태</th>
                                             <th>관리</th>
                                         </tr>
                                     </thead>
@@ -216,24 +210,24 @@ List<AdminShowVO> list=asDAO.selectShow(genreId,status); //select method 호출
                                             <th>공연명</th>
                                             <th>장르</th>
                                             <th>금액</th>
-                                            <th>관람등급</th>
+                                            <th>상태</th>
                                             <th>관리</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <%for(AdminShowVO asVO: list){ %>
+                                    <%for(AdminShowVO asVO1 : list){ %>
                                         <tr>
-                                            <td><%=asVO.getShowId() %></td>
-                                            <td><%=asVO.getName() %></td>
-                                            <td><%=asVO.getGenreId() %></td>
-                                            <td><%=asVO.getPrice() %>원</td>
-                                            <td><%=asVO.getRatingId() %></td>
-                                            <td><a href="showDetail.jsp?showId=<%=asVO.getShowId() %>"><input type="button" value="상세보기" class="showDetailBtn"></a></td>
+                                            <td><%=asVO1.getShowId() %></td>
+                                            <td><%=asVO1.getName() %></td>
+                                            <td><%=asVO1.getGenreId() %></td>
+                                            <td><%=asVO1.getPrice()%>원</td>
+                                            <td><%=asVO1.getStatus() %></td>
+                                            <td><a href="showDetail.jsp?showId=<%=asVO1.getShowId() %>"><input type="button" value="상세보기" class="showDetailBtn"></a></td>
                                         </tr>
                                        <%} %>
                                     </tbody>
                                 </table>
-                            <div><a href="showAdd.jsp"><button id="addBtn" type="button" class="btn btn-outline-secondary">공연추가</button></a></div>
+                            <div><a href="showAdd.jsp"><button id="addBtn" type="button" class="btn btn-dark">공연추가</button></a></div>
                             </div>
                         </div>
                     </div>
