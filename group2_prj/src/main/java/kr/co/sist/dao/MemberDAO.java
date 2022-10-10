@@ -192,12 +192,11 @@ public class MemberDAO {
 //비밀번호 변경
 public int updatePass(String memberId, String pwd) throws SQLException {
 	
-	int updatePassCnt=0;
 	
 	DbConnection dc=DbConnection.getInstance();
 	PreparedStatement pstmt=null;
 	Connection con=null;
-	
+	ResultSet rs =null;
 	
 	try {
 		con=dc.getConn();
@@ -209,20 +208,21 @@ public int updatePass(String memberId, String pwd) throws SQLException {
 		pstmt.setString(1,pwd);
 		pstmt.setString(2,memberId);
 		
-		updatePassCnt=pstmt.executeUpdate();
-			
+		return pstmt.executeUpdate();
+	}catch(Exception e) {
+			e.printStackTrace();
 	}finally {
-		dc.dbClose(null, pstmt, con);
+		dc.dbClose(rs, pstmt, con);
 	}
 	
 	
-	return updatePassCnt; 
+	return -1; 
 	
 }//updatePass
 
 //회원정보조회
 
-public MemberVO selectMember(String pwd) throws SQLException {
+public MemberVO selectMember(String memberId) throws SQLException {
 	MemberVO mbVO=null;
 	
 	
@@ -234,10 +234,11 @@ public MemberVO selectMember(String pwd) throws SQLException {
 	
 	try {
 		con=dc.getConn();
-		String selectInfo = "select name,memberId,birth,gender,zipcode,addr1,addr2,email,phone,hphone,"
-				+ "mailChk,smsChk from member where pwd=?";
+		String selectInfo = "select name,memberId,pwd,birth,gender,zipcode,addr1,addr2,email,phone,hphone,"
+				+ "mailChk,smsChk from member where memberId=?";
 		pstmt=con.prepareStatement(selectInfo);
-		pstmt.setString(1, pwd);	
+		pstmt.setString(1, memberId);
+		
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -245,6 +246,7 @@ public MemberVO selectMember(String pwd) throws SQLException {
 			mbVO=new MemberVO();
 			mbVO.setName(rs.getString("name"));
 			mbVO.setMemberId(rs.getString("memberId"));
+			mbVO.setPwd(rs.getString("pwd")); 
 			mbVO.setBirth(rs.getString("birth"));
 			mbVO.setGender(rs.getString("gender"));
 			mbVO.setZipcode(rs.getString("zipcode"));
@@ -267,7 +269,7 @@ public MemberVO selectMember(String pwd) throws SQLException {
 //회원정보수정
 public int updateMember(MemberVO mbVO) throws SQLException {
 	
-	int updateMbCnt=0;
+
 	
 	DbConnection dc=DbConnection.getInstance();
 	PreparedStatement pstmt=null;
@@ -278,31 +280,36 @@ public int updateMember(MemberVO mbVO) throws SQLException {
 		con=dc.getConn();
 		StringBuilder updateMb = new StringBuilder();
     	updateMb.append("	update member")
-    						  .append("	set zipcode=?,addr1=?,addr2=?,email=?,phone=?hphone=?,mailChk=?smsChk=?	")
-    						  .append("	where pwd=?	");
+    						  .append("	set name=?,birth=?,gender=?, zipcode=?,addr1=?,addr2=?,email=?,phone=?,hphone=?,mailChk=?,smsChk=?")
+    						  .append("	where memberId=? and pwd=?	");
 		
 		
 		pstmt=con.prepareStatement(updateMb.toString());
 		
-		pstmt.setString(1,mbVO.getZipcode());
-		pstmt.setString(2,mbVO.getAddr1());
-		pstmt.setString(3,mbVO.getAddr2());
-		pstmt.setString(4,mbVO.getEmail());
-		pstmt.setString(5,mbVO.getPhone());
-		pstmt.setString(6,mbVO.gethPhone());
-		pstmt.setString(7,mbVO.getMailChk());
-		pstmt.setString(8,mbVO.getSmsChk());
+		pstmt.setString(1, mbVO.getName());
+		pstmt.setString(2, mbVO.getBirth());
+		pstmt.setString(3, mbVO.getGender());
+		pstmt.setString(4,mbVO.getZipcode());
+		pstmt.setString(5,mbVO.getAddr1());
+		pstmt.setString(6,mbVO.getAddr2());
+		pstmt.setString(7,mbVO.getEmail());
+		pstmt.setString(8,mbVO.getPhone());
+		pstmt.setString(9,mbVO.gethPhone());
+		pstmt.setString(10,mbVO.getMailChk());
+		pstmt.setString(11,mbVO.getSmsChk());
+		pstmt.setString(12,mbVO.getMemberId());
+		pstmt.setString(13,mbVO.getPwd());
 		
-		updateMbCnt=pstmt.executeUpdate();
+		return pstmt.executeUpdate();
 		
-		
-			
+	}catch(Exception e) {
+			e.printStackTrace();
 	}finally {
 		dc.dbClose(null, pstmt, con);
 	}
 	
 	
-	return updateMbCnt;
+	return -1;
 }//updateMember
 
 
@@ -490,7 +497,7 @@ public MemberVO selectMember(QuitMemberVO qmVO) throws SQLException {
 //탈퇴정보 업데이트
 
 
-public int updateMemberStatus(String memberId) throws SQLException{
+public int updateMemberStatus(String pwd) throws SQLException{
 	
 	int updateMbsCnt=0;
 	DbConnection dc=DbConnection.getInstance();
@@ -502,11 +509,14 @@ public int updateMemberStatus(String memberId) throws SQLException{
 		con=dc.getConn();
 		
 		
-    	String updateMbs ="update member set status='N' where memberId=?";
+    	String updateMbs ="update member set status='N' where pwd=?";
 		pstmt=con.prepareStatement(updateMbs);
 		
-		pstmt.setString(1,memberId);
+		pstmt.setString(1,pwd);
 		updateMbsCnt=pstmt.executeUpdate();
+		
+
+		
 		
 	}finally {
 		dc.dbClose(null, pstmt, con);
@@ -530,7 +540,7 @@ public int insertQuitMember(QuitMemberVO qmVO) throws SQLException {
 //	2. 커넥션 얻기
 		con = dc.getConn();
 //	3. 쿼리문생성객체얻기
-		String quit="insert into quitmember value(?,?,to_char(SYSDATE,'yyyy-MM-dd')";
+		String quit="insert into quitmember(memberId,reason,inputdate) values(?,?,to_char(sysdate,'yyyy-MM-dd'))";
 		
 		pstmt=con.prepareStatement(quit);
 		
@@ -539,14 +549,15 @@ public int insertQuitMember(QuitMemberVO qmVO) throws SQLException {
 // SYSDATE는 어떻게 ????
 		
 		return pstmt.executeUpdate();
-		
+	}catch(Exception e) {
+		e.printStackTrace();
 
 	}finally {
 //    6. 연결 끊기
 	dc.dbClose(null,pstmt,con);
 }//end catch
 	
-	
+	return -1;
 
 }//insertQuitMember
 

@@ -38,7 +38,7 @@
 	MemberDAO mbrDAO=MemberDAO.getInstance();
 	updatePassCnt= mbrDAO.updatePass(mbVO.getMemberId(), mbVO.getPwd());
 	
-if(updatePassCnt==-1){	
+if(updatePassCnt==0){	
 %>   
 <script>
 	alert("비밀번호를 다시 확인해주세요.");

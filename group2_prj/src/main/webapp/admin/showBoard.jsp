@@ -10,8 +10,12 @@
 //AdminShowVO asVO= new AdminShowVO();
 AdminShowDAO asDAO=AdminShowDAO.getInstance(); //dao객체 선언
 request.setCharacterEncoding("UTF-8");
-String genreId = request.getParameter("genreId");
-String status = request.getParameter("status");
+/* request.setAttribute("generId", "G2");
+String genreId = (String)request.getAttribute("generId");
+request.setAttribute("status","공연중");
+String status = (String)request.getAttribute("status"); */
+ String genreId = request.getParameter("genreId"); 
+ String status = request.getParameter("status"); 
 List<AdminShowVO> list=asDAO.selectShow(genreId,status); //select method 호출 
 %>
 
