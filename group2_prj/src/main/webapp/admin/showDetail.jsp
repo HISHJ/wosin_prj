@@ -16,6 +16,7 @@ AdminShowVO asVO= new AdminShowVO(); //<<문제시 얘가 범인
 AdminShowDAO asDAO=AdminShowDAO.getInstance();
 AdminShowVO showDetail=asDAO.selectShowDetail(showId); 
 %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -70,6 +71,18 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
 			});//취소
 			
 		});//ready
+		
+		function thImgSet(input) {
+			  if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+			    reader.onload = function(e) {
+			      document.getElementById('thImgPreview').src = e.target.result;
+			    };
+			    reader.readAsDataURL(input.files[0]);
+			  } else {
+			    document.getElementById('thImgPreview').src = "";
+			  }
+		}//썸네일이미지 미리보기 
         
         
         </script>
@@ -82,7 +95,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                     <div class="container">
                         <div class="row justify-content-center">
                             <!-- col lg 5 - 크기 조정 -->
-                            <div class="col-lg-7">
+                            <div class="col-lg-8">
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header navyv bg-dark"><h3 class="text-start text-white font-weight-light my-4 " style="font-weight: bold;">공연 상세정보</h3></div>
                                     <div class="card-body">
@@ -90,7 +103,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                     <form id="frm" >
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-4"><img src=<%=showDetail.getmImg() %> class="img-thumbnail" alt="썸네일이미지"></div>
+                                            <div class="col-4"><img id="thImgPreview" class="img-thumbnail" alt="썸네일이미지" src="img/<%=showDetail.getThImg()%>"></div>
                                         </div> 
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -107,25 +120,10 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                             <div class="col-2"><b>장르</b></div> 
                                             <div class="col-4">
                                                 <select name="genreId" class="dataTable-dropdown dataTable-selector" >
-                                                <!-- select들 다 구조 바꾸기 -->
-                                                <!--설정한 장르는 어디에 (조회결과가 들어있는 VO) 들어있어요?
-                                                이 페이지가 로딩되었을 때 
-                                                1.사용자의 정보가 select 되어야한다.
-                                                2.select 된 정보가 VO에 저장되어야한다.
-                                                3.VO애서 값을 꺼내와서 보여준다. 
-                                                이 스탭으로 작업이 이루어집니다. VO는 어디에 있어요?
-                                                -->
 												 <%String[] genreArr={"G1","G2","G3","G4","G5","G6"}; %>
 												  <%for(int i=0; i<genreArr.length; i++){ %>
 												  <option<%=genreArr[i].equals(showDetail.getGenreId())?" selected='selected'":"" %>><%=genreArr[i] %></option>
 												  <%} %>
-												  
-                                                <%-- <% session.setAttribute("selectedGanre", showDetail.getGenreId());%>
-													  <%String[] genreArr={"국악","연극","무용","오페라","뮤지컬","클래식"}; %>
-													  <%for(int i=0; i<genreArr.length; i++){ %>
-													  <option value="${selectedGanre }"${selectedGanre eq sessionScope.selectedGanre?" selected='selected'":"" }><%=genreArr[i] %></option>
-												<%} %> --%>
-													  
                                                 </select>
                                             </div>
                                         </div>
@@ -167,20 +165,6 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>썸네일이미지</b></div> <div class="col-4"><input type="file" name="thImg" value="파일선택" ></div>
-                                        </div>
-                                        <div class="dataTable-top"></div>
-                                        <div class="row">
-                                            <div class="col-2"><b>메인이미지</b></div> <div class="col-4"><input type="file" name="mImg" value="파일선택"></div>
-                                        </div>
-                                        <div class="dataTable-top"></div>
-                                        <div class="row">
-                                            <div class="col-2"><b>작품소개</b></div>
-                                            <div class="col-4">
-                                                <input type="file" name="infoImg" value="파일선택">
-                                            </div>
-                                        <div class="dataTable-top"></div>
-                                        <div class="row">
                                            <div class="col-2"><b>공연상태</b></div> 
                                             <div class="col-4">
                                                 <select name="status" class="dataTable-dropdown dataTable-selector">
@@ -188,13 +172,28 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
 												  <%for(int i=0; i<statusArr.length; i++){ %>
 												  <option<%=statusArr[i].equals(showDetail.getStatus())?" selected='selected'":"" %>><%=statusArr[i] %></option>
 												  <%} %>
-                                                    </select>
-                                                </div>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
+                                            <div class="col-2"><b>썸네일이미지</b></div> <div class="col-4"><input type="file" name="thImg" value="파일선택" ></div>
+                                            <div class="col-2 my-1"><b>원본파일</b></div><div class="col-4 my-1"><%=showDetail.getThImg() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>메인이미지</b></div> <div class="col-4"><input type="file" name="mImg" value="파일선택"></div>
+                                            <div class="col-2 my-1"><b>원본파일</b></div><div class="col-4 my-1"><%=showDetail.getmImg() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>작품소개</b></div><div class="col-4"><input type="file" name="infoImg" value="파일선택"></div>
+                                            <div class="col-2 my-1"><b>원본파일</b></div><div class="col-4 my-1"><%=showDetail.getInfoImg() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
                                         	<div class="col-2"><b>공연추가일</b></div> <div class="col-6"><%=showDetail.getInputDate() %></div>
+                                        </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>공연삭제</b></div> <div class="col-4">

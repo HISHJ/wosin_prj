@@ -1,3 +1,6 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@page import="java.io.File"%>
 <%@page import="kr.co.sist.dao.AdminShowDAO"%>
 <%@page import="kr.co.sist.vo.AdminShowVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -33,16 +36,4 @@
 					<%}%>
 					
 					
-					<%-- <jsp:getProperty property="name" name="asVO"/>
-					<jsp:getProperty property="showId" name="asVO"/>
-					<jsp:getProperty property="genreId" name="asVO"/>
-					<jsp:getProperty property="startDate" name="asVO"/>
-					<jsp:getProperty property="endDate" name="asVO"/>
-					<jsp:getProperty property="runningTime" name="asVO"/>
-					<jsp:getProperty property="ratingId" name="asVO"/>
-					<jsp:getProperty property="price" name="asVO"/> 
-					<jsp:getProperty property="thImg" name="asVO"/>
-					<jsp:getProperty property="mImg" name="asVO"/>
-					<jsp:getProperty property="infoImg" name="asVO"/>
-					<jsp:getProperty property="status" name="asVO"/>  --%>
 					

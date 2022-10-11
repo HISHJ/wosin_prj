@@ -1,3 +1,6 @@
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+<%@page import="java.io.File"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.co.sist.vo.AdminShowVO"%>
@@ -11,7 +14,6 @@ request.setCharacterEncoding("UTF-8");
 AdminShowDAO asDAO=AdminShowDAO.getInstance();
 AdminShowVO asVO= new AdminShowVO(); 
 %>
-
 
     
 <!DOCTYPE html>
@@ -41,14 +43,22 @@ AdminShowVO asVO= new AdminShowVO();
 				alert("공연명은 필수입력입니다");
 			//insert하기
 			}else{
-				alert("공연이 추가되었습니다"); // 이러고 페이지 이동하는데 ...
+				alert("공연이 추가되었습니다"); 
 				$("#frm").submit();	
-				//location.href="showBoard.jsp";
 			}
-    		
-			
-		}//aadBtn
+		}//추가하기버튼
 		
+		function thImgSet(input) {
+			  if (input.files && input.files[0]) {
+			    var reader = new FileReader();
+			    reader.onload = function(e) {
+			      document.getElementById('thImgPreview').src = e.target.result;
+			    };
+			    reader.readAsDataURL(input.files[0]);
+			  } else {
+			    document.getElementById('thImgPreview').src = "";
+			  }
+		}//썸네일이미지 미리보기
     	
     	</script>
     
@@ -69,7 +79,7 @@ AdminShowVO asVO= new AdminShowVO();
                                      <form id="frm" name="frm" action="show_insert.jsp">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-4"><img src="E:\dev\workspace\html_prj\src\main\webapp\2ndProject\poster\rj.jpeg" class="img-thumbnail" alt="썸네일이미지"></div>
+                                            <div class="col-4"><img id="thImgPreview" class="img-thumbnail" alt="썸네일이미지"></div>
                                         </div>  
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -119,8 +129,6 @@ AdminShowVO asVO= new AdminShowVO();
 												  <%} %>
                                                 </select>
                                             </div>
-
-
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -128,46 +136,38 @@ AdminShowVO asVO= new AdminShowVO();
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>썸네일이미지</b></div> <div class="col-4"><input type="file" name="thImg" value="파일선택"></div>
-                                        </div>
-                                        <div class="dataTable-top"></div>
-                                        <div class="row">
-                                            <div class="col-2"><b>메인이미지</b></div> <div class="col-4"><input type="file" name="mImg" value="파일선택"></div>
-                                        </div>
-                                        <div class="dataTable-top"></div>
-                                        <div class="row">
-                                            <div class="col-2"><b>작품소개</b></div> 
-                                            <div class="col-4">
-                                                <input type="file" name="infoImg" value="파일선택">
-                                            </div>
-                                        <div class="dataTable-top"></div>
-                                        <div class="row">
                                             <div class="col-2"><b>공연상태</b></div> 
                                             <div class="col-4">
-                                                <select name="status" class="dataTable-dropdown dataTable-selector" disabled="disabled">
-                                                    <option value="70">공연예정</option>
-                                                    <option value="90">공연중</option>
-                                                    <option value="90">공연취소</option>
-                                                    <option value="100">공연종료</option>
-                                                    </select>
+                                                <select name="status" class="dataTable-dropdown dataTable-selector" >
+                                                    <option value="공연예정">공연예정</option>
+                                                </select>
                                                 </div>
                                         </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>썸네일이미지</b></div> <div class="col-4">
+                                            	<input type="file" name="thImg" onchange="thImgSet(this);" value="파일선택"></div>
                                         </div>
-                                        
-                                        
-                                        
-                                            
-                                            
-                                                <div class="mt-4 mb-0">
-                                                    <div class="col text-center">
-                                                        <a class="btn btn-secondary btn-sm" onclick="addBtn()" >추가</a>
-                                                        <a class="btn btn-default btn-sm" href="showBoard.jsp">취소</a>
-                                                    </div>
-                                                </div>
-                                          </form>  
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>메인이미지</b></div> <div class="col-4">
+                                            	<input type="file" name="mImg" value="파일선택"></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>작품소개</b></div><div class="col-4">
+                                                <input type="file" name="infoImg" value="파일선택">
                                             </div>
-
-                                                
+                                        </div>
+                                    </form>
+                                        
+                                             <div class="mt-4 mb-0">
+                                                 <div class="col text-center">
+                                                     <a class="btn btn-secondary btn-sm" onclick="addBtn()" >추가</a>
+                                                     <a class="btn btn-default btn-sm" href="showBoard.jsp">취소</a>
+                                                 </div>
+                                             </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

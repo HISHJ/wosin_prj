@@ -34,7 +34,7 @@ public class AdminShowDAO {
 		//이놈이 찐으로 쓸 놈 
 		public List<AdminShowVO> selectShow(String name,String genreId, String status) throws SQLException{
 		List<AdminShowVO> list=new ArrayList<AdminShowVO>();
-		AdminShowVO asVO2=null;
+		AdminShowVO asVO=null;
 		
 		DbConnection db=DbConnection.getInstance();
 		Connection con=null;
@@ -100,14 +100,14 @@ public class AdminShowDAO {
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
-				asVO2=new AdminShowVO();
-				asVO2.setShowId(rs.getString("s_showId"));
-				asVO2.setName(rs.getString("s_name"));
-				asVO2.setPrice(rs.getInt("s_price"));
-				asVO2.setGenreId(rs.getString("g_genreId"));
-				asVO2.setRatingId(rs.getString("r_ratingId"));
-				asVO2.setStatus(rs.getString("s_status"));
-				list.add(asVO2);
+				asVO=new AdminShowVO();
+				asVO.setShowId(rs.getString("s_showId"));
+				asVO.setName(rs.getString("s_name"));
+				asVO.setPrice(rs.getInt("s_price"));
+				asVO.setGenreId(rs.getString("g_genreId"));
+				asVO.setRatingId(rs.getString("r_ratingId"));
+				asVO.setStatus(rs.getString("s_status"));
+				list.add(asVO);
 			}
 			
 		}finally {
@@ -147,6 +147,7 @@ public class AdminShowDAO {
 			pstmt.setString(1, showId);
 			rs = pstmt.executeQuery();
 			
+			
 			while(rs.next()) {
 				asVO=new AdminShowVO();
 				asVO.setShowId(rs.getString("s_showId"));
@@ -164,6 +165,7 @@ public class AdminShowDAO {
 				asVO.setInputDate(rs.getDate("s_inputdate"));
 			}
 			
+			System.out.println("섬네일: "+asVO.getThImg());
 		}finally {
 			db.dbClose(rs, pstmt, con);
 		}
@@ -260,6 +262,8 @@ public class AdminShowDAO {
 			pstmt.setString(12, asVO.getShowId());
 			
 			pstmt.executeUpdate();
+			
+			System.out.println("섬네일: "+asVO.getThImg());
 		}finally {
 			db.dbClose(null, pstmt, con);
 		}

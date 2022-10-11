@@ -14,7 +14,6 @@ List<AdminShowVO> list=asDAO.selectShow(asVO); //select method 호출
 %> --%>
 
 <%
-//selectShow(String genreId, String status)꺼
 request.setCharacterEncoding("UTF-8");
 String name = request.getParameter("name");
 String genreId = request.getParameter("genreId");

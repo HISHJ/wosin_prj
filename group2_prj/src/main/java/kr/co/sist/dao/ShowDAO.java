@@ -14,7 +14,7 @@ import kr.co.sist.vo.GenreVO;
 import kr.co.sist.vo.RatingVO;
 import kr.co.sist.vo.ShowVO;
 
-public class ShowDAO {
+public class ShowDAO { 
 	private static ShowDAO showDAO;
 	
 	private ShowDAO() {
@@ -22,7 +22,6 @@ public class ShowDAO {
 	}//ShowDAO
 	
 	
-	//엉망이구만
 	//static method, 반환형 method 공부
 	public static ShowDAO getInstance() {
 		if(showDAO==null) {
@@ -53,6 +52,7 @@ public class ShowDAO {
 			String query=" select s.thImg s_thImg, s.infoImg s_infoImg, s.name s_name, s.startDate s_startDate, s.endDate s_endDate, s.price s_price, s.runningTime s_runningTime, r.ratingId r_ratingId "
 					+ " from show s, rating r "
 					+ " where (s.ratingId=r.ratingId) and s.showId=? ";
+					//+ " and s.startDate<=to_char(sysdate,'yyyy-mm-dd') and s.endDate>=to_char(sysdate,'yyyy-mm-dd')";
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, showId);
 			rs = pstmt.executeQuery();
@@ -76,24 +76,14 @@ public class ShowDAO {
 		return sVO;	
 	}//selectShow
 	
-	//검색 하는 애들 마다 메소드 주기 모르겠다
-	public ShowVO selectDate(Date date) {
-		ShowVO sVO=null;
-		
-		return sVO;
-	}//날짜선택
 	
-	public ShowVO selectGenre(String g) {
-		ShowVO sVO=null;
-		
-		return sVO;
-	}//장르선택
-	
-	
-	//공연코드 타고 넘어가야해 showid
-	public List<ShowVO> selectSearch(String searchWrd) throws SQLException {
+	//공연검색
+	//공연코드 타고 넘어가야해 showid넣기
+	//이놈 메소드에 들어가는 매개변수 갯수 바꾸나서 톰캣이 자바파일 인식을 못함 
+	public List<ShowVO> selectSearch(String genreId,String name) throws SQLException {
 		List<ShowVO> list=new ArrayList<ShowVO>();
 		ShowVO sVO=null;
+		
 		DbConnection db=DbConnection.getInstance();
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -103,14 +93,25 @@ public class ShowDAO {
 			con=db.getConn();
 			
 			//ratingId ratingType 
-								///쇼아이디!
 			String query=" select s.showId s_showId, s.thImg s_thImg, s.name s_name, s.startDate s_startDate, s.endDate s_endDate, g.genreId g_genreId "
 					+ " from show s, genre g "
 					+ " where (s.genreId=g.genreId) ";
 			
-			if(searchWrd.trim()!=null) { //and 안써도되나
-					query += " and s.name like '%"+searchWrd.trim()+"%' ";////
+			
+			if(genreId!=null) {
+				query+=" and g.genreId='"+genreId+"' ";
 			}
+			
+			if(genreId!=null) {
+				query+=" and g.genreId='"+genreId+"' ";
+			}
+			
+			if(name!=null) { 
+				query += " and s.name like '%"+name.trim()+"%' ";
+			}
+			
+			
+			
 			pstmt = con.prepareStatement(query);
 			rs = pstmt.executeQuery();
 			
@@ -132,7 +133,6 @@ public class ShowDAO {
 		return list;
 	}//검색어 입력
 	
-	
 	//얘는 체크 어떻게 하지
 	//공연검색
 	//우선 이거 keep
@@ -140,6 +140,7 @@ public class ShowDAO {
 	// 기간 버튼 누를때마다 시작~종료일 달라지는건 jsp에서?
 	//매개변수: 날짜? 장르, 공연명
 	//return: VO로받고: 썸네일, 공연명, 기간(첫,끝),장르 ++++++++ 관람등급
+	
 	public ShowVO selectShow(ShowVO sVO) throws SQLException{
 		ShowVO sVO2=null;
 		GenreVO gVO=null;
@@ -162,10 +163,6 @@ public class ShowDAO {
 			if(sVO.getGenreId()!=null){
 				query+=" and g.genreId='"+sVO.getGenreId()+"'";
 			}
-			/*
-			 * if(sVO.getRatingId()!=null){
-			 * query+=" and r.ratingId='"+sVO.getRatingId()+"'"; }
-			 */
 			if(sVO.getName()!=null){
 				query+=" and s.name='"+sVO.getName()+"'";
 			}
@@ -192,6 +189,7 @@ public class ShowDAO {
 		
 		return sVO2;
 		
-	}//selectShow
+	}//selectShow 
 
 }//class
+
