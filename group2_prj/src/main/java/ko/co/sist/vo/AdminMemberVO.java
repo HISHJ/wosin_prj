@@ -1,4 +1,4 @@
-package kr.co.sist.vo;
+package ko.co.sist.vo;
 
 import java.sql.Date;
 

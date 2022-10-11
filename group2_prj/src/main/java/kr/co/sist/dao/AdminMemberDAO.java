@@ -10,6 +10,7 @@ import java.util.List;
 import kr.co.sist.common.dao.DbConnection;
 import kr.co.sist.vo.AdminMemberVO;
 
+
 public class AdminMemberDAO {
 
 	private static AdminMemberDAO admDAO;
@@ -28,9 +29,9 @@ public class AdminMemberDAO {
 	
 	// 회원 조회 :selectMember(AdminMemberVO) : List<AdminMemberVO>
 	//검색설정은 JSP에서 해야하는건가...? 아니면 여기서 where 조건.? 근데 where 조건 넣으면 all은 어캄? 
-	public List<AdminMemberVO> selectMember(AdminMemberVO admVO) throws SQLException{
+	public List<AdminMemberVO> selectMember(String memberId, String mailChk,String smsChk,String status) throws SQLException{
 		
-		List<AdminMemberVO>list = new ArrayList<AdminMemberVO>();
+		List<AdminMemberVO> Mlist = new ArrayList<AdminMemberVO>();
 		Connection con=null;
 		PreparedStatement pstmt =null;
 		ResultSet rs=null;
@@ -39,45 +40,86 @@ public class AdminMemberDAO {
 		
 		try {
 			con=dc.getConn();
-			String selectMb = "select name,memberId,to_char(inputdate,'yyyy-MM-dd')inputdate,status from member where 1=1 ";
+			String selectMb = "select name,memberId,to_char(InputDate,'yyyy-MM-dd')mdate,mailChk,smsChk,status from member where 1=1 ";
 //			검색조건(아이디,메일수신,회원탈퇴)
-			if(!admVO.getMemberId().equals("")) {
-				selectMb+="and memberId='"+admVO.getMemberId()+"'";
+			if(memberId!=null) {
+				selectMb+="and memberId='"+memberId+"'";
 			}
-			if(!admVO.getMailChk().equals("")) {
-				selectMb+="and MailChk='"+admVO.getMailChk()+"'";
+			if(mailChk.equals("Y")){
+				selectMb+="and MailChk='"+mailChk+"'";
 			}
-			if(!admVO.getStatus().equals("")) {
-				selectMb+="and status='"+admVO.getStatus()+"'";
+			if(smsChk.equals("Y")) {
+				selectMb+="and smsChk='"+smsChk+"'";
+			}
+			if(status!=null) {
+				selectMb+="and status='"+status+"'";
 			}
 			
 			pstmt=con.prepareStatement(selectMb);
-			
-			pstmt.setString(1,admVO.getMemberId());
-			pstmt.setString(2,admVO.getMailChk());
-			pstmt.setString(3,admVO.getStatus());
+		
 			rs=pstmt.executeQuery();
-			
-			
-			if(rs.next()) {
+			AdminMemberVO admVO= null;
+			while(rs.next()) {
 				admVO= new AdminMemberVO();
 				admVO.setName(rs.getString("name"));
 				admVO.setMemberId(rs.getString("memberId"));
-				admVO.setInputDate(rs.getDate("inputdate"));
-				admVO.setName(rs.getString("status"));
+				admVO.setMdate(rs.getString("mdate"));
+				admVO.setMailChk(rs.getString("mailChk"));
+				admVO.setSmsChk(rs.getString("smsChk"));
+				admVO.setStatus(rs.getString("status"));
+				Mlist.add(admVO);
 			}//end if
 			
-			
-			list.add(admVO);
 			
 		}finally {
 			
 			dc.dbClose(rs, pstmt, con);
 		}//end catch
 		
-		return list;
+		return Mlist;
 	}//selectMember
 	
+public List<AdminMemberVO> selectMember2() throws SQLException{
+		
+		List<AdminMemberVO>Tlist = new ArrayList<AdminMemberVO>();
+		Connection con=null;
+		PreparedStatement pstmt =null;
+		ResultSet rs=null;
+		
+		DbConnection dc = DbConnection.getInstance();
+		
+		try {
+			con=dc.getConn();
+			String selectMb = "select name,memberId,to_char(inputdate,'yyyy-MM-dd')mdate,mailChk,smsChk,status from member ";
+			
+			
+			
+			
+			pstmt=con.prepareStatement(selectMb);
+			rs=pstmt.executeQuery();
+			
+			AdminMemberVO admVO=null;
+			while(rs.next()) {
+				admVO= new AdminMemberVO();
+				
+				admVO.setName(rs.getString("name"));
+				admVO.setMemberId(rs.getString("memberId"));
+				admVO.setMdate(rs.getString("mdate"));
+				admVO.setMailChk(rs.getString("mailChk"));
+				admVO.setSmsChk(rs.getString("smsChk"));
+				admVO.setStatus(rs.getString("status"));
+				Tlist.add(admVO);
+			}//end if
+			
+			
+			
+		}finally {
+			
+			dc.dbClose(rs, pstmt, con);
+		}//end catch
+		
+		return Tlist;
+	}//selectMember
 	
 	// 회원상세보기 (아이디) :selectMemberDetail(String) : AdminMemberVO
 
@@ -137,7 +179,7 @@ public class AdminMemberDAO {
 	    try {
 
 	    con=dc.getConn();
-	    String updateMs = "update member set status='N' where memberId=?";
+	    String updateMs ="update member set  pwd=' ', name=' ', birth=' ', gender=' ',zipcode=' ',addr1=' ', addr2=' ', email=' ',phone=' ',hphone=' ',mailchk=' ',smschk=' ', inputdate=to_date(inputdate,null), status='N' where memberid=? and  pwd=?";
 	    	
 	    	pstmt=con.prepareStatement(updateMs);
 	    	pstmt.setString(1,memberId);
@@ -150,41 +192,7 @@ public class AdminMemberDAO {
 		
 		return updateMemberCnt;
 	}//updateMemberStatus
-	
-	//삭제완료창에서 삭제완료된 회원 나타내는 method =>이것도 위에 method써도될듯?
-	public AdminMemberVO selectDeleteMember(String memberId,String status) throws SQLException {
-		
-	AdminMemberVO admVO=null;
-		
-		
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		DbConnection dc=DbConnection.getInstance();
-		
-		try {
-			con=dc.getConn();
-			String selectdm = "select name,memberId from member where memberId=? and status='N'";
-			pstmt=con.prepareStatement(selectdm);
-			pstmt.setString(1, memberId);	
-			rs=pstmt.executeQuery();
-			
-			if(rs.next()) {
-				
-				admVO=new AdminMemberVO();
-				admVO.setName(rs.getString("name"));
-				admVO.setMemberId(rs.getString("memberId"));
-			
-			}//end if
-		}finally{
-			
-			dc.dbClose(rs, pstmt, con);
-		}//end
 
-		return admVO;
-		
-	}//selectDeleteMember
 	
 	
 }//AdminMemberDAO

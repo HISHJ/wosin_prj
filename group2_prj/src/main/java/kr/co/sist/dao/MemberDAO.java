@@ -409,42 +409,7 @@ public boolean selectChkId(MemberVO mbVO) throws SQLException {
 }
 
 
-//회원가입완료창 - > 이거는 앞에 로그인/마이페이지 method 가지고와도될듯!
-public MemberVO selectMbFinish (MemberVO mbVO) throws SQLException {
-	
-	Connection con=null;
-	PreparedStatement pstmt=null;
-	ResultSet rs=null;
-	
-	DbConnection dc=DbConnection.getInstance();
-	
-	try {
-		con=dc.getConn();
-		String selectMbF = "select name, memberId from member where memberId=? ";
-		pstmt=con.prepareStatement(selectMbF);
-		
-		pstmt.setString(1,mbVO.getMemberId());
-		rs=pstmt.executeQuery();
-		
-		if(rs.next()) {
-			
-			mbVO=new MemberVO();
-			mbVO.setName(rs.getString("name"));
-			mbVO.setMemberId(rs.getString("memberId"));
-			
-				
-		}//end if
-	}finally{
-		
-		dc.dbClose(rs, pstmt, con);
-	}//end
-	
-	
-	
-	//return이 어렵따...
-	return mbVO;
 
-}//
 
 
 
@@ -464,11 +429,12 @@ public MemberVO selectMember(QuitMemberVO qmVO) throws SQLException {
 	
 	try {
 		con=dc.getConn();
-		String selectMb = "select name,memberId,birth,gender,zipcode,addr1,addr2,email,phone,hphone,"
-				+ "mailChk,smsChk from member where pwd=?";
+		String selectMb = "select name,pwd,memberId,birth,gender,zipcode,addr1,addr2,email,phone,hphone,"
+				+ "mailChk,smsChk,status,to_char(inputdate,'yyyy-MM-dd')mdate from member where pwd=?";
 		pstmt=con.prepareStatement(selectMb);
 		
 		pstmt.setString(1,qmVO.getPwd());
+		
 		rs=pstmt.executeQuery();
 		
 		if(rs.next()) {
@@ -476,6 +442,7 @@ public MemberVO selectMember(QuitMemberVO qmVO) throws SQLException {
 			mbVO=new MemberVO();
 			mbVO.setName(rs.getString("name"));
 			mbVO.setMemberId(rs.getString("memberId"));
+			mbVO.setPwd(rs.getString("pwd"));
 			mbVO.setBirth(rs.getString("birth"));
 			mbVO.setGender(rs.getString("gender"));
 			mbVO.setZipcode(rs.getString("zipcode"));
@@ -485,7 +452,8 @@ public MemberVO selectMember(QuitMemberVO qmVO) throws SQLException {
 			mbVO.sethPhone(rs.getString("hPhone"));
 			mbVO.setMailChk(rs.getString("mailChk"));
 			mbVO.setSmsChk(rs.getString("smsChk"));
-				
+			mbVO.setStatus(rs.getString("status"));	
+			mbVO.setMdate(rs.getString("mdate"));
 		}//end if
 	}finally{
 		
@@ -497,7 +465,7 @@ public MemberVO selectMember(QuitMemberVO qmVO) throws SQLException {
 //탈퇴정보 업데이트
 
 
-public int updateMemberStatus(String pwd) throws SQLException{
+public int updateMemberStatus(String memberId, String pwd) throws SQLException{
 	
 	int updateMbsCnt=0;
 	DbConnection dc=DbConnection.getInstance();
@@ -509,15 +477,17 @@ public int updateMemberStatus(String pwd) throws SQLException{
 		con=dc.getConn();
 		
 		
-    	String updateMbs ="update member set status='N' where pwd=?";
+    	String updateMbs ="update member set  pwd=' ', name=' ', birth=' ', gender=' ',zipcode=' ',addr1=' ', addr2=' ', email=' ',phone=' ',hphone=' ',mailchk=' ',smschk=' ', inputdate=to_date(inputdate,null), status='N' where memberid=? and  pwd=?";
+    
 		pstmt=con.prepareStatement(updateMbs);
 		
-		pstmt.setString(1,pwd);
+		pstmt.setString(1,memberId);
+		pstmt.setString(2,pwd);
 		updateMbsCnt=pstmt.executeUpdate();
 		
 
-		
-		
+	}catch(Exception e) {
+		e.printStackTrace();
 	}finally {
 		dc.dbClose(null, pstmt, con);
 	}//end finally
@@ -544,8 +514,8 @@ public int insertQuitMember(QuitMemberVO qmVO) throws SQLException {
 		
 		pstmt=con.prepareStatement(quit);
 		
-		pstmt.setString(1, qmVO.getMemberId());
-		pstmt.setString(2, qmVO.getReason());
+		pstmt.setString(1, qmVO.getMemberId());//회원정보추가
+		pstmt.setString(2, qmVO.getReason());//회원 언어정보 추가
 // SYSDATE는 어떻게 ????
 		
 		return pstmt.executeUpdate();

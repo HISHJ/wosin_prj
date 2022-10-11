@@ -1,4 +1,5 @@
 <%@page import="kr.co.sist.vo.AdminMemberVO"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.co.sist.dao.AdminMemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,15 +10,19 @@
 
   <%
   request.setCharacterEncoding("UTF-8");
-  AdminMemberDAO admDAO = AdminMemberDAO.getInstance();
-  AdminMemberVO admVO= new AdminMemberVO();
- List<AdminMemberVO> Mlist =admDAO.selectMember(admVO);
+  String id=request.getParameter("memberId");
+  String mailchk=request.getParameter("mailChk");
+  String smschk=request.getParameter("smsChk");
+  String status=request.getParameter("status");
+ AdminMemberDAO admDAO = AdminMemberDAO.getInstance();
+/*  List<AdminMemberVO> Mlist =admDAO.selectMember(id,mailchk,smschk,status);   */
+List<AdminMemberVO> Tlist=admDAO.selectMember2();
+
   
   %>  
     
-    
-  <%=admVO %>  
-    
+
+
     
 <!DOCTYPE html>
 <html lang="en">
@@ -163,7 +168,7 @@
                                 <label>수신동의　</label>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" 
-                                    value="<%if(admVO.getMailChk().equals("Y")){ %>">
+                                    value="">
                                     <label class="form-check-label" for="inlineCheckbox1">이메일</label>
                                 </div>
                                 <div class="form-check form-check-inline">
@@ -183,11 +188,11 @@
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Y">
-                                        <label class="form-check-label" for="inlineRadio2">정상</label>
+                                        <label class="form-check-label" for="inlineRadio2">Y</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="N">
-                                        <label class="form-check-label" for="inlineRadio2">탈퇴</label>
+                                        <label class="form-check-label" for="inlineRadio2">N</label>
                                     </div>
                                     <input type="button"  id="statusSearchBtn" name="showSatusSearchBtn" value="검색">
                                  </form>   
@@ -215,16 +220,16 @@
                                         </tr>
                                         </tfoot>
                                      <tbody>
-                                     <%for(AdminMemberVO admVO1 : Mlist){%>
+                                     <%for(AdminMemberVO admVO1 : Tlist){%>
                                         <tr>
                                             <td><%=admVO1.getName()%></td>
                                             <td><%=admVO1.getMemberId()%></td>
                                             <td><%=admVO1.getMdate()%></td>
                                             <td><%=admVO1.getStatus()%></td>
                                             <td><a href="useDetail.jsp?memberId=<%=admVO1.getMemberId()%>">
-                                            <input type="button" value="상세보기" class="useDetailBtn"/></td>
+                                            <input type="button" value="상세보기" class="useDetailBtn"/></a></td>
                                         </tr>
-                                   <%}//end for%>
+                                   <%}%>
                                     </tbody>
                                 </table>
                             </div>
@@ -250,4 +255,4 @@
         <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>
-    
+   
