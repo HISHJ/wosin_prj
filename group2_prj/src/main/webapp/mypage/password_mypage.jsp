@@ -267,7 +267,7 @@
 				 <style>
 				.tabs-st1,.tabs-st2{display: none;}
 				</style>
-		<form name="board" id="board" method="post" action="http://localhost/prj2/design%20final%20intergration/mypgPw_process.jsp">	
+		<form name="board" id="board" method="post" action="http://localhost/group2_prj/mypage/mypgPw_process.jsp">	
 				<article class="find_member inner member_com">
 						<div class="group">
 						<h3 class="tit-st4">비밀번호 확인</h3>

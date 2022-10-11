@@ -247,12 +247,10 @@
 				/* 유효성검사 */
 					$(function(){
 						$("#btnModify").click(function(){
-					
+							$("#mypageboard").submit();  
 										});//click
 										
-							
-						
-							});
+							});//ready
 				
 			
 					

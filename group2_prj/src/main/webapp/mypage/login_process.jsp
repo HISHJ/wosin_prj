@@ -63,13 +63,13 @@ if(result){
 		location.href="http://localhost/group2_prj/mypage/password_mypage.jsp";   
 	</script>
 <%
-	/* response.sendRedirect("http://localhost/group2_prj/main/index.html"); */
+	/* response.sendRedirect("http://localhost/group2_prj/main/index.html"; */
 	
 
 }else{%>
 	<script>
 		alert("아이디 또는 비밀번호를 확인해주세요.");
-		location.href="http://localhost/prj2/design final intergration/login.jsp";
+		location.href="http://localhost/group2_prj/mypage/login.jsp";
 	</script>
 	
 <%}//end if%>

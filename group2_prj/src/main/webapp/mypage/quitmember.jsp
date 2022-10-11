@@ -1,3 +1,4 @@
+<%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
 
@@ -258,7 +259,7 @@
 				
 				<script src="/static/jslibrary/miya_validator.js"></script>
 				
-				<form name="board" id="Quitboard" method="post" action="http://localhost/group2_prj/mypage/quitInsert.jsp">
+				<form name="board" id="Quitboard" method="post" action="http://localhost/group2_prj/mypage/quit_process.jsp">
 				<input type="hidden" id="menuNo" name="menuNo" value="200168" />
 				<article class="drop_out inner">
 					<h3 class="tit-st4">그동안 우신문화회관을 이용해 주셔서 감사합니다.</h3>
@@ -293,6 +294,34 @@
 				
 				</article>
 				</form>
+				
+
+
+
+<jsp:setProperty property="*" name="mbVO"/>
+
+<%
+MemberDAO mbrDAO =MemberDAO.getInstance();
+int updateMbsCnt = mbrDAO.updateMemberStatus(mbVO.getPwd());
+int qmCnt=mbrDAO.insertQuitMember(qmVO);
+%>
+
+	<% if(updateMbsCnt==0){/* 회원정보수정 실패 */	%>
+					<script>
+						alert("비밀번호를 다시 확인해주세요");
+					</script>
+				<%}else if(updateMbsCnt==-1){%>
+				<script>
+				 	alert("회원탈퇴 실패.");
+			
+				</script>
+				<%}else{ %>
+					<script>
+						alert("회원탈퇴 되었습니다. 그동안 이용해주셔서 감사합니다.");
+						location.href="http://localhost/prj2/design final intergration/login.jsp"
+					</script>
+				<%} %>   
+				
 				
 				
 		

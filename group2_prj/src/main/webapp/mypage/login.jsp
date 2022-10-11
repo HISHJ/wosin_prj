@@ -281,7 +281,7 @@
 					
 							 
 							<article class="login inner member_com">
-							<form name="memberLoginForm" id="memberLoginForm" action="http://localhost/prj2/design final intergration/login_process.jsp" method="post">
+							<form name="memberLoginForm" id="memberLoginForm" action="http://localhost/group2_prj/mypage/login_process.jsp" method="post">
 								<input type="hidden" name="loginFlag" value="" />
 								<input type="hidden" name="menuNo" value="200100" />
 								<input type="hidden" name="csrfToken" id="csrfToken" value="38394981-5565-4000-b859-9a058704f036"/>

@@ -28,16 +28,29 @@
 
 <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 <jsp:useBean id="qmVO" class="kr.co.sist.vo.QuitMemberVO" scope="session"/>
-
-
 <jsp:setProperty property="*" name="mbVO"/>
 
-<%
+
+<%String reason=request.getParameter("reason");%>
+<jsp:setProperty property="memberId" name="mbVO"/>
+<jsp:setProperty property="memberId" name="qmVO" value="<%=mbVO.getMemberId() %>"/>
+<jsp:setProperty property="reason" name="qmVO" value="<%=reason%>"/>
+
+<%MemberDAO mbrDAO=MemberDAO.getInstance();
+mbVO = mbrDAO.selectMember(qmVO);
+%>
+
+
+<%=mbVO %>
+<%=qmVO %>
+
+
+<%-- <%
 MemberDAO mbrDAO =MemberDAO.getInstance();
 int updateMbsCnt = mbrDAO.updateMemberStatus(mbVO.getPwd());
 int qmCnt=mbrDAO.insertQuitMember(qmVO);
-%>
-
+%> --%>
+<%-- 
 	<% if(updateMbsCnt==0){/* 회원정보수정 실패 */	%>
 					<script>
 						alert("비밀번호를 다시 확인해주세요");
@@ -50,11 +63,11 @@ int qmCnt=mbrDAO.insertQuitMember(qmVO);
 				<%}else{ %>
 					<script>
 						alert("회원탈퇴 되었습니다. 그동안 이용해주셔서 감사합니다.");
-						location.href="http://localhost/group2_prj/main/index.jsp"
+						location.href="http://localhost/prj2/design%20final%20intergration/login.jsp"
 					</script>
 				<%} %>   
 
-
+ --%>
 
 
 

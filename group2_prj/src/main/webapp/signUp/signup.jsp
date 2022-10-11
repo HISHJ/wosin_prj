@@ -357,7 +357,8 @@ input[type="date"] {
 			/* 회원가입 유효성 검사 */
 			$(function(){
 				$("#btnSignup").click(function(){
-						check();
+					/* $("#board").submit(); */
+						check(); 
 						
 					
 				});//click
@@ -529,7 +530,7 @@ input[type="date"] {
 				return false;
 				
 			}//smsChk
-			if(!confirm("등록하시겠습니까?")){
+			if(confirm("등록하시겠습니까?")){
 				$("#board").submit();
 				
 			}//confirm

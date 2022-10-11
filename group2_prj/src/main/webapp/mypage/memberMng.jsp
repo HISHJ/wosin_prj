@@ -264,7 +264,7 @@
 						</li>
 						<li class="item r">
 							<span class="f38">비밀번호 변경</span>
-							<a href="passModify.html" class="bg-black pop">바로가기</a>
+							<a href="passModify.jsp" class="bg-black pop">바로가기</a>
 						</li>
 					</ul>
 				</article>

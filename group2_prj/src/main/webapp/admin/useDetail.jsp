@@ -1,0 +1,158 @@
+<%@page import="kr.co.sist.dao.AdminMemberDAO"%>
+<%@page import="kr.co.sist.vo.AdminMemberVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" info=""%>
+    
+    
+    <%
+    request.setCharacterEncoding("UTF-8");
+    String memberId=request.getParameter("memberId");
+ 	AdminMemberVO admVO = new AdminMemberVO();
+ 	AdminMemberDAO admDAO= AdminMemberDAO.getInstance();
+ 	admVO= admDAO.selectMemberDetail(memberId);
+ 	String zipcode=admVO.getZipcode();
+ 	String addr1 = admVO.getAddr1();
+ 	String addr2= admVO.getAddr2();
+ 	
+ 	String Addr = zipcode+" "+addr1+" "+addr2;
+  
+    %>
+
+    
+   
+    
+  <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>회원관리-상세보기</title>
+        <link href="css/styles.css" rel="stylesheet" />
+        <style type="text/css">
+        
+        body{background-color : #fff;}
+        
+        </style>
+        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
+                <main>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <!-- col lg 5 - 크기 조정 -->
+                            <div class="col-lg-10">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+                                    <div class="card-header navy bg-dark "><h3 class="text-start text-white font-weight-light my-4" style="font-weight: bold;">회원정보 상세</h3></div>
+                                    <div class="card-body">
+
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>이름</b></div> <div class="col-4"><%=admVO.getName() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>아이디</b></div> <div class="col-4"><%=admVO.getMemberId() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>이메일</b></div> <div class="col-4"><%=admVO.getEmail() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>휴대전화</b></div> <div class="col-4"><%=admVO.getPhone() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>전화번호</b></div> <div class="col-4"><%=admVO.gethPhone() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>주소</b></div> <div class="col-4"><%=Addr %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>생년월일</b></div> <div class="col-4"><%=admVO.getBirth() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>성별</b></div> <div class="col-4"><%=admVO.getGender() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>상태</b></div> <div class="col-4"><%=admVO.getStatus() %></div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>이메일수신</b></div>
+                                             <div class="col-4">
+                                             <input type="radio" name="emailAgree" value="Y" 
+                                             <%if(admVO.getMailChk().equals("Y")){%>checked="checked"<%}%>
+                                              disabled> 예 
+                                             <input type="radio" name="emailAgree" value="N"
+                                             <%if(admVO.getMailChk().equals("N")){%>checked="checked"<%}%>
+                                              disabled> 아니오
+                                           </div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>SMS수신</b></div> 
+                                            <div class="col-4">
+                                            <input type="radio" name="smsAgree"  value="Y"
+                                             <%if(admVO.getSmsChk().equals("Y")){%>checked="checked"<%}%>
+                                            disabled> 예 
+                                            <input type="radio" name="smsAgree"  value="N"
+                                             <%if(admVO.getSmsChk().equals("N")){%>checked="checked"<%}%> 
+                                           disabled> 아니오
+                                            </div>
+                                        </div>
+                                        
+                                        <form>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>회원삭제</b></div> <div class="col-4"><input type="button" name="userDeleteBtn" value="회원삭제"></div>
+                                        </div>
+										</form>
+                                        <!-- 삭제버튼 클릭시) 팝업창 만들기 힘드니까 ... alert처리하면 안될까  -->
+                                        
+                                        
+                                        
+                                            
+                                            
+                                                <div class="mt-4 mb-0">
+                                                    <div class="col text-center">
+                                                        <a class="btn btn-secondary btn-sm" href="userBoard.html">변경</a>
+                                                        <a class="btn btn-default btn-sm" href="userBoard.html">취소</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                          </form>  
+
+                                                
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+            <div id="layoutAuthentication_footer">
+                <footer class="py-4 bg-light mt-auto">
+                    <div class="container-fluid px-4">
+                        <div class="d-flex align-items-center justify-content-between small">
+                           
+                           
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
+  
