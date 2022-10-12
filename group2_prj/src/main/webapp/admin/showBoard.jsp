@@ -214,14 +214,14 @@ List<AdminShowVO> list=asDAO.selectShow(name,genreId,status);
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <%for(AdminShowVO asVO1 : list){ %>
+                                    <%for(AdminShowVO asVO : list){ %>
                                         <tr>
-                                            <td><%=asVO1.getShowId() %></td>
-                                            <td><%=asVO1.getName() %></td>
-                                            <td><%=asVO1.getGenreId() %></td>
-                                            <td><%=asVO1.getPrice()%>원</td>
-                                            <td><%=asVO1.getStatus() %></td>
-                                            <td><a href="showDetail.jsp?showId=<%=asVO1.getShowId() %>"><input type="button" value="상세보기" class="showDetailBtn"></a></td>
+                                            <td><%=asVO.getShowId() %></td>
+                                            <td><%=asVO.getName() %></td>
+                                            <td><%=asVO.getGenreId() %></td>
+                                            <td><%=asVO.getPrice()%>원</td>
+                                            <td><%=asVO.getStatus() %></td>
+                                            <td><a href="showDetail.jsp?showId=<%=asVO.getShowId() %>"><input type="button" value="상세보기" class="showDetailBtn"></a></td>
                                         </tr>
                                        <%} %>
                                     </tbody>

@@ -375,7 +375,7 @@ a.bbs-btn-st2{display: inline-block;line-height: 4em;vertical-align: middle;}
 .bbs-today_w .bot .img.bg3{background: url('../img/perform/t3.jpg')}
 .bbs-today_w .bot .item:hover .img{transform: scale(1.05);}
 
-.schedule_w{width: 100%;border:1px solid #000;font-size: 16px;font-size: 1rem;;margin-bottom: 60px;color:#000;font-weight: 500;}
+.schedule_w{width: 100%;border:1px solid #000;font-size: 16px;font-size: 1rem;;margin-bottom: 30px;color:#000;font-weight: 500;}
 .schedule_w input::placeholder{color:#000}
 .schedule_w .s4 input::placeholder{color:#888}
 .schedule_w:after,.schedule_w .l {clear: both;display: block;content: ''}

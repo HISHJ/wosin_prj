@@ -9,13 +9,22 @@
     
 	 <%
     //ShowVO sVO= new ShowVO();//<select할떄 필요할까 > 아닐듯? > 답:
+    String sdate = request.getParameter("sdate");
+    String edate = request.getParameter("edate");
     String genreId = request.getParameter("genreId");
     String name = request.getParameter("name");
-    ShowDAO sDAO=ShowDAO.getInstance();
-    List<ShowVO> showList=sDAO.selectSearch(name,genreId); //검색기능 어떻게 구현하냐 
     
-    //The method selectSearch(String) in the type ShowDAO is not applicable for the arguments (String, String)
-    //왜 dao 바꿨는데 적용이 안되는거지
+    ShowVO sVO=new ShowVO();
+    sVO.setSdate(sdate);
+    sVO.setEdate(edate);
+    sVO.setGenreId(genreId);
+    sVO.setName(name);
+    ShowDAO sDAO=ShowDAO.getInstance();
+    List<ShowVO> showList=sDAO.selectSearch(sVO); 
+    
+    //값 받아지는지 테스트중
+    System.out.println("장르 "+genreId);
+    System.out.println("시작일 "+sdate);
     %>	
     
    
@@ -31,34 +40,132 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 		
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets\css\reset.css">
+		<link rel="stylesheet" href="../assets\css\headerFooter.css">
+		<link rel="stylesheet" href="../assets\css\subheader.css">
 		
 		<!-- 공연상세페이지만을 위한 css -->
-		<link rel="stylesheet" href="assets\css\NewFile.css">
-		<link rel="stylesheet" href="assets\css\perform.css">
+		<link rel="stylesheet" href="../assets\css\NewFile.css">
+		<link rel="stylesheet" href="../assets\css\perform.css">
 		
 		<!--google icons-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!--google fonts-->
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+		
+		<!--제이쿼리--> <!--  이놈 빌런이다 조심해 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<style>
 	#nav{margin-right: 130px;}
+	.txtColor{color: #111111;}
+	a:hover{color: #111111;}
 	</style>
 	<script type="text/javascript">
+	
 	$(function(){
+		//장르 클릭
+		$("#genreId").change(function() {
+			$("#genreFrm").submit();
+			fn_search('1');
+		});
 		
-		$("#genreSearchBtn").click(function() {
-			$("#frm").submit();
-		});//장르 클릭
-		
+		//공연명 검색
 		$("#nameSearchBtn").click(function() {
-			$("#frm").submit();
-		});//공연명 검색
+			var name=$("#name").val();
+			//alert(name);
+			
+			$("#nameFrm").submit();
+			
+		});
+		
+		// 날짜검색 버튼
+		$('[name="schRange"]').on('click', function(){
+			var today=new Date();
+			var year=today.getFullYear();
+			var month=("0" + (1 + today.getMonth())).slice(-2);
+			var date=("0" + today.getDate()).slice(-2); //문제시 date 두개 쓴 이부분
+
+			var sdate=year+"-"+month+"-"+date;
+			
+			//var sdate = "2022-10-12";
+			var date = new Date(sdate);
+			var schRange = $(this).val();
+			
+			if(schRange == 1){ // 오늘
+			}else if(schRange == 2){ // 7일
+				date.setDate(date.getDate() + 7);
+			}else if(schRange == 3){ // 1개월
+				date.setMonth(date.getMonth() + 1);
+			}else if(schRange == 4){ // 3개월
+				date.setMonth(date.getMonth() + 3);
+			}else if(schRange == 5){ // 12개월
+				var yearData = parseInt($("#yearData").text());
+				sdate = new Date(sdate);
+	
+				sdate.setFullYear(yearData ,0,1);
+				date.setFullYear(yearData ,11,31);
+				
+				sdate = dateFormat(sdate);
+			}
+			$("#period1").val(sdate);
+			$("#period2").val(dateFormat(date));
+			$(".datepickerRange").val(sdate + " ~ " + dateFormat(date));
+			fn_search('1');
+			
+		});
+		
+		
+		//년도 < 버튼
+		$('.prev').on('click', function(){
+			var yearData = parseInt($("#yearData").text());
+			var sdate = new Date($("#period1").val());
+			var edate = new Date($("#period2").val());
+			sdate.setFullYear(yearData - 1,0,1);
+			edate.setFullYear(yearData - 1,11,31);
+			
+			sdate = dateFormat(sdate);
+			edate = dateFormat(edate);
+			
+			$("#yearData").html(yearData - 1);
+			$("#period1").val(sdate);
+			$("#period2").val(edate);
+			$(".datepickerRange").val(sdate + " - " + edate);
+			$('#range5').prop('checked', true);
+			fn_search(1);
+		});
+		
+		//년도 > 버튼
+		$('.next').on('click', function(){
+			var yearData = parseInt($("#yearData").text());
+			var sdate = new Date($("#period1").val());
+			var edate = new Date($("#period2").val());
+			sdate.setFullYear(yearData + 1,0,1);
+			edate.setFullYear(yearData + 1,11,31);
+			
+			sdate = dateFormat(sdate);
+			edate = dateFormat(edate);
+
+			$("#yearData").html(yearData + 1);
+			$("#period1").val(sdate);
+			$("#period2").val(edate);
+			$(".datepickerRange").val(sdate + " - " + edate);
+			$('#range5').prop('checked', true);
+			fn_search(1);
+		});
 		
 	}); //ready 
+	
+	function dateFormat(date) {
+	    var year = date.getFullYear();
+	    var month = ("0" + (1 + date.getMonth())).slice(-2);
+	    var day = ("0" + date.getDate()).slice(-2);
+
+	    return year + "-" + month + "-" + day;
+	}//dateFormat
+
+	
+	
 	
 	
 	</script>
@@ -150,20 +257,20 @@
 	<div class="container">
 
 						<!-- Content -->
-	<article class="box post">		
-		<form name="frm" id="frm" method="get">
+	<article class="box post bbs-today_w">	
+		<form name="dateFrm" id="dateFrm">
 			<input type="hidden" name="pageIndex" value="">
 			<input type="hidden" name="menuNo" value="200004">
 			<input type="hidden" name="searchPackage" value="">
 			<input type="hidden" name="searchSort" id="searchSort" value="1">
-			<input type="hidden" name="nowCheck" value="2022-09-17">
+			<input type="hidden" name="nowCheck" value="">
 			
 			<div class="schedule__date">
 				<div class="item" style="height: 80px">
 					<input type="radio" name="schRange" id="range1" value="1" />
 					<label for="range1">오늘</label>
 					<input type="radio" name="schRange" id="range2" value="2" />
-					<label for="range2">1주</label>
+					<label for="range2">1주</label> 
 					<input type="radio" name="schRange" id="range3" value="3" checked/>
 					<label for="range3">1개월</label>
 					<input type="radio" name="schRange" id="range4" value="4" />
@@ -181,53 +288,69 @@
 				<ul class="clearfix">
 					<li class="item s1" tabindex="0">
 						<div class="cont rangeArrow">
-							<input type="hidden" name="sdate" class="sdate" id="period1" value="2022-09-17" />
-							<input type="hidden" name="edate" class="edate" id="period2" value="2022-10-17"/>
-							<input type="text" class="datepickerRange" value=""/>
+							<input type="hidden" name="sdate" class="sdate" id="period1" />
+							<input type="hidden" name="edate" class="edate" id="period2" />
+							<input type="text" class="datepickerRange" />
 						</div>
 					</li>
+		</form>
+					
 					<li class="item s2" tabindex="0">
-						<div class="cont">
-							<select name="genreId" id="genreSearchBtn">
-								  <%String[] genreArr={"G1","G2","G3","G4","G5","G6"}; %>
-								  <%for(int i=0; i<genreArr.length; i++){ %>
-								  <option><%=genreArr[i] %></option>
-								  <%} %>
+					<form name="genreFrm" id="genreFrm">
+						<div class="cont rangeArrow">
+							<select name="genreId" id="genreId">
+								  <option value="">장르보기</option>
+								  <option value="G1">국악</option>
+								  <option value="G2">연극</option>
+								  <option value="G6">무용</option>
+								  <option value="G3">오페라</option>
+								  <option value="G4">뮤지컬</option>
+								  <option value="G5">클래식</option>
 							</select>
 						</div>
+					</form>
 					</li>
-					
 					<li class="item s4" tabindex="0">
+					<form name="nameFrm" id="nameFrm">
 						<label for=name class="hide">공연명은?</label>
 						<div class="cont">
-							<input type="hidden" name="searchCnd" value="123" />
-							<input type="text" name="name" id="name" placeholder="공연명을 입력하세요."  value="1243" />
+							<input type="hidden" name="searchCnd" value="1" />
+							<input type="text" name="name" id="name" placeholder="공연명을 입력하세요."/>
 							<button type="button" name="nameSearchBtn" id="nameSearchBtn" value="검색">검색</button>
 						</div>
+						</form>
 					</li>
 				</ul>
 			</div>
-		</form>
+			<div class="top clearfix">
+				<div class="category">
+					<span class="active">
+						<a href="page1.jsp" onfocus="this.blur()" >전체보기</a> <!-- 링크클릭시 border 없앰 -->
+					</span>
+				</div>
+			</div>
+				
+			
 		
-		
-		<!-- p에 있는 텍스트 마우스오버시 색상 안바뀌게, 이미지 배열 -->
-		  <div class="poster_wrap">
-        	<div class="row row_flex " >
+		<!-- p에 있는 텍스트 마우스오버시 색상 안바뀌게, 이미지 배열 >> 수정완료-->
+		  <div class="poster_wrap bbs-today_thumb clearfix">
+        	<div class="row row_flex" style="margin-left: 0.1px" >
 				<%for(int i=0; i<showList.size(); i++){ %>
-           		<div class="col set">
-					<div class="card" style="width: 18rem;">
-						<a href="page2.jsp?showId=<%=showList.get(i).getShowId() %>"><img src=<%=showList.get(i).getThImg() %> class="card-img-top" alt="...">
-					 	<div class="card-body">
+           		<div class="col set" >
+					<div class="card" style="width: 19rem;">
+						<a href="page2.jsp?showId=<%=showList.get(i).getShowId() %>">
+						<img src="../admin/img/<%=showList.get(i).getThImg() %>" class="card-img-top" alt="...">
+					 	<div class="card-body" >
 					    <h5 class="card-title h3"><%=showList.get(i).getName() %></h5>
-					    <p class="card-text datail1"  style="color: #111111;"><%=showList.get(i).getStartDate() %> ~ <%=showList.get(i).getEndDate() %></p>
-					    <p class="card-text datail2" style="color: #111111;"><%=showList.get(i).getGenreId() %></p>
+					    <p class="card-text txtColor"><%=showList.get(i).getStartDate() %> ~ <%=showList.get(i).getEndDate() %></p>
+					    <p class="card-text txtColor"><%=showList.get(i).getGenreId() %></p>
 		 				</div>
 		  				</a>
 					</div>
-				</div>
-				<%} %>
-			</div>
-		</div>
+				 </div>
+				 <%} %>
+			 </div>
+		   </div>
 			
 
 		
@@ -273,15 +396,15 @@
 		<!-- </div> -->
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
 			
 			<!-- 추가한거 -->
-			<script src="assets/js/tab.js"></script>
+			<script src="../assets/js/tab.js"></script>
 
 	</body>
 </html>

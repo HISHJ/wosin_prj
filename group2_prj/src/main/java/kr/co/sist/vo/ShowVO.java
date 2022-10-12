@@ -1,26 +1,34 @@
 package kr.co.sist.vo;
 
+
+//sdate, edate는 공연 검색하기(상세)에서 조회 기간 처리하기 위해 추가
 public class ShowVO {
-	private String showId, name, genreId, ratingId, startDate,
-		endDate, runningTime, mImg, thImg, infoImg, status;
-	private int price;
-	
-	public ShowVO() {
-	}
+   private String showId, name, genreId, ratingId, startDate,
+      endDate,totalDate,genreType,runningTime, mImg, thImg, infoImg, status,
+      sdate,edate;
+   private int price;
+   
+   public ShowVO() {
+   }
 
 	public ShowVO(String showId, String name, String genreId, String ratingId, String startDate, String endDate,
-			String runningTime, String mImg, String thImg, String infoImg, String status, int price) {
+			String totalDate, String genreType, String runningTime, String mImg, String thImg, String infoImg,
+			String status, String sdate, String edate, int price) {
 		this.showId = showId;
 		this.name = name;
 		this.genreId = genreId;
 		this.ratingId = ratingId;
 		this.startDate = startDate;
 		this.endDate = endDate;
+		this.totalDate = totalDate;
+		this.genreType = genreType;
 		this.runningTime = runningTime;
 		this.mImg = mImg;
 		this.thImg = thImg;
 		this.infoImg = infoImg;
 		this.status = status;
+		this.sdate = sdate;
+		this.edate = edate;
 		this.price = price;
 	}
 
@@ -72,6 +80,22 @@ public class ShowVO {
 		this.endDate = endDate;
 	}
 
+	public String getTotalDate() {
+		return totalDate;
+	}
+
+	public void setTotalDate(String totalDate) {
+		this.totalDate = totalDate;
+	}
+
+	public String getGenreType() {
+		return genreType;
+	}
+
+	public void setGenreType(String genreType) {
+		this.genreType = genreType;
+	}
+
 	public String getRunningTime() {
 		return runningTime;
 	}
@@ -112,6 +136,22 @@ public class ShowVO {
 		this.status = status;
 	}
 
+	public String getSdate() {
+		return sdate;
+	}
+
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
+	}
+
+	public String getEdate() {
+		return edate;
+	}
+
+	public void setEdate(String edate) {
+		this.edate = edate;
+	}
+
 	public int getPrice() {
 		return price;
 	}
@@ -121,6 +161,7 @@ public class ShowVO {
 	}
 	
 	
-	
-	
+   
 }
+   
+
