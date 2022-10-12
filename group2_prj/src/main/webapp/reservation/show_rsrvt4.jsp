@@ -10,31 +10,46 @@
     
     
 <%
+// 공연코드랑, swId랑, 좌석이름, 좌석아이디??는어떻게받더라?
 	String swId = (String)session.getAttribute("showId");
 	MainDAO mDAO = MainDAO.getInstance();
 	ShowVO sVO = mDAO.selectShowMain(swId); // 다주는 메서드
 	
 	pageContext.setAttribute("sVO", sVO);
+	//System.out.println(swId);
+	//System.out.println(sVO.getName());
 	
 	String schId = (String)session.getAttribute("schTest");
-	
+	System.out.println(schId);
+	System.out.println(swId); // ㅇㅇ 둘다 잘 받아졌음 
 	RsrvtDAO rDAO = RsrvtDAO.getInstance();
+	////////////////////////////////////////////////
 	
+	//받아온값을 다 활용해서 RsrvtInfoVO에 넣고 그 VO를 script에서 버튼눌리면 VO를 넣는다?? 되나?되겠지뭐
 	
-	String[] selectedArr = request.getParameterValues("seat");
-	session.setAttribute("selectedSeats", selectedArr);
-	
-	RsrvtInfoVO rsrvtVO = rDAO.selectRsrvtInfo(schId,selectedArr.length);
-	
+	request.setCharacterEncoding("UTF-8");
+	Enumeration rp = request.getParameterNames();
+	while(rp.hasMoreElements()){
+		String getrp = rp.nextElement()+"";
+		System.out.println("@@@@request : "+getrp+":"+request.getParameter(getrp)); // values안하니까 좌석 하나만 나옴 ㅇㅇ
+	}
 	Enumeration se = session.getAttributeNames();
-	
 	while(se.hasMoreElements()){
-		
 		String getse = se.nextElement()+"";
 		System.out.println("@@@@session : "+getse+":"+session.getAttribute(getse));
-	
 	}
 	
+	
+	RsrvtInfoVO rVO = (RsrvtInfoVO)request.getAttribute("req_rVO");
+	System.out.println("show_rsrvt4.jsp에서 받음 ㅇㅇ"+rVO.toString());
+	
+	String[] selectedSeats = (String[])session.getAttribute("selectedSeats");
+	for(String str : selectedSeats){
+		System.out.print(str+",");
+	}
+	
+	
+	//******************* rsrvtInfoVO 를 만들고 거기에 값을 다 넣고 이 VO로 쿼리문을 실행해야지?
 %>    
 <!DOCTYPE HTML>
 <!--
@@ -44,7 +59,7 @@
 -->
 <html>
 	<head>
-		<title>예매하기 | 내역</title>
+		<title>예매하기 | 예매완료</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -56,16 +71,6 @@
 		<link rel="stylesheet" href="assets\css\perform.css">
 		<link rel="stylesheet" href="assets\css\tab.css">
 		
-		
-		<!--google icons-->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-		<!--google fonts-->
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-		<style>
-			#nav{
-				margin-right:150px;
-			}
-		</style>
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
@@ -76,17 +81,34 @@
 			
 			<!-- tap관련 추가한거 -->
 			<script src="assets/js/tab.js"></script>
-		<!-- //////////////////////////////////////////// -->
+		<!--google icons-->
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+		<!--google fonts-->
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+		
+		<style>
+#nav{
+			margin-right: 150px;
+		}
+
+		</style>
 		<script>
 		$(function(){
-			
-			$("#rsrvtBtnOk").click(function(){
-				/* 유효성검증 할거 뭐있지 */
-				$("#rsrvtInfoChkFrm").submit();			
-			});
+			$("#rsrvt_test_ok").click(function(){
+				<%
+				// 세션값지우기
+				session.removeAttribute("selectedSeats");
+				session.removeAttribute("showId");
+				session.removeAttribute("schTest");
+				
+				// session iinvalidate는 아이디는 세션에있어야하니까 사용하지않고? ㅇㅇ
+				%>
+				
+				/* location.href="show_rsrvt5_testtesttesttesttest.jsp"; 세션값확인 테스트용 */
+				location.href="index.jsp";
+			})
 		})
 		</script>
-		<!-- /////////////////////////////////////////////// -->
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -159,6 +181,7 @@
 								</a></li>
 							</ul>
 						</nav>
+
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
 						<div id="sut-t_wrap">
 						<h2 id="sub-t">
@@ -170,78 +193,56 @@
 						<!--------------------------------------위까지가 헤더----------------------------------------->
 				<!-- Main -->
 				<section id="main">
-				<form id="rsrvtInfoChkFrm" method="post" action="show_rsrvt3_process.jsp">	
-						<div class="container">
-	
-	
-							<div class="col-12">
-	
-								<!-- Blog -->
-									<section>
-									
-										<div class="row">
-											<div class="col-4 col-12-small">
-												<section class="box" style="margin-bottom: 30px;">
-													<a class="image featured"><!-- 사진수정 --><img src="poster/rj.jpeg" alt="포스터" /></a>
-													<header>
-														<%-- <h3><%=rsrvtVO.getShowName() %></h3> --%>
-														<h1><input type="text" name="showName" value="<%=rsrvtVO.getShowName() %>" readonly="readonly"
-																		style="border:none; display:inline; color:#555555; padding:0px;font-size:20px; font-weight: 900">
-														</h1>
-														
-													</header>
-												</section>
-											</div>
-											<div class="col-8 col-12-small">
-												<section class="box" style="margin-bottom: 30px;">
-													<header>
+				<form>
+					<div class="container">
+
+
+						<div class="col-12">
+
+							<!-- Blog -->
+								<section>
+									<div class="row">
+										<div class="col-4 col-12-small">
+											<section class="box" style="margin-bottom: 30px;">
+												<a class="image featured"><img src="poster/rj.jpeg" alt="포스터" /></a><!-- 사진에도 링크 ㅇㅇ  -->
+												<header>
+													<h3><%=rVO.getShowName() %></h3>
 													
-														<ul class="divided">
-															<%-- <li>날짜　　<%=rsrvtVO.getSchDate() %></li> --%>
-															<li>날짜　　<input type="text" name="date" value="<%=rsrvtVO.getSchDate() %>" readonly="readonly"
-																		style="border:none; width:150px; margin-left:0px; display:inline; color:#555555; padding:0px; font-weight: 900">
-															</li>
-															
-															<li>장소　　우신문화회관 대극장</li>
-															
-															<%-- <li>시간　　<%=rsrvtVO.getSchTime() %></li> --%>
-															<li>시간　　<input type="text" name="time" value="<%=rsrvtVO.getSchTime() %>" readonly="readonly"
-																		style="border:none; width:150px; margin-left:0px; display:inline; color:#555555; padding:0px; font-weight: 900">
-															</li>
-															
-															<li>좌석  
-															<%if(selectedArr.length>0){
-																for(int i=0;i<selectedArr.length;i++){%>
-																	<%-- <%= selectedArr[i]%> --%>
-																	<input type="text" name="seats" value="<%= selectedArr[i]%>" readonly="readonly"
+												</header>
+											</section>
+										</div>
+										<div class="col-8 col-12-small">
+											<section class="box" style="margin-bottom: 30px;">
+												<header>
+													<ul class="divided">
+														<li class="h3">예매완료</li>
+														<li>날짜　　<%=rVO.getSchDate() %></li>
+														<li>장소　　우신문화회관 대극장</li>
+														<li>시간　　<%= rVO.getSchTime() %></li>
+														<li>좌석  
+															<%if(selectedSeats.length>0){
+																for(int i=0;i<selectedSeats.length;i++){%>
+																	<input type="text" name="seats" value="<%= selectedSeats[i]%>" readonly="readonly"
 																		style="border:none; width:25px; margin-left:30px; display:inline; color:#555555; padding:0px; font-weight: 900">번
 																<%}
-															
-															
-															}
-																/* out.println("선택한좌석이 없습니다. 근데 이전에 짤라야지 여기까지오면안되지"); */
-															%></li>
-															<%-- <li>금액　　<%=rsrvtVO.getTotalPrice() %>원</li> --%>
-															<li>금액　 <input type="text" name="totalPrice" value="<%= rsrvtVO.getTotalPrice()%>" readonly="readonly"
-															style="border:none; width:70px; display:inline; color:#555555; padding:0px;margin-left:10px; font-weight: 900">원
-															</li>
-															
-														</ul>
-													</header>
-												</section>
-											</div>
+															}%></li>
+														<li>예매번호　　<%=rVO.getRsrvtId() %></li>
+														
+													</ul>
+												</header>
+											</section>
 										</div>
-									
-									
-									</section>
-	
-							</div>
-	
-								<a href="javascript:history.back();">이전</a>
-								<input type="button" value="예매하기" id="rsrvtBtnOk" style="background-color:#555555;">
-							
+									</div>
+								</section>
+
 						</div>
-				</form>
+
+
+							<!-- <a href="index.jsp" class="button alt button_minNext">메인으로</a> -->
+							<input type="button" id="rsrvt_test_ok" class="button alt button_minNext" value="메인으로">
+						
+					</div>
+				</form>					
 				</section>
 		
 
