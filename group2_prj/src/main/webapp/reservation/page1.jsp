@@ -8,9 +8,10 @@
     pageEncoding="UTF-8" info=""%>
     
 	 <%
-    //ShowVO sVO= new ShowVO();//<select할떄 필요할까 > 아닐듯? > 답:
-    String sdate = request.getParameter("sdate");
-    String edate = request.getParameter("edate");
+    //ShowVO sVO= new ShowVO();//<select할떄 필요할까 > 아닐듯? > 
+    String sdate = request.getParameter("sdate"); 
+    String edate = request.getParameter("edate"); 
+    String toDate = request.getParameter("totaldate");
     String genreId = request.getParameter("genreId");
     String name = request.getParameter("name");
     
@@ -22,9 +23,11 @@
     ShowDAO sDAO=ShowDAO.getInstance();
     List<ShowVO> showList=sDAO.selectSearch(sVO); 
     
-    //값 받아지는지 테스트중
+    //값 받아지는지 테스트중 - 시작일 끝일은 버튼 눌렀을 때 값전송 자체가 안됨 (유) (fn_search 때문이었음 ajax배우면 될 것 같긴 함)
     System.out.println("장르 "+genreId);
     System.out.println("시작일 "+sdate);
+    System.out.println("끝일 "+edate);
+    
     %>	
     
    
@@ -92,7 +95,9 @@
 			var date = new Date(sdate);
 			var schRange = $(this).val();
 			
-			if(schRange == 1){ // 오늘
+			
+			
+			 if(schRange == 1){ // 오늘
 			}else if(schRange == 2){ // 7일
 				date.setDate(date.getDate() + 7);
 			}else if(schRange == 3){ // 1개월
@@ -108,10 +113,13 @@
 				
 				sdate = dateFormat(sdate);
 			}
+			
 			$("#period1").val(sdate);
 			$("#period2").val(dateFormat(date));
 			$(".datepickerRange").val(sdate + " ~ " + dateFormat(date));
-			fn_search('1');
+			//fn_search2('1');
+			
+			$("#dateFrm").submit(); //2022-10-12 유설빈
 			
 		});
 		
@@ -163,8 +171,26 @@
 
 	    return year + "-" + month + "-" + day;
 	}//dateFormat
-
 	
+	function fn_search(pageNo) {
+		   
+		   if (pageNo != null || pageNo != undefined ) {
+		      document.frm.pageIndex.value = pageNo;
+		   }
+		   var data = $("#frm").serialize();
+		   var url = "/portal/performance/performance/performListData.do?viewType=CONTBODY";
+
+		   $.ajax({
+		      type: 'post',
+		      url: url,
+		      data: data ,
+		      dataType: "html",
+		      cache: false,
+		      success: function(data) {
+		         $("#performList").html(data);
+		        }
+		   });
+		}
 	
 	
 	
@@ -257,8 +283,9 @@
 	<div class="container">
 
 						<!-- Content -->
+						<!-- 2022 10 12 23:44  유설빈 수정중(hidden 값 받아오기)  -hidden에 따로 form추가-->
 	<article class="box post bbs-today_w">	
-		<form name="dateFrm" id="dateFrm">
+		<form name="dateFrm" id="dateFrm" method="get">
 			<input type="hidden" name="pageIndex" value="">
 			<input type="hidden" name="menuNo" value="200004">
 			<input type="hidden" name="searchPackage" value="">
@@ -268,14 +295,19 @@
 			<div class="schedule__date">
 				<div class="item" style="height: 80px">
 					<input type="radio" name="schRange" id="range1" value="1" />
+					<input type="radio" name="schRange" id="range1" value="1" style="display:none;"/>
 					<label for="range1">오늘</label>
 					<input type="radio" name="schRange" id="range2" value="2" />
+					<input type="radio" name="schRange" id="range1" value="1" style="display:none;"/>
 					<label for="range2">1주</label> 
 					<input type="radio" name="schRange" id="range3" value="3" checked/>
+					<input type="radio" name="schRange" id="range1" value="1" style="display:none;"/>
 					<label for="range3">1개월</label>
 					<input type="radio" name="schRange" id="range4" value="4" />
+					<input type="radio" name="schRange" id="range1" value="1" style="display:none;"/>
 					<label for="range4">3개월</label>
 					<input type="radio" name="schRange" id="range5" value="5" />
+					<input type="radio" name="schRange" id="range1" value="1" style="display:none;"/>
 					<label for="range5">전체</label>
 				</div>
 				<a href="javascript:void(0);" class="arrow prev">이전</a>
@@ -283,17 +315,21 @@
 				<p class="txt" id="yearData">2022</p>
 				<a href="javascript:void(0);" class="arrow next">다음</a>
 			</div>
+		
 			
+			<!-- <form id="hidfrm" name="hidfrm" method="get"> -->
 			<div class="schedule_w item5">
 				<ul class="clearfix">
 					<li class="item s1" tabindex="0">
 						<div class="cont rangeArrow">
 							<input type="hidden" name="sdate" class="sdate" id="period1" />
 							<input type="hidden" name="edate" class="edate" id="period2" />
-							<input type="text" class="datepickerRange" />
+							<input type="text" id="totaldate" name="totaldate" class="datepickerRange" />
 						</div>
 					</li>
-		</form>
+			<!-- </form>	 -->	
+				</form>
+		
 					
 					<li class="item s2" tabindex="0">
 					<form name="genreFrm" id="genreFrm">
@@ -311,7 +347,7 @@
 					</form>
 					</li>
 					<li class="item s4" tabindex="0">
-					<form name="nameFrm" id="nameFrm">
+					<form name="nameFrm" id="nameFrm" method="get">
 						<label for=name class="hide">공연명은?</label>
 						<div class="cont">
 							<input type="hidden" name="searchCnd" value="1" />
@@ -333,7 +369,7 @@
 			
 		
 		<!-- p에 있는 텍스트 마우스오버시 색상 안바뀌게, 이미지 배열 >> 수정완료-->
-		  <div class="poster_wrap bbs-today_thumb clearfix">
+		  <div id="performList" class="poster_wrap bbs-today_thumb clearfix">
         	<div class="row row_flex" style="margin-left: 0.1px" >
 				<%for(int i=0; i<showList.size(); i++){ %>
            		<div class="col set" >
@@ -342,7 +378,7 @@
 						<img src="../admin/img/<%=showList.get(i).getThImg() %>" class="card-img-top" alt="...">
 					 	<div class="card-body" >
 					    <h5 class="card-title h3"><%=showList.get(i).getName() %></h5>
-					    <p class="card-text txtColor"><%=showList.get(i).getStartDate() %> ~ <%=showList.get(i).getEndDate() %></p>
+					    <p class="card-text txtColor"><%=showList.get(i).getStartDate() %> ~ <%=showList.get(i).getEndDate() %></p> 					    
 					    <p class="card-text txtColor"><%=showList.get(i).getGenreId() %></p>
 		 				</div>
 		  				</a>
