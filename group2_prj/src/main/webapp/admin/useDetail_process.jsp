@@ -28,17 +28,19 @@
 <%
 %>
 <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
+<jsp:useBean id="aqmVO" class="kr.co.sist.vo.AdminQuitMemberVO" scope="page"/>
+<jsp:setProperty property="memberId" name="aqmVO" value="<%=admVO.getMemberId()%>"/>
 <jsp:setProperty property="*" name="admVO"/>
-<jsp:setProperty property="memberId" name="admVO" />
-<jsp:setProperty property="pwd" name="admVO"/>
-
-
-<%
-AdminMemberDAO admDAO=AdminMemberDAO.getInstance();
-int  updateMemberCnt = admDAO.updateMemberStatus(admVO.getMemberId());
-%>
+<%-- <jsp:setProperty property="memberId" name="admVO" />
+<jsp:setProperty property="pwd" name="admVO"/> --%>
 
 <%=admVO %>
+ <%
+AdminMemberDAO admDAO=AdminMemberDAO.getInstance();
+int  updateMemberCnt = admDAO.updateMemberStatus(admVO.getMemberId());
+int insertCnt=admDAO.insertQuitMember(aqmVO);
+%>
+
 
 
 
@@ -48,10 +50,19 @@ int  updateMemberCnt = admDAO.updateMemberStatus(admVO.getMemberId());
 					</script>
 				<%}else{%>
 					<script>
-					alert("회원탈퇴 되었습니다.");
-					location.href="http://localhost/group2_prj/admin/useBoard.jsp";
+					alert("회원 업데이트 성공");//업데이트 확인용 나중에 지우기
 					</script>	
-				<%} %> 
-		
+					
+					<%if(insertCnt==1){%>
+						<script>
+						alert("회원탈퇴 성공하였습니다");
+						location="useBoard.jsp";
+					</script>
+					<%}else{%>
+					<script>
+					alert("회원 업데이트 실패");
+					</script>
+				<%}//end if(insert)
+					}//end if(update)%> 
 </body>
 </html>

@@ -9,10 +9,10 @@
     
     <%
     request.setCharacterEncoding("UTF-8");
-    String memberId=request.getParameter("memberId");
+
  	AdminMemberDAO admDAO= AdminMemberDAO.getInstance();
 
- 	admVO= admDAO.selectMemberDetail(memberId);
+ 	admVO= admDAO.selectMemberDetail(admVO.getMemberId());
  	String zipcode=admVO.getZipcode();
  	String addr1 = admVO.getAddr1();
  	String addr2= admVO.getAddr2();

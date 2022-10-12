@@ -81,47 +81,7 @@ public class AdminMemberDAO {
 		return Mlist;
 	}//selectMember
 	
-public List<AdminMemberVO> selectMember2() throws SQLException{
-		
-		List<AdminMemberVO>Tlist = new ArrayList<AdminMemberVO>();
-		Connection con=null;
-		PreparedStatement pstmt =null;
-		ResultSet rs=null;
-		
-		DbConnection dc = DbConnection.getInstance();
-		
-		try {
-			con=dc.getConn();
-			String selectMb = "select name,memberId,to_char(inputdate,'yyyy-MM-dd')mdate,mailChk,smsChk,status from member ";
-			
-			
-			
-			
-			pstmt=con.prepareStatement(selectMb);
-			rs=pstmt.executeQuery();
-			
-			AdminMemberVO admVO=null;
-			while(rs.next()) {
-				admVO= new AdminMemberVO();
-				
-				admVO.setName(rs.getString("name"));
-				admVO.setMemberId(rs.getString("memberId"));
-				admVO.setMdate(rs.getString("mdate"));
-				admVO.setMailChk(rs.getString("mailChk"));
-				admVO.setSmsChk(rs.getString("smsChk"));
-				admVO.setStatus(rs.getString("status"));
-				Tlist.add(admVO);
-			}//end if
-			
-			
-			
-		}finally {
-			
-			dc.dbClose(rs, pstmt, con);
-		}//end catch
-		
-		return Tlist;
-	}//selectMember
+
 	
 	// 회원상세보기 (아이디) :selectMemberDetail(String) : AdminMemberVO
 
@@ -196,9 +156,11 @@ public List<AdminMemberVO> selectMember2() throws SQLException{
 	}//updateMemberStatus
 
 	
+	
+//	클다에 없는 method : 탈퇴한 회원 quitMember테이블에 추가
 	public int insertQuitMember(AdminQuitMemberVO aqmVO) throws SQLException {
 		
-		
+		int insertCnt=0;
 		DbConnection dc = DbConnection.getInstance();
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -208,24 +170,22 @@ public List<AdminMemberVO> selectMember2() throws SQLException{
 //		2. 커넥션 얻기
 			con = dc.getConn();
 //		3. 쿼리문생성객체얻기
-			String quit="insert into quitmember(memberId,inputdate) values(?,to_char(sysdate,'yyyy-MM-dd'))";
+			String quit="insert into quitmember(memberId,reason,inputdate) values(?,'관리자권한으로 탈퇴',to_char(sysdate,'yyyy-MM-dd'))";
 			
 			pstmt=con.prepareStatement(quit);
 			
-			pstmt.setString(1, aqmVO.getMemberId());//회원정보추가
-			pstmt.setString(2, aqmVO.getReason());//회원 언어정보 추가
+			pstmt.setString(1, aqmVO.getMemberId());
+			
 	// SYSDATE는 어떻게 ????
 			
-			return pstmt.executeUpdate();
-		}catch(Exception e) {
-			e.printStackTrace();
-
+			insertCnt= pstmt.executeUpdate();
+	
 		}finally {
 //	    6. 연결 끊기
 		dc.dbClose(null,pstmt,con);
 	}//end catch
 		
-		return -1;
+		return insertCnt;
 
 	}//insertQuitMember	
 	

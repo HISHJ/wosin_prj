@@ -18,7 +18,7 @@
 	AdminMemberDAO admDAO = AdminMemberDAO.getInstance();
 	
  List<AdminMemberVO> Mlist =admDAO.selectMember(id,mailchk,smschk,status);  
-/* List<AdminMemberVO> Tlist=admDAO.selectMember2(); */
+
 
   
   %>  
