@@ -4,11 +4,14 @@
     pageEncoding="UTF-8" info=""%>
     
     
+    <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
+    <jsp:setProperty property="*" name="admVO"/>
+    
     <%
     request.setCharacterEncoding("UTF-8");
     String memberId=request.getParameter("memberId");
- 	AdminMemberVO admVO = new AdminMemberVO();
  	AdminMemberDAO admDAO= AdminMemberDAO.getInstance();
+
  	admVO= admDAO.selectMemberDetail(memberId);
  	String zipcode=admVO.getZipcode();
  	String addr1 = admVO.getAddr1();
@@ -19,7 +22,7 @@
     %>
 
     
-   
+   <%=admVO %>
     
   <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +39,36 @@
         body{background-color : #fff;}
         
         </style>
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+        
+               <!--제이쿼리-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+      <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+      <script type="text/javascript">
+      $(function(){
+    	 $("#btnClose").click(function(){
+    		 	location.href="http://localhost/group2_prj/admin/useBoard.jsp";
+    	 });//click
+    	 
+    	 $("#btnDelete").click(function(){
+    		 	if(confirm("삭제하시겠습니까?")){
+			 		 $("#userDetail").submit();  
+				}//confirm 
+				
+    		 
+    	 });//click
+    	 
+      });//ready
+      
+      
+      </script>
+      
     </head>
     <body>
+     
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
+               <form name="userDetail" id="userDetail" method="post" action="http://localhost/group2_prj/admin/useDetail_process.jsp">
                     <div class="container">
                         <div class="row justify-content-center">
                             <!-- col lg 5 - 크기 조정 -->
@@ -111,12 +138,12 @@
                                             </div>
                                         </div>
                                         
-                                        <form>
+                                      
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>회원삭제</b></div> <div class="col-4"><input type="button" name="userDeleteBtn" value="회원삭제"></div>
+                                            <div class="col-2"><b>회원삭제</b></div> <div class="col-4"><input type="button" name="userDeleteBtn" id="btnDelete" value="회원삭제"></div>
                                         </div>
-										</form>
+								
                                         <!-- 삭제버튼 클릭시) 팝업창 만들기 힘드니까 ... alert처리하면 안될까  -->
                                         
                                         
@@ -125,20 +152,19 @@
                                             
                                                 <div class="mt-4 mb-0">
                                                     <div class="col text-center">
-                                                        <a class="btn btn-secondary btn-sm" href="userBoard.html">변경</a>
-                                                        <a class="btn btn-default btn-sm" href="userBoard.html">취소</a>
-                                                    </div>
+                                                        <button type="button" class="btn btn-secondary btn-sm"  id ="btnClose">닫기</button>
+                                                   
                                                 </div>
                                             </div>
-                                          </form>  
-
+                                    
                                                 
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </main>
+                  </form> 
+               </main>
             </div>
             <div id="layoutAuthentication_footer">
                 <footer class="py-4 bg-light mt-auto">

@@ -7,12 +7,12 @@ public class AdminMemberVO {
 		addr1, addr2, email, phone, hPhone, mailChk, smsChk, status ,mdate;
 	private Date InputDate;
 	public AdminMemberVO() {
-		super();
+		
 	}
 	public AdminMemberVO(String memberId, String pwd, String name, String birth, String gender, String zipcode,
 			String addr1, String addr2, String email, String phone, String hPhone, String mailChk, String smsChk,
 			String status, String mdate, Date inputDate) {
-		super();
+		
 		this.memberId = memberId;
 		this.pwd = pwd;
 		this.name = name;

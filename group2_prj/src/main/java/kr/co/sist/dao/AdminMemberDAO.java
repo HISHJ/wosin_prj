@@ -9,6 +9,8 @@ import java.util.List;
 
 import kr.co.sist.common.dao.DbConnection;
 import kr.co.sist.vo.AdminMemberVO;
+import kr.co.sist.vo.AdminQuitMemberVO;
+import kr.co.sist.vo.QuitMemberVO;
 
 
 public class AdminMemberDAO {
@@ -32,6 +34,7 @@ public class AdminMemberDAO {
 	public List<AdminMemberVO> selectMember(String memberId, String mailChk,String smsChk,String status) throws SQLException{
 		
 		List<AdminMemberVO> Mlist = new ArrayList<AdminMemberVO>();
+		AdminMemberVO admVO= null;
 		Connection con=null;
 		PreparedStatement pstmt =null;
 		ResultSet rs=null;
@@ -43,22 +46,21 @@ public class AdminMemberDAO {
 			String selectMb = "select name,memberId,to_char(InputDate,'yyyy-MM-dd')mdate,mailChk,smsChk,status from member where 1=1 ";
 //			검색조건(아이디,메일수신,회원탈퇴)
 			if(memberId!=null) {
-				selectMb+="and memberId='"+memberId+"'";
+				selectMb+=" and memberId='"+memberId+"' ";
 			}
-			if(mailChk.equals("Y")){
-				selectMb+="and MailChk='"+mailChk+"'";
+			if(mailChk!=null){
+				selectMb+=" and MailChk='Y' ";
 			}
-			if(smsChk.equals("Y")) {
-				selectMb+="and smsChk='"+smsChk+"'";
+			if(smsChk!=null) {
+				selectMb+=" and smsChk='Y' ";
 			}
 			if(status!=null) {
-				selectMb+="and status='"+status+"'";
+				selectMb+=" and status='"+status+"' ";
 			}
 			
 			pstmt=con.prepareStatement(selectMb);
 		
 			rs=pstmt.executeQuery();
-			AdminMemberVO admVO= null;
 			while(rs.next()) {
 				admVO= new AdminMemberVO();
 				admVO.setName(rs.getString("name"));
@@ -179,7 +181,7 @@ public List<AdminMemberVO> selectMember2() throws SQLException{
 	    try {
 
 	    con=dc.getConn();
-	    String updateMs ="update member set  pwd=' ', name=' ', birth=' ', gender=' ',zipcode=' ',addr1=' ', addr2=' ', email=' ',phone=' ',hphone=' ',mailchk=' ',smschk=' ', inputdate=to_date(inputdate,null), status='N' where memberid=? and  pwd=?";
+	    String updateMs ="update member set  pwd=' ', name=' ', birth=' ', gender=' ',zipcode=' ',addr1=' ', addr2=' ', email=' ',phone=' ',hphone=' ',mailchk=' ',smschk=' ', inputdate=to_date(inputdate,null), status='N' where memberid=?";
 	    	
 	    	pstmt=con.prepareStatement(updateMs);
 	    	pstmt.setString(1,memberId);
@@ -193,6 +195,39 @@ public List<AdminMemberVO> selectMember2() throws SQLException{
 		return updateMemberCnt;
 	}//updateMemberStatus
 
+	
+	public int insertQuitMember(AdminQuitMemberVO aqmVO) throws SQLException {
+		
+		
+		DbConnection dc = DbConnection.getInstance();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+//		1. 드라이버로딩
+		try {
+//		2. 커넥션 얻기
+			con = dc.getConn();
+//		3. 쿼리문생성객체얻기
+			String quit="insert into quitmember(memberId,inputdate) values(?,to_char(sysdate,'yyyy-MM-dd'))";
+			
+			pstmt=con.prepareStatement(quit);
+			
+			pstmt.setString(1, aqmVO.getMemberId());//회원정보추가
+			pstmt.setString(2, aqmVO.getReason());//회원 언어정보 추가
+	// SYSDATE는 어떻게 ????
+			
+			return pstmt.executeUpdate();
+		}catch(Exception e) {
+			e.printStackTrace();
+
+		}finally {
+//	    6. 연결 끊기
+		dc.dbClose(null,pstmt,con);
+	}//end catch
+		
+		return -1;
+
+	}//insertQuitMember	
 	
 	
 }//AdminMemberDAO

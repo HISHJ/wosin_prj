@@ -1,22 +1,24 @@
+<%@page import="javax.websocket.Session"%>
 <%@page import="kr.co.sist.vo.AdminMemberVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.co.sist.dao.AdminMemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info=""%>
+    pageEncoding="UTF-8" info=""%>/
     
     
     
-
-  <%
+<jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
+<%
   request.setCharacterEncoding("UTF-8");
   String id=request.getParameter("memberId");
   String mailchk=request.getParameter("mailChk");
   String smschk=request.getParameter("smsChk");
   String status=request.getParameter("status");
- AdminMemberDAO admDAO = AdminMemberDAO.getInstance();
-/*  List<AdminMemberVO> Mlist =admDAO.selectMember(id,mailchk,smschk,status);   */
-List<AdminMemberVO> Tlist=admDAO.selectMember2();
+	AdminMemberDAO admDAO = AdminMemberDAO.getInstance();
+	
+ List<AdminMemberVO> Mlist =admDAO.selectMember(id,mailchk,smschk,status);  
+/* List<AdminMemberVO> Tlist=admDAO.selectMember2(); */
 
   
   %>  
@@ -157,8 +159,8 @@ List<AdminMemberVO> Tlist=admDAO.selectMember2();
                            <form name="idFrm" id="idFrm">
                            	<div class="dataTable-top"></div>
                                 <label>아이디　</label>
-                           	  	<input type="text"  name="name" class="dataTable-input" style="width: auto; display: inline-block;"> 
-                                <input type="button" id="idSearchBtn" name="nameSearchBtn" value="검색">
+                           	  	<input type="text"  name="memberId" class="dataTable-input" style="width: auto; display: inline-block;"> 
+                                <input type="button" id="idSearchBtn" name="memberId" value="검색">
                              </form>
                            
                            
@@ -167,31 +169,31 @@ List<AdminMemberVO> Tlist=admDAO.selectMember2();
                                 <div class="dataTable-top"></div>
                                 <label>수신동의　</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" 
-                                    value="">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="emailChk"
+                                    value="Y">
                                     <label class="form-check-label" for="inlineCheckbox1">이메일</label>
                                 </div>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" 
-                                    value=" ">
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" name="smsChk"
+                                    value="Y">
                                     <label class="form-check-label" for="inlineCheckbox2">SMS</label>
                                 </div>
-                                <input type="button" name="ChkSearchBtn" value="검색">
+                                <input type="button" id="ChkSearchBtn" value="검색">
                             </form>
                             
 							<form name="statusFrm" id="statusFrm">
                                 <div class="dataTable-top"></div>
                                 <label>회원상태　</label>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                                        <input class="form-check-input" type="radio" >
                                         <label class="form-check-label" for="inlineRadio1">전체</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="Y">
+                                        <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="Y">
                                         <label class="form-check-label" for="inlineRadio2">Y</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="N">
+                                        <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="N">
                                         <label class="form-check-label" for="inlineRadio2">N</label>
                                     </div>
                                     <input type="button"  id="statusSearchBtn" name="showSatusSearchBtn" value="검색">
@@ -206,6 +208,8 @@ List<AdminMemberVO> Tlist=admDAO.selectMember2();
                                             <th>이름</th>
                                             <th>아이디</th>
                                             <th>가입일</th>
+                                            <th>메일수신상테</th>
+                                            <th>SMS수신상태</th>
                                             <th>상태</th>
                                             <th>관리</th>
                                         </tr>
@@ -215,16 +219,20 @@ List<AdminMemberVO> Tlist=admDAO.selectMember2();
                                             <th>이름</th>
                                             <th>아이디</th>
                                             <th>가입일</th>
+                                            <th>메일수신상테</th>
+                                            <th>SMS수신상태</th>
                                             <th>상태</th>
                                             <th>관리</th>
                                         </tr>
                                         </tfoot>
                                      <tbody>
-                                     <%for(AdminMemberVO admVO1 : Tlist){%>
+                                     <%for(AdminMemberVO admVO1 : Mlist){%>
                                         <tr>
                                             <td><%=admVO1.getName()%></td>
                                             <td><%=admVO1.getMemberId()%></td>
                                             <td><%=admVO1.getMdate()%></td>
+                                            <td><%=admVO1.getMailChk()%></td>
+                                            <td><%=admVO1.getSmsChk()%></td>
                                             <td><%=admVO1.getStatus()%></td>
                                             <td><a href="useDetail.jsp?memberId=<%=admVO1.getMemberId()%>">
                                             <input type="button" value="상세보기" class="useDetailBtn"/></a></td>

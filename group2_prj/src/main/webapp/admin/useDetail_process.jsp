@@ -1,8 +1,7 @@
-<%@page import="java.sql.SQLException"%>
-<%@page import="kr.co.sist.dao.MemberDAO"%>
+<%@page import="kr.co.sist.dao.AdminMemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
- <%request.setCharacterEncoding("UTF-8"); %>   
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,32 +24,34 @@
 </script>
 </head>
 <body>
-<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
-<jsp:useBean id="qmVO" class="kr.co.sist.vo.QuitMemberVO" scope="session"/>
+
+<%
+%>
+<jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
+<jsp:setProperty property="*" name="admVO"/>
+<jsp:setProperty property="memberId" name="admVO" />
+<jsp:setProperty property="pwd" name="admVO"/>
+
+
+<%
+AdminMemberDAO admDAO=AdminMemberDAO.getInstance();
+int  updateMemberCnt = admDAO.updateMemberStatus(admVO.getMemberId());
+%>
+
+<%=admVO %>
 
 
 
-<%String reason=request.getParameter("reason");%>
-<jsp:setProperty property="memberId" name="mbVO"/>
-<jsp:setProperty property="memberId" name="qmVO" value="<%=mbVO.getMemberId() %>"/>
-<jsp:setProperty property="reason" name="qmVO" value="<%=reason%>"/>
-
-
-
-
- <%
-MemberDAO mbrDAO =MemberDAO.getInstance();
-int qmCnt=mbrDAO.insertQuitMember(qmVO);
-if(qmCnt==-1){%>
-		<script>			
-			alert("추가실패");
-		</script>
-<%}else{%>						
-		<script>
-		location.href="http://localhost/group2_prj/mypage/quit_process.jsp"
-		</script>
-<%} %>
-
-
+ <% if(updateMemberCnt==0){/* 회원정보수정 실패 */	%>
+					<script>
+						alert("비밀번호를 다시 확인해주세요");
+					</script>
+				<%}else{%>
+					<script>
+					alert("회원탈퇴 되었습니다.");
+					location.href="http://localhost/group2_prj/admin/useBoard.jsp";
+					</script>	
+				<%} %> 
+		
 </body>
 </html>

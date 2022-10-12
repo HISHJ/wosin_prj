@@ -336,7 +336,7 @@
 							
 						}//smsChk
 						
-					 	if(!confirm("수정하시겠습니까?")){
+					 	if(confirm("수정하시겠습니까?")){
 					 		 $("#mypageboard").submit();  
 						}//confirm 
 						

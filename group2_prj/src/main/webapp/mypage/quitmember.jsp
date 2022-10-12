@@ -297,30 +297,6 @@
 				
 
 
-
-<jsp:setProperty property="*" name="mbVO"/>
-
-<%
-MemberDAO mbrDAO =MemberDAO.getInstance();
-int updateMbsCnt = mbrDAO.updateMemberStatus(mbVO.getPwd());
-int qmCnt=mbrDAO.insertQuitMember(qmVO);
-%>
-
-	<% if(updateMbsCnt==0){/* 회원정보수정 실패 */	%>
-					<script>
-						alert("비밀번호를 다시 확인해주세요");
-					</script>
-				<%}else if(updateMbsCnt==-1){%>
-				<script>
-				 	alert("회원탈퇴 실패.");
-			
-				</script>
-				<%}else{ %>
-					<script>
-						alert("회원탈퇴 되었습니다. 그동안 이용해주셔서 감사합니다.");
-						location.href="http://localhost/prj2/design final intergration/login.jsp"
-					</script>
-				<%} %>   
 				
 				
 				

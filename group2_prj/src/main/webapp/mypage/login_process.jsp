@@ -44,10 +44,10 @@
  <jsp:setProperty property="*" name="mbVO"/> 
 <%--  <jsp:setProperty property="memberId" name="mbVO" />
 <jsp:setProperty property="pwd" name="mbVO" />    --%>
+<%=mbVO %>
 
 
-
-<% 
+<%-- <% 
 MemberDAO mbrDAO= MemberDAO.getInstance();
 boolean result = mbrDAO.login(mbVO);
 
@@ -73,7 +73,7 @@ if(result){
 	</script>
 	
 <%}//end if%>
-
+ --%>
 
 </body>
 </html>
