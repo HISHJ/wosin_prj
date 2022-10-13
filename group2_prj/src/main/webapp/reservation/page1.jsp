@@ -24,9 +24,9 @@
     List<ShowVO> showList=sDAO.selectSearch(sVO); 
     
     //값 받아지는지 테스트중 - 시작일 끝일은 버튼 눌렀을 때 값전송 자체가 안됨 (유) (fn_search 때문이었음 ajax배우면 될 것 같긴 함)
-    System.out.println("장르 "+genreId);
+    /* System.out.println("장르 "+genreId);
     System.out.println("시작일 "+sdate);
-    System.out.println("끝일 "+edate);
+    System.out.println("끝일 "+edate); */
     
     %>	
     
@@ -70,7 +70,7 @@
 		//장르 클릭
 		$("#genreId").change(function() {
 			$("#genreFrm").submit();
-			fn_search('1');
+			//fn_search('1');
 		});
 		
 		//공연명 검색
@@ -88,13 +88,11 @@
 			var year=today.getFullYear();
 			var month=("0" + (1 + today.getMonth())).slice(-2);
 			var date=("0" + today.getDate()).slice(-2); //문제시 date 두개 쓴 이부분
-
 			var sdate=year+"-"+month+"-"+date;
 			
 			//var sdate = "2022-10-12";
 			var date = new Date(sdate);
 			var schRange = $(this).val();
-			
 			
 			
 			 if(schRange == 1){ // 오늘
@@ -140,7 +138,7 @@
 			$("#period2").val(edate);
 			$(".datepickerRange").val(sdate + " - " + edate);
 			$('#range5').prop('checked', true);
-			fn_search(1);
+			//fn_search(1);
 		});
 		
 		//년도 > 버튼
@@ -153,13 +151,12 @@
 			
 			sdate = dateFormat(sdate);
 			edate = dateFormat(edate);
-
 			$("#yearData").html(yearData + 1);
 			$("#period1").val(sdate);
 			$("#period2").val(edate);
 			$(".datepickerRange").val(sdate + " - " + edate);
 			$('#range5').prop('checked', true);
-			fn_search(1);
+			//fn_search(1);
 		});
 		
 	}); //ready 
@@ -168,18 +165,16 @@
 	    var year = date.getFullYear();
 	    var month = ("0" + (1 + date.getMonth())).slice(-2);
 	    var day = ("0" + date.getDate()).slice(-2);
-
 	    return year + "-" + month + "-" + day;
 	}//dateFormat
 	
-	function fn_search(pageNo) {
+	/* function fn_search(pageNo) {
 		   
 		   if (pageNo != null || pageNo != undefined ) {
 		      document.frm.pageIndex.value = pageNo;
 		   }
-		   var data = $("#frm").serialize();
+		   var data = $("#dateFrm").serialize();
 		   var url = "/portal/performance/performance/performListData.do?viewType=CONTBODY";
-
 		   $.ajax({
 		      type: 'post',
 		      url: url,
@@ -190,7 +185,7 @@
 		         $("#performList").html(data);
 		        }
 		   });
-		}
+		} */
 	
 	
 	

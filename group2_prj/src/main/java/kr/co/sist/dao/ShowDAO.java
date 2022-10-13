@@ -140,15 +140,16 @@ public class ShowDAO {
 					+ " from show s, genre g "
 					+ " where (s.genreId=g.genreId) ";
 			
+			
 			if(sVO.getSdate()!=null&&sVO.getEdate()!=null) {
-				query+=" and s.name like '%돼%' "; // 기간클릭시 값 들어오는지 테스트
+				//오류무덤
+				//query+=" and s.startDate<=to_char(?,'yyyy-mm-dd') and s.endDate>=to_char(?,'yyyy-mm-dd') "; //String을 왜 저기다 넣어ㅡㅡ
+				//query+=" and s.startDate<=? and s.endDate>=? "; 
+				//query+=" and s.startDate>=? and s.endDate<=? "; //error: 부적합한 열 인덱스
+				query+=" and s.startDate<='"+sVO.getEdate()+"' and s.endDate>='"+sVO.getSdate()+"' order by s.startDate "; 
+				
 			}
-			
-			/*
-			if(sVO.getSdate()!=null&&sVO.getEdate()!=null) {
-			query+=" and s.startDate<=? and s.endDate>=?; "; }
-			 */
-			
+			 
 			if(sVO.getGenreId()!=null) {
 				query+=" and g.genreId='"+sVO.getGenreId()+"' ";
 			}
@@ -158,7 +159,8 @@ public class ShowDAO {
 			}
 			
 			//콘솔 테스트용
-			System.out.println(sVO.getSdate()); //null나오네..
+			System.out.println("시작일:"+sVO.getSdate()); 
+			System.out.println("끝일:"+sVO.getSdate()); 
 			
 			pstmt = con.prepareStatement(query);
 			//pstmt.setString(1, sVO.getSdate());
