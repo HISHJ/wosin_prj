@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ko.co.sist.vo.DashBoardVO;
-import kr.co.sist.common.dao.DbConnection;
+import ko.co.sis.common.dao.DbConnection;
+import kr.co.sis.vo.DashBoardVO;
 
 public class DashBoardDAO {
 	private static DashBoardDAO dashDAO;
