@@ -9,11 +9,19 @@
 
 <!--  -->
 <%
+
+request.setCharacterEncoding("UTF-8");
+String showId=request.getParameter("showId"); 
+
 AdminScheduleVO aschVO=new AdminScheduleVO();
 AdminScheduleDAO aschDAO= AdminScheduleDAO.getInstance();
-List<AdminShowVO> list=aschDAO.selectAdminShowAll();
+List<AdminShowVO> list=aschDAO.selectAdminScheduleAll();
 
+
+System.out.println( request.getParameter("showId") );
 %>
+
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -30,14 +38,19 @@ List<AdminShowVO> list=aschDAO.selectAdminShowAll();
         
         </style>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+            <!--제이쿼리-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
        <script type="text/javascript">
- 
+    	$("#postBtn").click(function(){
+    		location.href = "2showINGAdd-2.jsp";
+});//ready */
+
         
         </script>
     
     </head>
+    
     <body>
-       
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -49,7 +62,7 @@ List<AdminShowVO> list=aschDAO.selectAdminShowAll();
                                     <div class="card-header navy bg-dark"><h3 class="text-start text-white font-weight-light my-4 " style="font-weight: bold;">리스트</h3></div>
                                     <div class="card-body">
                                        
-                                    <form>
+                                    <form action="2showINGAdd-2.jsp" method="post" id="Frm" >
                                         <div class="dataTable-top"></div>
                                         <table class="table">
                                             <thead>
@@ -63,7 +76,7 @@ List<AdminShowVO> list=aschDAO.selectAdminShowAll();
                                             <%for(int i=0; i<list.size(); i++){ %>
                                               <tr>
                                                 <td><%=list.get(i).getName()%></td>
-                                                <td><a href="showINGAdd-2.html"><input type="button" value="선택"></a></td>
+                                                <td><a href="2showINGAdd-2.jsp?showId=<%=list.get(i).getShowId()%>"><input type="button" value="선택"  id="postBtn"></a></td>
                                               </tr>
                                               <%} %>
                                        
