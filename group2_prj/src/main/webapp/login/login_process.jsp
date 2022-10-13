@@ -60,16 +60,16 @@ if(result){
 	
 %>	 <script>
 		alert("${param.memberId}님 환영합니다.")
-		location.href="http://localhost/group2_prj/main/index.html";   
+		location.href="../main/index.jsp";   
 	</script>
 <%
-	/* response.sendRedirect("http://localhost/group2_prj/main/index.html"); */
+
 	
 
 }else{%>
 	<script>
 		alert("아이디 또는 비밀번호를 확인해주세요.");
-		location.href="http://localhost/group2_prj/login/login.html";
+		location.href="login.jsp";
 	</script>
 	
 <%}//end if%>

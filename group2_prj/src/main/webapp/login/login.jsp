@@ -12,25 +12,25 @@
 		<title>로그인 | 통합회원서비스|</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="../static/commons/img/favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/commons/img/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/commons/img/favicon_16.png">
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets\css\reset.css">
+		<link rel="stylesheet" href="../assets\css\subheader.css">
+		<link rel="stylesheet" href="../assets\css\headerFooter.css">
+		<link rel="stylesheet" href="../assets\css\login.css">
 	<!-- popup플러그인 0923 16:06 test -->
 	<script type="text/javascript" src="js\slide_me.js"></script>
-<script type="text/javascript" 
+	<script type="text/javascript" 
 	src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
-   <link rel="stylesheet" href="assets\css\popup.css">
+   <link rel="stylesheet" href="../assets\css\popup.css">
 	
 	<!-- test -->
 	
-	 <link rel="stylesheet" type="text/css" href="static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="../static/portal/css/sub_new.css">
+   <link rel="stylesheet" type="text/css" href="../static/portal/css/style.css">
+   <link rel="stylesheet" type="text/css" href="../static/portal/css/layout_new.css">
 		<!-- 부트스트랩 -->
 		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
@@ -47,8 +47,8 @@
 		</script>
 	<style>
      section#header{
- 		 /* background-image:  url("../../images/subvisual-200001.jpg"); */
-  	background: url("images/subvisual-common.jpg") no-repeat ; 
+ 		 /* background-image:  url("../images/subvisual-200001.jpg"); */
+  	background: url("../images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
   
@@ -281,7 +281,7 @@
 					
 							 
 							<article class="login inner member_com">
-							<form name="memberLoginForm" id="memberLoginForm" action="http://localhost/group2_prj/mypage/login_process.jsp" method="post"/>
+							<form name="memberLoginForm" id="memberLoginForm" action="login_process.jsp" method="post"/>
 								<input type="hidden" name="loginFlag" value="" />
 								<input type="hidden" name="menuNo" value="200100" />
 								<input type="hidden" name="csrfToken" id="csrfToken" value="38394981-5565-4000-b859-9a058704f036"/>
@@ -297,17 +297,14 @@
 											<input type="checkbox" name="save_id"  id="saveCookieUserId" />
 											<label for="saveCookieUserId">아이디 저장</label>
 										</div>
-										<!-- 캡차주석 -->
-										<!-- <div id="g-recaptcha" style="display:flex; justify-content:center;"></div>  -->
+							
 										
 										<button type="button" class="bg-black btn-login f20" id="btnLogin">로그인</button>
 									 
 							
-										<p class="bul-stars b" style="text-align: left;">입력하신 로그인정보가 5회 연속 불일치 시 로그인이 제한되며   아래의 비밀번호<br/> 찾기를 통해 해제하실 수 있습니다.</p>
-							
 										<div class="etc">
-											<span><a href="find_id.html">아이디 찾기</a></span>
-											<span><a href="find_password.html">비밀번호 찾기</a></span>
+											<span><a href="find_id.jsp">아이디 찾기</a></span>
+											<span><a href="find_password.jsp">비밀번호 찾기</a></span>
 											<span><a href="signup.html">회원가입</a></span>
 											
 										</div>
@@ -315,8 +312,8 @@
 								
 								</ul>
 							</form>
-							</article>
-							<input type="hidden" id="reUrl" name="reUrl" value= />
+						</article>
+					
 
 			
 

@@ -14,18 +14,18 @@
 		<title>아이디 찾기</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="../static/commons/img/favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/commons/img/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/commons/img/favicon_16.png">
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets\css\reset.css">
+		<link rel="stylesheet" href="../assets\css\subheader.css">
+		<link rel="stylesheet" href="../assets\css\headerFooter.css">
+		<link rel="stylesheet" href="../assets\css\login.css">
 	
-	 <link rel="stylesheet" type="text/css" href="static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="../static/portal/css/sub_new.css">
+   <link rel="stylesheet" type="text/css" href="../static/portal/css/style.css">
+   <link rel="stylesheet" type="text/css" href="../static/portal/css/layout_new.css">
 		<!-- 부트스트랩 -->
 		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
@@ -43,7 +43,7 @@
 	<style>
      section#header{
  		 /* background-image:  url("../../images/subvisual-200001.jpg"); */
-  	background: url("images/subvisual-common.jpg") no-repeat ; 
+  	background: url("../images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
   
@@ -107,7 +107,7 @@
 
 				<!--right  -->
 				<ul id="header_right">
-					<li class="current"><a href="login.html">LOGIN</a></li>
+					<li class="current"><a href="login.jsp">LOGIN</a></li>
 					<li><a href="ticket.html">티켓</a></li>
 					<li class="calender">
 						<a href="calendar.html">
@@ -271,7 +271,7 @@
 				if(mbVO.getMemberId()==null){%>
 					<script>
 						alert("존재하지 않은 계정입니다.");
-						location.href="http://localhost/prj2/design%20final%20intergration/find_id.jsp"
+						location.href="find_id.jsp"
 					</script>
 				
 				<%}else{ %>
@@ -296,8 +296,8 @@
 	</div>
 
 	<div class="bbs-btn clearfix tac">
-		<a href="/portal/member/user/forLogin.do?menuNo=200100" class="bbs-btn-st2 bg-purple3">로그인</a>
-		<a href="/portal/member/user/findPw.do?menuNo=200146" class="bbs-btn-st2 bg-black_r">비밀번호찾기</a>
+		<a href="login.jsp" class="bbs-btn-st2 bg-purple3">로그인</a>
+		<a href="find_password.jsp" class="bbs-btn-st2 bg-black_r">비밀번호찾기</a>
 	</div>
 
 </article>

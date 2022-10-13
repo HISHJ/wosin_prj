@@ -1,6 +1,8 @@
+<%@page import="java.util.Calendar"%>
+<%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
-    
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <!--
 	Dopetrope by HTML5 UP
@@ -9,7 +11,7 @@
 -->
 <html>
 	<head>
-		<title>회원가입</title>
+		<title>회원정보 수정</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
@@ -20,13 +22,15 @@
 		<link rel="stylesheet" href="assets\css\subheader.css">
 		<link rel="stylesheet" href="assets\css\headerFooter.css">
 		<link rel="stylesheet" href="assets\css\login.css">
-		<link rel="stylesheet" href="assets\css\signup.css">
 	
+	 <link rel="stylesheet" type="text/css" href="static/portal/css/layout_new.css">
 	 <link rel="stylesheet" type="text/css" href="static/portal/css/sub_new.css">
    <link rel="stylesheet" type="text/css" href="static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/layout_new.css">
-	 <link rel="stylesheet" type="text/css" href="static/portal/css/bbs_new.css">
-	 
+   
+
+
+		<!-- 부트스트랩 -->
+		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!--google fonts-->
@@ -35,154 +39,103 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<!-- 우편번호API -->
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-		
 		<script>
 		$(function(){
 			$("input:checkbox[name='save_id']").prop("checked", true);
 		});
 
-
 		</script>
-		<style>
-			section#header{
-      /* background-image:  url("../../images/subvisual-200001.jpg"); */
-      background: url("images/subvisual-common.jpg") no-repeat ; 
-      background-size: 100%; 
-      background-attachment: fixed;
-
+	<style>
+        section#header{
+ 		 /* background-image:  url("../../images/subvisual-200001.jpg"); */
+  	background: url("images/subvisual-common.jpg") no-repeat ; 
+  	background-size: 100%; 
+  	background-attachment: fixed;
   
-      }
+	}
 
-
-			li.item_birth{
-			
-				display: flex;
-				align-items:center;
-			}
-
-
-
-			input#password,
-			input#repassword
-			{
-				border-radius: 5px !important;;
-			}
-
-			.member_join .item {
-    	display: table !important;
-    	width: 100%;
-    	padding: 1em;
-    	border-bottom: 1px solid #000;
-    	min-height: 5.813em;
-    }
-    
-
-		.t{
-			/* s */
-			padding:0px;
+		#nav{
+			margin-right: 130px;
 		}
-
-	
-
-		div.tel_cont {
-    display: flex;
-    flex-direction: row !important;
-}
-
-#nav{
-	margin-right:120px;
-}
-input[type="date"]::-webkit-clear-button, input[type="date"]::-webkit-inner-spin-button { 
- display: none; 
-} 
-
-input[type="date"] { 
-		display: table !important;
-    	width: 100%;
-    	padding: 1em;
-    	border-bottom: 1px solid #000;
-    	min-height: 3.75em;
-    	border-radius: 5px ;
-}
-
-		</style>
+ 	 .member_join .add .a2 > span:first-child{float: left; width: 57.5%}
+	.member_join .add .a2 .r{width:37.5%} 
+	</style>
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
 
-			<!-- Header -->
-			<section id="header">
+				<!-- Header -->
+				<section id="header">
 			
-				<!-- Logo -->
-					
-				<!-- Nav -->
-					<nav id="nav">
-						<!-- left -->
-						<ul id="header_left">
-							<li class="current">
-								<a href="page1.html">공연정보</a>
-								<ul>
-									<li><a href="page1.html">공연일정</a></li>
-									<!-- <li><a href="calendar.html">일정조회</a></li> -->
-									<!-- <li><a href="#">예매</a></li> -->
-									<li><a href="page2.html">공연정보상세보기</a></li>
-									<li><a href="page7.html">좌석배치도</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="">예매정보</a>
-								<ul>
-									<li><a href="subpage-ticketmethod.html">티켓구입방법</a></li>
-									<li><a href="subpage-ticketreceive.html">티켓수령방법</a></li>
-									<li><a href="subpage-ticketcancel.html">예매취소,변경안내</a></li>
-									<li><a href="subpage-ticketprovision .html">예매약관</a></li>					
-								</ul>
-							</li>
-							<li>
-								<a href="page9.html">고객센터</a>
-								<ul>
-									<li><a href="page9.html">FAQ</a></li>
-									<li><a href="#">관람예절</a></li>				
-								</ul>
-							</li>
-							<li><a href="subpage-way.html">오시는 길</a></li>
-							
-							
-						</ul>
-
-						<ul id="header_center">
-							<h1 id="logo">
-								<a href="index.html">
-								우신문화회관
-								</a>
-								</h1>	
-							
-						</ul>
-
-						<!--right  -->
-						<ul id="header_right">
-							<li class="current"><a href="login.html">LOGIN</a></li>
-							<li><a href="ticket.html">티켓</a></li>
-							<li class="calender">
-								<a href="calendar.html">
+					<!-- Logo -->
+						
+					<!-- Nav -->
+						<nav id="nav">
+							<!-- left -->
+							<ul id="header_left">
+								<li class="current">
+									<a href="page1.html">공연정보</a>
+									<ul>
+										<li><a href="page1.html">공연일정</a></li>
+										<!-- <li><a href="calendar.html">일정조회</a></li> -->
+										<!-- <li><a href="#">예매</a></li> -->
+										<li><a href="page2.html">공연정보상세보기</a></li>
+										<li><a href="page7.html">좌석배치도</a></li>
+									</ul>
+								</li>
+								<li>
+									<a href="">예매정보</a>
+									<ul>
+										<li><a href="subpage-ticketmethod.html">티켓구입방법</a></li>
+										<li><a href="subpage-ticketreceive.html">티켓수령방법</a></li>
+										<li><a href="subpage-ticketcancel.html">예매취소,변경안내</a></li>
+										<li><a href="subpage-ticketprovision .html">예매약관</a></li>					
+									</ul>
+								</li>
+								<li>
+									<a href="page9.html">고객센터</a>
+									<ul>
+										<li><a href="page9.html">FAQ</a></li>
+										<li><a href="subpage-manner.html">관람예절</a></li>				
+									</ul>
+								</li>
+								<li><a href="subpage-way.html">오시는 길</a></li>
+								
+								
+							</ul>
+	
+							<ul id="header_center">
+								<h1 id="logo">
+									<a href="index.html">
+									우신문화회관
+									</a>
+									</h1>	
+								
+							</ul>
+	
+							<!--right  -->
+							<ul id="header_right">
+								<li class="current"><a href="login.html">LOGIN</a></li>
+								<li><a href="ticket.html">티켓</a></li>
+								<li class="calender">
+									<a href="calendar.html">
+										<span class="material-symbols-outlined md_20">
+											calendar_month
+											</span>
+								 </a>
+								</li>
+								<li class="search_icon"><a href="#">
 									<span class="material-symbols-outlined md_20">
-										calendar_month
+										search
 										</span>
-							 </a>
-							</li>
-							<li class="search_icon"><a href="#">
-								<span class="material-symbols-outlined md_20">
-									search
-									</span>
-							</a></li>
-						</ul>
-					</nav>
-
+								</a></li>
+							</ul>
+						</nav>
 
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
 						<div id="sut-t_wrap">
 						<h2 id="sub-t">
-							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">회원가입</strong>
+							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">회원정보 수정</strong>
 						</h2>
 					</div>
 					</section>
@@ -192,58 +145,64 @@ input[type="date"] {
 				
 				</section>
 
-		<!-- 로그인 영역 -->
-		<div id="depth_w">
-			<div class="inner">
-				<ul class="clrearfox dot dep1 li2">
-					<li class="home">
-						<span>
-							<span>HOME</span>
-						</span>
-					</li>
-					<li>
-						<div class="rel">
-							<a href="#">
-								<span>회원서비스</span>
-							</a>
-							<!-- display:none -->
-							<ul class="depth" >
-								<li>
-									<a href="page1.html">공연정보</a>
+					<!-- 로그인 영역 -->
+					<div id="depth_w">
+						<div class="inner">
+							<ul class="clrearfox dot dep1 li2">
+								<li class="home">
+									<span>
+										<span>HOME</span>
+									</span>
 								</li>
 								<li>
-									<a href="subpage-ticketmethod.html">예매정보</a>
+									<div class="rel">
+										<a href="memberMng.html">
+											<span>마이페이지</span>
+										</a>
+										<!-- display:none -->
+										<ul class="depth" >
+											<li>
+												<a href="memberMng.html">
+													<span>마이페이지</span>
+												</a>
+											</li>
+											<li>
+												<a href="page1.html">공연정보</a>
+											</li>
+											<li>
+												<a href="subpage-ticketmethod.html">예매정보</a>
+											</li>
+											<li>
+												<a href="page9.html">고객센터</a>
+											</li>
+											<li>
+												<a href="subpage-way.html">오시는길</a>
+											</li>
+										</ul>
+									</div>
 								</li>
 								<li>
-									<a href="subpage-FAQ1.html">고객센터</a>
-								</li>
-								<li>
-									<a href="subpage-way.html">오시는길</a>
+									<li>
+										<div class="rel">
+										<a href="mypage.html"><span>회원정보 수정</span></a>
+										<ul class="depth">
+										<li><a href="memberMng.html" ><span>개인화서비스</span></a></li>
+										<li><a href="subpage-FAQ1.html" ><span>FAQ</span></a></li>
+										<li><a href="mypage.html" ><span>회원정보 수정</span></a></li>
+										<li><a href="find_password.html" ><span>예매내역 확인·취소</span></a></li>
+										
+								
+										</ul>
+										</div>
+									</li>
+								
 								</li>
 							</ul>
 						</div>
-					</li>
-					<li>
-						<li>
-							<div class="rel">
-							<a href="signup.html"><span>회원가입</span></a>
-							<ul class="depth">
-							<li><a href="login.html" ><span>로그인</span></a></li>
-							<li><a href="signup.html" ><span>회원가입</span></a></li>
-							<li><a href="find_id.html" ><span>아이디 찾기</span></a></li>
-							<li><a href="find_password.html" ><span>패스워드 찾기</span></a></li>
 						
-							</ul>
-							</div>
-						</li>
-					
-					</li>
-				</ul>
-			</div>
+						</div>
 
-		</div>
-			<!-- 로그인 영역끝 -->
-				
+
 				<script>
 					$(window).resize(function(){
 						if ( $(window).width() > 1024 ){
@@ -282,316 +241,147 @@ input[type="date"] {
 				
 						var len = $(".tabs-st1 li").length;
 						$(".tabs-st1").addClass("li"+len);
-						</script>
-				
-						<div class="sub_page">
-						
-				
-				
-				
-				
-						
-			
-						</ul>
-					</div>
-				</div>
-				<script>
-				$(window).resize(function(){
-					if ( $(window).width() > 1024 ){
-						$("#depth_w .rel").hover(function(){
-							$(this).closest("#depth_w").addClass("on")
-							$(this).find(".depth").show();
-						},function(){
-							$(this).closest("#depth_w").removeClass("on")
-							$(this).find(".depth").hide();
-						})
-						$("#depth_w .rel > a").focus(function(){
-							$(this).closest("#depth_w").addClass("on")
-							$(this).next(".depth").show();
-						})
-						$("#depth_w .depth > li:last-child a").focusout(function(){
-							$(this).closest("#depth_w").removeClass("on")
-							$("#depth_w .depth").stop(true,true).slideUp(150);
-						})
-					}else {
-						$("#depth_w .rel").click(function(){
-							$(this).closest("#depth_w").toggleClass("on")
-							$(this).find(".depth").toggle();
-						})
-					}
-				}).resize();
 				</script>
-			<div id="cont">
-				<div id="sub_page">
-					<div class="inner">
-						
-					</div>
-			
-					<script>
-					var loc = $("#depth_w > div > ul > li").length - 1;
-					$("#depth_w .dep1").addClass("li"+loc);
-			
-					var len = $(".tabs-st1 li").length;
-					$(".tabs-st1").addClass("li"+len);
-					</script>
-			
-					<div class="sub_page">
-					
-			
-			
-			
-			
-			
-			
-			<script src="/static/commons/js/validUtil.js"></script>
-			
-			
-			
+			 	<!-- 유효성검사 -->
+			<script>	
+				/* 유효성검사 */
+					$(function(){
+						$("#btnModify").click(function(){
+							$("#mypageboard").submit();  
+										});//click
+										
+							});//ready
 				
 			
-			
-			
-			<script src="/static/jslibrary/miya_validator.js"></script>
-			<script type="text/javascript">
+					
+				
+					function check(){
+						var name=$("#memberName").val();
+						if(name.trim()==""){
+							alert("이름을 입력해주세요.")
+							$("#memberName").focus();
+							return false;
+						}//name
+						
+						/* 생년월일 생각하기*/
+						
+					
+						
+						
+						var gender=$("#genderFlag").val();
+						if(gender.trim()==""){
+							alert("성별을 선택해주세요.");
+							$("#genderFlag").focus();
+							return false ;
+						}//gender
+						
+						
+						
+						var zipcode=$("#memberZipCd").val();
+						if(zipcode.trim()==""){
+							alert("우편번호를 입력해주세요..");
+							$("#memberZipCd").focus();
+							return false ;
+						}//zipcode
+							
+						var addr1=$("#memberAddr1").val();
+						if(addr1.trim()==""){
+							alert("주소를 입력해주세요..");
+							$("#memberAddr1").focus();
+							return false ;
+						}//addr1
+						var addr2=$("#memberAddr2").val();
+						if(addr2.trim()==""){
+							alert("주소를 입력해주세요..");
+							$("#memberAddr2").focus();
+							return false ;
+						}//addr2
+						
+						var email1=$("#memberEmail1").val();
+						var email2=$("#memberEmail2").val();
+						if(email1.trim()==""){
+							alert("이메일을 입력해주세요.");
+							$("#memberEmail1").focus();
+							return false ;
+						}//email
+						
+						
+					
+						
+						if(email2.trim()==""){
+							alert("도메인을 입력해주세요.");
+							$("#memberEmail2").focus();
+							return false ;
+						}//email
+							
+						var phone=$("#phone").val();
+						if(phone.trim()==""){
+							alert("휴대폰 번호를 입력해주세요.");
+							$("#phone").focus();
+							return false ;
+						}//phone
+						
 
-			/* 회원가입 유효성 검사 */
-			$(function(){
-				$("#btnSignup").click(function(){
-					/* $("#board").submit(); */
-						check(); 
+						var mailChk =$(':radio[name=mailChk]:checked' );
+						if(mailChk.length<1){
+							alert("메일수신여부를 체크해주세요.");
+							return false;
+							
+						}//mailChk
 						
+						var smsChk =$(':radio[name=smsChk]:checked' );
+						if(smsChk.length<1){
+							alert("SMS수신여부를 체크해주세요.");
+							return false;
+							
+						}//smsChk
+						
+					 	if(confirm("수정하시겠습니까?")){
+					 		 $("#mypageboard").submit();  
+						}//confirm 
+						
+					}//check				
 					
-				});//click
-				
-				
-				
-				$("#repassword").focusout(function(){
-					//비밀번호와 비밀번호 확인의 값이 같은지를 비교
-					chkPass();
-				});//pass
-				
-				
-			});//ready
-			
-			function chkPass(){
-				var pass1=$("#password").val();
-				var pass2=$("#repassword").val();
-				
-				var flag=false;
-				if(pass1 != pass2){
-					flag=true;
-					$("#passMsg").html("비밀번호와 비밀번호확인 일치하지 않습니다.");
-					for(var i= 0 ; i < 5 ; i++){
-						$("#passMsg").fadeIn(500).fadeOut(500);
-					}//end for
 	
-					$("#password").focus();
-				}//end if
-				return flag;
-			}//chkPass
-			
-			
-			/*회원가입 유효성 검사  */
-		 function check(){
 				
-				 frm=document.board;
-				var name=$("#memberName").val();
-				if(name.trim()==""){
-					alert("이름을 입력해주세요.")
-					$("#memberName").focus();
-					return false;
-				}//name
-				
-				var id=$("#memberId").val();	
-				if(id.trim()==""){
-					alert("아이디를 입력해주세요.");
-					$("#memberId").focus();
-					return false;
-				}
-
-		
-				
-				//아이디 특수문자 제외 영문,숫자 4~20자이내+중복검사 필수
-				 if(!id.match('^[a-zA-Z0-9]{4,20}$')) {
-						 alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 사용 가능합니다.');
-						$('#memberId').focus();
-						 return false;
-					 }//idcheck
-				
-				
-				if(frm.chkmemberIdYN.value=="N"){
-					alert("아이디 중복검사를 해주세요.");		
-					$('#memberId').focus();
-					return false;
-				}//idcheck
-				
-				var pass=$("#password").val();
-				var pass2=$("#repassword").val();
-				
-				if(pass.trim()==""){
-					alert("비밀번호를 입력해주세요.");
-					$("#password").focus();
-					return false;
-				}
-				 var num = pass.search(/[0-9]/);
-				 var eng = pass.search(/[a-zA-Z]/);
-				 var spe= pass.search(/[~!@#$%^&*()_+|<>?:{}]/); 
-					//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
-					if(pass.length < 7 || pass.length > 21){
-							  alert("8자리 ~ 21자리 이내로 입력해주세요.");
-							  $("#password").focus();
-							  return false;
-						}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
-							  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
-							  $("#password").focus();
-							  return false;
-						}
-				 
-				 if(pass2!=pass){
-					 alert("비밀번호를 다시 확인해주세요.")
-					$("#repassword").focus();
-					 return false;
-				 }
-				 
-				if(pass2.trim()==""){
-					alert("비밀번호를 한번 더 확인해주세요.")
-					$("#repassword").focus();
-					
-					return false;
-				}//pass2
-			
-				
-			var birth=$("#datepicker").val();	
-				if(birth.trim()==""){
-					alert("생년월일을 입력해주세요.");
-					$("#datepicker").focus();
-					return false ;
-				}//
-				
-			var gender=$("#genderFlag").val();
-			if(gender.trim()==""){
-				alert("성별을 입력해주세요.");
-				$("#genderFlag").focus();
-				return false ;
-			}//gender
-			
-			var zipcode=$("#memberZipCd").val();
-			if(zipcode.trim()==""){
-				alert("우편번호를 입력해주세요..");
-				$("#memberZipCd").focus();
-				return false ;
-			}//zipcode
-				
-			var addr1=$("#memberAddr1").val();
-			if(addr1.trim()==""){
-				alert("주소를 입력해주세요..");
-				$("#memberAddr1").focus();
-				return false ;
-			}//addr1
-			var addr2=$("#memberAddr2").val();
-			if(addr2.trim()==""){
-				alert("주소를 입력해주세요..");
-				$("#memberAddr2").focus();
-				return false ;
-			}//addr2
-			
-			var email=$("#memberEmail").val();
-			if(email.trim()==""){
-				alert("이메일을 입력해주세요.");
-				$("#memberEmail").focus();
-				return false ;
-			}//email
-				
-			var phone=$("#phone").val();
-			if(phone.trim()==""){
-				alert("휴대폰 번호를 입력해주세요.");
-				$("#phone").focus();
-				return false ;
-			}//phone
-			
-			var hPhone=$("#hPhone").val();
-			if(hPhone.trim()==""){
-				alert("전화번호를 입력해주세요.");
-				$("#hPhone").focus();
-				return false ;
-			}//hPhone
-			
-		
-			var mailChk =$(':radio[name=mailChk]:checked' );
-			if(mailChk.length<1){
-				alert("메일수신여부를 체크해주세요.");
-				return false;
-				
-			}//mailChk
-			
-			var smsChk =$(':radio[name=smsChk]:checked' );
-			if(smsChk.length<1){
-				alert("SMS수신여부를 체크해주세요.");
-				return false;
-				
-			}//smsChk
-			if(confirm("등록하시겠습니까?")){
-				$("#board").submit();
-				
-			}//confirm
-				
-			}//check
-			
-			
-			/* 아이디 중복검사 */
-				function idCheck(memberId){
-					frm=document.board;
-				if(memberId==""){
-					alert("아이디를 입력해주세요.");
-					$("#memberId").focus();
-					
-					return false;
-				}
-				
-				url="http://localhost/group2_prj/signUp/idCheck.jsp?memberId="+memberId;
-				window.open(url,"http://localhost/group2_prj/signUp/idCheck.jsp", "width=300, height=150")
-				$("#chkmemberIdYN").val("Y");
-				
-			}//idCheck
-			
-			/* 우편번호시작 API */
-			 function execDaumPostcode() {
-			        new daum.Postcode({
-			            oncomplete: function(data) {
-			                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-			
-			                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
-			                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-			                var roadAddr = data.roadAddress; // 도로명 주소 변수
-			                var extraRoadAddr = ''; // 참고 항목 변수
-			
-			                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
-			                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-			                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-			                    extraRoadAddr += data.bname;
-			                }
-			                // 건물명이 있고, 공동주택일 경우 추가한다.
-			                if(data.buildingName !== '' && data.apartment === 'Y'){
-			                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-			                }
-			                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-			                if(extraRoadAddr !== ''){
-			                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-			                }
-			
-			                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-			                document.getElementById("memberZipCd").value = data.zonecode;
-			                document.getElementById("memberAddr1").value = roadAddr
-			                //커서를 상세주소로 이동
-			                document.getElementById("memberAddr2").focus();
-			     
-			
-			            }
-			        }).open();
-			    }//execDaumPostcode() 
-			    
-			/* 휴대전화 하이폰 추가  */  
-			function PhoneNumber(obj) {
+							/* 우편번호시작 API */
+							 function execDaumPostcode() {
+							        new daum.Postcode({
+							            oncomplete: function(data) {
+							                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+							
+							                // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+							                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+							                var roadAddr = data.roadAddress; // 도로명 주소 변수
+							                var extraRoadAddr = ''; // 참고 항목 변수
+							
+							                // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+							                // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+							                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+							                    extraRoadAddr += data.bname;
+							                }
+							                // 건물명이 있고, 공동주택일 경우 추가한다.
+							                if(data.buildingName !== '' && data.apartment === 'Y'){
+							                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+							                }
+							                // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+							                if(extraRoadAddr !== ''){
+							                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+							                }
+							
+							                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+							                document.getElementById("memberZipCd").value = data.zonecode;
+							                document.getElementById("memberAddr1").value = roadAddr
+							                //커서를 상세주소로 이동
+							                document.getElementById("memberAddr2").focus();
+							     
+							
+							            }
+							        }).open();
+							    }//execDaumPostcode() 
+							    
+							    /* 하이픈 추가 */
+				 function PhoneNumber(obj) {
 
 				    var number = obj.value.replace(/[^0-9]/g, "");
 				    var phone = "";
@@ -686,284 +476,306 @@ input[type="date"] {
 					return false;
 				}//PhoneNumber
 		
-						    
+				//이메일 select값 넘기기
+				function EmailDomain(domain){
+					$("#memberEmail2").val(domain);
+					}		    
 
-			</script>
+							    
+			    
+			</script>	 
+				
+				
+						<div class="sub_page">
 			
+				
+				
+	<!-- 			<script src="/static/jslibrary/miya_validator.js"></script> -->
+				<!-- JSP부분 -->
+				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+				<jsp:setProperty property="*" name="mbVO"/>
+				
+				<%
+				request.setCharacterEncoding("UTF-8");
+				MemberDAO mbrDAO= MemberDAO.getInstance();
+				mbVO=mbrDAO.selectMember(mbVO.getMemberId()); %>
+				<%=mbVO%><br/>
 			
-			<!-- action="http://localhost/jsp_prj/design%20final%20intergration/signup_process.jsp" -->
-			<form name="board" id="board" method="post" action="http://localhost/group2_prj/signUp/signup_process.jsp" >
-			<!-- {(joinExtCode,K)(joinExtID,1234528163)(joinExtEmail,hojin0703@nate.com)(joinExtName,김호진)(joinExtBirthDay,)(joinExtGender,)} -->
-					<input type="hidden" id="menuNo" name="menuNo" value="200144" />
-					<input type="hidden" name="extId" id="extId" value="" />
-					<input type="hidden" name="extCode" id="extCode" value="" />
-			
-					<input type="hidden" id="stipulationType" name="stipulation_type" value="" />
-					<input type="hidden" id="effectiveDate" name="effective_date" value="" />
-			
-					<input type="hidden" id="parentName" name="parentName" value="" />
-					<input type="hidden" id="parentDupinfo" name="parentDupinfo" value="" />
-					<input type="hidden" id="parentBirthday" name="parentBirthday" value="" />
-					<input type="hidden" id="parentAuthGubun" name="parentAuthGubun" value="" />
-			
-					<input type="hidden" id="joinType" name="joinType" value="" />
-			
-					<input type="hidden" name="regIdCheckFl" value="N" />
-					<input type="hidden" name="joinTypeCode" value="0001" />
-					<input type="hidden" name="receiveSms" value="" />
-					<input type="hidden" name="receivmemberEmail" value="" />
-			
-					<input type="hidden" name="regNoDate" id="regNoDate" value="" />
-					<input type="hidden" name="dupinfo" id="dupinfo" value="" />
-					<input type="hidden" name="siteType" id="siteType" value="" />
-					
-			<article class="member_join inner member_com">
-				<div class="group">
-					<h3 class="tit-st4 rel">기본정보입력 <span class="ab f16 color-purple">* 필수 입력 값</span></h3>
-					<ul class="sect">
-						<li class="item">
-							<label for="memberName" class="t">이름 <span class="color-purple">*</span></label>
-							<div class="cont">
-								<input type="text" name="name" id="memberName" value="" />
-								<span class="txt ml">예매 등 서비스의 원활한 이용을 위해서 반드시 본명을 입력해주시기 바랍니다.</span>
-							</div>
-						</li>
-						<li class="item">
-							<label for="memberId" class="t">ID <span class="color-purple">*</span></label>
-							<div class="cont ck_id">
-								<input type="text" value="" name="memberId" id="memberId" value="" />
-								<input type="hidden" name="chkmemberIdYN" id="chkmemberIdYN" value="N" />
-								<button type="button" class="bg-black chkmemberId" onclick="idCheck(this.form.memberId.value)">중복확인</button>
-								<span class="txt ml">특수문자를 제외한 영문, 숫자 4~20자 이내</span>
-							</div>
-						</li>
-						<li class="item">
-							<label for="password" class="t">비밀번호  <span class="color-purple">*</span></label>
-							<div class="cont">
-								<input type="password" name="pwd" id="password" />
-								
-								<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내</span>
-							</div>
-						</li>
-						<li class="item">
-							<label for="repassword" class="t">비밀번호 확인  <span class="color-purple">*</span></label>
-							<div class="cont">
-								<input type="password" name="repassword" id="repassword" />
-								<span class="txt ml">확인을 위해 한번 더 입력하시기 바랍니다.</span>
-								<span id="passMsg" style="color:#FF0000"></span>
-							</div>
-						</li>
-						<li class="item item_birth" >
-							<label  class="t">생년월일  <span class="color-purple">*</span></label>
-							<!-- <strong class="t">생년월일  <span class="color-purple">*</span></strong> -->
-							<div class="cont">
-								<div class="birth_w clearfix">
-									<ul class="clearfix birth">
-											<li>
-											<p><input type="date" name="birth" id="datepicker"  style="width:320px;" /></p>
-											</li>
-									</ul>
-			
+				
+			<form name="board" id="mypageboard" method="post"  action="http://localhost/group2_prj/mypage/mypage_process.jsp">
+				<input type="hidden" id="menuNo" name="menuNo" value="200168" />
+				<article class="member_join inner mypage_inner">
+					<div class="group">
+						<h3 class="tit-st4 rel">기본정보입력 <span class="ab f16 color-purple">* 필수 입력 값</span></h3>
+						<ul class="sect">
+							<li class="item">
+								<label for="name" class="t">이름 <span class="color-purple">*</span></label>
+								<div class="cont">
+									<div class="btn-member_w dib">
+										<input type="text" value=<%=mbVO.getName()%> name="name" id="memberName"  />
+										
+									</div>
 								</div>
-							</div>
-			
-						</li>
-						<!-- <li class="item manAgeSet" style="display: none">
-							<label for="parent" class="t">부모님동의 <span class="color-purple">*</span></label>
-							<div class="cont">
-								<span class="txt">만 14세 미만의 어린이는 보호자 동의가 필요합니다.</span>
-								<button type="button" class="bg-black" onclick="javascript:checkPlusPopup();return false;">부모님 휴대전화 인증</button>
-							</div>
-						</li> -->
-						<li class="item">
-							<label for="genderFlag" class="t">성별 <span class="color-purple">*</span></label>
-							<div class="cont">
-								<select name="gender" id="genderFlag" class="small">
-									<option value="">성별</option>
-									<option value="남자" >남자</option>
-									<option value="여자" >여자</option>
-								</select>
-							</div>
-						</li>
-						<li class="item">
-							<label class="t">주소 <span class="color-purple">*</span></label>
-							<!-- <strong class="t">주소 <span class="color-purple">*</span></strong> -->
-							<div class="cont">
-								<ul class="add">
-									<li class="clearfix a1">
-										<div class="zipcode">
-											<label for="memberZipCd" class="hide">우편번호</label>
-											<input type="text" name="zipcode" id="memberZipCd" value="" /> 
-											<button id="addrBtn" type="button" class="bg-black" title="새창으로 열립니다." onclick="execDaumPostcode()">우편번호 찾기</button>
-											
-										</div>
-									</li>
-									<li class="clearfix a2">
-										<span class="l">
-											<label for="memberAddr1" class="hide">주소</label>
-											<input type="text" name="addr1" id="memberAddr1" value="" />
-										</span>
-										<span class="r">
-											<label for="memberAddr2" class="hide">나머지 주소</label>
-											<input type="text" name="addr2" id="memberAddr2" value="" class="long" />
-										</span>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="item">
-							<label class="t">이메일<span class="color-purple">*</span></label>
-							<!-- <strong class="t">이메일 <span class="color-purple">*</span></strong> -->
-							<div class="cont">
-								<ul class="memberEmail clearfix">
-									<li class="e1"><label for="memberEmail" class="hide">이메일 </label>
+							</li>
+							<li class="item">
+								<label for="id" class="t">ID <span class="color-purple">*</span></label>
+								<div class="cont">
+									<input type="text" value=<%=mbVO.getMemberId()%> name="memberId" id="id" readonly />
+								</div>
+							</li>
+							<%		
+								Calendar cal=Calendar.getInstance();
+									session.setAttribute("year", Calendar.getInstance().get(Calendar.YEAR));
+									session.setAttribute("month", Calendar.getInstance().get(Calendar.MONTH+1));
+									session.setAttribute("lastDay", Calendar.getInstance().getActualMaximum(Calendar.DATE));
+									session.setAttribute("day", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+									
+									/* 생일 년 월 일 3등분하기 */
+									String birth = mbVO.getBirth();
+									String birth1=birth.substring(0,birth.indexOf("-"));
+									String birth2=birth.substring(birth.indexOf("-")+1,birth.lastIndexOf("-"));
+									String birth3=birth.substring(birth.lastIndexOf("-")+1,birth.length());
+								
+									/* el사용하기위해서 넣기 */
+									pageContext.setAttribute("bYear", birth1);
+									pageContext.setAttribute("bMonth", birth2);
+									pageContext.setAttribute("bDay", birth3);
+									
+									
+									
+									
+							%>
+							
+							
+							
+							<li class="item">
+								<label class="t">생년월일 <span class="color-purple">*</span></label>
+								<!-- <strong class="t">생년월일  <span class="color-purple">*</span></strong> -->
+								<div class="cont birth_cont">
+									<div class="birth_w clearfix">
+				
+									 
+										<ul class="clearfix birth">
+											<li>
+												<label for="birthdayYear" class="hide">연도 선택</label>
+												<select name="birthdayYear" id="birthdayYear">
+													 <c:forEach var="year" begin="1950" end="${year }" step="1">
+ 															<option value="${year}" ${ year eq bYear?" selected='selected'":"" } ><c:out value="${year}"/></option>
+													</c:forEach>
+												</select>
+												<span>년</span>
+											</li>
+											<li>
+												<label for="birthdayMonth" class="hide">월 선택</label>
+												<select name="birthdayMonth" id="birthdayMonth" readonly>
+													 <c:forEach var="month" begin="1" end="12" step="1">
+														 <option value="${month}"${ month eq bMonth?" selected='selected'":"" }><c:out value="${month}"/></option>
+															
+													</c:forEach>
+												</select>
+												<span>월</span>
+											</li>
+											<li>
+												<label for="birthdayDay" class="hide">일 선택</label>
+												<select name="birthdayDay" id="birthdayDay">
+													<c:forEach var="day" begin="1" end="${lastDay}" step="1">
+														<option value="${day }" ${ day eq bDay?" selected='selected'":"" }><c:out value="${day}"/></option>
+													</c:forEach>
+												</select>
+												<span>일</span>
+											</li>
+										</ul>
+										<input type="hidden" name="birthDay" id="birthDay" value="19970103" />
+										<input type="hidden" name="birthMonth" id="birthMonth" value="0103" />
+				
+										<!-- <div class="solar ck_com birth_solar">
+											<input type="radio" name="lunarFlag" id="lunarFlag1" value="N" checked="checked" /> 
+											<label for="lunarFlag1">양력</label>
+											<input type="radio" name="lunarFlag" id="lunarFlag2" value="Y"  /> 
+											<label for="lunarFlag2">음력</label>
+										</div> -->
+									
+
+									</div>
+								</div>
+							</li>
+							<li class="item">
+								<label for="genderFlag" class="t">성별 <span class="color-purple">*</span></label>
+								<div class="cont">
+									<select name="gender" id="genderFlag" class="small" >
+										<option value="남자" 
+										<%if(mbVO.getGender().equals("남자")){%>selected="selected"<%}%>>남자</option>
+										<option value="여자" 
+											<%if(mbVO.getGender().equals("여자")){%>selected="selected"<%}%> >여자</option>
+									</select>
+								</div>
+							</li>
+							<li class="item">
+								<label class="t">주소 <span class="color-purple">*</span></label>
+								<div class="cont">
+									<ul class="add">
+										<li class="clearfix a1">
+											<div class="zipcode">
+												<label for="memberZipCd" class="hide">우편번호</label>
+												<input type="text" name="zipcode" id="memberZipCd" value="<%=mbVO.getZipcode() %>"  readonly /> <button id="addrBtn" type="button" class="bg-black"  onclick="execDaumPostcode()">우편번호 찾기</button>
+												
+											</div>
+											<!-- <div class="select ck_com">
+												<input type="radio" name="defaultContact" id="defaultContact1" value="P" checked="checked" /> <label for="defaultContact1">자택 </label>
+												<input type="radio" name="defaultContact" id="defaultContact2" value="C"   /> <label for="defaultContact2">직장</label>
+											</div> -->
+										</li>
+										<li class="clearfix a2"><!--login.css 수정 -->
+											<span class="l">
+												<label for="memberAddr1" class="hide">주소</label>
+												<input type="text"  value="<%=mbVO.getAddr1()%>" name="addr1" id="memberAddr1"/>
+											</span>
+											<span class="r">
+												<label for="memberAddr2" class="hide">나머지 주소</label>
+												<input type="text" name="addr2" id="memberAddr2" value="<%=mbVO.getAddr2()%>" class="long" />
+											</span>
+										</li>
+									</ul>
+								</div>
+							</li>
+							<li class="item">
+								<% String email =mbVO.getEmail();
+									 String email1=email.substring(0,email.indexOf("@"));
+									 String email2=email.substring(email.indexOf("@")+1,email.length());
+									 
+									 
+								%>
+								
+							
+							
+								<label class="t">이메일<span class="color-purple">*</span></label>
+								<div class="cont">
+									<ul class="email clearfix">
+										<li class="e1"><label for="memberEmail1" class="hide">이메일 아이디</label><input type="text" name="email1" id="memberEmail1" value="<%=email1 %>" /></li>
+										<li class="dash">@</li>
+										<li class="e2"><label for="memberEmail2" class="hide">이메일 주소</label><input type="text" name="email2" id="memberEmail2" value="<%=email2 %>" class="long" /></li>
+										<li class="e3"><label for="email3" class="hide">이메일 주소 선택</label>
 										
+										<%String emailData="naver.com,hanmail.net,gmail.com,yahoo.com,nate.com,hotmail.com,korea.com"; 
+												pageContext.setAttribute("emailData", emailData);%>
+										<select name="emailDomain" id="emailDomain"  onclick="EmailDomain(this.value);">
+											<option value="">직접입력</option>
+												 <c:forTokens var="data" items="${emailData}"  delims=" ,">
+												<option value="${data}" >
+												<c:out value="${data}"/>
+												</option>
+											</c:forTokens>
+										</select>
+										<input type="hidden" name="memberEmail" id="memberEmail" value="seb103@naver.com" />
 										
-											<input type="text" name="email" id="memberEmail" value="" />
-										
-			
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="item">
-							<label class="t">휴대폰<span class="color-purple">*</span></strong></label>
-							<!-- <strong class="t">휴대폰  <span class="color-purple">*</span></strong> -->
-							<div class="cont tel_cont">
-								<div class="tel_w">
-								<ul class="clearfix tel">
+										</li>
+									</ul>
+				
+								</div>
+							</li>
+							<li class="item">
+								<label class="t">휴대폰 <span class="color-purple">*</span></label>
+								<div class="cont">
+									<div class="tel_w">
+									
+				
+									<ul class="clearfix tel">	
 									<li>
 										<label for="tel3" class="hide">휴대폰</label>
-										<input type="text" onkeyup="PhoneNumber(this)" id="phone" name="phone" class="small"  maxlength="13" style="width:320px;"  />
+										<input type="text" value=<%=mbVO.getPhone()%> onkeyup="PhoneNumber(this)" id="phone" name="phone" class="small"  maxlength="13" style="width:320px;"  />
 									</li>
-								</ul>
+										
+									</ul>
 								
-								<input type="hidden" name="memberCel" id="memberCel" value="">
+									</div>
+									<input type="hidden" name="memberCel" id="memberCel" value="010-4807-1274" />
+									<input type="hidden" name="memberCelOri" id="memberCelOri" value="010-4807-1274" />
+									<input type="hidden" name="changeCel" id="changeCel" value="0" />
+									<!-- <div class="tel_confirm" style="margin-top:10px;">
+										<label for="smsAuthNumber" class="hide">인증번호 입력</label>
+										<input type="text" name="smsAuthNumber" id="smsAuthNumber" placeholder="인증번호 6자리 숫자 입력" maxlength="6"/>
+										<input type="hidden" name="serverAuth" id="serverAuth" />
+									</div> -->
 								</div>
-								<!-- <div class="tel_confirm" style="margin-top:10px;">
-									<label for="smsAuthNumber" class="hide">인증번호 입력</label>
-									<input type="text" name="smsAuthNumber" id="smsAuthNumber" placeholder="인증번호 6자리 숫자 입력" maxlength="6"/>
-									<input type="hidden" name="serverAuth" id="serverAuth" />
-								</div> -->
-							</div>
-						</li>
-						<li class="item">
-							<label class="t">전화번호<span class="color-purple">*</span></label>
-							<div class="cont">
-								<ul class="clearfix tel">
+							</li>
+							<li class="item">
+								<label class="t">전화번호</label>
+								<div class="cont">
 									
-									<li>
+				
+									<ul class="clearfix tel">
+										<li>
 										<label for="memberTel3" class="hide">전화번호</label>
-										<input type="text" onkeyup="hPhoneNumber(this)" name="hPhone" id="hPhone" class="small" value=""  maxlength="13" style="width:320px;" />
+										<input type="text" value=<%=mbVO.gethPhone()%> onkeyup="hPhoneNumber(this)" name="hPhone" id="hPhone" class="small" value=""  maxlength="13" style="width:320px;" />
 									</li>
-								</ul>
-								<input type="hidden" name="memberTel" id="memberTel" value="" />
-							</div>
-						</li>
-						
-					</ul>
+									</ul>
+									<input type="hidden" name="memberTel" id="memberTel" value="031-764-1374" />
+								</div>
+							</li>
+
+							<!--------------------------------------------------------------------------------------->
+
+						<!------------------------------------------------------------------------------------------>
+					</div>
+				
 					<div class="agree_w f18">
 						<dl>
 							<dt class="bul-dot b">우신문화회관에서 제공하는 정보를 메일로 받아보시겠습니까?</dt>
 							<dd class="ck_com">
-							
-								<input type="radio" name="mailChk" id="agree1"  value="Y" />
-								 <label for="agree1" class="radio_lab lab_left lab_w">예</label>
-							
-								<input type="radio" name="mailChk" id="agree2"  value="N" />
-								 <label for="agree2" class="radio_lab">아니오</label>
-								 
+								<input type="radio" name="mailChk" id="emailFlag1" value="Y" 
+								<%if(mbVO.getMailChk().equals("Y")){%>checked="checked"<%}%>/><label for="emailFlag1">예</label>
+								<input type="radio" name="mailChk" id="emailFlag2" value="N"
+								<%if(mbVO.getMailChk().equals("N")){%>checked="checked"<%}%> /> <label for="emailFlag2">아니오</label>
 							</dd>
 						</dl>
 						<dl>
 							<dt class="bul-dot b">우신문화회관에서 제공하는 정보를 SMS 서비스로 받아보시겠습니까? </dt>
 							<dd class="ck_com">
-								<input type="radio" name="smsChk" id="agreeSms1"  value="Y" /> 
-								<label for="agreeSms1" class="radio_lab lab_left">예</label>
-								<input type="radio" name="smsChk" id="agreeSms2"  value="N" /> 
-								<label for="agreeSms2" class="radio_lab">아니오</label>
+								<input type="radio" name="smsChk" id="smsFlag1" value="Y" 
+								<%if(mbVO.getSmsChk().equals("Y")){%>checked="checked"<%}%>
+								 /> <label for="smsFlag1">예</label>
+								<input type="radio" name="smsChk" id="smsFlag2" value="N" 
+								<%if(mbVO.getMailChk().equals("N")){%>checked="checked"<%}%>
+									 /> <label for="smsFlag2">아니오</label>
 							</dd>
 						</dl>
 					</div>
 				
-					<div class="bbs-btn_w clearfix tac">
-						<button type="button" class="bbs-btn-st2 bg-purple3"id="btnSignup" >등록</button>
-						<button type="button" class="bbs-btn-st2 bg-black_r" id="btnSignupC">취소</button>
+					<div class="bbs-btn_w clearfix tac flr mt">
+						<span class="fl">
+						<a href="http://localhost/group2_prj/mypage/quitmember.jsp" alt="회원탈퇴">	
+						<button type="button" class="bbs-btn-st2 bg-black_r" id="memberX">회원탈퇴</button>
+					  </a>
+						</span>
+				
+						<span class="fr">
+						<button type="button" class="bbs-btn-st2 bg-purple3" id="btnModify">수정</button>
+						<button type="button" class="bbs-btn-st2 bg-black_r"  id="btnCancel">취소</button>
 						
+					
+						</span>
 					</div>
-
-				</div>	
 				</article>
-				
 				</form>
-
+				
+<!-- <input type="button" value="취소" class="layerClose bbs-btn-st2 bg-black_r" style="margin-left: 1px;" />
+								</div>
+								
+								
+							</div> -->
+					
+				<form name="form_chk" method="post">
+					<input type="hidden" name="m" value="checkplusSerivce">						<!-- 필수 데이타로, 누락하시면 안됩니다. -->
+					<input type="hidden" name="EncodeData" value="AgAFRzY2OTkxiUeD2IqBlWxs7T6Hd/93lQkcpPK5ydWZzOh9NfhWsEGBS6kaH0geIGMa2q9CDDCTXGOxZ9e14WVJQFZLRNW3iHW2irARFS7GL+GDpZ7FIyBA2Yhtpuk9Ub+Pjmg+PeCztSSPCZr8k82c6WlpIuxrQDHOHMrxsCzVaQ4S8pXbQI60nwqYGcPnMqtx4EzDLUMfTAYuNaRQHU2CMtCaRtDaD1am4tl7uRbQ+222GbzMtHGFLkU9ZprWiYTWFUkO9zvJsfCljUH3UpAyDoDMdoVFq9s6tSzFAwQ/RDvGuywNH+Ao4iUQn50VuCsFie5lwbXSuNmU19mEb2B3TpRVIUFfTu+9aEhr/Xzx8lYY+1v6KBkPEHWvHYPlY9lQIogpwhCoIRA6nxqPi9uMaUBnGq+JDQxvRurU6mIHucMgxsTADPfJlxz0vxZpv6Itbxc95t8BiCIp9/ky8QxCWQD6TRPRnFEPlNLPMkgoSXvgfjQ3Hw==">		<!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
+				</form>
+				<input type="hidden" id="memberNo" value="2220278572">
+				<input type="hidden" id="userId" value="seb103">
 				
 			
-			
-			<form name="form_chk" method="post">
-				<input type="hidden" name="m" value="checkplusSerivce">						<!-- 필수 데이타로, 누락하시면 안됩니다. -->
-				<input type="hidden" name="EncodeData" value="AgAFRzY2OTlecEucLY2x581zMvmVX/R9ejFU7qHruF5GRJQ6lDw2qEGBS6kaH0geIGMa2q9CDDCTXGOxZ9e14WVJQFZLRNW3IIiTjXqIBrbFgHSBQk/n7Obw4eGFPegyMxnjcR4cf1YSkT0CXRsreRN6wIFG9k+8BXYrk3jjCWzZB0TQc22KP0s6cBn66cQY+LmhWxlAYFFxqp+EgqwAKXZ++D67/zSJ3nt7r9gcyuyVrrKHByQLY4arAKr1kOrYLSxdyxgBPi+lN3+L50sz0CaMIXuIM0kOB+Tp9Y83cpK/WFb6DbEcZKFJ5rYEeJczS+heVlyM9NaUX+qqaNQ/8O66htABY3NOSLYDbvRQ2klwY/RJ9dqYIm5ck14r+VnB5+X1AOrY0t1vv3se0dVydB+XcbgCbwVcWU1cJ+xLX0Kj6oS65Rr2Ni6cCmrb6sJFJEys7ypnHrykqz7SzpGzjpNUXohHhALSrwOE7eOkA78yFTeiPSSDOw==">		<!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
-			</form>
-			
-			<script>
-				function isKid(birthday) {
-					var nowage = birthday;
-					var now = new Date();
-					var year = now.getFullYear();
-					var mon = (now.getMonth() + 1) > 9 ? '' + (now.getMonth() + 1) : '0' + (now.getMonth() + 1);
-					var day = now.getDate() > 9 ? '' + now.getDate() : '0' + now.getDate();
-					var todays = year + mon + day;
-					var dif = todays - parseInt(nowage) - 140000;
-			
-					if (dif >= 0) {
-						return false;
-					} else {
-						return true;
-					}
-				}
-				function isDate(dayStr) {
-					var valid = false;
-					if(dayStr.search(/\d{4}-(0[1-9]|1[0-2])-([0-3][0-9])/)==0) {
-						var arrDay = dayStr.split("-");
-						var year = parseInt(arrDay[0]);
-						var month = parseInt(arrDay[1].replace(/^0(\d)/g,"$1"));
-						var day = parseInt(arrDay[2].replace(/^0(\d)/g,"$1"));
-						var d = new Date(year,month-1,day);
-						if(d.getMonth() == month-1 && d.getDate() == day ) valid = true ;
-					}
-					return valid;
-				}
-			
-				function lpad(val, padLength, padString){
-					while(val.length < padLength){
-						val = padString + val;
-					}
-					return val;
-				}
-			
-				$('[name=birthdayYear], [name=birthdayMonth], [name=birthdayDay]').change(function(event) {
-					if (isDate($('[name=birthdayYear]').val() + '-' + lpad($('[name=birthdayMonth]').val(),2,'0') + '-' + lpad($('[name=birthdayDay]').val(),2,'0')))
-					{
-						if (isKid($('[name=birthdayYear]').val() + '' + lpad($('[name=birthdayMonth]').val(),2,'0') + '' + lpad($('[name=birthdayDay]').val(),2,'0')))
-						{
-							$('.manAgeSet').show()
-						}
-						else{
-							$('.manAgeSet').hide()
-						}
-					}
-					else{
-						$('.manAgeSet').hide()
-					}
-				});
-			
-			</script>
-			
-			
+						</div>
 					</div>
-				</div>
-			
-			</div><!-- #cont -->
+				
+				</div><!-- #cont -->
 
 				<!----------------------------------------------여기서부터 끝까지 footer-------------------------------------------->
 

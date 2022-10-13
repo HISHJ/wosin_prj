@@ -567,7 +567,7 @@
 											</li>
 											<li>
 												<label for="birthdayMonth" class="hide">월 선택</label>
-												<select name="birthdayMonth" id="birthdayMonth">
+												<select name="birthdayMonth" id="birthdayMonth" readonly>
 													 <c:forEach var="month" begin="1" end="12" step="1">
 														 <option value="${month}"${ month eq bMonth?" selected='selected'":"" }><c:out value="${month}"/></option>
 															
@@ -653,7 +653,7 @@
 									<ul class="email clearfix">
 										<li class="e1"><label for="memberEmail1" class="hide">이메일 아이디</label><input type="text" name="email1" id="memberEmail1" value="<%=email1 %>" /></li>
 										<li class="dash">@</li>
-										<li class="e2"><label for="memberEmail2" class="hide">이메일 주소</label><input type="text" name="email2" id=memberEmail2 value="<%=email2 %>" class="long" /></li>
+										<li class="e2"><label for="memberEmail2" class="hide">이메일 주소</label><input type="text" name="email2" id="memberEmail2" value="<%=email2 %>" class="long" /></li>
 										<li class="e3"><label for="email3" class="hide">이메일 주소 선택</label>
 										
 										<%String emailData="naver.com,hanmail.net,gmail.com,yahoo.com,nate.com,hotmail.com,korea.com"; 

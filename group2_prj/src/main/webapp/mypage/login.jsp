@@ -15,14 +15,14 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\login.css">
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets\css\reset.css">
+		<link rel="stylesheet" href="../assets\css\subheader.css">
+		<link rel="stylesheet" href="../assets\css\headerFooter.css">
+		<link rel="stylesheet" href="../assets\css\login.css">
 	<!-- popup플러그인 0923 16:06 test -->
 	<script type="text/javascript" src="js\slide_me.js"></script>
-<script type="text/javascript" 
+	<script type="text/javascript" 
 	src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
    <link rel="stylesheet" href="assets\css\popup.css">
 	
