@@ -1,8 +1,10 @@
-<%@page import="adminVO.AdminVO"%>
+
+
+<%@page import="kr.co.sist.dao.AdminDAO"%>
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="kr.co.sist.service.DbAdminService"%>
 <%@page import="java.security.MessageDigest"%>
-<%@page import="useTmpService.DbAdminService"%>
-<%@page import="adminDAO.AdminDAO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="비밀번호 변경 값 확인 페이지" %>
 

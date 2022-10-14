@@ -55,7 +55,7 @@
                                  공연관리
                              </a>
                             <hr>
-                            <a class="nav-link" href="showINGBoard.html">
+                            <a class="nav-link" href="schedule_Board.jsp">
                                  <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                  상영관리
                              </a>

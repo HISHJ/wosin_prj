@@ -25,6 +25,12 @@ for(int i=0; i < list.size(); i++){
 	
 }
 %>
+<%
+ //로그인되어있지 않은 경우 로그인페이지로 이동
+if( session.getAttribute("adminId") == null){
+   response.sendRedirect("admingLogin.jsp");
+}
+%>
 
 
 
@@ -84,24 +90,28 @@ for(int i=0; i < list.size(); i++){
 
     </head>
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
+    
+     <!-- 여기서부터 <nav>-->
+<jsp:include page="admin_common_header.jsp"/>      
+<!-- -여기까지 <div id="layoutSidenav_content"> 전  -->
+       <!--  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            Navbar Brand
             <a class="navbar-brand ps-3" href="index.html">C&nbsp;M&nbsp;S&nbsp;</a>
-            <!-- Sidebar Toggle-->
+            Sidebar Toggle
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
+            Navbar Search
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
            
                 <div class="input-group" style="color:#FFFFFF">
                 하지윤님
                 </div>
             </form>
-            <!-- Navbar-->
+            Navbar
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <!-- <li><a class="dropdown-item" href="javascript:passwordChange()" target="_parent">정보변경</a></li> -->
+                        <li><a class="dropdown-item" href="javascript:passwordChange()" target="_parent">정보변경</a></li>
                         <li><a class="dropdown-item" href="passwordchange.html" target="_parent">정보변경</a></li>
                         <li><a class="dropdown-item" href="#!">로그아웃</a></li>
                     </ul>
@@ -145,7 +155,7 @@ for(int i=0; i < list.size(); i++){
                     </div>
                 </nav>
             </div>
-
+ -->
 
             <div id="layoutSidenav_content">
                 <main>
@@ -256,7 +266,10 @@ for(int i=0; i < list.size(); i++){
                     </div>
                 </main>
                 <!--  -->
-                <footer class="py-4 bg-light mt-auto">
+                
+                <jsp:include page="admin_common_footer.jsp"/>
+                
+             <!--    <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div><a href="2showINGAdd-1.jsp"><button id="addBtn" type="button" class="btn btn-outline-secondary">상영일자추가</button></a></div>
@@ -273,4 +286,4 @@ for(int i=0; i < list.size(); i++){
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
         <script src="js/datatables-simple-demo.js"></script>
     </body>
-</html>
+</html> -->

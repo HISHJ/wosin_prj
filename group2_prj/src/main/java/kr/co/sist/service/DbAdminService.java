@@ -16,16 +16,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import adminDAO.AdminDAO;
-import adminDAO.AdminRsrvtDAO;
-import adminDAO.AdminScheduleDAO;
-import adminVO.AdminRsrvtInfoVO;
-import adminVO.AdminScheduleVO;
-import adminVO.AdminVO;
+import kr.co.sist.dao.AdminDAO;
 import kr.co.sist.util.cipher.DataDecrypt;
 import kr.co.sist.util.cipher.DataEncrypt;
-import userDAO.RsrvtDAO;
-import userVO.RsrvtInfoVO;
+import kr.co.sist.vo.AdminVO;
+
 
 public class DbAdminService {
 

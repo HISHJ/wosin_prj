@@ -21,7 +21,13 @@
 
 
   
-  %>  
+  %> 
+  <%
+ //로그인되어있지 않은 경우 로그인페이지로 이동
+if( session.getAttribute("adminId") == null){
+   response.sendRedirect("admingLogin.jsp");
+}
+%> 
     
 
 
@@ -39,18 +45,7 @@
         <link href="css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         
-        <!-- 팝업창 띄우는 script ..실패...alert창으로 띄워 -->
-        <!-- <script>
-            function passwordChange(){
-                var url="http://localhost/html_prj/admin_dashboard/passwordchange.html";
-                var name="passwordchange popup"
-                var option= "width=500, height=500, top = 100, left = 200, location = no"
-                
-                window.open(url, name, option);
-            }
-        </script> -->
-
-        <!-- button들 다 form처리 해야함 -->
+      
          <!--제이쿼리-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript">
@@ -71,34 +66,34 @@
 	    	
    		});//ready
 			
-			
-			
-			
-	
-	
-	
 	
 	</script>
     </head>
     <body class="sb-nav-fixed">
+    
+     <!-- 여기서부터 <nav>-->
+<jsp:include page="admin_common_header.jsp"/>      
+<!-- -여기까지 <div id="layoutSidenav_content"> 전  -->
+    
+    <!-- 
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
+            Navbar Brand
             <a class="navbar-brand ps-3" href="dashBoard.html">C&nbsp;M&nbsp;S&nbsp;</a>
-            <!-- Sidebar Toggle-->
+            Sidebar Toggle
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
+            Navbar Search
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
            
                 <div class="input-group" style="color:#FFFFFF">
                 하지윤님
                 </div>
             </form>
-            <!-- Navbar-->
+            Navbar
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <!-- <li><a class="dropdown-item" href="javascript:passwordChange()" target="_parent">정보변경</a></li> -->
+                        <li><a class="dropdown-item" href="javascript:passwordChange()" target="_parent">정보변경</a></li>
                         <li><a class="dropdown-item" href="passwordchange.html" target="_parent">정보변경</a></li>
                         <li><a class="dropdown-item" href="#!">로그아웃</a></li>
                     </ul>
@@ -141,7 +136,7 @@
                         <img src="/img/logo_white.png" style="width:200px;height:60px"/>
                     </div>
                 </nav>
-            </div>
+            </div> -->
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -245,7 +240,9 @@
                     </div>
                 </main>
                 <!--  -->
-                <footer class="py-4 bg-light mt-auto">
+                <jsp:include page="admin_common_footer.jsp"/>
+                
+               <!--  <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                             <div class="text-muted">Copyright &copy; Your Website 2022</div>
@@ -263,4 +260,4 @@
         <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>
-   
+    -->

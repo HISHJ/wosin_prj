@@ -21,7 +21,12 @@ String status = request.getParameter("status");
 AdminShowDAO asDAO=AdminShowDAO.getInstance(); 
 List<AdminShowVO> list=asDAO.selectShow(name,genreId,status);
 %>
-
+<%
+ //로그인되어있지 않은 경우 로그인페이지로 이동
+if( session.getAttribute("adminId") == null){
+   response.sendRedirect("admingLogin.jsp");
+}
+%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -79,7 +84,7 @@ List<AdminShowVO> list=asDAO.selectShow(name,genreId,status);
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">공연관리</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">show mamgement board</li>
+                            <li class="breadcrumb-item active">show management board</li>
                         </ol>
                         <div class="card mb-4">
                             <div class="card-header">
@@ -171,11 +176,15 @@ List<AdminShowVO> list=asDAO.selectShow(name,genreId,status);
                                 </table>
                             <div><a href="http://localhost/group2_prj/admin/showAdd.jsp"><button id="addBtn" type="button" class="btn btn-dark">공연추가</button></a></div>
                             </div>
-                        </div>
+                       
                     </div>
                 </main>
+                 </div>
+             
                 <!--  -->
-                <footer class="py-4 bg-light mt-auto">
+              <%--  <jsp:include page="admin_common_footer.jsp"/> --%>
+                
+           <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
                         </div>
@@ -192,3 +201,4 @@ List<AdminShowVO> list=asDAO.selectShow(name,genreId,status);
         <script src="js/datatables-simple-demo.js"></script>
     </body>
 </html>
+ 

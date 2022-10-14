@@ -26,6 +26,17 @@
 	dailySales = dbDAO.selectDailySales();
 	
 	%>
+	   <%
+ 
+    //로그인되어있지 않은 경우 로그인페이지로 이동
+    if( session.getAttribute("adminId") == null){
+   	 response.sendRedirect("admingLogin.jsp");
+    }
+   //값검증완료
+    String aId = (String)session.getAttribute("adminId");
+    %>  
+   
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -58,25 +69,32 @@
 			<input type="hidden" value="<%=dailySales.get(i).getDailyDay() %>" id="date_<%=i+1%>">
 			<input type="hidden" value="<%=dailySales.get(i).getTotalSales() %>" id="sale_<%=i+1%>">
         <%} %>
+        
+        
+           <!--include로 parameter값 전달  -->
+   <jsp:include page="admin_common_header.jsp">
+   <jsp:param name="adminId" value="<%= aId%>"/>
+   </jsp:include> 
+	
     
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
+       <!--  <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            Navbar Brand
             <a class="navbar-brand ps-3" href="dashBoard.html">C&nbsp;M&nbsp;S&nbsp;</a>
-            <!-- Sidebar Toggle-->
+            Sidebar Toggle
             <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
+            Navbar Search
             <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
            
                 <div class="input-group" style="color:#FFFFFF">
                 하지윤님
                 </div>
             </form>
-            <!-- Navbar-->
+            Navbar
             <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <!-- <li><a class="dropdown-item" href="javascript:passwordChange()" target="_parent">정보변경</a></li> -->
+                        <li><a class="dropdown-item" href="javascript:passwordChange()" target="_parent">정보변경</a></li>
                         <li><a class="dropdown-item" href="passwordchange.html" target="_parent">정보변경</a></li>
                         <li><a class="dropdown-item" href="#!">로그아웃</a></li>
                     </ul>
@@ -120,7 +138,7 @@
                         <img src="img/logo_white.png" style="width:200px;height:60px"/>
                     </div>
                 </nav>
-            </div>
+            </div> -->
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">

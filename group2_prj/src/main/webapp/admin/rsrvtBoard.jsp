@@ -1,8 +1,10 @@
+<%@page import="kr.co.sist.dao.AdminRsrvtDAO"%>
+<%@page import="kr.co.sist.vo.AdminRsrvtInfoVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="adminVO.AdminRsrvtInfoVO"%>
+
 <%@page import="java.util.List"%>
-<%@page import="adminDAO.AdminRsrvtDAO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="scriptlet의 사용" %>
 <!DOCTYPE html>

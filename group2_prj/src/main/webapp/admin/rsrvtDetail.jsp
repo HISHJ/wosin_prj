@@ -1,7 +1,8 @@
+<%@page import="kr.co.sist.vo.AdminRsrvtInfoVO"%>
+<%@page import="kr.co.sist.dao.AdminRsrvtDAO"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.util.List"%>
-<%@page import="adminVO.AdminRsrvtInfoVO"%>
-<%@page import="adminDAO.AdminRsrvtDAO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="예매관리 상세내역" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    

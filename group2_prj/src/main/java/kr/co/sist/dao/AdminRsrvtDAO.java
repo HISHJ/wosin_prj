@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import adminVO.AdminRsrvtInfoVO;
-import dbConnection.DbConnection;
+import kr.co.sist.common.dao.DbConnection;
+import kr.co.sist.vo.AdminRsrvtInfoVO;
 import oracle.security.o3logon.a;
 
 public class AdminRsrvtDAO {
