@@ -3,9 +3,9 @@
 <%@page import="java.util.Date"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
-<%@page import="ko.co.sis.common.dao.DbConnection"%>
-<%@page import="ko.co.sis.dao.DashBoardDAO"%>
-<%@page import="kr.co.sis.vo.DashBoardVO"%>
+<%@page import="kr.co.sist.common.dao.DbConnection"%>
+<%@page import="kr.co.sist.dao.DashBoardDAO"%>
+<%@page import="kr.co.sist.vo.DashBoardVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
 	<%! DashBoardDAO dbDAO = null;%>
@@ -211,12 +211,12 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="../js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="js/chart-area-demo.js"></script>
+        <script src="../js/chart-area-demo.js"></script>
        <!--  <script src="js/chart-bar-demo.js"></script> -->
-        <script src="js/chart-pie-demo.js"></script>
+        <script src="../js/chart-pie-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="../js/datatables-simple-demo.js"></script>
     </body>
 </html>

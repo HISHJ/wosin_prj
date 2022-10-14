@@ -7,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ko.co.sis.common.dao.DbConnection;
-import kr.co.sis.vo.DashBoardVO;
+import kr.co.sist.common.dao.DbConnection;
+import kr.co.sist.vo.DashBoardVO;
 
 public class DashBoardDAO {
 	private static DashBoardDAO dashDAO;
@@ -23,19 +23,19 @@ public class DashBoardDAO {
 		}
 		return dashDAO;
 	}
-	public static void main(String[] args) throws SQLException {
-		DashBoardDAO dbDAO = DashBoardDAO.getInstance();
-//		String str = dbDAO.selectDashBoardShow();
-//		DashBoardVO dbVO = dbDAO.selectDashBoardShow();
-//		System.out.println(dbVO.getStandByShow());
-//		System.out.println(dbVO.getOnTheShow());
-		
-		List<DashBoardVO> rsrvtByShow = dbDAO.selectRsrvtCntByShow();
-		for(DashBoardVO dbVO : rsrvtByShow) {
-			System.out.print(dbVO.getRsrvtCnt()+", ");
-			System.out.println(dbVO.getShowName());
-		}
-	} 
+//	public static void main(String[] args) throws SQLException {
+//		DashBoardDAO dbDAO = DashBoardDAO.getInstance();
+////		String str = dbDAO.selectDashBoardShow();
+////		DashBoardVO dbVO = dbDAO.selectDashBoardShow();
+////		System.out.println(dbVO.getStandByShow());
+////		System.out.println(dbVO.getOnTheShow());
+//		
+//		List<DashBoardVO> rsrvtByShow = dbDAO.selectRsrvtCntByShow();
+//		for(DashBoardVO dbVO : rsrvtByShow) {
+//			System.out.print(dbVO.getRsrvtCnt()+", ");
+//			System.out.println(dbVO.getShowName());
+//		}
+//	} 
 	
 	// 공연 대기중, 공연중 
 	public DashBoardVO selectDashBoardShow() throws SQLException {

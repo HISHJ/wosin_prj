@@ -1,8 +1,8 @@
-<%@page import="kr.co.sis.vo.ShowVO"%>
-<%@page import="ko.co.sis.dao.MainDAO"%>
-<%@page import="kr.co.sis.vo.RsrvtInfoVO"%>
+<%@page import="kr.co.sist.vo.ShowVO"%>
+<%@page import="kr.co.sist.dao.MainDAO"%>
+<%@page import="kr.co.sist.vo.RsrvtInfoVO"%>
 <%@page import="java.util.List"%>
-<%@page import="ko.co.sis.dao.RsrvtDAO"%>
+<%@page import="kr.co.sist.dao.RsrvtDAO"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
@@ -41,14 +41,14 @@
 		<title>예매하기 | 좌석선택</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets\css\reset.css">
+		<link rel="stylesheet" href="../assets\css\headerFooter.css">
+		<link rel="stylesheet" href="../assets\css\subheader.css">
 		
 		<!-- 공연상세페이지만을 위한 css -->
-		<link rel="stylesheet" href="assets\css\perform.css">
-		<link rel="stylesheet" href="assets\css\tab.css">
+		<link rel="stylesheet" href="../assets\css\perform.css">
+		<link rel="stylesheet" href="../assets\css\tab.css">
 		
 		
 		<!--google icons-->
@@ -56,15 +56,15 @@
 		<!--google fonts-->
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.dropotron.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
+		<script src="../assets/js/jquery.min.js"></script>
+		<script src="../assets/js/jquery.dropotron.min.js"></script>
+		<script src="../assets/js/browser.min.js"></script>
+		<script src="../assets/js/breakpoints.min.js"></script>
+		<script src="../assets/js/util.js"></script>
+		<script src="../assets/js/main.js"></script>
 		
 		<!-- tap관련 추가한거 -->
-		<script src="assets/js/tab.js"></script>
+		<script src="../assets/js/tab.js"></script>
 		<style>
 			#nav{
 				margin-right:150px;

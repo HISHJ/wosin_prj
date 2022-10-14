@@ -1,32 +1,40 @@
+<%@page import="java.util.List"%>
+<%@page import="kr.co.sist.dao.MainDAO"%>
+<%@page import="kr.co.sist.vo.ShowVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
+
+<% MainDAO mDAO = MainDAO.getInstance(); 
+   List<ShowVO> swList = mDAO.selectThImg();
+   
+%>
     
 <!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
 <title>우신문화회관</title>
-<link rel="stylesheet" type="text/css" href="slick/slick.css" />
-<link rel="stylesheet" type="text/css" href="slick/slick-theme.css" />
-<link rel="stylesheet" href="assets/css/main.css" />
+<link rel="stylesheet" type="text/css" href="../slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
+<link rel="stylesheet" href="../assets/css/main.css" />
 <!-- jQuery -->
 <script type="text/javascript"
 	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <!-- 슬라이드 라이브러리 -->
 <script type="text/javascript"
 	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="slick/slick.min.js"></script>
+<script type="text/javascript" src="../slick/slick.min.js"></script>
 <!-- 팝업 플러그인 -->
-<script type="text/javascript" src="js\slide_me.js"></script>
+<script type="text/javascript" src="../js/slide_me.js"></script>
 <script type="text/javascript" 
 	src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
 
 
-<link rel="stylesheet" href="assets\css\mainindex copy.css">
-<link rel="stylesheet" href="assets\css\headerFooterIndex.css">
+<link rel="stylesheet" href="../assets/css/mainindex copy.css">
+<link rel="stylesheet" href="../assets/css/headerFooterIndex.css">
 <!-- <link rel="stylesheet" href="assets\css\headerFooter.css"> -->
-<link rel="stylesheet" href="assets\css\main_style.css">
-<link rel="stylesheet" href="assets\css\popup.css">
+<link rel="stylesheet" href="../assets/css/main_style.css">
+<link rel="stylesheet" href="../assets/css/popup.css">
 
 
 <!--aos 라이브러리-->
@@ -199,7 +207,7 @@
 
 		<!--검색FORM-->
 
-		<link rel="stylesheet" href="assets\css\mainindex copy.css">
+		<link rel="stylesheet" href="../assets/css/mainindex copy.css">
 		<style>
 			.js .slider-single>div:nth-child(1n+2) {
 				display: none
@@ -229,95 +237,20 @@
 			<div class="rows">
 				<div class="column small-11 small-centered">
 					<div class="slider slider-single">
-
+						<% for(int i=0;i<swList.size();i++){%>
 						<div>
 							<div class="img-box img-box-f ">
-								<img src="images/imageSrc (2).jpeg"
-									alt="2022 가을·겨울 시즌 패키지 티켓 오픈">
+							<!-- http://localhost/group2_prj/images/imageSrc%20(1).jpeg -->
+								<%-- <img src="http://localhost/group2_prj/images/'<%= swList.get(i).getmImg() %>'.jpeg"> --%>
+								<img src="http://localhost/group2_prj/images/imageSrc%20(1).jpeg">
 								<!-- <figcaption class="hide">2022 가을·겨울 시즌 패키지 티켓 오픈</figcaption> -->
 								<div class="btn-wrap">
-									<a href="page2.html"><button class="go_show_con">상세보기</button></a>
+									<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">상세보기</a>
 									<!-- <button class="go_show_con"><a href="page2.html">상세보기</a></button>  -->
 								</div>
 							</div>
 						</div>
-						<div>
-							<div class="img-box  img-box-f">
-								<img src="images/imageSrc (1).jpeg" alt="오페라 로미오와 줄리엣">
-								<!-- <figcaption class="hide">오페라 로미오와 줄리엣</figcaption> -->
-								<div class="btn-wrap">
-									<a href="page2.html"><button class="go_show_con">상세보기</button></a>
-								</div>
-							</div>
-						</div>
-						<div>
-							<div class="img-box  img-box-f">
-
-								<img src="images/imageSrc (4).jpeg" alt="">
-								<div class="btn-wrap">
-									<a href="page2.html"><button class="go_show_con">상세보기</button></a>
-								</div>
-							</div>
-						</div>
-						<div>
-							<div class="img-box  img-box-f">
-
-								<img src="images/imageSrc (9).jpeg" alt="">
-								<div class="btn-wrap">
-									<a href="page2.html"><button class="go_show_con">상세보기</button></a>
-								</div>
-							</div>
-						</div>
-						<div>
-							<div class="img-box img-box-f">
-
-								<img src="images/imageSrc (3).jpeg" alt="">
-								<div class="btn-wrap">
-									<a href="page2.html"><button class="go_show_con">상세보기</button></a>
-								</div>
-							</div>
-						</div>
-						<div>
-							<div class="img-box  img-box-f">
-
-								<img src="images/imageSrc (1).jpeg" alt="">
-								<div class="btn-wrap">
-									<a href="page2.html"><button class="go_show_con">상세보기</button></a>
-								</div>
-
-							</div>
-						</div>
-						<div>
-							<div class="img-box  img-box-f">
-
-								<img src="images/imageSrc (4).jpeg" alt="">
-								<div class="btn-wrap">
-									<a href="page2.html"><button class="go_show_con">상세보기</button></a>
-								</div>
-
-							</div>
-						</div>
-						<div>
-							<div class="img-box  img-box-f">
-
-								<img src="images/imageSrc (9).jpeg" alt="">
-								<div class="btn-wrap">
-									<a href="page2.html"><button class="go_show_con">상세보기</button></a>
-								</div>
-
-							</div>
-						</div>
-						<div>
-							<div class="img-box  img-box-f">
-
-								<img src="images/imageSrc (2).jpeg" alt="">
-								<div class="btn-wrap">
-									<a href="page2.html"><button class="go_show_con">상세보기</button></a>
-								</div>
-
-							</div>
-						</div>
-
+						<%} %>
 					</div>
 
 
@@ -325,34 +258,11 @@
 					<div class="nav_wrap">
 
 						<div class="div_slider_nav slider slider-nav">
-
-							<div class="img-box box_s">
-								<img class="box_s_img" src="images/imageSrc (10).jpeg" alt="">
-							</div>
-							<div class="img-box  box_s">
-								<img class="box_s_img" src="images/imageSrc (11).jpeg" alt="">
-							</div>
-							<div class="img-box  box_s">
-								<img class="box_s_img" src="images/imageSrc (12).jpeg" alt="">
-							</div>
-							<div class="img-box  box_s">
-								<img class="box_s_img" src="images/imageSrc (13).jpeg" alt="">
-							</div>
-							<div class="img-box  box_s">
-								<img class="box_s_img" src="images/imageSrc (10).jpeg" alt="">
-							</div>
-							<div class="img-box box_s">
-								<img class="box_s_img" src="images/imageSrc (11).jpeg" alt="">
-							</div>
-							<div class="img-box box_s">
-								<img class="box_s_img" src="images/imageSrc (12).jpeg" alt="">
-							</div>
-							<div class="img-box box_s">
-								<img class="box_s_img" src="images/imageSrc (13).jpeg" alt="">
-							</div>
-							<div class="img-box box_s">
-								<img class="box_s_img" src="images/imageSrc (10).jpeg" alt="">
-							</div>
+							<% for(int i=0;i<swList.size();i++){%>
+								<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">
+								<img src="<%= swList.get(i).getThImg() %>"/>
+								</a>
+							<%} %>
 
 						</div>
 						<!--슬라이드 시작, 정지버튼-->
@@ -438,7 +348,7 @@
 
 
 			<!--마지막  영역(슬라이드 X)-->
-			<link rel="stylesheet" href="assets\css\mainscdslide.css">
+			<link rel="stylesheet" href="../assets/css/mainscdslide.css">
 			<!--  class="inner aos-init aos-animate" data-aos="fade-up" -->
 			<!--썸네일 슬라이드ㅡ-->
 			<div class="inner_m aos-init aos-animate" date-aos="fade-up">
@@ -611,7 +521,7 @@
 							<header>
 								<h2>
 									<a href="index.html"> <img class="footer_logo"
-										src="common\logo_white.png" alt="우신문화회관">
+										src="../common/logo_white.png" alt="우신문화회관">
 									</a>
 								</h2>
 								<div class="l">
@@ -642,11 +552,11 @@
 	</script>
 	
 	
-	<script src="assets/js/jquery.dropotron.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
+	<script src="../assets/js/jquery.dropotron.min.js"></script>
+	<script src="../assets/js/browser.min.js"></script>
+	<script src="../assets/js/breakpoints.min.js"></script>
+	<script src="../assets/js/util.js"></script>
+	<script src="../assets/js/main.js"></script>
 	
 </body>
 </html>

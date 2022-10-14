@@ -1,10 +1,10 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Enumeration"%>
-<%@page import="kr.co.sis.vo.RsrvtInfoVO"%>
+<%@page import="kr.co.sist.vo.RsrvtInfoVO"%>
 <%@page import="java.util.List"%>
-<%@page import="ko.co.sis.dao.RsrvtDAO"%>
-<%@page import="kr.co.sis.vo.ShowVO"%>
-<%@page import="ko.co.sis.dao.MainDAO"%>
+<%@page import="kr.co.sist.dao.RsrvtDAO"%>
+<%@page import="kr.co.sist.vo.ShowVO"%>
+<%@page import="kr.co.sist.dao.MainDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
 <%
@@ -55,17 +55,17 @@
 		rVO.setSchDate(request.getParameter("date"));
 		rVO.setSchTime(request.getParameter("time"));
  		rVO.setSeatId(seats[i]); 
-		rVO.setRsrvtCnt(seats.length);
+		rVO.setRsrvtTotalCnt(seats.length);
 		rVO.setTotalPrice(Integer.parseInt(request.getParameter("totalPrice")));	
 		
 		riList.add(rVO);
 	} 
 	
 	boolean flag = false;
-	//if(rDAO.insertRsrvtTest(rVO)==1){
-	//	System.out.println("ㅇㅇ됐음");		 풀어야함		
-	//	flag = true;
-	//}
+	if(rDAO.insertRsrvtTest(rVO)==1){
+		System.out.println("ㅇㅇ됐음");				
+		flag = true;
+	}
 	
 	// 예매번호를 받아야함
 	String rsrvtId = rDAO.selectRsrvtId(rVO);
@@ -73,12 +73,12 @@
 	System.out.println(rsrvtId);
 	
 	int test = 0;
-	//if(flag){	
-	//	test = rDAO.insertSeatTest(riList,rsrvtId);		풀어야함
-	//} 
+	if(flag){	
+		test = rDAO.insertSeatTest(riList,rsrvtId);		
+	} 
 	
 		
-	//if(test==riList.size()){           
+	if(test==riList.size()){           
 		System.out.println(test+"개추가");
 
 // 넘어온 예매번호도 rVO에 넣어줘야겠는데?
@@ -96,5 +96,5 @@
 	
 	rd.forward(request,response);
 	}
-	//} // test==riList.size() if end
+	}//else
 %>

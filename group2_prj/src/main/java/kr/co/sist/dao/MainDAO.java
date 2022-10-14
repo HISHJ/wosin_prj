@@ -1,6 +1,5 @@
 package kr.co.sist.dao;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,8 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import ko.co.sis.common.dao.DbConnection;
-import kr.co.sis.vo.ShowVO;
+import kr.co.sist.common.dao.DbConnection;
+import kr.co.sist.vo.ShowVO;
 
 public class MainDAO {
 	private static MainDAO mDAO;
