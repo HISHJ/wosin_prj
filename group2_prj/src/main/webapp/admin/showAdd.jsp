@@ -34,20 +34,7 @@ AdminShowVO asVO= new AdminShowVO();
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     	<script type="text/javascript">
     	
-    	
-    	function addBtn() {
-    		
-    		var name=$("#name").val();
-    		//pk값 유효성 검증
-			if(name.trim()==""){ //null 아니라 ""로 처리
-				alert("공연명은 필수입력입니다");
-			//insert하기
-			}else{
-				alert("공연이 추가되었습니다"); 
-				$("#frm").submit();	
-			}
-		}//추가하기버튼
-		
+    	//썸네일이미지 미리보기
 		function thImgSet(input) {
 			  if (input.files && input.files[0]) {
 			    var reader = new FileReader();
@@ -58,7 +45,90 @@ AdminShowVO asVO= new AdminShowVO();
 			  } else {
 			    document.getElementById('thImgPreview').src = "";
 			  }
-		}//썸네일이미지 미리보기
+		}
+    	
+    	//추가하기버튼
+    	function addBtn() {
+    		
+    		//유효성 검증 
+    		var name=$("#name").val();
+			if(name.trim()==""){ //null 아니라 ""로 처리
+				alert("공연명을 입력해주세요");
+				$("#name").focus();	
+				return;
+			}
+			
+			var startDate=$("#startDate").val();
+			if(startDate==""){
+				alert("시작일을 입력해주세요");
+				$("#startDate").focus();
+				return;
+			}
+			
+			var endDate=$("#").val();
+			if(endDate==""){
+				alert("종료일을 입력해주세요");
+				$("#endDate").focus();
+				return;
+			}
+			
+			if(startDate!=null||endDate!=null){//이거 방법 찾기 > 이거는 안됨
+				var startDate = new Date(startDate);
+				var endDate = new Date(endDate);
+				if(startDate>endDate){
+					alert("종료일은 시작일보다 클 수 없습니다");
+					$("#endDate").focus();
+					return;
+				}
+					
+			}
+			
+			var price=$("#price").val();
+			if(price.trim()==""){
+				alert("금액을 입력해주세요");
+				$("#price").focus();	
+				return;
+			}
+			
+			
+			//파일은 focus 안됨
+			var thImg=$("#thImg").val();
+			var mImg=$("#mImg").val();
+			var infoImg=$("#infoImg").val();
+			
+			if(thImg==""||mImg==""||infoImg==""){
+				alert("업로드할 파일을 선택해주세요");
+				return;
+			}
+			
+			
+			//이미지 파일 확장자 제한
+			var blockExt="jpg,jpeg,png,bmp,do".split(",");
+			var flag=false;
+			
+			var thImgExt=thImg.substring(thImg.lastIndexOf(".")+1);
+			var mImgExt=mImg.substring(mImg.lastIndexOf(".")+1);
+			var infoImgExt=infoImg.substring(infoImg.lastIndexOf(".")+1);
+			for(var i=0; i<blockExt.length; i++){
+				if(blockExt[i]==thImgExt && blockExt[i]==mImgExt && blockExt[i]==infoImgExt ){
+					flag=true;
+				}
+			}
+			
+			if(!flag){
+				alert("※파일 형식을 다시 확인해주세요");
+				return flag;
+			}
+			
+			if(confirm("공연을 추가하시겠습니까?")){
+				$("#frm").submit();
+			}
+				
+			
+			
+			
+		}//addBtn
+		
     	
     	</script>
     
@@ -100,11 +170,11 @@ AdminShowVO asVO= new AdminShowVO();
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>시작일</b></div> <div class="col-4"><input type="date" class="dataTable-input"  name="startDate"></div>
+                                            <div class="col-2"><b>시작일</b></div> <div class="col-4"><input type="date" class="dataTable-input"  name="startDate" id="startDate"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>종료일</b></div> <div class="col-4"><input type="date" class="dataTable-input"  name="endDate"></div>
+                                            <div class="col-2"><b>종료일</b></div> <div class="col-4"><input type="date" class="dataTable-input"  name="endDate" id="endDate"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -132,34 +202,39 @@ AdminShowVO asVO= new AdminShowVO();
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>금액</b></div> <div class="col-6"><input type="text" name="price" class="dataTable-input" placeholder="숫자만 입력해주세요(한글,특수문자 제외)"></div>
+                                            <div class="col-2"><b>금액</b></div> <div class="col-6"><input type="text" name="price" id="price" class="dataTable-input" placeholder="숫자만 입력해주세요(한글,특수문자 제외)"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>공연상태</b></div> 
                                             <div class="col-4">
-                                                <select name="status" class="dataTable-dropdown dataTable-selector" >
-                                                    <option value="공연예정">공연예정</option>
+                                                <select name="status" class="dataTable-dropdown dataTable-selector"  >
+                                                    <option value="공연예정" >공연예정</option>
                                                 </select>
                                                 </div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>썸네일이미지</b></div> <div class="col-4">
-                                            	<input type="file" name="thImg" onchange="thImgSet(this);" value="파일선택"></div>
+                                            	<input type="file" name="thImg" id="thImg" onchange="thImgSet(this);" value="파일선택"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>메인이미지</b></div> <div class="col-4">
-                                            	<input type="file" name="mImg" value="파일선택"></div>
+                                            	<input type="file" name="mImg" id="mImg" value="파일선택"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>작품소개</b></div><div class="col-4">
-                                                <input type="file" name="infoImg" value="파일선택">
+                                            <div class="col-2"><b>소개이미지</b></div><div class="col-4">
+                                                <input type="file" name="infoImg" id="infoImg" value="파일선택">
                                             </div>
                                         </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"></div><div class="col-8">※jpg,jpeg,png,bmp,do 파일만 등록할 수 있습니다</div>
+                                        </div>
                                     </form>
+                                    
                                         
                                              <div class="mt-4 mb-0">
                                                  <div class="col text-center">

@@ -38,40 +38,6 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
         <script type="text/javascript">
        
        
-        $(function() {
-        	$("#removeBtn").click(function() {
-        		var name=$("#name").val();
-        		
-        		var result=confirm("공연을 삭제하시겠습니까");
-    			
-    			if(result==true){
-    				$("#frm").submit();	
-    				alert("'"+name+"'가 삭제되었습니다");
-    			}
-				
-			});//삭제
-        	
-			
-        	$("#modifyBtn").click(function() {
-        		var name=$("#name").val();
-				
-        		//공연명 not null이어서 이렇게 처리해줌
-        		if(name.trim()==""){ //null 아니라 ""로 처리
-    				alert("공연명은 필수입력입니다");
-    			
-    			}else{
-    				$("#frm").submit();	
-    				alert("공연이 수정되었습니다");
-    			}
-			});//변경
-			
-			
-			$("#cancelBtn").click(function() {
-				location.href="showBoard.jsp";
-			});//취소
-			
-		});//ready
-		
 		function thImgSet(input) {
 			  if (input.files && input.files[0]) {
 			    var reader = new FileReader();
@@ -83,6 +49,42 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
 			    document.getElementById('thImgPreview').src = "";
 			  }
 		}//썸네일이미지 미리보기 
+		
+		
+        $(function() {
+        	$("#removeBtn").click(function() {
+        		var name=$("#name").val();
+        		var delMsg=confirm("공연을 삭제하시겠습니까?");
+        		
+    			if(delMsg){
+    				alert("'"+name+"'가 삭제되었습니다");
+    				$("#deleteFrm").submit();	
+    			}else{
+    				return;
+    			}
+				
+			});//삭제
+        	
+			
+        	$("#modifyBtn").click(function() {
+        		
+        		var edit=confirm("공연을 수정하시겠습니까?");
+        		if(edit){
+        			$("#updateFrm").submit();
+        		}else{
+        			return;
+        		} 
+			});//변경
+			
+			
+			$("#cancelBtn").click(function() {
+				location.href="showBoard.jsp";
+			});//취소
+			
+		});//ready
+		
+		
+		
         
         
         </script>
@@ -100,7 +102,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                     <div class="card-header navyv bg-dark"><h3 class="text-start text-white font-weight-light my-4 " style="font-weight: bold;">공연 상세정보</h3></div>
                                     <div class="card-body">
                                        
-                                    <form id="frm" >
+                                    <form id="updateFrm" action="show_update.jsp">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-4"><img id="thImgPreview" class="img-thumbnail" alt="썸네일이미지" src="img/<%=showDetail.getThImg()%>"></div>
@@ -187,27 +189,38 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>작품소개</b></div><div class="col-4"><input type="file" name="infoImg" value="파일선택"></div>
+                                            <div class="col-2"><b>소개이미지</b></div><div class="col-4"><input type="file" name="infoImg" value="파일선택"></div>
                                             <div class="col-2 my-1"><b>원본파일</b></div><div class="col-4 my-1"><%=showDetail.getInfoImg() %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
+                                            <div class="col-2"></div><div class="col-8">※jpg,jpeg,png,bmp,do 파일만 등록할 수 있습니다</div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
                                         	<div class="col-2"><b>공연추가일</b></div> <div class="col-6"><%=showDetail.getInputDate() %></div>
                                         </div>
+                                   	</form>  
+                                   	
+                                   	
+                                   	<form id="deleteFrm" action="show_remove.jsp">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>공연삭제</b></div> <div class="col-4">
-                                            <input type="submit" id="removeBtn" formaction="show_remove.jsp" value="삭제하기"></div>
+                                            <input type="button" id="removeBtn" value="삭제하기"></div>
+                                            <input type="hidden" id="showId" name="showId" value="<%=showDetail.getShowId() %>">
                                         </div>
+                                     </form>
+                                        
                                         
                                          <div class="mt-4 mb-0">
                                             <div class="col text-center">
-                                                <input type="submit" class="btn btn-secondary btn-sm" id="modifyBtn" formaction="show_update.jsp" value="변경">
-                                                <input type="button" class="btn btn-default btn-sm" id="cancelBtn" value="취소">
+                                                <input type="button" class="btn btn-secondary btn-sm" id="modifyBtn"  value="변경">
+                                                <input type="button" class="btn btn-default btn-sm" id="cancelBtn"  value="취소">
                                             </div>
                                           </div>
                                        </div>
-                                   	</form>  
 
                                                 
                                     </div>

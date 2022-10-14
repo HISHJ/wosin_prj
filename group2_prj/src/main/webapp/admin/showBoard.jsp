@@ -40,26 +40,28 @@ List<AdminShowVO> list=asDAO.selectShow(name,genreId,status);
         <script type="text/javascript">
 
 		$(function(){
-    	
+    		
+			//추가버튼 클릭
 	    	$("#addBtn").click(function(){
 				location.href = "showAdd.jsp"; //안가는데 ? 제이쿼리 js 안받아서 그랬던것
-			});//추가
+			});
     	
-	    	
-	    	//우선 목표는 dao가 적용되나 안적용되나까지 
-	    	//$("input[name='status']:radio").click(function () {
-	    	
+			//공연명 검색
 	    	$("#nameSearchBtn").click(function() {
 	    		$("#nameFrm").submit();
-			});//공연명 검색
+			});
 			
+	    	//장르 검색
 	    	$("#genreSearchBtn").click(function() {
 	    		$("#genreFrm").submit();
-			});//장르 검색
+			});
 			
+	    	//상태 검색
 	    	$("#statusSearchBtn").click(function() {
 	    		$("#statusFrm").submit();
-	    	});//상태 검색
+	    	});
+	    	
+	    	
 	    	
 	    	
    		});//ready

@@ -369,7 +369,7 @@
 				<%for(int i=0; i<showList.size(); i++){ %>
            		<div class="col set" >
 					<div class="card" style="width: 19rem;">
-						<a href="page2.jsp?showId=<%=showList.get(i).getShowId() %>">
+						<a href="show_info.jsp?showId=<%=showList.get(i).getShowId() %>">
 						<img src="../admin/img/<%=showList.get(i).getThImg() %>" class="card-img-top" alt="...">
 					 	<div class="card-body" >
 					    <h5 class="card-title h3"><%=showList.get(i).getName() %></h5>

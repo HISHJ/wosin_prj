@@ -142,10 +142,7 @@ public class ShowDAO {
 			
 			
 			if(sVO.getSdate()!=null&&sVO.getEdate()!=null) {
-				//오류무덤
-				//query+=" and s.startDate<=to_char(?,'yyyy-mm-dd') and s.endDate>=to_char(?,'yyyy-mm-dd') "; //String을 왜 저기다 넣어ㅡㅡ
-				//query+=" and s.startDate<=? and s.endDate>=? "; 
-				//query+=" and s.startDate>=? and s.endDate<=? "; //error: 부적합한 열 인덱스
+				
 				query+=" and s.startDate<='"+sVO.getEdate()+"' and s.endDate>='"+sVO.getSdate()+"' order by s.startDate "; 
 				
 			}
@@ -158,13 +155,14 @@ public class ShowDAO {
 				query += " and s.name like '%"+sVO.getName().trim()+"%' ";
 			}
 			
-			//콘솔 테스트용
-			System.out.println("시작일:"+sVO.getSdate()); 
-			System.out.println("끝일:"+sVO.getSdate()); 
-			
 			pstmt = con.prepareStatement(query);
-			//pstmt.setString(1, sVO.getSdate());
-			//pstmt.setString(2, sVO.getEdate());
+			
+			/*
+			if(sVO.getSdate()!=null&&sVO.getEdate()!=null) { 
+				//위에 바인드 변수가 존재하는 쿼리가 있는 상황에서만 바인드변수에 값을 넣는다.
+				pstmt.setString(1, sVO.getSdate());
+				pstmt.setString(2, sVO.getEdate());
+			} */
 			rs = pstmt.executeQuery();
 			
 			ShowVO sVO2=null;
