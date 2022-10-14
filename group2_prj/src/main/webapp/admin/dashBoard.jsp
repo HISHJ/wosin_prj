@@ -89,27 +89,27 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Menu</div>
-                             <a class="nav-link" href="dashBoard.html">
+                             <a class="nav-link" href="#">
                                  <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                  Dashboard
                              </a>
                              <hr>
-                             <a class="nav-link collapsed" href="userBoard.html">
+                             <a class="nav-link collapsed" href="userBoard.jsp">
                                  <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                                  회원관리   
                              </a>
                              <hr>
-                             <a class="nav-link" href="showBoard.html">
+                             <a class="nav-link" href="showBoard.jsp">
                                  <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                  공연관리
                              </a>
                             <hr>
-                            <a class="nav-link" href="showINGBoard.html">
+                            <a class="nav-link" href="schedule_Board.jsp">
                                  <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                                  상영관리
                              </a>
                              <hr>
-                             <a class="nav-link" href="rsrvtBoard.html">
+                             <a class="nav-link" href="rsrvtBoard.jsp">
                                  <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
                                  예매관리
                              </a>

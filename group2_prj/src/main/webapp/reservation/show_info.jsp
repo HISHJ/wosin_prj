@@ -128,6 +128,7 @@
 								<!-- Sidebar -->
 									<section class="box">
 										<a class="image featured"><img src="poster/rj.jpeg" alt="" /></a>
+																	<!-- 여기도 경로수정해야하는데 -->
 										<header>
 											<h3 class="h3"><%=sVO.getName() %></h3>
 										</header>
@@ -151,6 +152,7 @@
 							<!-- 탭 메뉴 만들기 분석 ...하기... -->
 							<article class="box post tabnav">
 							<a class="image featured"><img src="poster/rj2.jpg" alt="" /></a>
+															<!-- 여기도 경로수정해야하는데 -->
 						   		 </article>
 
 								

@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-import adminVO.AdminVO;
-import dbConnection.DbConnection;
+import kr.co.sist.common.dao.DbConnection;
+import kr.co.sist.vo.AdminVO;
 
 	public class AdminDAO {
 		private static AdminDAO upsDAO;

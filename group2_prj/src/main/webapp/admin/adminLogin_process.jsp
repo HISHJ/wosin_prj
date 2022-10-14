@@ -1,8 +1,9 @@
+<%@page import="kr.co.sist.vo.AdminVO"%>
+<%@page import="kr.co.sist.dao.AdminDAO"%>
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="kr.co.sist.service.DbAdminService"%>
 <%@page import="java.security.MessageDigest"%>
-<%@page import="useTmpService.DbAdminService"%>
-<%@page import="adminDAO.AdminDAO"%>
-<%@page import="adminVO.AdminVO"%>
+
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="scriptlet의 사용" %>
@@ -54,9 +55,9 @@ aVO.setPwd(adminPass);
 int chk = aDAO.selectAdmin(aVO);
  
 if(chk == 1){ //로그인 성공
-	//세션에 현재 아이디 세팅
-	session.setAttribute("adminId", aId);
-	
+   //세션에 현재 아이디 세팅
+   session.setAttribute("adminId", aId);
+   
 %>
 
 <script type="text/javascript">
