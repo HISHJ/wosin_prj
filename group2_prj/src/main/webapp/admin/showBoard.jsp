@@ -72,68 +72,9 @@ List<AdminShowVO> list=asDAO.selectShow(name,genreId,status);
         
     </head>
     <body class="sb-nav-fixed">
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.html">C&nbsp;M&nbsp;S&nbsp;</a>
-            <!-- Sidebar Toggle-->
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            <!-- Navbar Search-->
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-           
-                <div class="input-group" style="color:#FFFFFF">
-                하지윤님
-                </div>
-            </form>
-            <!-- Navbar-->
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <!-- 팝업기능 -->
-                        <!-- <li><a class="dropdown-item" href="passwordchange.html" onclick="window.open(this.href, '_blank', 'width=800, height=500'); return false;">정보변경</a></li>  -->
-                        <li><a class="dropdown-item" href="passwordchange.html">정보변경</a></li>
-                        <li><a class="dropdown-item" href="#!">로그아웃</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                            <div class="sb-sidenav-menu-heading">Menu</div>
-                            <a class="nav-link" href="dashBoard.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Dashboard
-                            </a>
-                            <hr>
-                            <a class="nav-link collapsed" href="userBoard.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                회원관리   
-                            </a>
-                            <hr>
-                            <a class="nav-link" href="showBoard.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                공연관리
-                            </a>
-                           <hr>
-                           <a class="nav-link" href="showINGBoard.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                상영관리
-                            </a>
-                            <hr>
-                            <a class="nav-link" href="rsrvtBoard.html">
-                                <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                예매관리
-                            </a>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <img src="img/logo_white.png" style="width:200px;height:60px"/>
-                    </div>
-                </nav>
-            </div>
+  <!-- 여기서부터 <nav>-->
+<jsp:include page="admin_common_header.jsp"/>      
+<!-- -여기까지 <div id="layoutSidenav_content"> 전  -->
             <div id="layoutSidenav_content">
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">공연관리</h1>
@@ -187,7 +128,7 @@ List<AdminShowVO> list=asDAO.selectShow(name,genreId,status);
                                   </div>
                                   <input type="button" id="statusSearchBtn" name="statusSearchBtn" value="검색">
                            		</form>
-                              <a href="showBoard.jsp"><button id="addBtn" type="button" class="btn btn-outline-dark float-end mx-md-4" >전체보기</button></a>
+                              <a href="http://localhost/group2_prj/admin/showBoard.jsp"><button id="addBtn" type="button" class="btn btn-outline-dark float-end mx-md-4" >전체보기</button></a>
                            	 </div>
                            </div>
                             
@@ -223,12 +164,12 @@ List<AdminShowVO> list=asDAO.selectShow(name,genreId,status);
                                             <td><%=asVO.getGenreId() %></td>
                                             <td><%=asVO.getPrice()%>원</td>
                                             <td><%=asVO.getStatus() %></td>
-                                            <td><a href="showDetail.jsp?showId=<%=asVO.getShowId() %>"><input type="button" value="상세보기" class="showDetailBtn"></a></td>
+                                            <td><a href="http://localhost/group2_prj/admin/showDetail.jsp?showId=<%=asVO.getShowId() %>"><input type="button" value="상세보기" class="showDetailBtn"></a></td>
                                         </tr>
                                        <%} %>
                                     </tbody>
                                 </table>
-                            <div><a href="showAdd.jsp"><button id="addBtn" type="button" class="btn btn-dark">공연추가</button></a></div>
+                            <div><a href="http://localhost/group2_prj/admin/showAdd.jsp"><button id="addBtn" type="button" class="btn btn-dark">공연추가</button></a></div>
                             </div>
                         </div>
                     </div>

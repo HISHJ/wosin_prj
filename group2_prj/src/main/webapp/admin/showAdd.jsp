@@ -65,22 +65,23 @@ AdminShowVO asVO= new AdminShowVO();
 				return;
 			}
 			
-			var endDate=$("#").val();
+			var endDate=$("#endDate").val();
 			if(endDate==""){
 				alert("종료일을 입력해주세요");
 				$("#endDate").focus();
 				return;
 			}
 			
+			var startDate=$("#startDate").val();
+			var endDate=$("#endDate").val();
 			if(startDate!=null||endDate!=null){//이거 방법 찾기 > 이거는 안됨
-				var startDate = new Date(startDate);
-				var endDate = new Date(endDate);
+				/* var startDate = new Date(startDate);
+				var endDate = new Date(endDate); //이거 뺴도되더라 ~ */ 
 				if(startDate>endDate){
 					alert("종료일은 시작일보다 클 수 없습니다");
 					$("#endDate").focus();
 					return;
 				}
-					
 			}
 			
 			var price=$("#price").val();
@@ -91,7 +92,7 @@ AdminShowVO asVO= new AdminShowVO();
 			}
 			
 			
-			//파일은 focus 안됨
+			//파일은 focus 안돼서 뻈음
 			var thImg=$("#thImg").val();
 			var mImg=$("#mImg").val();
 			var infoImg=$("#infoImg").val();
@@ -124,8 +125,6 @@ AdminShowVO asVO= new AdminShowVO();
 				$("#frm").submit();
 			}
 				
-			
-			
 			
 		}//addBtn
 		
@@ -239,7 +238,7 @@ AdminShowVO asVO= new AdminShowVO();
                                              <div class="mt-4 mb-0">
                                                  <div class="col text-center">
                                                      <a class="btn btn-secondary btn-sm" onclick="addBtn()" >추가</a>
-                                                     <a class="btn btn-default btn-sm" href="showBoard.jsp">취소</a>
+                                                     <a class="btn btn-default btn-sm" href="http://localhost/group2_prj/admin/showBoard.jsp">취소</a>
                                                  </div>
                                              </div>
                                         </div>

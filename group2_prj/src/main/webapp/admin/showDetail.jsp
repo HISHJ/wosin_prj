@@ -78,7 +78,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
 			
 			
 			$("#cancelBtn").click(function() {
-				location.href="showBoard.jsp";
+				location.href="http://localhost/group2_prj/admin/showBoard.jsp";
 			});//취소
 			
 		});//ready
@@ -105,7 +105,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                     <form id="updateFrm" action="show_update.jsp">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-4"><img id="thImgPreview" class="img-thumbnail" alt="썸네일이미지" src="img/<%=showDetail.getThImg()%>"></div>
+                                            <div class="col-4"><img id="thImgPreview" class="img-thumbnail" alt="썸네일이미지" src="http://localhost/group2_prj/admin/img/<%=showDetail.getThImg()%>"></div>
                                         </div> 
                                         <div class="dataTable-top"></div>
                                         <div class="row">

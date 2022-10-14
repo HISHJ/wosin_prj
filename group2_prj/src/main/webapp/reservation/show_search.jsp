@@ -43,10 +43,10 @@
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 		
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="../assets\css\reset.css">
-		<link rel="stylesheet" href="../assets\css\headerFooter.css">
-		<link rel="stylesheet" href="../assets\css\subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/headerFooter.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/subheader.css">
 		
 		<!-- 공연상세페이지만을 위한 css -->
 		<link rel="stylesheet" href="../assets\css\NewFile.css">
@@ -369,8 +369,8 @@
 				<%for(int i=0; i<showList.size(); i++){ %>
            		<div class="col set" >
 					<div class="card" style="width: 19rem;">
-						<a href="show_info.jsp?showId=<%=showList.get(i).getShowId() %>">
-						<img src="../admin/img/<%=showList.get(i).getThImg() %>" class="card-img-top" alt="...">
+						<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%=showList.get(i).getShowId() %>">
+						<img src="http://localhost/group2_prj/admin/img/<%=showList.get(i).getThImg() %>" class="card-img-top" alt="...">
 					 	<div class="card-body" >
 					    <h5 class="card-title h3"><%=showList.get(i).getName() %></h5>
 					    <p class="card-text txtColor"><%=showList.get(i).getStartDate() %> ~ <%=showList.get(i).getEndDate() %></p> 					    
