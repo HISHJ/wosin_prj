@@ -7,10 +7,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.co.sist.common.dao.DbConnection;
+import kr.co.sist.vo.AdminScheduleVO;
 
-import kr.co.sist.vo.*;
-import project.vo.AdminShowVO;
-import project.vo.DbConnection;
+
+import kr.co.sist.vo.AdminShowVO;
+
 
 
 public class AdminScheduleDAO {

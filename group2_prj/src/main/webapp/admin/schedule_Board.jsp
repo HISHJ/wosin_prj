@@ -1,7 +1,8 @@
+<%@page import="kr.co.sist.vo.AdminScheduleVO"%>
 <%@page import="kr.co.sist.dao.AdminScheduleDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
-<%@page import="project.vo.AdminScheduleVO"%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
