@@ -194,19 +194,24 @@
 			</div>
 				<!-- 로그인 영역끝 -->
 				<!-- 회원가입 jsp -->
-				<%request.setCharacterEncoding("UTF-8"); %>
+				<%request.setCharacterEncoding("UTF-8"); 
+					String email1=request.getParameter("email1");
+					String email2=request.getParameter("email2");
+					String email=email1+"@"+email2;
+				%>
 				
-				
+					 <!-- 1.parmeter를 받을 VO생성   -->
 					
-					<!-- useBean을 사용하여  MemberVO를 불러온다 -->
+					<!-- useBean을 사용하여 MemberDAO와 MemberVO를 불러온다 -->
 				   
 					<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
 					<!-- VO에 있는 모든 값을 set해줌  -->
-					 <jsp:setProperty property="*" name="mbVO"/>
+				<jsp:setProperty property="*" name="mbVO"/>
+				<jsp:setProperty property="email" name="mbVO" value=<%=email %>/>
 					 
 					
 					<!-- 회원가입 페이지에서 넘어온 정보를 넣어준다. -->
-			<%--   <jsp:setProperty property="name" name="mbVO"/>
+					<%--  <jsp:setProperty property="name" name="mbVO"/>
 					<jsp:setProperty property="memberId" name="mbVO"/>
 					<jsp:setProperty property="pwd" name="mbVO"/>
 					<jsp:setProperty property="birth" name="mbVO"/>
@@ -222,22 +227,40 @@
 					<%-- <jsp:setProperty property="inputdate" name="mbVO"/> 
 					<jsp:setProperty property="status" name="mbVO"/>  
 					 --%>
-				
+					
+					
+					 <%-- <jsp:getProperty property="name" name="mbVO"/>
+					<jsp:getProperty property="memberId" name="mbVO"/>
+					<jsp:getProperty property="pwd" name="mbVO"/>
+					<jsp:getProperty property="birth" name="mbVO"/>
+					<jsp:getProperty property="gender" name="mbVO"/>
+					<jsp:getProperty property="zipcode" name="mbVO"/>
+					<jsp:getProperty property="addr1" name="mbVO"/>
+					<jsp:getProperty property="addr2" name="mbVO"/>
+					<jsp:getProperty property="phone" name="mbVO"/>
+					<jsp:getProperty property="hPhone" name="mbVO"/>
+					<jsp:getProperty property="mailChk" name="mbVO"/>
+					<jsp:getProperty property="smsChk" name="mbVO"/>
+					<jsp:getProperty property="mdate" name="mbVO"/>
+					<jsp:getProperty property="status" name="mbVO"/> 
+					 --%>
+					
 			
 					
 					
 				  <% 
+				  
 					MemberDAO mbrDAO = MemberDAO.getInstance();
 					try{
 					int cnt = mbrDAO.insertMember(mbVO);
 					
-					if(cnt==-1){%>
+					if(cnt<0){%>
 						<script>
 							alert("회원가입 실패")
-							location.href="http://localhost/group2_prj/signUp/signup.jsp"
+							location.href="http://localhost/jsp_prj/design%20final%20intergration/signup.jsp"
 							</script>
 					<%
-						}else{%>
+						}else if(cnt>0){%>
 					
 						<script>
 						alert("회원가입완료")

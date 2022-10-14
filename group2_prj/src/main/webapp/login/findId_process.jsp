@@ -257,11 +257,11 @@
 									String phone=tel1+"-"+tel2+"-"+tel3;%>
 			
 			
-				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
+				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 				<jsp:setProperty property="name" name="mbVO"/>
 				<jsp:setProperty property="phone" name="mbVO" value="<%=phone %>"/>
 				<jsp:setProperty property = "memberId" name="mbVO"/>
-				<jsp:setProperty property="inputdate" name="mbVO"/>		
+				<jsp:setProperty property="mdate" name="mbVO"/>		
 			
 					
 		<% 		

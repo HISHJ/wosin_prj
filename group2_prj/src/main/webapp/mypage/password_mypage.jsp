@@ -12,18 +12,18 @@
 		<title>비밀번호 찾기</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="static\commons\img\favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="static\commons\img\favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="static\commons\img\favicon_16.png">
-		<link rel="stylesheet" href="assets\css\main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="../static\commons\img\favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static\commons\img\favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static\commons\img\favicon_16.png">
+		<link rel="stylesheet" href="../assets\css\main.css" />
+		<link rel="stylesheet" href="../assets\css\reset.css">
+		<link rel="stylesheet" href="../assets\css\subheader.css">
+		<link rel="stylesheet" href="../assets\css\headerFooter.css">
+		<link rel="stylesheet" href="../assets\css\login.css">
 	
-	 <link rel="stylesheet" type="text/css" href="static\portal\css\sub_new.css">
-   <link rel="stylesheet" type="text/css" href="static\portal\css\style.css">
-   <link rel="stylesheet" type="text/css" href="static\portal\css\layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="../static\portal\css\sub_new.css">
+   <link rel="stylesheet" type="text/css" href="../static\portal\css\style.css">
+   <link rel="stylesheet" type="text/css" href="../static\portal\css\layout_new.css">
 		<!-- 부트스트랩 -->
 		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
@@ -35,7 +35,7 @@
 		<style>
 						section#header{
   /* background-image:  url("../../images/subvisual-200001.jpg"); */
- 	 background: url("images/subvisual-common.jpg") no-repeat ; 
+ 	 background: url("../images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
  	/*  z-index: 9999;  */
@@ -181,7 +181,7 @@
 				<li>
 					<li>
 						<div class="rel">
-						<a href="#"><span>회원정보 수정</span></a>
+						<a href="#"><span>마이페이지</span></a>
 						<ul class="depth">
 						<li><a href="memberMng.html" ><span>개인화서비스</span></a></li>
 						<li><a href="subpage-FAQ1.html" ><span>FAQ</span></a></li>

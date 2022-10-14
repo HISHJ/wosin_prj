@@ -15,18 +15,18 @@
 		<title>아이디 찾기</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="../static/commons/img/favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static/commons/img/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static/commons/img/favicon_16.png">
+		<link rel="stylesheet" href="../assets/css/main.css" />
+		<link rel="stylesheet" href="../assets\css\reset.css">
+		<link rel="stylesheet" href="../assets\css\subheader.css">
+		<link rel="stylesheet" href="../assets\css\headerFooter.css">
+		<link rel="stylesheet" href="../assets\css\login.css">
 	
-	 <link rel="stylesheet" type="text/css" href="static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="../static/portal/css/sub_new.css">
+   <link rel="stylesheet" type="text/css" href="../static/portal/css/style.css">
+   <link rel="stylesheet" type="text/css" href="../static/portal/css/layout_new.css">
 		<!-- 부트스트랩 -->
 		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
@@ -44,7 +44,7 @@
 	<style>
      section#header{
  		 /* background-image:  url("../../images/subvisual-200001.jpg"); */
-  	background: url("images/subvisual-common.jpg") no-repeat ; 
+  	background: url("../images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
   
@@ -173,12 +173,12 @@
 							<li>
 								<li>
 									<div class="rel">
-									<a href="find_id.html"><span>아이디 찾기</span></a>
+									<a href="find_id.jsp"><span>아이디 찾기</span></a>
 									<ul class="depth">
-									<li><a href="login.html" ><span>로그인</span></a></li>
+									<li><a href="login.jsp" ><span>로그인</span></a></li>
 									<li><a href="signup.html" ><span>회원가입</span></a></li>
-									<li><a href="find_id.html" ><span>아이디 찾기</span></a></li>
-									<li><a href="find_password.html" ><span>패스워드 찾기</span></a></li>
+									<li><a href="find_id.jsp" ><span>아이디 찾기</span></a></li>
+									<li><a href="find_password.jsp" ><span>패스워드 찾기</span></a></li>
 									
 									</ul>
 									</div>
@@ -292,7 +292,7 @@
 			
 					
 
-			<form name ="findFrm" id="findFrm" method="post" action="http://localhost/group2_prj/login/findId_process.jsp">
+			<form name ="findFrm" id="findFrm" method="post" action="findId_process.jsp">
 				<article class="find_member inner member_com">
 					<div class="group">
 						<h3 class="tit-st4">아이디 찾기</h3>
@@ -300,7 +300,6 @@
 							<div class="top top_find" id="ck_input">
 								<span><input type="radio" name="find1" id="find1_1" checked="checked"/> 
 									<label for="find1_1">회원정보에 등록한 휴대전화로 인증</label></span>
-								<!-- <span><input type="radio" name="find1" id="find1_2" /> <label for="find1_2">본인확인 이메일로 인증</label></span> -->
 							</div>
 							<div id="ck_cont">
 								<div class="form_w form1">

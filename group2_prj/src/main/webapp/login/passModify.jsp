@@ -12,18 +12,18 @@
 		<title>비밀번호 변경</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="static\commons\img\favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="static\commons\img\favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="static\commons\img\favicon_16.png">
-		<link rel="stylesheet" href="assets\css\main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="../static\commons\img\favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../static\commons\img\favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../static\commons\img\favicon_16.png">
+		<link rel="stylesheet" href="../assets\css\main.css" />
+		<link rel="stylesheet" href="../assets\css\reset.css">
+		<link rel="stylesheet" href="../assets\css\subheader.css">
+		<link rel="stylesheet" href="../assets\css\headerFooter.css">
+		<link rel="stylesheet" href="../assets\css\login.css">
 	
-	 <link rel="stylesheet" type="text/css" href="static\portal\css\sub_new.css">
-   <link rel="stylesheet" type="text/css" href="static\portal\css\style.css">
-   <link rel="stylesheet" type="text/css" href="static\portal\css\layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="../static\portal\css\sub_new.css">
+   <link rel="stylesheet" type="text/css" href="../static\portal\css\style.css">
+   <link rel="stylesheet" type="text/css" href="../static\portal\css\layout_new.css">
 		<!-- 부트스트랩 -->
 		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
@@ -35,7 +35,7 @@
 		<style>
 						section#header{
   /* background-image:  url("../../images/subvisual-200001.jpg"); */
- 	 background: url("images/subvisual-common.jpg") no-repeat ; 
+ 	 background: url("../images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
  	/*  z-index: 9999;  */
@@ -254,33 +254,33 @@
 						if(pass.trim()==""){
 							alert("비밀번호를 입력해주세요.");
 							$("#password").focus();
-							return false;
+							return;
 						}
 						 var num = pass.search(/[0-9]/);
 						 var eng = pass.search(/[a-zA-Z]/);
 						 var spe= pass.search(/[~!@#$%^&*()_+|<>?:{}]/); 
 							//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
-							if(pass.length < 7 || pass.length > 21){
+							if(pass.length <7 || pass.length >21){
 									  alert("8자리 ~ 21자리 이내로 입력해주세요.");
 									  $("#password").focus();
-									  return false;
+									  return;
 								}
 						 if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
 									  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
 									  $("#password").focus();
-									  return false;
+									  return ;
 								}
 						 
 						 if(pass2!=pass){
 							 alert("비밀번호를 다시 확인해주세요.")
 							$("#repassword").focus();
-							 return false;
+							 return ;
 						 }
 						if(pass2.trim()==""){
 							alert("비밀번호를 한번 더 확인해주세요.")
 							$("#repassword").focus();
 							
-							return false;
+							return;
 						}//pass
 						$("#pmFrm").submit();
 					
@@ -301,7 +301,7 @@
 				
 				<!-- 세션 값 받아오기 useBean : scope="session"사용하면 필요없을듯! -->
 			<%-- 	<%String id=(String)session.getAttribute("memberId"); %> --%>
-			<form id="pmFrm" name="pmFrm" method="post" action="http://localhost/group2_prj/login/pm_process.jsp">
+			<form id="pmFrm" name="pmFrm" method="post" action="pm_process.jsp">
 				<article class="find_member inner member_com">
 						<div class="group">
 						<h3 class="tit-st4">비밀번호 변경</h3>
