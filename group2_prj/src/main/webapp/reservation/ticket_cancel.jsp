@@ -1,14 +1,14 @@
+<%@page import="kr.co.sist.vo.RsrvtInfoVO"%>
+<%@page import="kr.co.sist.dao.RsrvtDAO"%>
 <%@page import="javax.script.ScriptContext"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="userDAO.RsrvtDAO"%>
-<%@page import="userVO.RsrvtInfoVO"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="scriptlet의 사용" %>
+    pageEncoding="UTF-8" info="예매취소, 좌석테이블 삭제 페이지" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -92,11 +92,10 @@ ivo.getRsrvtStatus();
 ivo.getRsrvtId();
 
 String[] staArr={"예매완료","예매취소"};
-
 %>
 
 
-<jsp:useBean id="rVO" class="userVO.RsrvtInfoVO" scope="page"/>
+<jsp:useBean id="rVO" class="kr.co.sist.vo.RsrvtInfoVO" scope="page"/>
 		  
 <jsp:setProperty property="rsrvtStatus" name="rVO" value="<%= staArr[1]%>"/>
 <jsp:setProperty property="rsrvtId" name="rVO" value="<%= rId %>"/>

@@ -1,7 +1,5 @@
-
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="scriptlet의 사용" %>
+    pageEncoding="UTF-8" info="관리자 로그인 페이지" %>
 <!DOCTYPE html>
 <html>
   <head>
@@ -11,11 +9,11 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>관리자-로그인</title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="http://localhost/group2_prj/admin/css/styles.css" rel="stylesheet" />
       <style type="text/css">
   	
-  	body { background: navy !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
-</style>
+  		body { background: navy !important; } /* Adding !important forces the browser to overwrite the default style applied by Bootstrap */
+	  </style>
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -85,7 +83,7 @@ $("#adminLoginFrm").submit();
                                     <div class="card-body">
                                      	<h1 class="text-center text-info fw-bold my-4 font_header " >C&nbsp;M&nbsp;S&nbsp;</h1>
                                     	<h6 class="text-center fw-bold my-4 ">관리자계정입니다.</h6>
-                                        <form id="adminLoginFrm" name="adminLoginFrm" action="adminLogin_process.jsp" method="get">
+                                        <form id="adminLoginFrm" name="adminLoginFrm" action="http://localhost/group2_prj/admin/adminLogin_process.jsp" method="get">
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="adminId" name="adminId" type="text" placeholder="name@example.com" autofocus="autofocus"/>
                                                 <label for="inputEmail">ID</label>
@@ -106,7 +104,7 @@ $("#adminLoginFrm").submit();
                                     </div>
                                     <div class="card-footer text-center py-3 text-white bg-footer" >
                                         <div class="big"> 아이디/비밀번호 분실 및 로그인 관련 문의는<br/>
-                                         담당부서 전산정보실 담당자 홍길동 연락처 02-0000-0000<br/>
+                                         담당부서 전산정보실 담당자 하지윤 연락처 02-0000-0000<br/>
                                         이메일 admin@000.co.kr로 문의하시기 바랍니다.</div>
                                     </div>
                                 </div>
@@ -115,17 +113,9 @@ $("#adminLoginFrm").submit();
                     </div>
                 </main>
             </div>
-            <!-- <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            
-                        </div>
-                    </div>
-                </footer>
-            </div> -->
+           
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="http://localhost/group2_prj/admin/js/scripts.js"></script>
     </body>
 </html>

@@ -1,13 +1,14 @@
+<%@page import="kr.co.sist.dao.RsrvtDAO"%>
+<%@page import="kr.co.sist.vo.RsrvtInfoVO"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="userDAO.RsrvtDAO"%>
-<%@page import="userVO.RsrvtInfoVO"%>
+
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="javax.swing.JOptionPane"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="scriptlet의 사용" %>
+    pageEncoding="UTF-8" info="예매내역,상세내역조회페이지 (비동기처리가 필요해보임)" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -20,14 +21,14 @@
 		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
         <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\login.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/headerFooter.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/login.css">
 
 	<!-- popup플러그인 0923 16:06 test 62라인 2.2.4 순서때문이었나 -->
-	<link rel="stylesheet" href="assets\css\popup.css">
+	<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/popup.css">
 	<!-- jQuery -->
 	<script type="text/javascript"
 		src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -35,10 +36,10 @@
 		src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script type="text/javascript" 
 		src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
-		<style>
+	<style>
      		
     section#header{
- 	background: url("images/subvisual-common.jpg") no-repeat ; 
+ 	background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed; 
 	}
@@ -50,93 +51,87 @@
 	.disable{
 	  pointer-event:none;
 	}
-		</style>
+	
+	#nav {
+	margin-right: 150px;
+	}
 
-		<script>
-			$(function(){
-				$("input:checkbox[name='save_id']").prop("checked", true);
-	
-				//주의사항팝업창
-				$("#caution_btn").click(function(){
-					$('#cautionPopup_wrap').bPopup();
-				})
-	
-				$("#ok_close").click(function(){
-					window.location.reload();
-			})
-		
-		//날짜 값전달
+	#caution_btn {
+	transition: all 0.3s;
+	}
 
-});//end ready		
+	#caution_btn:hover {
+	background-color: whitesmoke;
+	border: 2px solid #4682b4;
+	color: #4682b4 !important;
+	transition: all 0.3s;
+	}
+	
+	</style>
 
-		function addZero( param ){
-	
-				if(param < 10){ //숫자가 한자리라면
-					param="0"+param; //앞에 0을 더한다.
-			}
-			return param;
-	
+<script>
+	$(function() {
+		$("input:checkbox[name='save_id']").prop("checked", true);
+
+		//주의사항팝업창
+		$("#caution_btn").click(function() {
+			$('#cautionPopup_wrap').bPopup();
+		})
+
+		$("#ok_close").click(function() {
+			window.location.reload();
+		})
+
+	});//end ready		
+
+	function addZero(param) {
+
+		if (param < 10) { //숫자가 한자리라면
+			param = "0" + param; //앞에 0을 더한다.
 		}
+		return param;
 
-		function setDate1(){
-	
-			let frYear = $("#frYear").val();
-			let frMonth = $("#frMonth").val();
-			let frDay = $("#frDay").val();
-			let toYear = $("#toYear").val();
-			let toMonth=$("#toMonth").val();
-			let toDay = $("#toDay").val();
-			prom_StartDate = addZero(frYear)+ "-" + addZero(frMonth) + "-" + addZero(frDay); //2022-06-13
-			prom_EndDate = addZero(toYear)+ "-" + addZero(toMonth)+ "-" + addZero(toDay); 
-			$("#findStartDate").val(prom_StartDate); //값 합쳐서 전송
-			$("#findEndDate").val(prom_EndDate);
-			$("#ReserveForm").submit(); //날짜 월에 따른 '일'변경
-			$("#hidResFrm").submit(); //hiddenform의 값을 '본인' 페이지로 전송 (action생략하면 됨)
-			
-		}//end submit
-		
-	  function detailPopup(){
-		  $('#viewDatail_Popup_wrap').bPopup(); 
-		}
-	
-	function closePopup(){
-		
-		 setDate1();
-		 
+	}// addZero
+
+	function setDate1() {
+
+		let frYear = $("#frYear").val();
+		let frMonth = $("#frMonth").val();
+		let frDay = $("#frDay").val();
+		let toYear = $("#toYear").val();
+		let toMonth = $("#toMonth").val();
+		let toDay = $("#toDay").val();
+		prom_StartDate = addZero(frYear) + "-" + addZero(frMonth) + "-"
+				+ addZero(frDay);
+		prom_EndDate = addZero(toYear) + "-" + addZero(toMonth) + "-"
+				+ addZero(toDay);
+		$("#findStartDate").val(prom_StartDate); //값 합쳐서 전송
+		$("#findEndDate").val(prom_EndDate);
+		$("#ReserveForm").submit(); //날짜 월에 따른 '일'변경
+		$("#hidResFrm").submit(); //hiddenform의 값을 '본인' 페이지로 전송 (action생략하면 됨)
+
+	}//end setDate1()
+
+	function detailPopup() {
+		$('#viewDatail_Popup_wrap').bPopup();
+	}//detailPopup()
+
+	function closePopup() {
+
+		setDate1();
+
 	}//closePopup
-	
-	
-			</script>
-	
-	<!-- test -->
-	
-	 <link rel="stylesheet" type="text/css" href="static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/layout_new.css">
-	
-		<!--google icons-->
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-		<!--google fonts-->
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</script>
 
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/sub_new.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/style.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/layout_new.css">
 	
-			<style>
-				#nav{
-					margin-right:150px;
-				}
-	
-				#caution_btn{
-					transition: all 0.3s;
-				}
-	
-				#caution_btn:hover{
-					background-color: whitesmoke;
-					border:2px solid #4682b4;
-					color:#4682b4 !important;
-					transition: all 0.3s;
-				}
-			</style>
-	</head>
+	<!--google icons-->
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+	<!--google fonts-->
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
 <body class="homepage is-preload">
 
 <%
@@ -147,7 +142,7 @@ String findEndDate=request.getParameter("findEndDate"); //본인페이지에서 
 //세션에 담기
 session.setAttribute("findStartDate", findStartDate);
 session.setAttribute("findEndDate",findEndDate);
-session.setAttribute("id", "test2");
+session.setAttribute("id", "test24");
 
 
 String id = (String)session.getAttribute("id");
@@ -167,6 +162,7 @@ String status = "";
 String rId ="";//세션 넣을 변수(예약번호)
 //세션 넣을 리스트
 RsrvtInfoVO rVOList= null;
+String[] staArr ={"예매완료","예매취소"}; 
 %>   
 
 		<div id="page-wrapper">
@@ -333,7 +329,7 @@ RsrvtInfoVO rVOList= null;
 							
 							
 								<section id="wrap" >
-								<form id="ReserveForm" name="ReserveForm" method="get" >
+								<form id="ReserveForm" name="ReserveForm" method="post" >
 								<!-- 검색일자를 합치는 용도 -->
 								<input type="hidden" name="findStartDate" id="findStartDate" />
 								<input type="hidden" name="findEndDate" id="findEndDate" />						
@@ -509,7 +505,9 @@ RsrvtInfoVO rVOList= null;
 														<tr>
 															<td><%=date%></td>
 															<td><%= rId %><br/>  
-															<button type="button" id="datail_btn" class="bg-black2 btn-st3 bg_can" onclick="viewDetail_pop('<%= rId %>');">상세내역</button> 
+															<button type="button" id="datail_btn" class="bg-black2 btn-st3 bg_can" onclick="viewDetail_pop('<%= rId %>');"
+															<%=rStatus.equals(staArr[1]) ? "style='background-color:grey;' disabled='disabled' " : "" %>
+															>상세내역</button> 
 															</td>
 															<td class="tal" style="text-align:center !important;"><%=rsVO.getShowName()%></td>
 															<td class="tal" style="text-align:center !important;"><%=rsVO.getShowDate()%><br />
@@ -519,16 +517,10 @@ RsrvtInfoVO rVOList= null;
 															</td>
 															<td><%=rsVO.getTotalPrice()%>
 															</td>
-															<td>
-															  <% String[] staArr ={"예매완료","예매취소"}; %>
+															<td>															  
 															  <%=rsVO.getRsrvtStatus() %><br />
-															 <%if(!rStatus.equals(staArr[1])){ %>
-															<button type="submit" id="rsvt_c_btn" class="bg-black2 btn-st3 bg_can" formaction="ticket_cancel.jsp"  
-															onclick="modiRsrvt('<%=rId%>','<%=rStatus%>');">취소하기</button>
-															<%}else{ %>
-															<button type="submit" id="rsvt_c_btn" class="bg-black2 btn-st3 bg_can" formaction="ticket_cancel.jsp"  
-															 onclick="modiRsrvt('<%=rId%>','<%=rStatus%>');" disabled="disabled" style="background-color:grey;">변경불가</button>
-															<% }%>										
+															<button type="submit" id="rsvt_c_btn" class="bg-black2 btn-st3 bg_can" formaction="http://localhost/group2_prj/reservation/ticket_cancel.jsp"  
+															 onclick="modiRsrvt('<%=rId%>','<%=rStatus%>');"<%=rStatus.equals(staArr[1]) ?  "disabled='disabled' style='background-color:grey;'" : ""%>>변경불가</button>
 															 </td>
 														</tr>
 														  <%
@@ -573,13 +565,14 @@ RsrvtInfoVO rVOList= null;
 			</div>
 		</div>
 </article>
- <!-- 상세보기 팝업 -->
- <script type="text/javascript">
- function viewDetail_pop(r_num){  // 버튼을 클릭하면 상세보기 팝업이 아니라, 값을 가져와야 함(조회된 날짜)
-	 $("#rId").val(r_num);//조회하려는 번호(예매번호)
-	 setDate1();  // 선택한 날짜 	
-}
- </script>
+
+<!-- 상세보기 팝업 -->
+<script type="text/javascript">
+function viewDetail_pop(r_num) { // 버튼을 클릭하면 상세보기 팝업이 아니라, 값을 가져와야 함(조회된 날짜)
+ $("#rId").val(r_num);//조회하려는 번호(예매번호)
+		setDate1(); // 선택한 날짜 	
+}// viewDetail_pop
+</script>
 <% 
 String reserNum=request.getParameter("rId"); //예약번호(hidden을 통해 전송된 값을 가져옴)
 if(reserNum != null && !"".equals(reserNum)){%> 
@@ -630,13 +623,13 @@ rVOList = rDAO.selectRsrvtDetail(reserNum);
 <!--상세보기 팝업끝-->
 
 
- <script type="text/javascript">
+<script type="text/javascript">
 function modiRsrvt(r_num,status){
 	 $("#rId").val(r_num);//조회하려는 번호(예매번호)
 	 $("#rStatus").val(status);//예매상태
 	 setDate1();  // 선택한 날짜 
-	$("#ReserveForm").attr("action", "ticket_cancel.jsp");
-}
+	$("#ReserveForm").attr("action", "http://localhost/group2_prj/reservation/ticket_cancel.jsp");
+}//modiRsrvt(r_num,status)
 </script> 
 
 						
@@ -652,7 +645,7 @@ function modiRsrvt(r_num,status){
 									<header>
 										<h2>
 											<a href="index.html">
-												<img class="footer_logo" src="common\logo_white.png" alt="우신문화회관">
+												<img class="footer_logo" src="http://localhost/group2_prj/common/logo_white.png" alt="우신문화회관">
 											</a>
 										</h2>
 										<div class="l">

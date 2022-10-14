@@ -3,7 +3,7 @@
 <%@page import="adminVO.AdminRsrvtInfoVO"%>
 <%@page import="adminDAO.AdminRsrvtDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="scriptlet의 사용" %>
+    pageEncoding="UTF-8" info="예매관리 상세내역" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 
 <!DOCTYPE html>
@@ -15,7 +15,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>예매관리-예매상세내역</title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="http://localhost/group2_prj/admin/css/styles.css" rel="stylesheet" />
         <style type="text/css">
         
         body{background-color : #fff;}
@@ -27,7 +27,7 @@
 		}
         
         </style>
-        <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+<script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <!--JQuery Google CDN -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 <!-- Bootstrap CSS -->
@@ -156,6 +156,6 @@ AdminRsrvtInfoVO voList = aDAO.selectRsrvtDetail(rsrvtId);
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="http://localhost/group2_prj/admin/js/scripts.js"></script>
     </body>
 </html>

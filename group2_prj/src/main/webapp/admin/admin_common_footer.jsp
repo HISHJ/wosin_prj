@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="footer_include" %>
+    pageEncoding="UTF-8" info="admin_footer_include" %>
                 <!--  -->
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
@@ -11,13 +11,13 @@
        <!--   </div> 
         </div>  -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="http://localhost/group2_prj/admin/js/scripts.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="js/chart-area-demo.js"></script>
-        <script src="js/chart-bar-demo.js"></script>
-        <script src="js/chart-pie-demo.js"></script>
+        <script src="http://localhost/group2_prj/admin/js/chart-area-demo.js"></script>
+        <script src="http://localhost/group2_prj/admin/js/chart-bar-demo.js"></script>
+        <script src="http://localhost/group2_prj/admin/js/chart-pie-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
+        <script src="http://localhost/group2_prj/admin/js/datatables-simple-demo.js"></script>
     </body>
 </html>
     
