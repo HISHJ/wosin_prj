@@ -33,7 +33,11 @@ request.setCharacterEncoding("UTF-8");
 String aId = request.getParameter("adminId");
 String aPass = request.getParameter("adminPassword");
 //plainText
-String plainText = DbAdminService.getText();  
+
+//key가져오기
+ServletContext sc = getServletContext();
+String plainText = sc.getInitParameter("keyA");
+
 MessageDigest md;
 md = MessageDigest.getInstance("MD5");
 md.update(plainText.getBytes());

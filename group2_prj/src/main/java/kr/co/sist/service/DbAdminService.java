@@ -28,7 +28,7 @@ public class DbAdminService {
 		String plainText = "";
 		FileInputStream fis = null;
 		try {
-			fis = new FileInputStream(new File("C://Users//user//Desktop/ticket.jsp에 관하여.txt/"));
+			fis = new FileInputStream(new File("C://Users//user//Desktop/DBCP.txt/"));
 
 			// 파일의 내용을 byte단위로 읽어옴
 			// 읽어서 저장할 버퍼 byte배열 설정
@@ -49,19 +49,19 @@ public class DbAdminService {
 
 	// 아이디,비번 넣기(암호화)
 	public void addAdminInfo() throws IOException, GeneralSecurityException {
-		String plainText = getText();
+		String plainText = "xO4uy3dsdAt1S1iSOJMYAQ==";
 		MessageDigest md;
 		String[] infoArr = { "team2", "rkwkal~!11" };
 
 		// 유효성검증 생략
 		// 아이디 암호화
 		// 1. 알고리즘을 설정하여 MessageDigest객체얻음
-		try {
+		//try {
 			md = MessageDigest.getInstance("MD5");
 			md.update(plainText.getBytes());
 			new String(md.digest());
 			String key = DataEncrypt.messageDigest("MD5", plainText);
-			System.out.println(key);// xO4uy3dsdAt1S1iSOJMYAQ==
+			//System.out.println(key);// xO4uy3dsdAt1S1iSOJMYAQ==
 			// 1. 키를 넣어 암호화 객체 생성
 			DataEncrypt de = new DataEncrypt(key);
 
@@ -90,17 +90,15 @@ public class DbAdminService {
 				e.printStackTrace();
 				// OracleException상황 비교
 			}
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} // end catch
+		
 	}// addAdminInfo()
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws GeneralSecurityException {
 		DbAdminService dba = new DbAdminService();
 		try {
-			String plain = dba.getText();
-			System.out.println(plain);
+			dba.addAdminInfo();
+			//String plain = dba.getText();
+			//System.out.println(plain);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

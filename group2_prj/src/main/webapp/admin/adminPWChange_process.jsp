@@ -35,7 +35,10 @@
  String rePw = request.getParameter("newPassword"); 
  
 //plainText
-String plainText = DbAdminService.getText();  
+//key가져오기
+ServletContext sc = getServletContext();
+String plainText = sc.getInitParameter("keyA"); 
+
 MessageDigest md;
 md = MessageDigest.getInstance("MD5");
 md.update(plainText.getBytes());

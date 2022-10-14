@@ -9,4 +9,13 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+<context-param>
+<param-name>keyU</param-name>
+<param-value>PygKVEAST4YmSFAy5oVQtA==</param-value>
+</context-param>
+
+<context-param>
+<param-name>keyA</param-name>
+<param-value>xO4uy3dsdAt1S1iSOJMYAQ==</param-value>
+</context-param>
 </web-app>
