@@ -1,4 +1,4 @@
-package project.dao;
+package kr.co.sist.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import project.vo.AdminScheduleVO;
+import kr.co.sist.vo.*;
 import project.vo.AdminShowVO;
 import project.vo.DbConnection;
 
@@ -110,10 +110,11 @@ public class AdminScheduleDAO {
 				con=db.getConn();
 			//3. 쿼리문 생성객체 얻기
 				
-		String query=" select s.showId s_showId, s.name s_name, g.genretype g_genretype, sc.schDate sc_schDate, sc.schTime sc_schTime, s.runningTime s_runningTime, "
-						+" r.ratingtype r_ratingtype, s.price s_price, s.mImg s_mImg, s.thImg s_thImg, s.infoImg s_infoImg, s.status s_status "
-						+" from  show s, schedule sc, rating r, genre g "
-						+" where (s.ratingId=r.ratingId and s.genreId=g.genreId) and sc.schId=? ";
+		
+		String query=	"select sc.schId sc_schId, s.showId s_showId, s.name s_name, g.genretype g_genretype, sc.schDate sc_schDate, sc.schTime sc_schTime, s.runningTime s_runningTime, "
+		+"r.ratingtype r_ratingtype, s.price s_price, s.mImg s_mImg, s.thImg s_thImg, s.infoImg s_infoImg, s.status s_status "
+		+"from  show s, schedule sc, rating r, genre g "
+		+"where (s.ratingId=r.ratingId and s.genreId=g.genreId) and (s.showId = sc.showId) and sc.schId=? ";
 				
 				
 				
@@ -132,7 +133,7 @@ public class AdminScheduleDAO {
 			if(rs.next()) {
 				
 				aschVO =new AdminScheduleVO();
-				aschVO.setSchId(rs.getString("s_schId"));
+				aschVO.setSchId(rs.getString("sc_schId"));
 				aschVO.setShowId(rs.getString("s_showId"));
 				aschVO.setName(rs.getString("s_name"));
 				aschVO.setGenreId(rs.getString("g_genretype"));
@@ -209,14 +210,15 @@ public class AdminScheduleDAO {
 			con = db.getConn();
 		
 			
-			String query=" update schedule "
-					+ " set schDate=?, schTime=? "
-					+ " where schId=? ";
+			String query="update schedule "
+					+ "set schDate=?, schTime=? "
+					+ "where schId=? ";
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, aschVO.getSchDate());
-			pstmt.setString(2, aschVO.getSchTime());
-			pstmt.setString(3, aschVO.getSchId());
+			pstmt.setString(1, aschVO.getSchId());
+			pstmt.setString(2, aschVO.getSchDate());
+			pstmt.setString(3, aschVO.getSchTime());
+		
 
 			
 			pstmt.executeUpdate();
@@ -314,6 +316,7 @@ public class AdminScheduleDAO {
 					aschVO.setThImg("thImg");
 					aschVO.setSchDate("startDate");
 					aschVO.setSchTime("endDate");
+					aschVO.setShowId("showId");
 				}//end while
 				
 		}finally {
