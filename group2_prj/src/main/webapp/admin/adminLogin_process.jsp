@@ -1,3 +1,6 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="java.security.MessageDigest"%>
+<%@page import="useTmpService.DbAdminService"%>
 <%@page import="adminDAO.AdminDAO"%>
 <%@page import="adminVO.AdminVO"%>
 
@@ -27,11 +30,26 @@ request.setCharacterEncoding("UTF-8");
 //값 검증완료
 String aId = request.getParameter("adminId");
 String aPass = request.getParameter("adminPassword");
+//plainText
+String plainText = DbAdminService.getText();  
+MessageDigest md;
+md = MessageDigest.getInstance("MD5");
+md.update(plainText.getBytes());
+new String(md.digest());
+//0.키 생성
+String key= DataEncrypt.messageDigest("MD5", plainText);
+//1. 키를 넣어 암호화 객체 생성
+DataEncrypt de = new DataEncrypt(key);
+
+//아이디 암호화
+String adminId = de.encryption(aId);
+//비번 암호화
+String adminPass =DataEncrypt.messageDigest("SHA-1", aPass);
 
 AdminDAO aDAO = AdminDAO.getInstance();
 AdminVO aVO = new AdminVO();
-aVO.setId(aId);
-aVO.setPwd(aPass);
+aVO.setId(adminId);
+aVO.setPwd(adminPass);
 
 int chk = aDAO.selectAdmin(aVO);
  
