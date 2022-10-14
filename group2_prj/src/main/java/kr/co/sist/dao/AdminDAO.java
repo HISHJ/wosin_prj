@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import kr.co.sist.common.dao.DbConnection;
 import kr.co.sist.vo.AdminVO;
-
+// 유설빈
 	public class AdminDAO {
 		private static AdminDAO upsDAO;
 

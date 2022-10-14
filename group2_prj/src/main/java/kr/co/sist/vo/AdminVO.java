@@ -1,7 +1,7 @@
 package kr.co.sist.vo;
 
 import java.sql.Date;
-
+// 유설빈
 public class AdminVO {
 	private String id, pwd;
 	private Date inputDate;
