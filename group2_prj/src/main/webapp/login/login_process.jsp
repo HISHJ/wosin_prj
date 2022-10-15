@@ -30,7 +30,7 @@ boolean result = mbrDAO.login(mbVO);
 if(result){
 	//로그인 성공
 	session.setAttribute("memberId", mbVO.getMemberId());  
- /* 	String id=(String)session.getAttribute("memberId");  */
+  //	String id=(String)session.getAttribute("memberId"); 
 	
 /* 	out.println(id); 세션확인용*/
 	

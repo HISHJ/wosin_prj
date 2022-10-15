@@ -3,9 +3,14 @@
 <%@page import="kr.co.sist.vo.ShowVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
+    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <% MainDAO mDAO = MainDAO.getInstance(); 
    List<ShowVO> swList = mDAO.selectThImg();
+   
+ //검증완료
+ String memberId= (String)session.getAttribute("memberId");
    
 %>
     
@@ -103,82 +108,19 @@
 
 <body class="homepage is-preload">
 	<div id="page-wrapper">
-
-    <section id="header">
-				
-      <!-- Logo -->
-        
-      <!-- Nav -->
-        <nav id="nav">
-          <!-- left -->
-          <ul id="header_left">
-            <li class="current">
-              <a href="index.html">공연정보</a>
-              <ul>
-                <li><a href="page1.html">공연일정</a></li>
-								<li><a href="page2.html">공연정보상세보기</a></li>
-                <li><a href="page7.html">좌석배치도</a></li>
-              </ul>
-            </li>
-            <li>
-              <a href="#">예매정보</a>
-              <ul>
-                <li><a href="subpage-ticketmethod.html">티켓구입방법</a></li>
-                <li><a href="subpage-ticketreceive.html">티켓수령방법</a></li>
-                <li><a href="subpage-ticketcancel.html">예매취소,변경안내</a></li>
-                <li><a href="subpage-ticketprovision .html">예매약관</a></li>					
-              </ul>
-            </li>
-            <li>
-              <a href="subpage-FAQ1.html">고객센터</a>
-              <ul>
-                <li><a href="subpage-FAQ1.html">FAQ</a></li>
-                <li><a href="subpage-manner.html">관람예절</a></li>				
-              </ul>
-            </li>
-            <li><a href="subpage-way.html">오시는 길</a></li>
-            
-            
-          </ul>
-
-          <ul id="header_center">
-            <h1 id="logo">
-              <a href="index.html">
-              우신문화회관
-              </a>
-              </h1>	
-            
-          </ul>
-
-          <!--right  -->
-          <ul id="header_right">
-            <li class="current"><a href="login.html">LOGIN</a></li>
-            <li><a href="ticket.html">티켓</a></li>
-            <li class="calender">
-              <a href="calendar.html" class="btn-book btn">
-                <span class="material-symbols-outlined md_20">
-                  calendar_month
-                  </span>
-             </a>
-            </li>
-            <li id="search_btn" class="search_icon">
-							<a href="#">
-              <span class="material-symbols-outlined md_20">
-                search
-                </span>
-								</a>
-           </li>
-          </ul>
-        </nav>
+	
+	<!-- 헤더 -->
+	<c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" scope="session"> 
+    <%--  <c:param name="memberId" value="<%=memberId %>"></c:param>  --%>
+    </c:import>
+	<!-- 헤더 -->
+   
 </section>
-
-
-					<!--검색FORM-->
+				
 
 					<!-- SEARCH FORM -->
 	<article id="top_sch">
-		<!-- <button type="button" class="close first">닫기</button> -->
-		<form name="searchFrm" id="searchFrm" action="/portal/search/list.do?menuNo=200174"	method="post">
+		<form name="searchFrm" id="searchFrm" action="http://localhost/group2_prj/reservation/mainSearch_result.jsp"	method="post">
 		<div class="sch">
 			<label for="sch_word" class="hide">검색어</label>
 			<input type="text" name="kwd" id="sch_word" value="" placeholder="검색어를 입력해주세요." />
@@ -189,7 +131,6 @@
 					<div class="sch_txt table">
 						<div class="vertical" id="top_apc_right_msg">		<!-- "top_apc_right_msg"  ID 추가 및 기본 안내문구에서 두번째 제거 (20200906) -->
 							<p class="bul-mark b">검색어를 입력하세요.</p>
-							<!-- <p class="bul-caution">검색결과가 없습니다.</p> -->
 						</div>
 					</div>
 				</li><!-- .r -->
@@ -199,9 +140,6 @@
 		<button type="button" class="close close-pop">닫기</button>
 	</article>
 	<!-- SEARCH FORM -->
-
-
-					<!--검색FORM-->
 
 
 
@@ -501,46 +439,15 @@
 
 			</div>
 			<!--#m2---->
-
-
 		</div>
-
-
 
 		<!--마지막 슬라이드 영역 끝-->
 
 		<!-----------------------footer------------------------>
 
 		<!-- Footer  -->
-		<section id="footer">
-			<div class="footer_line"></div>
-			<div class="container">
-				<div class="row">
-					<div class="col-8 col-12-medium">
-						<section>
-							<header>
-								<h2>
-									<a href="index.html"> <img class="footer_logo"
-										src="../common/logo_white.png" alt="우신문화회관">
-									</a>
-								</h2>
-								<div class="l">
-									<address>
-										재단법인 우신문화회관 서울특별시 쌍용구 우신대로 175 (우신로) (우)03172 <br /> 대표자 : 최정민
-										유원준 정선홍 하지윤 유설빈 사업자등록번호 : 101-12-12345 <br /> 통신판매업신고 :
-										서울쌍용-0988호
-									</address>
-									<p class="copyright">COPYRIGHT(C) WOOSHIN CENTER FOR THE
-										PERFORMING ARTS. ALL RIGHTS RESERVED</p>
-									</p>
-								</div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-
-	</div>
+			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
+	    <!-- End footer -->
 	</div>
 
 

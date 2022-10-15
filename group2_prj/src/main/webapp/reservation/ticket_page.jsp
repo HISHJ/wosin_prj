@@ -14,7 +14,7 @@
 <%
 //세션 넘겨받기 검증 완료
 String memberId = (String)session.getAttribute("memberId");
-System.out.println(memberId);
+//System.out.println("여기여기"+memberId);
 %>
 
 <!DOCTYPE html>
@@ -138,7 +138,7 @@ if( session.getAttribute("memberId") == null){%>
 	 alert("인증이 필요한 페이지입니다. 로그인페이지로 이동합니다.");
     });//ready
 	 </script>
-<% 	 response.sendRedirect("http://localhost/group2_prj/mypage/login.jsp");
+<% 	 response.sendRedirect("http://localhost/group2_prj/login/login.jsp");
 } 
 %>
 
@@ -191,9 +191,9 @@ String[] staArr ={"예매완료","예매취소"};
 
 		<div id="page-wrapper">
 		
-		<c:import url="http://localhost/group2_prj/common/user_subpage_header.jsp"> 
-   		 <c:param name="memberId" value="<%=memberId %>"></c:param>
-   		 </c:import>
+		<c:import url="http://localhost/group2_prj/common/user_subpage_header.jsp"/> 
+   		
+   		
 
 
 
@@ -202,7 +202,7 @@ String[] staArr ={"예매완료","예매취소"};
 			<h2 id="sub-t">
 				<strong
 					style="opacity: 1; font-family: 'Noto Sans KR', sans-serif; font-weight: 700;"
-					class="ani">개인화 서비스</strong>
+					class="ani">예매내역 확인 · 취소</strong>
 			</h2>
 		</div>
 		</section>
@@ -212,9 +212,8 @@ String[] staArr ={"예매완료","예매취소"};
 
 		</section>
 
-		<c:import url="http://localhost/group2_prj/common/user_subpage_header2.jsp"> 
-   		 <c:param name="memberId" value="<%=memberId %>"></c:param>
-   		 </c:import> 
+		<c:import url="http://localhost/group2_prj/common/user_subpage_header2.jsp"/> 
+   		 
 
 			 
 				<!-----------------------------------------------------------------------------------------------  -->

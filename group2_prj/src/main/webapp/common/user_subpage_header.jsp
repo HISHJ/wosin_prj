@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="서브페이지 header" %>
 <% 
-//값 넘김 검증 완료
-String memberId = (String)session.getAttribute("memberId");
+//값 넘김 검증 완료(메인에서 값 전달받음)
+
+//String memberId= request.getParameter("memberId");
+String memberId=(String)session.getAttribute("memberId");
 System.out.println(memberId);
 
 %>    
@@ -60,16 +62,24 @@ System.out.println(memberId);
 							<ul id="header_right">
 								<li class="current">
 								<% if(memberId != null){%>
-								<a href="http://localhost/group2_prj/mypage/mypage.jsp">
-								MYPAGE
+								<a href="http://localhost/group2_prj/mypage/password_mypage.jsp">
+								<%="MYPAGE" %>
 								</a>
 								<%}else{%>
-								<a href="http://localhost/group2_prj/mypage/login.jsp">
-								LOGIN
+								<a href="http://localhost/group2_prj/login/login.jsp">
+								<%="LOGIN" %>
 								</a>
 								<%}%>
 								</li>
-								<li><a href="ticket.html">티켓</a></li>
+								
+								<% if(memberId != null){%>
+								<li>
+								<a href="http://localhost/group2_prj/login/logout_process.jsp">
+								<%="LOGOUT" %>
+								</a>
+								</li>
+								<%}%>
+								<li><a href="http://localhost/group2_prj/reservation/ticket_page.jsp">티켓</a></li>
 								<li class="calender">
 									<a href="calendar.html">
 										<span class="material-symbols-outlined md_20">
@@ -77,7 +87,7 @@ System.out.println(memberId);
 											</span>
 								 </a>
 								</li>
-								<li class="search_icon"><a href="#">
+								<li  id="search_btn" class="search_icon"><a href="#">
 									<span class="material-symbols-outlined md_20">
 										search
 										</span>

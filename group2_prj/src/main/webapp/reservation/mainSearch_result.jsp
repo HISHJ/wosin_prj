@@ -1,8 +1,11 @@
-<%@page import="userVO.ShowVO"%>
+
+<%@page import="kr.co.sist.vo.ShowVO"%>
+<%@page import="kr.co.sist.dao.ShowDAO"%>
 <%@page import="java.util.List"%>
-<%@page import="userDAO.ShowDAO"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="scriptlet의 사용" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
