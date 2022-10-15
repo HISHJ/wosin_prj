@@ -104,15 +104,25 @@ AdminShowVO asVO= new AdminShowVO();
 			
 			
 			//이미지 파일 확장자 제한
-			var blockExt="jpg,jpeg,png,bmp,do".split(",");
+			var blockExt="jpg,jpeg,png,do".split(",");
 			var flag=false;
 			
+			/* for(var i=0; i<blockExt.length; i++){
+				if(blockExt[i]==thImgExt){
+					flag=true;
+				}
+			} */
 			var thImgExt=thImg.substring(thImg.lastIndexOf(".")+1);
 			var mImgExt=mImg.substring(mImg.lastIndexOf(".")+1);
 			var infoImgExt=infoImg.substring(infoImg.lastIndexOf(".")+1);
+			
 			for(var i=0; i<blockExt.length; i++){
-				if(blockExt[i]==thImgExt && blockExt[i]==mImgExt && blockExt[i]==infoImgExt ){
-					flag=true;
+				for(var j=0; j<blockExt.length; j++){
+					for(var k=0; k<blockExt.length; k++){
+						if(blockExt[i]==thImgExt&& blockExt[j]==mImgExt && blockExt[k]==infoImgExt){
+							flag=true;
+						}
+					}
 				}
 			}
 			
@@ -121,9 +131,11 @@ AdminShowVO asVO= new AdminShowVO();
 				return flag;
 			}
 			
+			
+			
 			if(confirm("공연을 추가하시겠습니까?")){
 				$("#frm").submit();
-			}
+			} 
 				
 			
 		}//addBtn
@@ -215,7 +227,7 @@ AdminShowVO asVO= new AdminShowVO();
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>썸네일이미지</b></div> <div class="col-4">
-                                            	<input type="file" name="thImg" id="thImg" onchange="thImgSet(this);" value="파일선택"></div>
+                                            	<input type="file" name="thImg" id="thImg" onchange="thImgSet(this);"  value="파일선택"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -230,7 +242,7 @@ AdminShowVO asVO= new AdminShowVO();
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"></div><div class="col-8">※jpg,jpeg,png,bmp,do 파일만 등록할 수 있습니다</div>
+                                            <div class="col-2"></div><div class="col-8">※jpg,jpeg,png,do 파일만 등록할 수 있습니다</div>
                                         </div>
                                     </form>
                                     

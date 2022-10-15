@@ -67,13 +67,21 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
         	
 			
         	$("#modifyBtn").click(function() {
+        		//유효성 검증 
+        		var name=$("#name").val();
+    			if(name.trim()==""){ //null 아니라 ""로 처리
+    				alert("공연명을 입력해주세요");
+    				$("#name").focus();	
+    				return;
+    			}
+    			
+    			
+    			
         		
         		var edit=confirm("공연을 수정하시겠습니까?");
         		if(edit){
         			$("#updateFrm").submit();
-        		}else{
-        			return;
-        		} 
+        		}
 			});//변경
 			
 			
