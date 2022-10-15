@@ -1,3 +1,5 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="java.security.MessageDigest"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@page import="java.sql.SQLException"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,12 +7,12 @@
     
 
 
-<!DOCTYPE HTML>
-<!--
+ <!DOCTYPE HTML>
+
 	Dopetrope by HTML5 UP
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
 		<title>회원가입</title>
@@ -29,13 +31,13 @@
    <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/style.css">
    <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/layout_new.css">
 	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/bbs_new.css">
-	 <!-- 부트스트랩 -->
-		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
-		<!--google icons-->
+	 부트스트랩
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+		google icons
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-		<!--google fonts-->
+		google fonts
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-		<!--제이쿼리-->
+		제이쿼리
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<script>
 		$(function(){
@@ -61,21 +63,21 @@
 		<div id="page-wrapper">
 
 		
-				<!-- Header -->
+				Header
 				<section id="header">
 			
-					<!-- Logo -->
+					Logo
 						
-					<!-- Nav -->
+					Nav
 						<nav id="nav">
-							<!-- left -->
+							left
 							<ul id="header_left">
 								<li class="current">
 									<a href="page1.html">공연정보</a>
 									<ul>
 										<li><a href="page1.html">공연일정</a></li>
-										<!-- <li><a href="calendar.html">일정조회</a></li> -->
-										<!-- <li><a href="#">예매</a></li> -->
+										<li><a href="calendar.html">일정조회</a></li>
+										<li><a href="#">예매</a></li>
 										<li><a href="page2.html">공연정보상세보기</a></li>
 										<li><a href="page7.html">좌석배치도</a></li>
 									</ul>
@@ -110,7 +112,7 @@
 								
 							</ul>
 	
-							<!--right  -->
+							right 
 							<ul id="header_right">
 								<li class="current"><a href="login.html">LOGIN</a></li>
 								<li><a href="ticket.html">티켓</a></li>
@@ -129,7 +131,7 @@
 							</ul>
 						</nav>
 
-						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
+						❤️여기에 서브제목 입력하세욮 ex) 공연일정
 						<div id="sut-t_wrap">
 						<h2 id="sub-t">
 							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">회원 가입</strong>
@@ -137,12 +139,12 @@
 					</div>
 					</section>
 
-						<!--------------------------------------위까지가 헤더----------------------------------------->
+						------------------------------------위까지가 헤더---------------------------------------
 
 				
 				</section>
 
-			<!-- 로그인 영역 -->
+			로그인 영역
 			<div id="depth_w">
 				<div class="inner">
 					<ul class="clrearfox dot dep1 li2">
@@ -156,7 +158,7 @@
 								<a href="#">
 									<span>회원서비스</span>
 								</a>
-								<!-- display:none -->
+								display:none
 								<ul class="depth" >
 									<li>
 										<a href="page1.html">공연정보</a>
@@ -191,67 +193,68 @@
 					</ul>
 				</div>
 
-			</div>
+			</div> 
 				<!-- 로그인 영역끝 -->
-				<!-- 회원가입 jsp -->
+				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
+				
+				<!-- 이메일 병홥 -->
 				<%request.setCharacterEncoding("UTF-8"); 
+					
+					String id=request.getParameter("memberId");
+					String pw=request.getParameter("pwd");
+					String phone=request.getParameter("phone");
+					String hphone=request.getParameter("hPhone");
+					String addr2=request.getParameter("addr2");
 					String email1=request.getParameter("email1");
 					String email2=request.getParameter("email2");
 					String email=email1+"@"+email2;
-				%>
+			
+				//key가져오기
+				  ServletContext sc = getServletContext();
+				  String plainText = sc.getInitParameter("keyU"); 
+				  
+				  //알고리즘 설정하여 MessageDigest
+				  MessageDigest md=MessageDigest.getInstance("MD5");
+				  md.update(plainText.getBytes());
+				  new String(md.digest());
+				  //키 생성
+				  String key=DataEncrypt.messageDigest("MD5", plainText);
+				  //키를 넣어 암호화 객체 생성
+				  DataEncrypt de= new DataEncrypt(key);
 				
-					 <!-- 1.parmeter를 받을 VO생성   -->
-					
-					<!-- useBean을 사용하여 MemberDAO와 MemberVO를 불러온다 -->
-				   
-					<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
-					<!-- VO에 있는 모든 값을 set해줌  -->
-				<jsp:setProperty property="*" name="mbVO"/>
-				<jsp:setProperty property="email" name="mbVO" value=<%=email %>/>
-					 
-					
-					<!-- 회원가입 페이지에서 넘어온 정보를 넣어준다. -->
-					<%--  <jsp:setProperty property="name" name="mbVO"/>
-					<jsp:setProperty property="memberId" name="mbVO"/>
-					<jsp:setProperty property="pwd" name="mbVO"/>
+			 	  String Id=de.encryption(id);
+			 	  String pwd=DataEncrypt.messageDigest("MD5", pw);
+				  String Email=de.encryption(email);
+				  String Phone=de.encryption(phone);
+				  String hPhone=de.encryption(hphone);
+				  String Addr2=de.encryption(addr2);
+				 
+
+		
+		%>		   
+				    <jsp:setProperty property="name" name="mbVO"/>
+					<jsp:setProperty property="memberId" name="mbVO" value="<%=Id %>"/>
+					<jsp:setProperty property="pwd" name="mbVO" value="<%=pwd %>"/>
 					<jsp:setProperty property="birth" name="mbVO"/>
 					<jsp:setProperty property="gender" name="mbVO"/>
 					<jsp:setProperty property="zipcode" name="mbVO"/>
 					<jsp:setProperty property="addr1" name="mbVO"/>
-					<jsp:setProperty property="addr2" name="mbVO"/>
-					<jsp:setProperty property="email" name="mbVO"/>
-					<jsp:setProperty property="phone" name="mbVO"/>
-					<jsp:setProperty property="hPhone" name="mbVO"/>
+					<jsp:setProperty property="addr2" name="mbVO" value="<%=Addr2 %>"/>
+					<jsp:setProperty property="email" name="mbVO" value="<%=Email %>"/>
+					<jsp:setProperty property="phone" name="mbVO" value="<%=Phone %>"/>
+					<jsp:setProperty property="hPhone" name="mbVO" value="<%=hPhone %>"/>
 					<jsp:setProperty property="mailChk" name="mbVO"/>
-					<jsp:setProperty property="smsChk" name="mbVO"/>  --%>
-					<%-- <jsp:setProperty property="inputdate" name="mbVO"/> 
-					<jsp:setProperty property="status" name="mbVO"/>  
-					 --%>
-					
-					
-					 <%-- <jsp:getProperty property="name" name="mbVO"/>
-					<jsp:getProperty property="memberId" name="mbVO"/>
-					<jsp:getProperty property="pwd" name="mbVO"/>
-					<jsp:getProperty property="birth" name="mbVO"/>
-					<jsp:getProperty property="gender" name="mbVO"/>
-					<jsp:getProperty property="zipcode" name="mbVO"/>
-					<jsp:getProperty property="addr1" name="mbVO"/>
-					<jsp:getProperty property="addr2" name="mbVO"/>
-					<jsp:getProperty property="phone" name="mbVO"/>
-					<jsp:getProperty property="hPhone" name="mbVO"/>
-					<jsp:getProperty property="mailChk" name="mbVO"/>
-					<jsp:getProperty property="smsChk" name="mbVO"/>
-					<jsp:getProperty property="mdate" name="mbVO"/>
-					<jsp:getProperty property="status" name="mbVO"/> 
-					 --%>
-					
+					<jsp:setProperty property="smsChk" name="mbVO"/>  
+				    <jsp:setProperty property="mdate" name="mbVO"/> 
+					<jsp:setProperty property="status" name="mbVO"/>
+
+	
+ <% 
 			
-					
-					
-				  <% 
+				  
 				  
 					MemberDAO mbrDAO = MemberDAO.getInstance();
-					try{
+				try{
 					int cnt = mbrDAO.insertMember(mbVO);
 					
 					if(cnt<0){%>
@@ -259,22 +262,20 @@
 							alert("다시 시도해주세요.")
 							location.href="http://localhost/group2_prj/signUp/signup.jsp"
 							</script>
-					<%
-						}else if(cnt>0){%>
+					<%}else{ 
+						
+					}//endif
 					
-			
-					<% }//end if 
-					
-					
-					}catch(SQLException se){%>
-						<script>
-							alert("회원가입 오류")
-						</script>	
+					}catch(Exception e) {
+						e.printStackTrace();
+					}finally{
 						
 						
-					<%}finally{
-						
-						}%>   
+					}//catch
+					%>
+		
+					
+		
 				<!------------------------------------------main-------------------------------------->
 				<div class="signup_result_wrap">
 					<div class="signup_result_inner">
@@ -350,4 +351,4 @@
 			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
-</html>
+</html> 

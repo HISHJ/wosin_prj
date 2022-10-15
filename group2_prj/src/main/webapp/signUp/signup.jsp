@@ -351,13 +351,13 @@ input[type="date"] {
 			
 			
 			<script src="http://localhost/group2_prj/static/jslibrary/miya_validator.js"></script>
-			<script type="text/javascript">
+		<script type="text/javascript">
 
 			/* 회원가입 유효성 검사 */
 			$(function(){
 				$("#btnSignup").click(function(){
-					/* $("#board").submit(); */
-						check(); 
+					$("#board").submit(); 
+						/* check();  */
 						
 					
 				});//click
@@ -680,8 +680,7 @@ input[type="date"] {
 						    
 		
 			</script>
-		
-			
+
 			
 			
 			<!-- action="http://localhost/jsp_prj/design%20final%20intergration/signup_process.jsp" -->
@@ -787,7 +786,7 @@ input[type="date"] {
 									<li class="clearfix a1">
 										<div class="zipcode">
 											<label for="memberZipCd" class="hide">우편번호</label>
-											<input type="text" name="zipcode" id="memberZipCd"  readonly/> 
+											<input type="text" name="zipcode" id="memberZipCd" /> 
 											<button id="addrBtn" type="button" class="bg-black" title="새창으로 열립니다." onclick="execDaumPostcode()">우편번호 찾기</button>
 											
 										</div>
@@ -795,7 +794,7 @@ input[type="date"] {
 									<li class="clearfix a2">
 										<span class="l">
 											<label for="memberAddr1" class="hide">주소</label>
-											<input type="text" name="addr1" id="memberAddr1"  readonly />
+											<input type="text" name="addr1" id="memberAddr1"  />
 										</span>
 										<span class="r">
 											<label for="memberAddr2" class="hide">나머지 주소</label>

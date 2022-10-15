@@ -15,9 +15,9 @@ import kr.co.sist.vo.QuitMemberVO;
 
 public class MemberDAO {
 	private static MemberDAO mbrDAO;
-
+	
 	private MemberDAO() {
-		
+
 	}//MemberDAO
 
 	public static MemberDAO getInstance(){
@@ -29,53 +29,7 @@ public class MemberDAO {
 	}//end if
 	
 	
-//	로그인,마이페이지,비밀번호찾기(id,password),회원가입완료창
-	public MemberVO selectMember(MemberVO mbVO) throws SQLException  {
-		
-		
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		DbConnection dc=DbConnection.getInstance();
-		try {
-			con=dc.getConn();
-			String login= "select * from member where memberId=? and pwd=?";
-			pstmt=con.prepareStatement(login);
-			
-			pstmt.setString(1,mbVO.getMemberId());
-			pstmt.setString(2,mbVO.getPwd());
-				
-			rs=pstmt.executeQuery();
-			if(rs.next()) {
-				
-//			아이디 비밀번호 일치하지 않을때는? jsp로 처리하나?=>jsp로
-					mbVO=new MemberVO();
-					mbVO.setName(rs.getString("name"));
-					mbVO.setMemberId(rs.getString("memberId"));
-					mbVO.setBirth(rs.getString("birth"));
-					mbVO.setGender(rs.getString("gender"));
-					mbVO.setZipcode(rs.getString("zipcode"));
-					mbVO.setAddr1(rs.getString("addr1"));
-					mbVO.setAddr2(rs.getString("addr2"));
-					mbVO.setPhone(rs.getString("phone"));
-					mbVO.sethPhone(rs.getString("hPhone"));
-					mbVO.setMailChk(rs.getString("mailChk"));
-					mbVO.setSmsChk(rs.getString("smsChk"));
-//					mbVO.setInputdate(rs.getDate("inputdate"));
-					mbVO.setMdate(rs.getString("mdate"));//to_char로 변경
-			
-				}//end if
-					
-		}finally {
-		
-			dc.dbClose(rs, pstmt, con);
-			
-		}//end catch
-		
-//	return값 다시 생각해보기
-		return mbVO;
-		
-	}//selectMember
+
 	
 //	로그인 boolean으로 = > jsp코드 써보고 깔끔한거로 할거임 
 	
