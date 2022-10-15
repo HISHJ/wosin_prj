@@ -8,7 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="예매취소, 좌석테이블 삭제 페이지" %>
+    pageEncoding="UTF-8" info="예매취소, 좌석테이블 삭제 여부묻는 페이지" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -66,12 +66,17 @@ function fn_tranList(){
 
 function goBack(){
 	  try{
-	      window.history.go(-2);
+	      window.history.go(-1);
 	  }catch(e){
 		    history.back();
 		    alert(e.message);
 	  }
-}
+}//goBack
+ 
+function complete_Rcancel(){
+	$("#ReserveForm").submit();	  
+}//complete_Rcancel()   
+
 </script>
 
 </head>
@@ -81,13 +86,13 @@ function goBack(){
 <%request.setCharacterEncoding("UTF-8"); %>
 <%
 String firstDate = request.getParameter("findStartDate");
-String endDate =request.getParameter("findEndDate");
+String endDate = request.getParameter("findEndDate");
 String rId = request.getParameter("rId");
 String rStatus= request.getParameter("rStatus");
- 
-if(rId == null){
+
+/* if(rId == null){
 	response.sendRedirect("http://localhost/group2_prj/reservation/ticket_page.jsp");
-} 
+} */
 System.out.println(rId);
 System.out.println(rStatus);
 
@@ -99,38 +104,21 @@ String[] staArr={"예매완료","예매취소"};
 %>
 
 
-<jsp:useBean id="rVO" class="kr.co.sist.vo.RsrvtInfoVO" scope="page"/>
-		  
-<jsp:setProperty property="rsrvtStatus" name="rVO" value="<%= staArr[1]%>"/>
-<jsp:setProperty property="rsrvtId" name="rVO" value="<%= rId %>"/>
 
-<%
-RsrvtDAO rDAO= RsrvtDAO.getInstance();
-int cnt = rDAO.updateRsrvt(rVO);
-boolean flag = false;
-String msg = rId + "번은 예매내역을 변경할 수 없습니다.";
-if(cnt ==1){
-	msg = rId + "번의 예매내역을 성공적으로 취소하였습니다.";
-	flag=true;
-}%>
-<% 
-if(flag){ //업데이트가 된 경우
- //delete작업수행
- int dlCnt = rDAO.deleteSeat(rId);
- String dmsg =rId + "번 예매코드의 좌석은 삭제할 수 없습니다.";
- if(dlCnt != 0){//삭제된 레코드가 1행 또는 n행인 경우
-	dmsg = rId + "번 예매코드의 좌석이" + dlCnt + "건 삭제되었습니다"; 
- }//end if
-  System.out.println(dmsg);	//사용자에게 보여져야 할 부분이 아니기 때문에 console에만 확인메시지 보냄
-}
-%>
-<form name="ReserveForm" method="post" onsubmit="return false;">
+<form name="ReserveForm" id="ReserveForm" method="post" action="http://localhost/group2_prj/reservation/ticket_cancel.jsp">
+ <input type="hidden" name="findStartDate" id="findStartDate" value="<%=firstDate%>"/>
+ <input type="hidden" name="findEndDate" id="findEndDate"  value="<%=endDate%>"/>
+ <input type="hidden" name="rId" id="rId"  value="<%=rId%>"/>
+ <input type="hidden" name="rStatus" id="rStatus"  value="<%=rStatus%>"/>
+</form>
+
+
 <section id="wrap">
 <article class="pop_w modal_w">
 	<div id="receipt_top" class="in pop-st1 pop-receipt" style="width: 40%;">
 		<div class="tit-st2">
 			<h2>예매내역 변경</h2>
-			<button type="button" class="close-st1" onclick="location.href='http://localhost/group2_prj/reservation/ticket_page.jsp';" >CLOSE</button>
+			<button type="button" class="close-st1" onclick="javascrit:goBack();" >CLOSE</button>
 		</div>
 
     <div class="cont">
@@ -147,18 +135,21 @@ if(flag){ //업데이트가 된 경우
 			      <span class="t">예매상태</span>
 			      <span class="datat"> <%=rStatus %>  ▶ <%=staArr[1]%></span>
 			    </li>
-			   
-			    
+			
 			  </ul>
+			  
+			  
 		  </div>
-			  <ul class="bul-dot f13 dot" style="margin-top:10px;">
-			    <li class="item">
-			      <span class="t" style="font-size:17px;font-weight:bold"><%=msg%></span> 
+			  <ul class="bul-dot f13 dot" style="margin-top:10px;list-style:none;">
+			    <li class="item" style="list-style:none;">
+			      <span class="t" style="font-size:17px;font-weight:bold">예매내역은 한번 취소하면 변경할 수 없습니다. 정말 취소하시겠습니까?</span> 
 			     
 			    </li>
-			  </ul>
-			
-			  <button class="btn-st1 bg-purple" onclick="javascrit:goBack();">확인</button>
+			  </ul> 
+				<div style="display:flex;align-items:center;">
+			   <button class="btn-st1 bg-purple" onClick="complete_Rcancel();" >확인</button>
+			   <button class="btn-st1 bg-purple" onclick="javascrit:goBack();">취소</button>
+			   </div>
 		</div>
 			  
 	</div>
@@ -166,6 +157,6 @@ if(flag){ //업데이트가 된 경우
 
 <div class="pop_bg"></div>
 </section>
-</form>
+
 </body>
 </html>

@@ -47,20 +47,18 @@ new String(md.digest());
 String key= DataEncrypt.messageDigest("MD5", plainText);
 //1. 키를 넣어 암호화 객체 생성
 DataEncrypt de = new DataEncrypt(key);
-
 //아이디 암호화
 String adminId = de.encryption(aId); 
-//새로운 비번 암호화
+//기존비번 암호화
 String adminPass =DataEncrypt.messageDigest("SHA-1", pw);
+//새로운 비번 암호화
 String rePass =DataEncrypt.messageDigest("SHA-1", rePw); 
 //out.print("플레인텍스트" +plainText);
 //out.println("아이디" + adminId + "CDMbdBAjloHNARWDFzTx0w=="); 
 //out.println("새비번"+adminPass);
 //out.println("2" + rePass);  
-System.out.println("플레인텍스트" +plainText);
+//System.out.println("플레인텍스트" +plainText);
 
-
- 
 AdminDAO aDAO = AdminDAO.getInstance();
 //현재 비밀번호가 맞으면 새로운 비번으로 테이블 update
 int chk = aDAO.updateAdmin(adminId, adminPass , rePass); 

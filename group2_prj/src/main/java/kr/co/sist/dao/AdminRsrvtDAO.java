@@ -43,17 +43,13 @@ public class AdminRsrvtDAO {
 			con = dc.getConn();
 			String selectRsrvt =  "select  r.rsrvtid r_id, m.name m_name, m.memberid m_id, m.phone m_phone, r.inputdate r_input, r.status r_status from  rsrvt r, member m where (r.memberid = m.memberid) ";
 			
-			if(!(inputVO.getRsrvtId() == null)){
-				selectRsrvt += "and r.rsrvtid = '" + inputVO.getRsrvtId() +"'";
-			}
-			
 			if(!(inputVO.getRsrvtStatus()==null)){
-				selectRsrvt += "and r.status = '" + inputVO.getRsrvtStatus() +"'";
+				selectRsrvt += " and r.status = '" + inputVO.getRsrvtStatus() + "' ";
 			}
 			
 			if(!(inputVO.getFindStartDate()==null) && !(inputVO.getFindEndDate()==null)) {
-				selectRsrvt += "and" + inputVO.getFindStartDate() +  " < r.inputdate"
-						     + "and" + inputVO.getFindEndDate() +  " > r.inputdate";
+				selectRsrvt += " and '" + inputVO.getFindStartDate() +  "' < r.inputdate"
+						     + " and '" + inputVO.getFindEndDate() +  "' > r.inputdate";
 
 			}
 			

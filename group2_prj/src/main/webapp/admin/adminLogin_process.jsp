@@ -27,6 +27,8 @@
 </script>
 </head>
 <body>
+
+
 <%
 request.setCharacterEncoding("UTF-8");
 //값 검증완료
@@ -61,13 +63,12 @@ int chk = aDAO.selectAdmin(aVO);
  
 if(chk == 1){ //로그인 성공
    //세션에 현재 아이디 세팅
-   session.setAttribute("adminId", aId);
-   
+   session.setAttribute("adminId", aId);   
 %>
 
 <script type="text/javascript">
-  alert("${param.adminId}님 반갑습니다.")
-  location.href="dashBoard.jsp";
+ alert("${param.adminId}님 반갑습니다.")
+ location.href="dashBoard.jsp";
 </script>
 <%}else{ //비밀번호(0) 또는 아이디(-1) 틀린 경우 %>
 <script>

@@ -77,7 +77,3 @@ if(result){
 
 </body>
 </html>
-
-
-
-

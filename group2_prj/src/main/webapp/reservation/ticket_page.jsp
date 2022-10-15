@@ -11,6 +11,11 @@
     pageEncoding="UTF-8" info="예매내역,상세내역조회페이지 (비동기처리가 필요해보임)" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+//세션 넘겨받기 검증 완료
+String memberId = (String)session.getAttribute("memberId");
+System.out.println(memberId);
+%>
 
 <!DOCTYPE html>
 <html>
@@ -29,13 +34,17 @@
 
 	<!-- popup플러그인 0923 16:06 test 62라인 2.2.4 순서때문이었나 -->
 	<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/popup.css">
+	
+	
 	<!-- jQuery -->
-	<script type="text/javascript"
-		src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	 <script type="text/javascript"
+		src="//code.jquery.com/jquery-1.11.0.min.js"></script> 
 	<script type="text/javascript"
 		src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script type="text/javascript" 
 		src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
+	
+
 	<style>
      		
     section#header{
@@ -122,6 +131,18 @@
 
 	}//closePopup
 </script>
+<%  //로그인되어있지 않은 경우 로그인페이지로 이동
+if( session.getAttribute("memberId") == null){%>
+    <script type="text/javascript">
+    $(function(){
+	 alert("인증이 필요한 페이지입니다. 로그인페이지로 이동합니다.");
+    });//ready
+	 </script>
+<% 	 response.sendRedirect("http://localhost/group2_prj/mypage/login.jsp");
+} 
+%>
+
+
 
    <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/sub_new.css">
    <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/style.css">
@@ -133,6 +154,9 @@
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="homepage is-preload">
+<%
+
+%>
 
 <%
 request.setCharacterEncoding("UTF-8");
@@ -142,7 +166,7 @@ String findEndDate=request.getParameter("findEndDate"); //본인페이지에서 
 //세션에 담기
 session.setAttribute("findStartDate", findStartDate);
 session.setAttribute("findEndDate",findEndDate);
-session.setAttribute("id", "test24");
+session.setAttribute("id", memberId);
 
 
 String id = (String)session.getAttribute("id");
@@ -166,129 +190,34 @@ String[] staArr ={"예매완료","예매취소"};
 %>   
 
 		<div id="page-wrapper">
-
-				<!-- Header -->
-				<section id="header">
-			
-					<!-- Logo -->
-						
-					<!-- Nav -->
-						<nav id="nav">
-							<!-- left -->
-							<ul id="header_left">
-								<li class="current">
-									<a href="page1.html">공연정보</a>
-									<ul>
-										<li><a href="page1.html">공연일정</a></li>
-								
-										<li><a href="page2.html">공연정보상세보기</a></li>
-										<li><a href="page7.html">좌석배치도</a></li>
-									</ul>
-								</li>
-								<li>
-									<a href="">예매정보</a>
-									<ul>
-										<li><a href="subpage-ticketmethod.html">티켓구입방법</a></li>
-										<li><a href="subpage-ticketreceive.html">티켓수령방법</a></li>
-										<li><a href="subpage-ticketcancel.html">예매취소,변경안내</a></li>
-										<li><a href="subpage-ticketprovision .html">예매약관</a></li>					
-									</ul>
-								</li>
-								<li>
-									<a href="subpage-FAQ1.html">고객센터</a>
-									<ul>
-										<li><a href="page9.html">FAQ</a></li>
-										<li><a href="subpage-manner.html">관람예절</a></li>				
-									</ul>
-								</li>
-								<li><a href="subpage-way.html">오시는 길</a></li>
-								
-								
-							</ul>
-	
-							<ul id="header_center">
-								<h1 id="logo">
-									<a href="index.html">
-									우신문화회관
-									</a>
-									</h1>	
-								
-							</ul>
-	
-							<!--right  -->
-							<ul id="header_right">
-								<li class="current"><a href="login.html">LOGIN</a></li>
-								<li><a href="ticket.html">티켓</a></li>
-								<li class="calender">
-									<a href="calendar.html">
-										<span class="material-symbols-outlined md_20">
-											calendar_month
-											</span>
-								 </a>
-								</li>
-								<li class="search_icon"><a href="#">
-									<span class="material-symbols-outlined md_20">
-										search
-										</span>
-								</a></li>
-							</ul>
-						</nav>
-
-						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
-						<div id="sut-t_wrap">
-						<h2 id="sub-t">
-							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">개인화 서비스</strong>
-						</h2>
-					</div>
-					</section>
 		
-						<!--------------------------------------위까지가 헤더----------------------------------------->
+		<c:import url="http://localhost/group2_prj/common/user_subpage_header.jsp"> 
+   		 <c:param name="memberId" value="<%=memberId %>"></c:param>
+   		 </c:import>
 
-				
-				</section>
 
-			<!-- 로그인 영역 -->
-				<div id="depth_w">
-					<div class="inner">
-						<ul class="clrearfox dot dep1 li2">
-							<li class="home">
-								<span>
-									<span>HOME</span>
-								</span>
-							</li>
-							<li>
-								<div class="rel">
-									<a href="#">
-										<span>회원서비스</span>
-									</a>
-									<!-- display:none -->
-									<ul class="depth" >
-										<li>
-											<a href="#">회원서비스</a>
-										</li>
-										<li>
-											<a href="page1.html">공연정보</a>
-										</li>
-										<li>
-											<a href="subpage-ticketmethod.html">예매정보</a>
-										</li>
-										<li>
-											<a href="page9.html">고객센터</a>
-										</li>
-										<li>
-											<a href="subpage-way.html">오시는길</a>
-										</li>
-									</ul>
-								</div>
-							</li>
-							<li>
-								
-							
-							</li>
-						</ul>
-					</div>
 
-				</div>
+		<!-- 서브제목 ex) 공연일정   -->
+		<div id="sut-t_wrap">
+			<h2 id="sub-t">
+				<strong
+					style="opacity: 1; font-family: 'Noto Sans KR', sans-serif; font-weight: 700;"
+					class="ani">개인화 서비스</strong>
+			</h2>
+		</div>
+		</section>
+
+		<!-- ------------------------------------위까지가 헤더-------------------------------------->
+
+
+		</section>
+
+		<c:import url="http://localhost/group2_prj/common/user_subpage_header2.jsp"> 
+   		 <c:param name="memberId" value="<%=memberId %>"></c:param>
+   		 </c:import> 
+
+			 
+				<!-----------------------------------------------------------------------------------------------  -->
 				<script>
 					$(window).resize(function(){
 						if ( $(window).width() > 1024 ){
@@ -519,8 +448,10 @@ String[] staArr ={"예매완료","예매취소"};
 															</td>
 															<td>															  
 															  <%=rsVO.getRsrvtStatus() %><br />
-															<button type="submit" id="rsvt_c_btn" class="bg-black2 btn-st3 bg_can" formaction="http://localhost/group2_prj/reservation/ticket_cancel.jsp"  
-															 onclick="modiRsrvt('<%=rId%>','<%=rStatus%>');"<%=rStatus.equals(staArr[1]) ?  "disabled='disabled' style='background-color:grey;'" : ""%>>변경불가</button>
+															<button type="submit" id="rsvt_c_btn" class="bg-black2 btn-st3 bg_can" formaction="http://localhost/group2_prj/reservation/ticket_cancel_process.jsp"  
+															 onclick="modiRsrvt('<%=rId%>','<%=rStatus%>');"<%=rStatus.equals(staArr[1]) ?  "disabled='disabled' style='background-color:grey;'" : ""%>>
+															 <%=rStatus.equals(staArr[1]) ? "변경불가" : "예매취소"%>
+															 </button>
 															 </td>
 														</tr>
 														  <%
@@ -628,7 +559,7 @@ function modiRsrvt(r_num,status){
 	 $("#rId").val(r_num);//조회하려는 번호(예매번호)
 	 $("#rStatus").val(status);//예매상태
 	 setDate1();  // 선택한 날짜 
-	$("#ReserveForm").attr("action", "http://localhost/group2_prj/reservation/ticket_cancel.jsp");
+	$("#ReserveForm").attr("action", "http://localhost/group2_prj/reservation/ticket_cancel_process.jsp");
 }//modiRsrvt(r_num,status)
 </script> 
 
@@ -636,44 +567,19 @@ function modiRsrvt(r_num,status){
 				<!----------------------------------------------여기서부터 끝까지 footer-------------------------------------------->
 
 			<!-- Footer -->
-				<section id="footer">
-					<div class="footer_line"></div>
-					<div class="container">
-						<div class="row">
-							<div class="col-8 col-12-medium">
-								<section>
-									<header>
-										<h2>
-											<a href="index.html">
-												<img class="footer_logo" src="http://localhost/group2_prj/common/logo_white.png" alt="우신문화회관">
-											</a>
-										</h2>
-										<div class="l">
-											<address>
-												재단법인 우신문화회관 서울특별시 쌍용구 우신대로 175 (우신로) (우)03172
-											  <br/>
-											  대표자 : 최정민 유원준 정선홍 하지윤 유설빈 사업자등록번호 : 101-12-12345
-												<br/>
-												통신판매업신고 : 서울쌍용-0988호
-											</address>
-											<p class="copyright">
-												COPYRIGHT(C) WOOSHIN CENTER FOR THE PERFORMING ARTS. ALL RIGHTS RESERVED</p>
-											</p>
-										</div>
-
-							</div>
-						</div>
-					</div>
-				</section>
-
-		</div>
+			
+			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
+			
+			<!-- End footer -->
+				
 	
 		<!-- Scripts -->
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+		<!-- 	<script src="assets/js/jquery.dropotron.min.js"></script> -->
+		    <script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
 </html>

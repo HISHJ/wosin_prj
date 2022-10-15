@@ -22,6 +22,17 @@
    	
     </head>
     <body class="bg-dark">
+    <%
+//로그인되어있는 경우 메인페이지로 이동
+if(session.getAttribute("adminId") != null){%>
+	 <script type="text/javascript">
+	 $(function(){
+		 alert("이미 로그인되어있습니다. 메인페이지로 이동합니다.");
+		 location.href="http://localhost/group2_prj/admin/dashBoard.jsp";
+	 })
+	 </script>
+	
+<%} %>
  
 <script type="text/javascript">
 $(function(){

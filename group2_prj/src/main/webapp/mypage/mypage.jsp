@@ -64,22 +64,23 @@
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
-
-				<!-- Header -->
+		
+			<c:import url="http://localhost/group2_prj/common/user_subpage_header.jsp"/> 
+			<!-- 	<!-- Header 
 				<section id="header">
 			
-					<!-- Logo -->
+					Logo
 						
-					<!-- Nav -->
+					Nav
 						<nav id="nav">
-							<!-- left -->
+							left
 							<ul id="header_left">
 								<li class="current">
 									<a href="page1.html">공연정보</a>
 									<ul>
 										<li><a href="page1.html">공연일정</a></li>
-										<!-- <li><a href="calendar.html">일정조회</a></li> -->
-										<!-- <li><a href="#">예매</a></li> -->
+										<li><a href="calendar.html">일정조회</a></li>
+										<li><a href="#">예매</a></li>
 										<li><a href="page2.html">공연정보상세보기</a></li>
 										<li><a href="page7.html">좌석배치도</a></li>
 									</ul>
@@ -114,7 +115,6 @@
 								
 							</ul>
 	
-							<!--right  -->
 							<ul id="header_right">
 								<li class="current"><a href="login.html">LOGIN</a></li>
 								<li><a href="ticket.html">티켓</a></li>
@@ -131,7 +131,7 @@
 										</span>
 								</a></li>
 							</ul>
-						</nav>
+						</nav> -->
 
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
 						<div id="sut-t_wrap">
@@ -762,7 +762,14 @@
 				<!----------------------------------------------여기서부터 끝까지 footer-------------------------------------------->
 
 			<!-- Footer -->
-				<section id="footer">
+			
+			<!-- Footer -->
+			
+			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
+			
+			<!-- End footer -->
+				
+				<!-- <section id="footer">
 					<div class="footer_line"></div>
 					<div class="container">
 						<div class="row">
@@ -790,7 +797,7 @@
 							</div>
 						</div>
 					</div>
-				</section>
+				</section> -->
 
 		</div>
 
