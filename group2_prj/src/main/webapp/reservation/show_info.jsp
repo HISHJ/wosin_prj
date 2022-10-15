@@ -1,3 +1,6 @@
+<%@page import="kr.co.sist.dao.RsrvtDAO"%>
+<%@page import="kr.co.sist.vo.RsrvtInfoVO"%>
+<%@page import="java.util.List"%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="kr.co.sist.vo.ShowVO"%>
 <%@page import="kr.co.sist.dao.MainDAO"%>
@@ -45,14 +48,39 @@ while(se.hasMoreElements()){
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!--google fonts-->
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+			
+			<!-- tap관련 추가한거 -->
+			<script src="../assets/js/tab.js"></script>
+			
 		<style>
-
-			#nav{
-						margin-right: 150px;
-					}
+			#nav{margin-right: 150px;}
+		</style>
+		<script type="text/javascript">
+		$(function(){
+			$("#rsrvtBtn").click(function(){
+				<%
+				RsrvtDAO rDAO = RsrvtDAO.getInstance();
+				List<RsrvtInfoVO> listRVO = rDAO.selectShowSch(swId);
+				if(listRVO.size()==0){%>
 				
-				</style>
+					alert("해당 공연에 대한 상영일정이 없습니다.");
+					return;
+					
+				<%}else{%>
 				
+					location.href="show_rsrvt1.jsp?showId=<%=swId%>";
+					
+				<%}%>
+			});
+		});
+		</script>		
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -149,7 +177,10 @@ while(se.hasMoreElements()){
 										</header>
 										<footer>
 											<!-- <a href="page3.html" class="button alt button_long">예매하기</a> -->
-											<a href="show_rsrvt1.jsp?showid=<%=sVO.getShowId() %>">예매하기</a>
+
+											<input type="button" id="rsrvtBtn" value="예매하기" class="button alt button_long">
+											<!-- 10-15 테스트 -->
+											<%-- <a href="show_rsrvt1.jsp?showid=<%=sVO.getShowId() %>">예매하기</a> --%>
 										</footer>
 									</section>
 									<section class="box">
@@ -213,16 +244,7 @@ while(se.hasMoreElements()){
 
 		</div>
 
-		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
-			
-			<!-- tap관련 추가한거 -->
-			<script src="../assets/js/tab.js"></script>
+		
 
 	</body>
 </html>

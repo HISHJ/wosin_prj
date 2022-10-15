@@ -8,7 +8,7 @@
     pageEncoding="UTF-8" info=""%>
     
 <%  /* 여기서는 select 말고 상영일정이랑, 시간을 뿌려줘야되는데 무슨DAO쓰더라 */
-	/* String swId = request.getParameter("showId"); */
+	/* String swId = request.getParameter("showId");  session에있는데 굳이 request는 필요없지*/
 	String swId = (String)session.getAttribute("showId");
 	MainDAO mDAO = MainDAO.getInstance();
 	ShowVO sVO = mDAO.selectShowMain(swId);
@@ -51,6 +51,17 @@ while(se.hasMoreElements()){
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!--google fonts-->
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+				<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.dropotron.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+			
+			<!-- tap관련 추가한거 -->
+			<script src="../assets/js/tab.js"></script>
+			
 		<style>
 
 			#nav{
@@ -58,7 +69,14 @@ while(se.hasMoreElements()){
 					}
 				
 				</style>
-				
+		<script type="text/javascript">
+			$(function(){
+				$("#nextBtn").click(function(){
+					
+					$("#testSchFrm").submit();
+				});
+			});
+		</script>		
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -171,36 +189,24 @@ while(se.hasMoreElements()){
 									<section class="box" style="margin-bottom: 30px; height: 470px;">
 										<header>
 										
-											<h3 class="h3">날짜선택</h3>
+											<h3 class="h3">상영일정 선택</h3>
 										</header>
 										<footer>
 										<!-- <input type="date" name="서버가 인식할값" value="서버에 전송할값"><br> -->
 
-										<select name="schtest">
+										<select name="schtest" id="schtest">
 										<% for(RsrvtInfoVO rVO : listRVO){ %>
-											<option value="<%=rVO.getSchId()%>"><%=rVO.getSchDate()%>,<%=rVO.getSchTime()%></option>
-											<%-- <input type=radio name="schdate" value="<%=rVO.getSchId()%>"><%=rVO.getSchDate()%>,<%=rVO.getSchTime()%><br> --%>
-											<%-- <input type="text" name="schtime" value="<%=rVO.getSchTime()%>"> --%>
-												<%-- <%= rVO.getSchDate() %>,<%= rVO.getSchTime() %> --%>
+											<option value="<%=rVO.getSchId()%>"><%=rVO.getSchDate()%>(<%=rVO.getSchDay()%>) / <%=rVO.getSchTime()%>	</option>
 										<%} %>
 										</select>
 										
 										
 										</footer>
 									</section>
-									<section class="box" style="margin-bottom: 30px;">
-										<header>
-											<h3 class="h3">시간선택</h3>
-										</header>
-										<ul class="divided">
-										<!-- 이거 처리를 어떻게 ?  -->
-											<li>15:00</li>
-											<li>18:00</li>
-										</ul>
-									</section>
-								<a href="page2.html" class="button alt button_minBack" style="background: #c5c5c3;">이전</a>
+								<a href="javascript:history.back();" class="button alt button_minBack" style="background: #c5c5c3;">이전</a>
 								<!-- <a href="show_rsrvt2.jsp" class="button alt button_minNext">다음</a> -->
-								<input type="submit" value="테스트">
+								<!-- 10-15 버튼변경 -->
+								<input type="button" value="다음" class="button alt button_minNext" id="nextBtn">
 							</form>	
 							<!-- /////////////////////////////////////////////////// -->
 							</div>
@@ -244,14 +250,7 @@ while(se.hasMoreElements()){
 
 		</div>
 
-		<script src="../assets/js/jquery.dropotron.min.js"></script>
-		<script src="../assets/js/browser.min.js"></script>
-		<script src="../assets/js/breakpoints.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
-			
-			<!-- tap관련 추가한거 -->
-			<script src="../assets/js/tab.js"></script>
+		
 
 	</body>
 </html>

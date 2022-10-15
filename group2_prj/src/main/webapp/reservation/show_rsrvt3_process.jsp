@@ -37,11 +37,19 @@
 	if(rDAO.selectSeatChk(schId, seats)){
 		//System.out.println("이미예약된 좌석이 ㅇㅇ");%>
 		<script>
-		location.href="show_rsrvt3_process_temp_test.jsp";
+		// 1. 어차피 세션에 값은 안사라졌으니까 이대로 2로? 근데 2는 request에서 받는단말이지.
+				// 2. 그럼 1로 넘겨야하나? showId는 info에서 session set 해주는거니까? 
+		alert("이미 예약된 좌석이 있습니다. 다시 선택해주세요.");
+		//location.href="show_rsrvt3_process_exception.jsp";
+		location.href="show_rsrvt2.jsp?schTest="<%=schId%>; // 3. 아닌가 이거 되나?
 		</script>
 	<%} else {
 		//System.out.println("이미예약된 좌석이 ㄴㄴ");
 	
+	String mbName = rDAO.selectMemberName((String)session.getAttribute("memberId"));
+	// 세션에 할당을 해줘서 갖고가야하나..?
+	//System.out.println("세션에서"+(String)session.getAttribute("memberId")); // 10-15 값 잘 받아짐
+	//System.out.println(mbName);
 	List<RsrvtInfoVO> riList = new ArrayList<RsrvtInfoVO>();
 	RsrvtInfoVO rVO = null;
 	for(int i=0;i<seats.length;i++){ 
@@ -49,8 +57,9 @@
 		
 		rVO.setShowId((String)session.getAttribute("showId"));
 		rVO.setSchId((String)session.getAttribute("schTest"));
-		/* rVO.setMemberId((String)session.getAttribute("memberid")); */
-		/* rVO.setMemberName((String)session.getAttribute("membername")); */
+		// 2022-10-15 밑 두줄 주석 풀고 테스트실행
+		rVO.setMemberId((String)session.getAttribute("memberId")); 
+		rVO.setMemberName(mbName);
 		rVO.setShowName(request.getParameter("showName"));
 		rVO.setSchDate(request.getParameter("date"));
 		rVO.setSchTime(request.getParameter("time"));
@@ -61,12 +70,15 @@
 		riList.add(rVO);
 	} 
 	
-	boolean flag = false;
+	boolean flag = false; // 추가되었을경우 ㅇㅇ
 	if(rDAO.insertRsrvtTest(rVO)==1){
 		System.out.println("ㅇㅇ됐음");				
 		flag = true;
 	}
+	// 10-15 두개묶어서 트랜잭션으로 처리하면 보기편하겠지만 일단 킵
 	
+	
+	//System.out.println(rVO.getMemberName()); // 10-15 회원명받아오기 값 테스트
 	// 예매번호를 받아야함
 	String rsrvtId = rDAO.selectRsrvtId(rVO);
 	
@@ -96,5 +108,5 @@
 	
 	rd.forward(request,response);
 	}
-	}//else
+}//else
 %>

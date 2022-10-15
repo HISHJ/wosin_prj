@@ -19,14 +19,22 @@
 	pageContext.setAttribute("sVO", sVO);
 	//System.out.println(swId);
 	//System.out.println(sVO.getName());
-	
+
+				
+	RsrvtDAO rDAO = RsrvtDAO.getInstance();
 	
 	
 	//String schId = (String)session.getAttribute("schtest");
 	String schId = request.getParameter("schtest");
 	session.setAttribute("schTest", schId);
+	System.out.println("위치확인용"+schId);
 	
-	RsrvtDAO rDAO = RsrvtDAO.getInstance();
+	//////10-15 schtest 상영일정코드로 
+	RsrvtInfoVO schInfo = rDAO.selectSchInfo(schId);	
+	//System.out.println(schInfo.getSchDate());
+	//System.out.println(schInfo.getSchTime());
+	//System.out.println(schInfo.getSchDay());
+	
 	List<String> seatList = rDAO.selectSeat(schId);
 	
 	pageContext.setAttribute("seatList",seatList);
@@ -110,6 +118,19 @@ while(se.hasMoreElements()){
 			if(seatNum.checked == true){ // check할때
 				/* alert(seatNum.value); */
 				/* alert(oTbl); */
+				
+				// 2022-10-15 좌석5개초과불가능 유효성검증 테스트 시작 /////////////////////////////////////////
+				//alert($("[name='seat']:checked").length);
+				if($("[name='seat']:checked").length>5){
+					alert("좌석은 최대 5좌석까지 선택가능 합니다.");
+					document.getElementById("st_"+seatNum.value).checked = false;
+					//seatNum.attr("checked",false);
+					return;
+				}
+				
+				// 2022-10-15 좌석5개초과불가능 유효성검증 테스트 끝 /////////////////////////////////////////
+				
+				
 				// oRow 테스트 Ocell없애고 td에 아이디주기
 				var oRow = oTbl.insertRow();
 				oRow.onmouseover = function(){oTbl.clickedRowIndex=this.rowIndex};
@@ -123,7 +144,7 @@ while(se.hasMoreElements()){
 				oRow.innerHTML = frmTag;
 				
 				
-			}else{ // check풀때         10-09 버그발견 : check박스 풀 때 계속 제일 위의열이 없어짐.
+			}else{ // check풀때         10-09 버그발견 : check박스 풀 때 계속 제일 위의열이 없어짐. 해결함
 				//alert(seatNum.value);
 				
 				////////////////////
@@ -164,7 +185,7 @@ while(se.hasMoreElements()){
 		/* function test(seatNum){
 			alert(seatNum.value);
 		} */
-		function removeRow(s){ // 10-09 removeRow는 잘 되는데..
+		function removeRow(s){ // 10-09 
 			alert(s);
 			oTbl.deleteRow(oTbl.clickedRowIndex);
 			document.getElementById("st_"+s).checked = false;
@@ -287,26 +308,19 @@ while(se.hasMoreElements()){
 							</div>
 							<div class="col-4 col-12-medium">
 
-								<!-- Sidebar -->
-									<section class="box" style="margin-bottom: 30px; height: 470px; background-color: #fafafa">
+								<section class="box" style="margin-bottom: 30px; height: 470px;">
 										<header>
-											<h3 class="h3">날짜선택</h3>
+										
+											<h3 class="h3">선택하신 상영일정</h3>
 										</header>
 										<footer>
-										<input type="date" name="서버가 인식할값" value="서버에 전송할값" readonly="readonly">
-										<p>programmer93.tistory.com/5</p>
-										<p>참조해서</p>
-										<p>시간되면 캘린더 꾸며주기</p>
+										<!-- <input type="date" name="서버가 인식할값" value="서버에 전송할값"><br> -->
+										<input type="text" class="h3" readonly="readonly" value="<%=schInfo.getSchDate()%> (<%=schInfo.getSchDay()%>) / <%=schInfo.getSchTime()%>"style="width:100%;height:50px;font-size:20px; font-weight:700; text-align: center;">
+										<%-- <ul class="divided">
+											<li><%=schInfo.getSchDate()%>(<%=schInfo.getSchDay()%>) / <%=schInfo.getSchTime()%></li>
+										</ul> --%>
 										
 										</footer>
-									</section>
-									<section class="box"; style="background-color: #fafafa">
-										<header>
-											<h3 class="h3">시간선택</h3>
-										</header>
-										<ul class="divided">
-											<li>15:00</li>
-										</ul>
 									</section>
 									
 							</div>

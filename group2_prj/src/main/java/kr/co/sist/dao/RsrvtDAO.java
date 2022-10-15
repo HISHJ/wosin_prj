@@ -201,7 +201,8 @@ public class RsrvtDAO {
       try {
          con = dc.getConn();
          StringBuilder sb = new StringBuilder();
-         sb.append(" select sch.schdate sch_schdate, sch.schtime sch_schtime, sch.schid sch_schid ")
+         //sb.append(" select sch.schdate sch_schdate, sch.schtime sch_schtime, sch.schid sch_schid ")
+         sb.append(" select sch.schdate sch_schdate, sch.schtime sch_schtime, sch.schid sch_schid, to_char(to_date(schdate),'dy') sch_day ")
                .append(" from schedule sch, show sho  ")
                .append(" where (sch.showid = sho.showid) and sho.showid= ? ");
 
@@ -218,6 +219,7 @@ public class RsrvtDAO {
             rsrvtVO.setSchDate(rs.getString("sch_schdate"));
             rsrvtVO.setSchTime(rs.getString("sch_schtime"));
             rsrvtVO.setSchId(rs.getString("sch_schid"));
+            rsrvtVO.setSchDay(rs.getString("sch_day"));
 
             showSchList.add(rsrvtVO);
          }
@@ -324,18 +326,18 @@ public class RsrvtDAO {
          // 좌석번호는 얘한테 줄필요가없는거?
          // ? 그럼 반복할 필요가없네 아예?
          String insertRsrvt = " insert into rsrvt(rsrvtid,showid,memberid,membername,totalcnt,showdate,totalpice,status,inputdate) "
-               + " values(concat('rs_',lpad(show_seq.nextval,7,0)),?,'test24','텍스트',?,?,?,'예매완료',to_char(sysdate,'yyyy-mm-dd')) ";
+               + " values(concat('rs_',lpad(show_seq.nextval,7,0)),?,?,?,?,?,?,'예매완료',to_char(sysdate,'yyyy-mm-dd')) ";
          // 3-1. 쿼리문 생성객체 얻기
          pstmt = con.prepareStatement(insertRsrvt);
          // 4. 바인드변수에 값 설정
 
          /* for(RsrvtInfoVO riVO : riList){ */
          pstmt.setString(1, riVO.getShowId());
-         // pstmt.setString(2, riVO.getMemberId());
-         // pstmt.setString(3, riVO.getMemberName());
-         pstmt.setInt(2, riVO.getRsrvtTotalCnt());
-         pstmt.setString(3, riVO.getSchDate() + " " + riVO.getSchTime());
-         pstmt.setInt(4, riVO.getTotalPrice());
+         pstmt.setString(2, riVO.getMemberId());
+         pstmt.setString(3, riVO.getMemberName());
+         pstmt.setInt(4, riVO.getRsrvtTotalCnt());
+         pstmt.setString(5, riVO.getSchDate() + " " + riVO.getSchTime());
+         pstmt.setInt(6, riVO.getTotalPrice());
 
          // 5. 쿼리문 수행
          i = pstmt.executeUpdate();
@@ -412,12 +414,12 @@ public class RsrvtDAO {
          // 3-1. 쿼리문 생성객체 얻기
          // 4.바인드변수에 값 설정
          pstmt.setString(1, riVO.getShowId());
-         String test2 = "test24";
-         /* pstmt.setString(2, riVO.getMemberId()); */
+         pstmt.setString(2, riVO.getMemberId());
          /* pstmt.setString(3, riVO.getSchId()); */
          /* String test3 = "sctest0008"; */
          /* pstmt.setString(1, test1); */
-         pstmt.setString(2, test2);
+//         String test2 = "test24";
+//         pstmt.setString(2, test2);
 
          // 5. 쿼리문 수행
          rs = pstmt.executeQuery();
@@ -472,5 +474,74 @@ public class RsrvtDAO {
 
       return flag;
    }
+   
+   // 2022-10-15 rsrvt테이블 insert 위한 회원명 조회 메서드 추가////////////////////////////////////////
+   
+   public String selectMemberName(String mbId) throws SQLException {
+		
+	    String memberName = "없숨";
+	    
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		DbConnection dc=DbConnection.getInstance();
+		try {
+			con=dc.getConn();
+			String nameFind= " select name from member where memberid = ? ";
+			pstmt=con.prepareStatement(nameFind);
+			
+			pstmt.setString(1,mbId);
+			rs=pstmt.executeQuery();
+			
+			//일치했을때
+			if(rs.next()) {
+				memberName = rs.getString("name");
+				
+			}//end if 
+			
+		}finally {
+			
+			dc.dbClose(rs, pstmt, con);
+			
+		}//end catch
+		
+		return memberName;
+	}
+   
+    public RsrvtInfoVO selectSchInfo(String schid) throws SQLException {
+    	RsrvtInfoVO schInfo = null;
+		
+	    /*
+	     * select schdate, schtime from schedule
+	    where schid='sctest0009';
+	     */
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		DbConnection dc=DbConnection.getInstance();
+		try {
+			con=dc.getConn();
+			String str = " select schdate, schtime, to_char(to_date(schdate),'dy') schday from schedule where schid = ? ";
+			pstmt=con.prepareStatement(str);
+			
+			pstmt.setString(1,schid);
+			rs = pstmt.executeQuery();
+			 
+			//일치했을때
+			if(rs.next()) {
+				schInfo = new RsrvtInfoVO();
+				schInfo.setSchDate(rs.getString("schdate"));
+				schInfo.setSchTime(rs.getString("schtime"));
+				schInfo.setSchDay(rs.getString("schday"));
+			}
+			
+		}finally {
+			
+			dc.dbClose(rs, pstmt, con);
+			
+		}//end catch
+		
+		return schInfo;
+	}
 
 }// class

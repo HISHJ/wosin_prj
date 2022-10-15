@@ -5,7 +5,7 @@ import java.sql.Date;
 public class RsrvtInfoVO {
 	   private String rsrvtId, showName, schDate, schTime, rsrvtStatus,
 	      memberId, memberName, showId, seatId, findStartDate, findEndDate,
-	      rsrvtPhoneNumber, rsrvtEmail, schId, selectDate, showDate;
+	      rsrvtPhoneNumber, rsrvtEmail, schId, selectDate, showDate, schDay;
 	   
 	   private Date rsrvtInputDate ;
 	   private int rsrvtTotalCnt, totalPrice;
@@ -18,7 +18,7 @@ public class RsrvtInfoVO {
 
 	   public RsrvtInfoVO(String rsrvtId, String showName, String schDate, String schTime, String rsrvtStatus,
 	         String memberId, String memberName, String showId, String seatId, String selectDate, String schId,
-	         String showDate, String findStartDate, String findEndDate, String rsrvtPhoneNumber, String rsrvtEmail,
+	         String showDate, String findStartDate, String findEndDate, String rsrvtPhoneNumber, String rsrvtEmail, String schDay,
 	         Date rsrvtInputDate, int rsrvtTotalCnt, int totalPrice) {
 	      this.rsrvtId = rsrvtId;
 	      this.showName = showName;
@@ -42,7 +42,19 @@ public class RsrvtInfoVO {
 	   }
 
 
-	   public String getRsrvtId() {
+
+
+	public String getSchDay() {
+		return schDay;
+	}
+
+
+	public void setSchDay(String schDay) {
+		this.schDay = schDay;
+	}
+
+
+	public String getRsrvtId() {
 	      return rsrvtId;
 	   }
 
@@ -232,24 +244,18 @@ public class RsrvtInfoVO {
 	   }
 
 
-	   @Override
-	   public String toString() {
-	      return "RsrvtInfoVO [rsrvtId=" + rsrvtId + ", showName=" + showName + ", schDate=" + schDate + ", schTime="
-	            + schTime + ", rsrvtStatus=" + rsrvtStatus + ", memberId=" + memberId + ", memberName=" + memberName
-	            + ", showId=" + showId + ", seatId=" + seatId + ", selectDate=" + selectDate + ", schId=" + schId
-	            + ", showDate=" + showDate + ", findStartDate=" + findStartDate + ", findEndDate=" + findEndDate
-	            + ", rsrvtPhoneNumber=" + rsrvtPhoneNumber + ", rsrvtEmail=" + rsrvtEmail + ", rsrvtInputDate="
-	            + rsrvtInputDate + ", rsrvtTotalCnt=" + rsrvtTotalCnt + ", totalPrice=" + totalPrice + "]";
-	   }
-	   
-	   
-	   
-	   
+	@Override
+	public String toString() {
+		return "RsrvtInfoVO [rsrvtId=" + rsrvtId + ", showName=" + showName + ", schDate=" + schDate + ", schTime="
+				+ schTime + ", rsrvtStatus=" + rsrvtStatus + ", memberId=" + memberId + ", memberName=" + memberName
+				+ ", showId=" + showId + ", seatId=" + seatId + ", findStartDate=" + findStartDate + ", findEndDate="
+				+ findEndDate + ", rsrvtPhoneNumber=" + rsrvtPhoneNumber + ", rsrvtEmail=" + rsrvtEmail + ", schId="
+				+ schId + ", selectDate=" + selectDate + ", showDate=" + showDate + ", schDay=" + schDay
+				+ ", rsrvtInputDate=" + rsrvtInputDate + ", rsrvtTotalCnt=" + rsrvtTotalCnt + ", totalPrice="
+				+ totalPrice + "]";
+	}
 
 
-	   
-	   
-	   
 	   
 	   
 	   

@@ -12,9 +12,9 @@
 <%
 	String swId = (String)session.getAttribute("showId");
 	MainDAO mDAO = MainDAO.getInstance();
-	ShowVO sVO = mDAO.selectShowMain(swId); // 다주는 메서드
+	// ShowVO sVO = mDAO.selectShowMain(swId); // 다주는 메서드 10-15 주석처리후
 	
-	pageContext.setAttribute("sVO", sVO);
+	// pageContext.setAttribute("sVO", sVO); // 10-15 주석처리
 	
 	String schId = (String)session.getAttribute("schTest");
 	

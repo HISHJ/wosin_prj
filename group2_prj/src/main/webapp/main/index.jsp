@@ -109,11 +109,11 @@
 <body class="homepage is-preload">
 	<div id="page-wrapper">
 	
-	<!-- 헤더 -->
-	<c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" scope="session"> 
-    <%--  <c:param name="memberId" value="<%=memberId %>"></c:param>  --%>
+<!-- 헤더 -->
+    <c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
+    <c:param name="memberId" value="<%=memberId %>"></c:param> 
     </c:import>
-	<!-- 헤더 -->
+    <!-- 헤더 -->
    
 </section>
 				
