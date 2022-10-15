@@ -25,7 +25,7 @@ AdminShowVO asVO= new AdminShowVO();
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>공연관리-공연추가</title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="http://localhost/group2_prj/admin/css/styles.css" rel="stylesheet" />
         <style type="text/css">
         body{background-color : #fff;}
         </style>
@@ -54,6 +54,7 @@ AdminShowVO asVO= new AdminShowVO();
     		var name=$("#name").val();
 			if(name.trim()==""){ //null 아니라 ""로 처리
 				alert("공연명을 입력해주세요");
+				alert(price);
 				$("#name").focus();	
 				return;
 			}
@@ -74,9 +75,6 @@ AdminShowVO asVO= new AdminShowVO();
 			
 			var startDate=$("#startDate").val();
 			var endDate=$("#endDate").val();
-			if(startDate!=null||endDate!=null){//이거 방법 찾기 > 이거는 안됨
-				/* var startDate = new Date(startDate);
-				var endDate = new Date(endDate); //이거 뺴도되더라 ~ */ 
 				if(startDate>endDate){
 					alert("종료일은 시작일보다 클 수 없습니다");
 					$("#endDate").focus();
@@ -92,12 +90,12 @@ AdminShowVO asVO= new AdminShowVO();
 			}
 			
 			
-			//파일은 focus 안돼서 뻈음
+			//파일은 focus 안돼서 뺌
 			var thImg=$("#thImg").val();
 			var mImg=$("#mImg").val();
 			var infoImg=$("#infoImg").val();
 			
-			if(thImg==""||mImg==""||infoImg==""){
+			if(thImg==""||infoImg==""){ //main이미지는 없는 것도 있으니까
 				alert("업로드할 파일을 선택해주세요");
 				return;
 			}
@@ -107,15 +105,11 @@ AdminShowVO asVO= new AdminShowVO();
 			var blockExt="jpg,jpeg,png,do".split(",");
 			var flag=false;
 			
-			/* for(var i=0; i<blockExt.length; i++){
-				if(blockExt[i]==thImgExt){
-					flag=true;
-				}
-			} */
 			var thImgExt=thImg.substring(thImg.lastIndexOf(".")+1);
 			var mImgExt=mImg.substring(mImg.lastIndexOf(".")+1);
 			var infoImgExt=infoImg.substring(infoImg.lastIndexOf(".")+1);
 			
+			//이렇게 하면 쓸데없이 많이 도는거 같은데 ...
 			for(var i=0; i<blockExt.length; i++){
 				for(var j=0; j<blockExt.length; j++){
 					for(var k=0; k<blockExt.length; k++){
@@ -130,7 +124,6 @@ AdminShowVO asVO= new AdminShowVO();
 				alert("※파일 형식을 다시 확인해주세요");
 				return flag;
 			}
-			
 			
 			
 			if(confirm("공연을 추가하시겠습니까?")){
@@ -244,13 +237,17 @@ AdminShowVO asVO= new AdminShowVO();
                                         <div class="row">
                                             <div class="col-2"></div><div class="col-8">※jpg,jpeg,png,do 파일만 등록할 수 있습니다</div>
                                         </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"></div><div class="col-8">※썸네일 이미지와 소개 이미지는 필수입니다</div>
+                                        </div>
                                     </form>
                                     
                                         
                                              <div class="mt-4 mb-0">
                                                  <div class="col text-center">
                                                      <a class="btn btn-secondary btn-sm" onclick="addBtn()" >추가</a>
-                                                     <a class="btn btn-default btn-sm" href="http://localhost/group2_prj/admin/showBoard.jsp">취소</a>
+                                                     <a class="btn btn-default btn-sm" onclick="history.back()">취소</a>
                                                  </div>
                                              </div>
                                         </div>
@@ -273,6 +270,6 @@ AdminShowVO asVO= new AdminShowVO();
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="http://localhost/group2_prj/admin/js/scripts.js"></script>
     </body>
 </html>

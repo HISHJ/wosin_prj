@@ -26,7 +26,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>공연관리-공연상세내역</title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="http://localhost/group2_prj/admin/css/styles.css" rel="stylesheet" />
         <style type="text/css">
         
         body{background-color : #fff;}
@@ -37,7 +37,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script type="text/javascript">
        
-       
+        //썸네일이미지 미리보기 
 		function thImgSet(input) {
 			  if (input.files && input.files[0]) {
 			    var reader = new FileReader();
@@ -48,10 +48,12 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
 			  } else {
 			    document.getElementById('thImgPreview').src = "";
 			  }
-		}//썸네일이미지 미리보기 
+		}
 		
 		
+        /* add page랑 유효성검증 완전 같지 않음. 추후 수정할 때 주의 */
         $(function() {
+			//삭제하기
         	$("#removeBtn").click(function() {
         		var name=$("#name").val();
         		var delMsg=confirm("공연을 삭제하시겠습니까?");
@@ -63,8 +65,8 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
     				return;
     			}
 				
-			});//삭제
-        	
+			});
+			
 			
         	$("#modifyBtn").click(function() {
         		//유효성 검증 
@@ -75,19 +77,61 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
     				return;
     			}
     			
+    			var startDate=$("#startDate").val();
+    			var endDate=$("#endDate").val();
+    				if(startDate>endDate){
+    					alert("종료일은 시작일보다 클 수 없습니다");
+    					$("#endDate").focus();
+    					return;
+    				}
+    			}
     			
+    			var price=$("#price").val();
+    			if(price.trim()==""){
+    				alert("금액을 입력해주세요");
+    				$("#price").focus();	
+    				return;
+    			}
     			
-        		
-        		var edit=confirm("공연을 수정하시겠습니까?");
-        		if(edit){
+            	//파일은 focus 안돼서 뺌
+    			var thImg=$("#thImg").val();
+    			var mImg=$("#mImg").val();
+    			var infoImg=$("#infoImg").val();
+    			
+    			if(thImg==""||infoImg==""){ //main이미지는 없는 것도 있으니까
+    				alert("업로드할 파일을 선택해주세요");
+    				return;
+    			}
+            	
+    			//이미지 파일 확장자 제한
+    			var blockExt="jpg,jpeg,png,do".split(",");
+    			var flag=false;
+    			
+    			var thImgExt=thImg.substring(thImg.lastIndexOf(".")+1);
+    			var mImgExt=mImg.substring(mImg.lastIndexOf(".")+1);
+    			var infoImgExt=infoImg.substring(infoImg.lastIndexOf(".")+1);
+    			
+    			//이렇게 하면 쓸데없이 많이 도는거 같은데 ...
+    			for(var i=0; i<blockExt.length; i++){
+    				for(var j=0; j<blockExt.length; j++){
+    					for(var k=0; k<blockExt.length; k++){
+    						if(blockExt[i]==thImgExt&&(blockExt[j]==mImgExt||mImgExt=="")&&blockExt[k]==infoImgExt){
+    							flag=true;
+    						}
+    					}
+    				}
+    			}
+    			
+    			if(!flag){
+    				alert("※파일 형식을 다시 확인해주세요");
+    				return flag;
+    			}
+    			
+        		if(confirm("공연을 수정하시겠습니까?")){
         			$("#updateFrm").submit();
         		}
 			});//변경
 			
-			
-			$("#cancelBtn").click(function() {
-				location.href="http://localhost/group2_prj/admin/showBoard.jsp";
-			});//취소
 			
 		});//ready
 		
@@ -113,7 +157,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                     <form id="updateFrm" action="show_update.jsp">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-4"><img id="thImgPreview" class="img-thumbnail" alt="썸네일이미지" src="http://localhost/group2_prj/admin/img/<%=showDetail.getThImg()%>"></div>
+                                             <div class="col-4"><img id="thImgPreview" class="img-thumbnail" alt="썸네일이미지" src="http://localhost/group2_prj/admin/img/<%=showDetail.getThImg()%>"></div> 
                                         </div> 
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -139,11 +183,11 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>시작일</b></div> <div class="col-4"><input type="date" class="dataTable-input"  name="startDate" value="<%=showDetail.getStartDate() %>"></div>
+                                            <div class="col-2"><b>시작일</b></div> <div class="col-4"><input type="date" class="dataTable-input"  name="startDate" id="startDate" value="<%=showDetail.getStartDate() %>"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>종료일</b></div> <div class="col-4"><input type="date" class="dataTable-input"  name="endDate" value="<%=showDetail.getEndDate()%>"></div>
+                                            <div class="col-2"><b>종료일</b></div> <div class="col-4"><input type="date" class="dataTable-input"  name="endDate" id="endDate" value="<%=showDetail.getEndDate()%>"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -171,7 +215,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>금액</b></div> <div class="col-3"><input type="text" name="price" class="dataTable-input" value="<%=showDetail.getPrice()%>" placeholder="숫자만 입력해주세요"></div>
+                                            <div class="col-2"><b>금액</b></div> <div class="col-3"><input type="text" name="price" id="price" class="dataTable-input" value="<%=showDetail.getPrice()%>" placeholder="숫자만 입력해주세요"></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -187,22 +231,26 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>썸네일이미지</b></div> <div class="col-4"><input type="file" name="thImg" value="파일선택" ></div>
+                                            <div class="col-2"><b>썸네일 이미지</b></div> <div class="col-4"><input type="file" name="thImg" id="thImg" onchange="thImgSet(this);" value="파일선택" ></div>
                                             <div class="col-2 my-1"><b>원본파일</b></div><div class="col-4 my-1"><%=showDetail.getThImg() %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>메인이미지</b></div> <div class="col-4"><input type="file" name="mImg" value="파일선택"></div>
+                                            <div class="col-2"><b>메인 이미지</b></div> <div class="col-4"><input type="file" name="mImg" id="mImg" value="파일선택"></div>
                                             <div class="col-2 my-1"><b>원본파일</b></div><div class="col-4 my-1"><%=showDetail.getmImg() %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>소개이미지</b></div><div class="col-4"><input type="file" name="infoImg" value="파일선택"></div>
+                                            <div class="col-2"><b>소개 이미지</b></div><div class="col-4"><input type="file" name="infoImg" id="infoImg" value="파일선택"></div>
                                             <div class="col-2 my-1"><b>원본파일</b></div><div class="col-4 my-1"><%=showDetail.getInfoImg() %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"></div><div class="col-8">※jpg,jpeg,png,bmp,do 파일만 등록할 수 있습니다</div>
+                                            <div class="col-2"></div><div class="col-8 text-secondary">※jpg,jpeg,png,bmp,do 파일만 등록할 수 있습니다</div>
+                                        </div>
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"></div><div class="col-8 text-secondary">※썸네일과 소개 이미지는 필수입니다</div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="dataTable-top"></div>
@@ -224,8 +272,8 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                         
                                          <div class="mt-4 mb-0">
                                             <div class="col text-center">
-                                                <input type="button" class="btn btn-secondary btn-sm" id="modifyBtn"  value="변경">
-                                                <input type="button" class="btn btn-default btn-sm" id="cancelBtn"  value="취소">
+                                            <a class="btn btn-secondary btn-sm" id="modifyBtn" >변경</a>
+                                            <a class="btn btn-default btn-sm" onclick="history.back()">취소</a>
                                             </div>
                                           </div>
                                        </div>
@@ -250,6 +298,6 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="http://localhost/group2_prj/admin/js/scripts.js"></script>
     </body>
 </html>
