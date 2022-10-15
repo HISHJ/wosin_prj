@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.co.sist.dao.RsrvtDAO"%>
 <%@page import="kr.co.sist.vo.RsrvtInfoVO"%>
@@ -17,7 +18,19 @@
 	
 	
 %>    
-
+<%
+request.setCharacterEncoding("UTF-8");
+Enumeration rp = request.getParameterNames();
+while(rp.hasMoreElements()){
+	String getrp = rp.nextElement()+"";
+	System.out.println("show_rsrvt1.jsp @@@@request : "+getrp+":"+request.getParameter(getrp)); // values안하니까 좌석 하나만 나옴 ㅇㅇ
+}
+Enumeration se = session.getAttributeNames();
+while(se.hasMoreElements()){
+	String getse = se.nextElement()+"";
+	System.out.println("show_rsrvt1.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
+}
+%>
 <!DOCTYPE HTML>
 <html>
 	<head>

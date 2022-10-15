@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="kr.co.sist.vo.ShowVO"%>
 <%@page import="kr.co.sist.dao.MainDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,6 +10,20 @@
 	session.setAttribute("showId",swId);
 	MainDAO mDAO = MainDAO.getInstance();
 	ShowVO sVO = mDAO.selectShowMain(swId);
+%>
+
+<%
+request.setCharacterEncoding("UTF-8");
+Enumeration rp = request.getParameterNames();
+while(rp.hasMoreElements()){
+	String getrp = rp.nextElement()+"";
+	System.out.println("show_info.jsp @@@@request : "+getrp+":"+request.getParameter(getrp)); // values안하니까 좌석 하나만 나옴 ㅇㅇ
+}
+Enumeration se = session.getAttributeNames();
+while(se.hasMoreElements()){
+	String getse = se.nextElement()+"";
+	System.out.println("show_info.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
+}
 %>
 <!DOCTYPE HTML>
 <html>

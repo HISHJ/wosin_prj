@@ -31,7 +31,7 @@
 	while(se.hasMoreElements()){
 		
 		String getse = se.nextElement()+"";
-		System.out.println("@@@@session : "+getse+":"+session.getAttribute(getse));
+		System.out.println("show_rsrvt3.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
 	
 	}
 	

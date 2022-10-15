@@ -15,12 +15,12 @@
 	Enumeration rp = request.getParameterNames();
 	while(rp.hasMoreElements()){
 		String getrp = rp.nextElement()+"";
-		System.out.println("@@@@request : "+getrp+":"+request.getParameter(getrp)); // values안하니까 좌석 하나만 나옴 ㅇㅇ
+		System.out.println("show_rsrvt3_process.jsp @@@@request : "+getrp+":"+request.getParameter(getrp)); // values안하니까 좌석 하나만 나옴 ㅇㅇ
 	}
 	Enumeration se = session.getAttributeNames();
 	while(se.hasMoreElements()){
 		String getse = se.nextElement()+"";
-		System.out.println("@@@@session : "+getse+":"+session.getAttribute(getse));
+		System.out.println("show_rsrvt3_process.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
 	}
 	
 	//✅✅ 세션에서 id를 받아서 이름을 받아와서 여기에 넣는다? 뭐가 데이터가 왜이렇게 엉키는거같지

@@ -31,12 +31,12 @@
 	Enumeration rp = request.getParameterNames();
 	while(rp.hasMoreElements()){
 		String getrp = rp.nextElement()+"";
-		System.out.println("@@@@request : "+getrp+":"+request.getParameter(getrp)); // values안하니까 좌석 하나만 나옴 ㅇㅇ
+		System.out.println("show_rsrvt4.jsp @@@@request : "+getrp+":"+request.getParameter(getrp)); // values안하니까 좌석 하나만 나옴 ㅇㅇ
 	}
 	Enumeration se = session.getAttributeNames();
 	while(se.hasMoreElements()){
 		String getse = se.nextElement()+"";
-		System.out.println("@@@@session : "+getse+":"+session.getAttribute(getse));
+		System.out.println("show_rsrvt4.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
 	}
 	
 	
