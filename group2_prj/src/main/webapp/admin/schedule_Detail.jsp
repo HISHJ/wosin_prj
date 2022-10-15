@@ -41,12 +41,14 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script type="text/javascript">
         
-        $("#modifyBtn").click(function() {
-        	
-			$("#frm").submit();
-			alert("공연이 수정되었습니다");
-			
-        });
+      
+       
+    	$("#modifyBtn").click(function() {
+    	
+    			$("#frm").submit();
+    	
+    		
+		});
   
 </script>
     </head>
@@ -61,14 +63,18 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header navy bg-dark"><h3 class="text-start text-white font-weight-light my-4 " style="font-weight: bold;">상영 상세내역</h3></div>
                                     <div class="card-body">
+                                    
                                        <!-- **update form 태그 위치**  -->
-                                    <form action="2show_update.jsp?schId=<%=schData.getSchId() %>" method="post" id="frm"  name="frm">
+                                       
+                                       <form action="schedule_update.jsp" method="post" id="frm"  name="frm">
+                               <!--      <form action="schedule_update.jsp" method="post" id="frm"  name="frm"> -->
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-4"><img id="thImgPreview" src="img/<%=schData.getThImg() %>" class="img-thumbnail" alt="썸네일이미지"></div>
                                         </div> 
                                         <div class="dataTable-top"></div>
                                         <div class="row">
+                                       		 <input type="hidden" name="zschId" id="zschId" value=<%=schData.getSchId()%>>
                                             <div class="col-2"><b>공연코드</b></div> <div class="col-6"><input type="text" id="showId" name="showId" class="dataTable-input" 
                                             value="<%=schData.getShowId() %>" readonly="readonly"></div>
                                         </div>
@@ -96,19 +102,30 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                         <div class="row">
                                             <div class="col-2"><b>시작시간</b></div>
                                             <div class="col-4">
+                                            
+                                            
+                                            <%
+                                            	String schTime = schData.getSchTime();
+                                            	String schTime1 = schTime.substring(0, schTime.indexOf(":"));
+                                            	String schTime2 = schTime.substring(schTime.indexOf(":")+1, schTime.length());
+                                            %>
+                                            
+                                            
+                                            
                  <!--  시간 ??????  -->
-                                                <select name="schTime" class="dataTable-dropdown dataTable-selector">
-                                               <%String[] schTimeArr={"10","11","12","13","14","15","16","17","18","19","20","21","22"}; %>
-                                                <%for(int i=0; i<schTimeArr.length; i++){ %>
-                                                    <option<%=schTimeArr[i].equals(schData.getSchTime())?" selected='selected'":"" %>><%=schTimeArr[i] %></option>
-                                           <%} %>
+                                                <select name="schTime1" class="dataTable-dropdown dataTable-selector">
+                                            <%String[] schTimeArr1={"10","11","12","13","14","15","16","17","18","19","20","21","22"}; %>
+                                                <%for(int i=0; i<schTimeArr1.length; i++){ %>
+                                                    <option<%=schTimeArr1[i].equals(schTime1)?" selected='selected'":"" %>><%=schTimeArr1[i] %></option>
+                                           <%} %> 
+                                         
                                                 </select>
                                                 <label> 시</label>
             <!-- 분 ???????????????????  -->
-                                                <select name="schTime" class="dataTable-dropdown dataTable-selector">
+                                                <select name="schTime2" class="dataTable-dropdown dataTable-selector">
                               			  		<%String[] schTimeArr2={"00","30"}; %>
                               			  		<%for(int i=0; i<schTimeArr2.length; i++){ %>
-                                                    <option<%=schTimeArr2[i].equals(schData.getSchTime())?" selected='selected'":"" %> ><%=schTimeArr2[i] %></option>
+                                                    <option<%=schTimeArr2[i].equals(schTime2)?" selected='selected'":"" %> ><%=schTimeArr2[i] %></option>
                                              <%} %>
                                                  
                                                 </select>
@@ -178,7 +195,7 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                             
                                                 <div class="mt-4 mb-0">
                                                     <div class="col text-center">
-                                                        <input type="submit" class="btn btn-secondary btn-sm" id="modifyBtn" formaction="2show_update.jsp" value="변경"></a>
+                                                        <input type="submit" class="btn btn-secondary btn-sm" id="modifyBtn" formaction="schedule_update.jsp?schId=<%=schData.getSchId() %>" value="변경"></a>
                                                         <input type="button" class="btn btn-default btn-sm" id="cancelBtn" value="취소">
                                                     </div>
                                                 </div>

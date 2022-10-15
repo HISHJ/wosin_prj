@@ -1,23 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
-<%@page import="project.dao.AdminScheduleDAO"%>
-<%@page import="project.vo.AdminScheduleVO"%>
-<%@page import="project.vo.AdminShowVO"%>
+<%@page import="kr.co.sist.dao.AdminScheduleDAO"%>
+<%@page import="kr.co.sist.vo.AdminScheduleVO"%>
+<%@page import="kr.co.sist.vo.AdminShowVO"%>
+
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
 
 <<!--  -->
 <%
-
 request.setCharacterEncoding("UTF-8");
-String showId=request.getParameter("showId"); 
-
+String showId = request.getParameter("showId");
+System.out.println( showId );
+String name = request.getParameter("name");
+System.out.println( name );
 AdminScheduleVO aschVO=new AdminScheduleVO();
 AdminScheduleDAO aschDAO= AdminScheduleDAO.getInstance();
 List<AdminShowVO> list=aschDAO.selectAdminScheduleAll();
-
-
 %>
 
 
@@ -62,7 +62,7 @@ List<AdminShowVO> list=aschDAO.selectAdminScheduleAll();
                                     <div class="card-body">
                                        
                                        <!-- form action -->
-                                    <form action="2showINGAdd-2.jsp" method="post" id="Frm" >
+                                    <form action="schedule_Add-2.jsp" method="post" id="Frm" >
                                         <div class="dataTable-top"></div>
                                         <table class="table">
                                             <thead>
@@ -76,7 +76,7 @@ List<AdminShowVO> list=aschDAO.selectAdminScheduleAll();
                                             <%for(int i=0; i<list.size(); i++){ %>
                                               <tr>
                                                 <td><%=list.get(i).getName()%></td>
-                                                <td> <a href="2showINGAdd-2.jsp?showId=<%=list.get(i).getShowId()%>"> <input type="button" value="선택"  id="postBtn"></a></td>
+                                                <td> <a href="schedule_Add-2.jsp?showId=<%=list.get(i).getShowId()%>"> <input type="button" value="선택"  id="postBtn"></a></td>
                                               </tr>
                                               <%} %>
                                        

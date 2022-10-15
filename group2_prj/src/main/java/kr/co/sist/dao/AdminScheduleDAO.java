@@ -201,7 +201,7 @@ public class AdminScheduleDAO {
 	//상영일정 정보변경 [상영일, 상영시간 변경?]
 	public int updateSchedule(AdminScheduleVO aschVO)throws SQLException{
 		
-		int updateCnt=0;
+		int cnt=0;
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -214,12 +214,12 @@ public class AdminScheduleDAO {
 			
 			String query="update schedule "
 					+ "set schDate=?, schTime=? "
-					+ "where schId=? ";
+					+ "where schId='"+aschVO.getSchId()+"' ";
 			
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, aschVO.getSchId());
-			pstmt.setString(2, aschVO.getSchDate());
-			pstmt.setString(3, aschVO.getSchTime());
+			pstmt.setString(1, aschVO.getSchDate());
+			pstmt.setString(2, aschVO.getSchTime());
+			pstmt.setString(3, aschVO.getSchId());
 		
 
 			
@@ -229,7 +229,7 @@ public class AdminScheduleDAO {
 			db.dbClose(null, pstmt, con);
 		}
 		
-		return updateCnt;
+		return cnt;
 		
 	}
 	
@@ -337,7 +337,7 @@ public class AdminScheduleDAO {
 	//상영일,상영시간 추가
 	public int insertSchedule(AdminScheduleVO aschVO) throws SQLException {
 		
-		int insertSchCnt=0;
+		int i=0;
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -349,13 +349,13 @@ public class AdminScheduleDAO {
 		
 				con=db.getConn();
 			
-				String query= "insert into schedule(schId, schDate, schTime) "
-									+"values (concat('sch_',lpad(schedule_seq.nextval,6,0)),?,? ) ";
+				String query= "insert into schedule(schId, showId, schDate, schTime) "
+									+"values (concat('sch_',lpad(schedule_seq.nextval,6,0)),?,?,? ) ";
 				pstmt = con.prepareStatement(query);
 				
-			
-				pstmt.setString(1, aschVO.getSchDate());
-				pstmt.setString(2, aschVO.getSchTime());
+				pstmt.setString(1, aschVO.getSchId());
+				pstmt.setString(2, aschVO.getSchDate());
+				pstmt.setString(3, aschVO.getSchTime());
 				pstmt.executeUpdate();
 			
 		
@@ -366,7 +366,7 @@ public class AdminScheduleDAO {
 			db.dbClose(null, pstmt, con);
 		}//end finally
 		
-		return insertSchCnt;
+		return i;
 	}//insert
 	
 

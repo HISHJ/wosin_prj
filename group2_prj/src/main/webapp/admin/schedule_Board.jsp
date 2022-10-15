@@ -1,11 +1,10 @@
 <%@page import="kr.co.sist.vo.AdminScheduleVO"%>
 <%@page import="kr.co.sist.dao.AdminScheduleDAO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info=""%>
-
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" info="상영보드"%>
 
 
 <%
@@ -216,11 +215,11 @@ if( session.getAttribute("adminId") == null){
                                </div>
                               </form>
                            <div>
-                            <a href="showINGBoard.jsp"><button id="addBtn" type="button" class="btn btn-outline-dark float-end mx-md-4" >전체보기</button></a>
+                            <a href="schedule_Board.jsp"><button id="addBtn" type="button" class="btn btn-outline-dark float-end mx-md-4" >전체보기</button></a>
                            </div>
                            
                            <!-- form  action-->
-                       <form action="showINGDetail.jsp" method="post" id="Frm" name="Frm" >
+                       <form action="shcedule_Detail.jsp" method="post" id="Frm" name="Frm" >
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
@@ -252,7 +251,7 @@ if( session.getAttribute("adminId") == null){
                                             <td><%=aschVO.getSchDate() %></td>
                                             <td><%=aschVO.getGenreId() %></td>
                                             <td><%=aschVO.getSchTime() %></td>
-                                            <td><a href="showINGDetail.jsp?schId=<%=aschVO.getSchId() %>"><input type="button" value="상세보기" id="scbtn" ></a></td>
+                                            <td><a href="schedule_Detail.jsp?schId=<%=aschVO.getSchId() %>"><input type="button" value="상세보기" id="scbtn" ></a></td>
                                         </tr>
                                         <%} %>
                               

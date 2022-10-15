@@ -2,9 +2,9 @@
     pageEncoding="UTF-8" info=""%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
-<%@page import="project.dao.AdminScheduleDAO"%>
-<%@page import="project.vo.AdminScheduleVO"%>
-<%@page import="project.vo.AdminShowVO"%>
+
+<%@page import="kr.co.sist.dao.AdminScheduleDAO"%>
+<%@page import="kr.co.sist.vo.AdminScheduleVO"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 
@@ -14,18 +14,11 @@ request.setCharacterEncoding("UTF-8");
 String showId = request.getParameter("showId");
 String startDate=request.getParameter("startDate"); 
 String endDate=request.getParameter("endDate");
-String thimg=request.getParameter("thImg"); 
+String thimg=request.getParameter("thImg");
 
-AdminScheduleVO aschVO =new AdminScheduleVO();
 AdminScheduleDAO aschDAO= AdminScheduleDAO.getInstance();
-/* AdminScheduleVO select = aschDAO.selectshow(showId); */
+AdminScheduleVO aschVO = aschDAO.selectshow(showId);
 
-// aschVO = aschDAO.selectshow(shId); 
-
-System.out.println( request.getParameter("showId") );
-System.out.println( request.getParameter("startDate") );
-System.out.println( request.getParameter("endDate") );
-System.out.println( request.getParameter("thImg") );
 
 %>
 
@@ -74,7 +67,10 @@ System.out.println( request.getParameter("thImg") );
                                     <div class="card-header navy bg-dark"><h3 class="text-start text-white font-weight-light my-4 " style="font-weight: bold;">상영일정 추가</h3></div>
                                     <div class="card-body">
                                        <!-- **insert form 태그 위치**  -->
-                                    <form id="frm" name="frm" action="2show_insert.jsp?showId=<%=aschVO.getShowId() %>" method="post">
+                                    <form id="frm" name="frm" action="schedule_insert.jsp" method="post">
+                                    
+                              
+                      				  
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-6"><img src=<%=aschVO.getThImg() %>class="img-thumbnail" alt="썸네일이미지"></div>
@@ -87,18 +83,29 @@ System.out.println( request.getParameter("thImg") );
                                         <div class="row">
                                             <div class="col-4"><b>시작시간</b></div> 
                                             <div class="col-6">
-                                                <select name="schTime" class="dataTable-dropdown dataTable-selector" id="schTime">
+                                            
+                                            <% 
+                                           
+                                        	String schTime = aschVO.getSchTime();
+                                        	String schTime1 = schTime.substring(0, 1);
+                                        	String schTime2 = schTime.substring(0, 1);
+                                     
+            
+                                            %>
+                                            
+                                            
+                                                <select name="schTime1" class="dataTable-dropdown dataTable-selector" id="schTime">
                                                 <%String[] runing_timeArr={"10","11","12","13","14","15","16","17","18","19","20","21","22"}; %>
                                                   <%for(int i=0; i<runing_timeArr.length; i++){ %>
-                                                    <option <%=runing_timeArr[i].equals(aschVO.getSchTime())?" selected='selected'":"" %>><%=runing_timeArr[i] %></option>
+                                                    <option <%=runing_timeArr[i].equals(schTime1)?" selected='selected'":"" %>><%=runing_timeArr[i] %></option>
                                                    <%} %>
                                           
                                                 </select>
                                                 <label> 시</label>
-                                                <select name="schTime" class="dataTable-dropdown dataTable-selector" id="schTime">
+                                                <select name="schTime2" class="dataTable-dropdown dataTable-selector" id="schTime">
                                                     <%String[] runing_timeArr2={"00","30"};%>
                                                     <%for(int i=0; i<runing_timeArr2.length; i++){ %>
-													 <option <%=runing_timeArr[i].equals(aschVO.getSchTime())?" selected='selected'":"" %>><%=runing_timeArr2[i] %></option>
+													 <option <%=runing_timeArr[i].equals(schTime2)?" selected='selected'":"" %>><%=runing_timeArr2[i] %></option>
      
                                                     <%} %>
                                                 </select>
@@ -110,8 +117,10 @@ System.out.println( request.getParameter("thImg") );
                                             
                                                 <div class="mt-4 mb-0">
                                                     <div class="col text-center">
-                                                        <a class="btn btn-secondary btn-sm" onclick="addBtn()">추가</a>
-                                                        <a class="btn btn-default btn-sm" href="2showINGAdd-1.jsp">닫기</a>
+                                                    
+                                                    
+                                                    <input type="submit" class="btn btn-secondary btn-sm" id="modifyBtn" formaction="schedule_insert.jsp?showId=<%=showId %>" value="변경"></a>
+                                                        <a class="btn btn-default btn-sm" href="schedule_Add-1.jsp">닫기</a>
                                                         
                                                     </div>
                                                 </div>
@@ -141,3 +150,4 @@ System.out.println( request.getParameter("thImg") );
         <script src="js/scripts.js"></script>
     </body>
 </html>
+
