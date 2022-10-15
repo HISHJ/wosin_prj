@@ -12,6 +12,7 @@ import kr.co.sist.vo.AdminScheduleVO;
 
 
 import kr.co.sist.vo.AdminShowVO;
+import kr.co.sist.dao.AdminScheduleDAO;
 
 
 
@@ -32,7 +33,7 @@ public class AdminScheduleDAO {
 	}//getInstance
 	
 	
-	//상영일정 조회 (showINGBoard)
+	//상영일정 조회 [showINGBoard]
 	public List<AdminScheduleVO> selectSchedule(String name,String genreId) throws SQLException{
 		List<AdminScheduleVO> list= new ArrayList<AdminScheduleVO>();
 		AdminScheduleVO aschVO=null; //조회된 레코도를 저장할 VO
@@ -51,26 +52,17 @@ public class AdminScheduleDAO {
 				String query="select sc.schId sc_schId, s.showId s_showId, s.name s_name, sc.schDate sc_schDate, g.genretype g_genretype, sc.schTime sc_schTime "
 								+ "from show s, schedule sc, genre g "
 								+ "where (s.showId = sc.showId) and (s.genreId=g.genreId) ";
-			/*	StringBuilder selectSchedule = new StringBuilder();
-				selectSchedule.append("select s.showId s_showId, s.name s_name, sc.schDate sc_schDate, s.genreId s_genreId, sc.schTime sc_schTime ")
-				.append("from show s join schedule sc ")
-				.append("on s.showId = sc.showId ");*/
-			/*	.append("where s.name=? and s.genreId=? and status=? ");*/
-				
-			
+		
 				if(genreId!=null) {
 					query+=" and g.genretype='"+genreId+"' ";
-				}
+				}//end if
 				
 				if(name!=null) { 
 					query += " and s.name like '%"+name.trim()+"%' ";
-				}
-				   pstmt = con.prepareStatement(query); 
-				//pstmt=con.prepareStatement( selectSchedule.toString() );
-			//4. 바인드 변수 값 설정 ??
-				//pstmt.setString(1, );
-			
-			//5. 쿼리문 수행후 결과 얻기
+				}//end if
+				
+				 pstmt = con.prepareStatement(query); 
+
 				rs=pstmt.executeQuery();
 				
 
@@ -96,7 +88,7 @@ public class AdminScheduleDAO {
 		
 	}//selectSchedule
 	
-	//상영일정 상세보기(일정코드) 
+	//상영일정 상세보기(일정코드) [schedule_Detail]
 	public AdminScheduleVO selectScheduleDetail(String schId) throws SQLException {
 		
 		AdminScheduleVO aschVO=null; 
@@ -158,47 +150,9 @@ public class AdminScheduleDAO {
 	
 	}//selectSchedule
 	
-	/*
-	 * //상영일정 상세보기(일정코드) public AdminScheduleVO selectSchedule(String schId) throws
-	 * SQLException {
-	 * 
-	 * AdminScheduleVO adschVO=null;
-	 * 
-	 * Connection con=null; PreparedStatement pstmt=null; ResultSet rs=null;
-	 * 
-	 * DbConnection db=DbConnection.getInstance(); try { //1. 드라이버 로딩 //2. 커넥션 얻기
-	 * con=db.getConn(); //3. 쿼리문 생성객체 얻기
-	 * 
-	 * StringBuilder selectSchedule=new StringBuilder(); selectSchedule
-	 * .append("select sc.schId, s.name, s.genreId, sc.schDate, sc.schTime, s.runingTime, s.ratingId, s.price, s.mImg, s.thImg, s.infoImg, s.status "
-	 * ) .append("from show s join schedule sc") .append("on s.showId=sc.showId")
-	 * .append("where s.showId=?");
-	 * 
-	 * pstmt=con.prepareStatement(selectSchedule.toString()); //4. 바인드 변수 값 설정 ??
-	 * 
-	 * //5. 쿼리문 수행후 결과 얻기 rs=pstmt.executeQuery(); if(rs.next()) {
-	 * 
-	 * adschVO =new AdminScheduleVO(); adschVO.setSchId(rs.getString("schId"));
-	 * adschVO.setName(rs.getString("name"));
-	 * adschVO.setGenreId(rs.getString("genreId"));
-	 * adschVO.setSchDate(rs.getString("schDate"));
-	 * adschVO.setSchTime(rs.getString("schTime"));
-	 * adschVO.setRuningTime(rs.getString("runingTime"));
-	 * adschVO.setRatingId(rs.getString("ratingId"));
-	 * adschVO.setPrice(rs.getInt("price"));
-	 * adschVO.setThImg(rs.getString("tmImg"));
-	 * adschVO.setmImg(rs.getString("mImg"));
-	 * adschVO.setInfoImg(rs.getString("infoImg"));
-	 * adschVO.setStatus(rs.getString("status")); }//end if }finally{
-	 * 
-	 * db.dbClose(rs, pstmt, con); }//end return adschVO;
-	 * 
-	 * 
-	 * }//selectSchedule
-	 */	
+
 	
-	
-	//상영일정 정보변경 [상영일, 상영시간 변경?]
+	//상영일정 정보변경 [schedule_update]
 	public int updateSchedule(AdminScheduleVO aschVO)throws SQLException{
 		
 		int cnt=0;
@@ -219,11 +173,9 @@ public class AdminScheduleDAO {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, aschVO.getSchDate());
 			pstmt.setString(2, aschVO.getSchTime());
-			pstmt.setString(3, aschVO.getSchId());
-		
+			/* pstmt.setString(3, aschVO.getSchId()); */
 
-			
-			pstmt.executeUpdate();
+			cnt = pstmt.executeUpdate();
 			
 		}finally {
 			db.dbClose(null, pstmt, con);
@@ -231,19 +183,11 @@ public class AdminScheduleDAO {
 		
 		return cnt;
 		
-	}
+	}//updateSchedule
 	
 	
-	
-	
-	
-	
-
-
-	
-	
-	//상영일정 리스트 (공연코드, VO)
-	
+	//상영일정 리스트 (공연코드,VO) [schedule_Add-1]
+	//상영일정 추가할 공연명받기
 	public List<AdminShowVO> selectAdminScheduleAll() throws SQLException{
 		
 		List<AdminShowVO> list = new ArrayList<AdminShowVO>();
@@ -259,7 +203,7 @@ public class AdminScheduleDAO {
 			con=db.getConn();
 			//3. 쿼리문 생성객체 얻기
 				StringBuilder selectAdminScheduleAll=new StringBuilder();
-				selectAdminScheduleAll.append("select * ")
+				selectAdminScheduleAll.append("select showId, name ")
 							.append("from show");
 						
 				pstmt=con.prepareStatement( selectAdminScheduleAll.toString() );
@@ -286,7 +230,8 @@ public class AdminScheduleDAO {
 	
 	
 	
-	// 상영일정 추가 전 조회 ?? 
+	// 상영일정 추가 전 조회  [schedule_Add-2]
+	// showId 받에 안받아짐, 나머지 null ????
 	public AdminScheduleVO selectshow(String showId) throws SQLException{
 		AdminScheduleVO aschVO=null;
 		
@@ -307,12 +252,7 @@ public class AdminScheduleDAO {
 			pstmt.setString(1, showId);
 			rs=pstmt.executeQuery();
 			
-			/*
-			 * StringBuilder selectshow=new StringBuilder();
-			 * selectshow.append("select * from show") .append("where showId=?");
-			 */
-					
-		
+			
 				while(rs.next()) { 	
 					aschVO=new AdminScheduleVO();
 					aschVO.setThImg("thImg");
@@ -325,16 +265,14 @@ public class AdminScheduleDAO {
 			//6. 연결 끊기
 			db.dbClose(rs, pstmt, con);
 		}//end finally
-		
-		
-		
+			
 		return aschVO;
-	}
+	}//selectshow
 	
 	
 		
 
-	//상영일,상영시간 추가
+	//상영일,상영시간 추가 [schedule_insert]
 	public int insertSchedule(AdminScheduleVO aschVO) throws SQLException {
 		
 		int i=0;
@@ -353,23 +291,21 @@ public class AdminScheduleDAO {
 									+"values (concat('sch_',lpad(schedule_seq.nextval,6,0)),?,?,? ) ";
 				pstmt = con.prepareStatement(query);
 				
-				pstmt.setString(1, aschVO.getSchId());
+				pstmt.setString(1, aschVO.getShowId());
 				pstmt.setString(2, aschVO.getSchDate());
 				pstmt.setString(3, aschVO.getSchTime());
-				pstmt.executeUpdate();
-			
-		
-		
-	
+				
+				
+				i = pstmt.executeUpdate();
+
 		}finally {
 			
 			db.dbClose(null, pstmt, con);
 		}//end finally
 		
 		return i;
-	}//insert
+	}//insertSchedule
 	
 
-	
 
 }//class

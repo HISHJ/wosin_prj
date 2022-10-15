@@ -8,8 +8,9 @@
 <%@page import="java.util.List"%>
 
 
-<<!--  -->
+
 <%
+
 request.setCharacterEncoding("UTF-8");
 String showId = request.getParameter("showId");
 System.out.println( showId );
@@ -18,8 +19,8 @@ System.out.println( name );
 AdminScheduleVO aschVO=new AdminScheduleVO();
 AdminScheduleDAO aschDAO= AdminScheduleDAO.getInstance();
 List<AdminShowVO> list=aschDAO.selectAdminScheduleAll();
-%>
 
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,6 +64,8 @@ List<AdminShowVO> list=aschDAO.selectAdminScheduleAll();
                                        
                                        <!-- form action -->
                                     <form action="schedule_Add-2.jsp" method="post" id="Frm" >
+                                    	<input type="hidden" name="hid1" id="hid1" value=<%=aschVO.getShowId()%>>
+                                    		<input type="hidden" name="hid2" id="hid2" value=<%=aschVO.getName()%>>
                                         <div class="dataTable-top"></div>
                                         <table class="table">
                                             <thead>
@@ -83,9 +86,7 @@ List<AdminShowVO> list=aschDAO.selectAdminScheduleAll();
                                             </tbody>
                                           </table>
                                         
-                                        
-                                        
-                                            
+                                                                                  
                                             
                                                 <div class="mt-4 mb-0">
                                                     <div class="col text-center">
@@ -119,3 +120,4 @@ List<AdminShowVO> list=aschDAO.selectAdminScheduleAll();
         <script src="js/scripts.js"></script>
     </body>
 </html>
+

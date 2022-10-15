@@ -1,26 +1,25 @@
 <%@page import="java.util.Enumeration"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="상영일정 변경"%>
 <%@page import="kr.co.sist.dao.AdminScheduleDAO"%>
 <%@page import="kr.co.sist.vo.AdminScheduleVO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" info="상영일정 상세내역"%>
   
     
  <%
+ 
 request.setCharacterEncoding("UTF-8");
 
-String schId=request.getParameter("schId");
+ String schId=request.getParameter("schId");
+ String schDate=request.getParameter("schDate");
 
-AdminScheduleVO aschVO = new AdminScheduleVO();
-
-AdminScheduleDAO aschDAO = AdminScheduleDAO.getInstance();
-AdminScheduleVO schData= aschDAO.selectScheduleDetail(schId);
+ AdminScheduleVO aschVO = new AdminScheduleVO();
+ AdminScheduleDAO aschDAO = AdminScheduleDAO.getInstance();
+ AdminScheduleVO schData= aschDAO.selectScheduleDetail(schId);
 
 System.out.println(  aschDAO.selectScheduleDetail(schId) );
 
-
- 
 %> 
-    
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -67,7 +66,6 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                        <!-- **update form 태그 위치**  -->
                                        
                                        <form action="schedule_update.jsp" method="post" id="frm"  name="frm">
-                               <!--      <form action="schedule_update.jsp" method="post" id="frm"  name="frm"> -->
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-4"><img id="thImgPreview" src="img/<%=schData.getThImg() %>" class="img-thumbnail" alt="썸네일이미지"></div>
@@ -112,7 +110,7 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                             
                                             
                                             
-                 <!--  시간 ??????  -->
+                 
                                                 <select name="schTime1" class="dataTable-dropdown dataTable-selector">
                                             <%String[] schTimeArr1={"10","11","12","13","14","15","16","17","18","19","20","21","22"}; %>
                                                 <%for(int i=0; i<schTimeArr1.length; i++){ %>
@@ -121,7 +119,7 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                          
                                                 </select>
                                                 <label> 시</label>
-            <!-- 분 ???????????????????  -->
+            
                                                 <select name="schTime2" class="dataTable-dropdown dataTable-selector">
                               			  		<%String[] schTimeArr2={"00","30"}; %>
                               			  		<%for(int i=0; i<schTimeArr2.length; i++){ %>
@@ -139,7 +137,7 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                                 <select name="runningTime" class="dataTable-dropdown dataTable-selector" disabled>
                                                      <%String[] runningtimeArr={"60분","70분","80분","90분","100분","110분","120분","130분","140분","150분","160분","170분","180분"}; %>
 												  <%for(int i=0; i<runningtimeArr.length; i++){ %>
-												  <option<%=runningtimeArr[i].equals(schData.getRunningTime())?" selected='selected'":"" %>><%=runningtimeArr[i] %></option>
+							 				 <option<%=runningtimeArr[i].equals(schData.getRunningTime())?" selected='selected'":"" %>><%=runningtimeArr[i] %></option>
 												  <%} %>
                                                 </select>
                                               
@@ -225,3 +223,16 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
         <script src="js/scripts.js"></script>
     </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+

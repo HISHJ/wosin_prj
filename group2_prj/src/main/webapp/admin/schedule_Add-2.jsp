@@ -12,13 +12,20 @@
 request.setCharacterEncoding("UTF-8");
 
 String showId = request.getParameter("showId");
+
+AdminScheduleVO aschVO = new AdminScheduleVO();
+AdminScheduleDAO aschDAO= AdminScheduleDAO.getInstance();
+AdminScheduleVO sel = aschDAO.selectshow(showId);
+
+// ???????????
 String startDate=request.getParameter("startDate"); 
 String endDate=request.getParameter("endDate");
-String thimg=request.getParameter("thImg");
+String thImg=request.getParameter("thImg");
 
-AdminScheduleDAO aschDAO= AdminScheduleDAO.getInstance();
-AdminScheduleVO aschVO = aschDAO.selectshow(showId);
-
+System.out.println( startDate );
+System.out.println( endDate );
+System.out.println( thImg );
+System.out.println( showId );
 
 %>
 
@@ -69,15 +76,18 @@ AdminScheduleVO aschVO = aschDAO.selectshow(showId);
                                        <!-- **insert form 태그 위치**  -->
                                     <form id="frm" name="frm" action="schedule_insert.jsp" method="post">
                                     
-                              
+                      				<input type="hidden" name="hid" id="hid" value=<%=sel.getShowId()%>>
+                      				<input type="hidden" name="hid2" id="hid2" value=<%=sel.getStartDate()%>>
+                      				<input type="hidden" name="hid3" id="hid3" value=<%=sel.getEndDate()%>>
+                      				
                       				  
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-6"><img src=<%=aschVO.getThImg() %>class="img-thumbnail" alt="썸네일이미지"></div>
+                                            <div class="col-6"><img src=<%=sel.getThImg() %>class="img-thumbnail" alt="썸네일이미지"></div>
                                         </div> 
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-4"><b>상영일정</b></div> <div class="col-6"><input type="date" class="dataTable-input"  id="schDate" name="schDate" value="<%=aschVO.getSchDate()%>"></div>
+                                            <div class="col-4"><b>상영일정</b></div> <div class="col-6"><input type="date" class="dataTable-input"  id="schDate" name="schDate" value="<%=sel.getSchDate()%>"></div>
                                         </div> 
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -86,7 +96,7 @@ AdminScheduleVO aschVO = aschDAO.selectshow(showId);
                                             
                                             <% 
                                            
-                                        	String schTime = aschVO.getSchTime();
+                                        	String schTime = sel.getSchTime();
                                         	String schTime1 = schTime.substring(0, 1);
                                         	String schTime2 = schTime.substring(0, 1);
                                      
@@ -119,7 +129,8 @@ AdminScheduleVO aschVO = aschDAO.selectshow(showId);
                                                     <div class="col text-center">
                                                     
                                                     
-                                                    <input type="submit" class="btn btn-secondary btn-sm" id="modifyBtn" formaction="schedule_insert.jsp?showId=<%=showId %>" value="변경"></a>
+                                                    <input type="submit" class="btn btn-secondary btn-sm" id="modifyBtn" formaction="schedule_insert.jsp?showId=<%=showId %>" value="추가"></a>
+                   <%--  <a href="schedule_insert.jsp?showId=<%=swId%>"><a class="btn btn-secondary btn-sm" onclick="addBtn()">추가</a></a> --%>
                                                         <a class="btn btn-default btn-sm" href="schedule_Add-1.jsp">닫기</a>
                                                         
                                                     </div>

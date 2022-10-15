@@ -13,19 +13,20 @@ String schTime1 = request.getParameter("schTime1");
 String schTime2 = request.getParameter("schTime2");
 String schTime = schTime1+":"+schTime2;
 %>
-
-<jsp:setProperty property="schDate" name="schVO" />
+<!-- 1. bean 생성  -->
 <jsp:useBean id="schVO" class="kr.co.sist.vo.AdminScheduleVO"  scope="page"/>
+<!-- 2. setter method 호출 -->
+<jsp:setProperty property="schDate" name="schVO" />
 <jsp:setProperty property="schTime" name="schVO" value="<%=schTime %>"/>
 <jsp:setProperty property="schId" name="schVO" />
 
+
 <%
 		AdminScheduleDAO schDAO = AdminScheduleDAO.getInstance();
-	
 		int schCnt = schDAO.updateSchedule(schVO); 
 					
 					
-		
+		//board페이지로 이동
 		if(schCnt != -99){%>
 					<script>
 				alert("상영일정 변경 완료")
