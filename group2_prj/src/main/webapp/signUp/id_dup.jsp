@@ -28,7 +28,7 @@ $(function(){
 		chkNull();
 	});//click
 	
-	$("#id").keydown(function( evt ){
+	$("#memberId").keydown(function( evt ){
 		if(evt.which == 13){
 			chkNull();
 		}//end if
@@ -36,12 +36,26 @@ $(function(){
 	
 });//ready
 function chkNull(){
-	var id=$("#id").val();
+	var id=$("#memberId").val();
 	if(id == ""){
 		alert("중복 검사할 아이디를 입력해 주세요.");
 		return;
 	}//end if
+	
+	
+	//아이디 특수문자 제외 영문,숫자 4~20자이내+중복검사 필수
+	 if(!id.match('^[a-zA-Z0-9]{4,20}$')) {
+			 alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 사용 가능합니다.');
+			$('#memberId').focus();
+			 return ;
+		 }//idcheck
+	
+	
 	$("#frmDup").submit();
+	
+	
+	
+	
 }//chkNull
 
 function useId( memberId ){
@@ -63,18 +77,20 @@ function useId( memberId ){
 
 </form>
 </div>
-<c:if test="${ not empty param.memberId  }">
+ <c:if test="${ not empty param.memberId  }"> 
 <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
-<%
+<jsp:setProperty property="memberId" name="mbVO"/>
+<%=mbVO %>
+ <%
 //DBMS 연동
 MemberDAO mbrDAO = MemberDAO.getInstance();
 
-boolean flag=mbrDAO.selectChkId(mbVO);
-pageContext.setAttribute("flag",flag);//true면 사용중, false 미사용
+boolean result=mbrDAO.selectChkId(mbVO);
+pageContext.setAttribute("result",result);//true면 사용중, false 미사용
 %>
 <div id="view">입력하신 <strong><c:out value="${ param.memberId }"/></strong>는
 <c:choose>
-<c:when test="${ flag }">
+<c:when test="${ result }">
 <span style="color: #FF0000">사용 중</span> 입니다.
 </c:when>
 <c:otherwise>
@@ -86,6 +102,6 @@ pageContext.setAttribute("flag",flag);//true면 사용중, false 미사용
 </c:if>
 
 </div>
-</div>
+</div> 
 </body>
 </html>

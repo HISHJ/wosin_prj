@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="비밀번호변경 확인"%>
-   
-   <!DOCTYPE HTML>
+    pageEncoding="UTF-8" info=""%>
+
+<!DOCTYPE HTML>
 <!--
 	Dopetrope by HTML5 UP
 	html5up.net | @ajlkn
@@ -48,13 +48,7 @@
 		});
 
 		</script>
-	<link rel="stylesheet" href="http://localhost/group2_prj/static\portal\css\passChk.css">
-
-<!-- testtesttesttesttesttesttesttesttesttesttesttesttesttest -->
-
-
-<!-- testtesttesttesttesttesttesttesttesttesttesttesttesttest -->
-
+	
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -132,7 +126,7 @@
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
 						<div id="sut-t_wrap">
 						<h2 id="sub-t">
-							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">비밀번호 확인</strong>
+							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">비밀번호 변경</strong>
 						</h2>
 					</div>
 					</section>
@@ -142,61 +136,63 @@
 
 				
 				
-	<!-- 로그인 영역 -->
-	<div id="depth_w">
-		<div class="inner">
-			<ul class="clrearfox dot dep1 li2">
-				<li class="home">
-					<span>
-						<span>HOME</span>
-					</span>
-				</li>
-				<li>
-					<div class="rel">
-						<a href="memberMng.html">
-							<span>마이페이지</span>
-						</a>
-						<!-- display:none -->
-						<ul class="depth" >
-							<li>
-								<a href="memberMng.html">
-									<span>마이페이지</span>
-								</a>
+
+				<!-- 로그인 영역 -->
+				<div id="depth_w">
+					<div class="inner">
+						<ul class="clrearfox dot dep1 li2">
+							<li class="home">
+								<span>
+									<span>HOME</span>
+								</span>
 							</li>
 							<li>
-								<a href="page1.html">공연정보</a>
+								<div class="rel">
+									<a href="memberMng.html">
+										<span>마이페이지</span>
+									</a>
+									<!-- display:none -->
+									<ul class="depth" >
+										<li>
+											<a href="memberMng.html">
+												<span>마이페이지</span>
+											</a>
+										</li>
+										<li>
+											<a href="page1.html">공연정보</a>
+										</li>
+										<li>
+											<a href="subpage-ticketmethod.html">예매정보</a>
+										</li>
+										<li>
+											<a href="page9.html">고객센터</a>
+										</li>
+										<li>
+											<a href="subpage-way.html">오시는길</a>
+										</li>
+									</ul>
+								</div>
 							</li>
 							<li>
-								<a href="subpage-ticketmethod.html">예매정보</a>
-							</li>
-							<li>
-								<a href="page9.html">고객센터</a>
-							</li>
-							<li>
-								<a href="subpage-way.html">오시는길</a>
+								<li>
+									<div class="rel">
+									<a href="#"><span>회원정보 수정</span></a>
+									<ul class="depth">
+									<li><a href="memberMng.html" ><span>개인화서비스</span></a></li>
+									<li><a href="subpage-FAQ1.html" ><span>FAQ</span></a></li>
+									<li><a href="mypage.html" ><span>회원정보 수정</span></a></li>
+									<li><a href="find_password.html" ><span>예매내역 확인·취소</span></a></li>
+									
+							
+									</ul>
+									</div>
+								</li>
+							
 							</li>
 						</ul>
 					</div>
-				</li>
-				<li>
-					<li>
-						<div class="rel">
-						<a href="#"><span>비밀번호 변경</span></a>
-						<ul class="depth">
-						<li><a href="memberMng.html" ><span>개인화서비스</span></a></li>
-						<li><a href="mypage.html" ><span>회원정보 수정</span></a></li>
-						<li><a href="find_password.html" ><span>예매내역 확인·취소</span></a></li>
-						
-				
-						</ul>
-						</div>
-					</li>
-				
-				</li>
-			</ul>
-		</div>
-		
-		</div>
+					
+					</div>
 				<!-- 여기까지는 공통 영역 -->
 				<script>
 					$(window).resize(function(){
@@ -236,10 +232,11 @@
 				
 						var len = $(".tabs-st1 li").length;
 						$(".tabs-st1").addClass("li"+len);
+						</script>
 						
-						
+			<script>
 						$(function(){ 
-							$("#pwChk").click(function(){
+							$("#pwChange").click(function(){
 									pwChk();
 								
 							});//click
@@ -251,12 +248,12 @@
 						
 					function pwChk(){
 						
-						var pass=$("#pwd").val();
-					
+						var pass=$("#password").val();
+						var pass2=$("#repassword").val();
 						
 						if(pass.trim()==""){
 							alert("비밀번호를 입력해주세요.");
-							$("#pwd").focus();
+							$("#password").focus();
 							return false;
 						}
 						 var num = pass.search(/[0-9]/);
@@ -265,26 +262,35 @@
 							//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
 							if(pass.length < 7 || pass.length > 13){
 									  alert("8자리 ~ 12자리 이내로 입력해주세요.");
-									  $("#pwd").focus();
+									  $("#password").focus();
 									  return false;
 								}
 						 if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
 									  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
-									  $("#pwd").focus();
+									  $("#password").focus();
 									  return false;
 								}
-							$("#board").submit();
-						}
+						 
+						 if(pass2!=pass){
+							 alert("비밀번호를 다시 확인해주세요.")
+							$("#repassword").focus();
+							 return false;
+						 }
+						if(pass2.trim()==""){
+							alert("비밀번호를 한번 더 확인해주세요.")
+							$("#repassword").focus();
+							
+							return false;
+						}//pass
+						$("#pmFrm").submit();
+					
+					}//pwChk
 						</script>
-	
-				
-				
 
-						
 				
 						<div class="sub_page">
 						
-				<!-- 로그인 안했으면 로그인 페이지로 넘어가는 유효성 검사 나중에 추가하기 -->
+				
 				
 				
 				
@@ -292,45 +298,49 @@
 				 <style>
 				.tabs-st1,.tabs-st2{display: none;}
 				</style>
-		<form name="board" id="board" method="post" action="http://localhost/group2_prj/mypage/mypgPw_process2.jsp">	
+				
+				<!-- 세션 값 받아오기 useBean : scope="session"사용하면 필요없을듯! -->
+			<%-- 	<%String id=(String)session.getAttribute("memberId"); %> --%>
+			<form id="pmFrm" name="pmFrm" method="post" action="http://localhost/group2_prj/login/pm_process.jsp">
 				<article class="find_member inner member_com">
 						<div class="group">
-						<h3 class="tit-st4">비밀번호 확인</h3>
+						<h3 class="tit-st4">비밀번호 변경</h3>
 						<div class="box box_2">
-						<!-- 세션연결 -->
-						  <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>  
 						
-							<!-- String id=(String)session.getAttribute("memberId"); -->
 							<div class="form_w">
-								<h4 class="t">비밀변호를 변경하기 위해 현재 비밀번호를 입력해주세요.</h4>
+								<h4 class="t">변경하실 비밀번호를 입력해주세요.</h4>
 									<ul class="sect sect2">
 										<li class="item item2">
-											<label for="password" class="t">현재 비밀번호 </label>
+											<label for="password" class="t">새 비밀번호 </label>
 											<div class="cont">
-												<input type="password" name="pwd" id="pwd"  style="width:300px; height:50px;"/>
+												<input type="password" name="pwd" id="password" style="width:300px; height:50px;" maxlength="20"/>
+												<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 8자 ~ 12자 이내</span>
 											</div>
 										</li>
+										<li class="item  item2">
+											<label for="repassword" class="t">비밀번호 확인  </label>
+											<div class="cont">
+												<input type="password" name="repassword" id="repassword"  style="width:300px; height:50px;" maxlength="20"/>
+												<span class="txt ml">안전한 비밀번호 변경을 위해 다시 한번 입력해주시길 바랍니다.</span>
+											</div>
+										</li>
+
 									</ul>
 									<div class="bbs-btn_w clearfix tac">
-										<button type="button" class="bbs-btn-st2 bg-purple3"  id="pwChk">확인</button>
-										<button type="button" class="bbs-btn-st2 bg-black_r">
-										<a href="http://localhost/group2_prj/mypage/memberMng.jsp">취소</a></button>
+										<button type="button" id="pwChange" class="bbs-btn-st2 bg-purple3"  >변경</button>
+										<button type="button" class="bbs-btn-st2 bg-black_r">취소</button>
 									</div>
-
-
 							
-								<!-- <div class="find_info find_id">
-									<!-- ✔️값 받아와야하는 영역  : 회원 테이블 - 아이디, 가입일?-
-									<span class="find_id_inner">아이디명: 아이디명</span>
-									<span >가입일 : 가입날짜</span>
 
-								</div> -->
-								<!-- <button class="bg-black btn-form" type="button" onclick="checkPlusPopup();" >확인</button> -->
+						
 							</div>
 						</div>
 					</div>
 				</article>
-			</form>
+			</form>	
+			
+			
+			
 				<form method="post" name="authForm">
 					<input type="hidden" name="serverAuth" id="serverAuth" />
 				</form>
@@ -348,15 +358,11 @@
 				<input type="hidden" name="m" value="checkplusSerivce">						<!-- 필수 데이타로, 누락하시면 안됩니다. -->
 				<input type="hidden" name="EncodeData" value="AgAFRzY2OTndoTyXpZuDakK0gC0mIvGulgFrJrX4TJgIJ6OLkzJf30GBS6kaH0geIGMa2q9CDDCTXGOxZ9e14WVJQFZLRNW3qLeSSQ4EmiSdbQUd/2+TtXfilO6vviqtgSI4TPFdAhyRAcUC7LO2AQbMbAGoRupdDxbcd140ZOMhSluvtfUA/hzOLNZ/NRR7rGVnt7XgElYNE0qhpYKHrMWurM5yaGq5uhSoIRf623vMIXXA5s9TAc+rbRDmIHGru2f+l8oavSFW6gg1xJP5U/jUcBuPemXMoV/q1zMl7h7x59bbJlp0GhQayLNmG2R75CyiR2GemOFCq4y5Cg8r7XAcoyalqSzlyq62jnhlDDRMFfWlLbtWNOrEg1FdyOzet9VTRtJ0gZKY3Hdl5nK4TgcFx250gt5MEwO0bi8WECWQVsvKgwPWUhii5awggG7S9x1IQjuEL2Rjou+6pxbBi+Cvqm535BoAJ2WHgo5M0ehfXrcpnYtU9Q==">		<!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
 				</form>
-				<script>
-				
-				</script>
 						</div>
 					</div>
 				
 				</div><!-- #cont -->
-				
-				
+	
 				<!-- 만족도 조사 -->
 				
 				<!-- //만족도 조사 -->
@@ -377,7 +383,7 @@
 									<header>
 										<h2>
 											<a href="index.html">
-												<img class="footer_logo" src="http://localhost/group2_prjcommon\logo_white.png" alt="우신문화회관">
+												<img class="footer_logo" src="http://localhost/group2_prj/common\logo_white.png" alt="우신문화회관">
 											</a>
 										</h2>
 										<div class="l">
@@ -401,7 +407,7 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prjassets/js/jquery.min.js"></script>
 			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
 			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
 			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>

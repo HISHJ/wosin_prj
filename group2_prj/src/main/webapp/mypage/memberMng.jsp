@@ -11,18 +11,18 @@
 		<title>회원관리</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="../static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="../assets\css\reset.css">
-		<link rel="stylesheet" href="../assets\css\subheader.css">
-		<link rel="stylesheet" href="../assets\css\headerFooter.css">
-		<link rel="stylesheet" href="../assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="http://localhost/group2_prj/static/commons/img/favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static/commons/img/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static/commons/img/favicon_16.png">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\headerFooter.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\login.css">
 	
-	 <link rel="stylesheet" type="text/css" href="../static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="../static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="../static/portal/css/layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/sub_new.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/style.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/layout_new.css">
 		<!-- 부트스트랩 -->
 		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
@@ -40,7 +40,7 @@
 		<style>
      section#header{
  		 /* background-image:  url("../../images/subvisual-200001.jpg"); */
-  	background: url("../images/subvisual-common.jpg") no-repeat ; 
+  	background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
   
@@ -240,12 +240,12 @@
 				
 				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 				
-				<%=mbVO %>
+		
 				<!-- 로그인 안했을때 로그인페이지로 돌려보내기 -->
 				<%if(mbVO.getMemberId()==null){%>
 					<script>
 					alert("로그인 후 사용해 주세요.");
-					location.href="http://localhost/prj2/design%20final%20intergration/login.jsp ";
+					location.href="http://localhost/group2_prj/login/login.jsp ";
 					</script><%}%>
 				
 				<article class="mypage_confirm inner f18">
@@ -260,11 +260,11 @@
 						</li>
 						<li class="item r">
 							<span class="f38">예매내역확인·취소</span>
-							<a href="ticket.html" class="bg-black pop">바로가기</a>
+							<a href="http://localhost/group2_prj/reservation/ticket_page.jsp" class="bg-black pop">바로가기</a>
 						</li>
 						<li class="item r">
 							<span class="f38">비밀번호 변경</span>
-							<a href="passModify.jsp" class="bg-black pop">바로가기</a>
+							<a href="http://localhost/group2_prj/mypage/passModify.jsp" class="bg-black pop">바로가기</a>
 						</li>
 					</ul>
 				</article>
@@ -276,69 +276,8 @@
 					<input type="hidden" name="sesAgree" id="sesAgree" value="Y" />
 				</form>
 				
-				<script src="/static/ticket/js/ticket.js"></script>
-				<!-- /*<script>
-				$(".mypage_confirm .pop").click(function(){
-					var callBack = $(this).attr('href');
-					$(this).closest("li").append('<div class="allmenu_bg"></div>');
-					$(".allmenu_bg").append('<div class="modal_w wide2"></div>')
-				
-					$.ajax({
-						url: "/portal/myPage/reservation/confirm.do?viewType=CONTBODY",
-						success: function(result){
-						$(".modal_w").html(result);
-						modalH = $(".modal_w").outerHeight()
-						$(".modal_w").attr("tabindex", "0").show().focus().css({"margin-top":-(modalH/2)});
-				
-							$(".layerClose").click(function(){
-								$(".modal_w").removeAttr("tabindex").remove();
-								$(".allmenu_bg").remove();
-								location.href= callBack;
-								return false;
-							});
-						}
-					});
-					return false;
-				})
-				
-				function confirmTms(f) {
-								var mAgree = $('#sesAgree').val();
-						if (mAgree !='Y' ) {
-									 if (!confirm("개인정보 취급위탁약관에 동의하지 않았습니다.\n동의 하시겠습니까?")) return;
-									 var data = $("#frm").serialize();
-								 $.post("/portal/myPage/reservation/agreeUpdate.json",
-								 data,
-								 function(data) {
-									if( data.resultCode == 'success' ){
-										alert("개인정보 취급위탁약관에 동의 하셨습니다.\n예매를 이용하실 수 있습니다.");
-									$('#sesAgree').val('Y');
-									showPerformListPop();
-									}else{
-										alert('작업에 실패하였습니다.');
-									}
-									return false;
-								 });
-				
-							/* var reserForm = document.FlashReservationForm;
-							reserForm.performIdx.value = "";
-							reserForm.action="http://www.sejongpac.or.kr/member/mypage/myinfo/ticketCheck.asp";
-							reserForm.target="flash_iframe";
-							reserForm.submit(); */
-							
-								 showPerformListPop();
-						} else {
-							showPerformListPop();
-						}
-						}
-				
-				function inquiryPackageTicket(){
-					showPackageListPop();
-					/* var action = "http://flex.sejongpac.or.kr/ireser.jsp?ccode=102103&locale=ko_KR&pac=Y&rlist=Y&ticketcode=&pac=&memberid=&user_member_info1=&user_member_info2=&wurl=www.sejongpac.or.kr&wext=asp&ssl=N";
-					$("#flash_iframe").attr("src", action);
-					$('#div_flash, #overlay').show(); */
-				}
-				</script>*/ -->
-				
+				<script src="http://localhost/group2_prj/static/ticket/js/ticket.js"></script>
+		
 				
 				<div id="div_flash">
 					<iframe name="flash_iframe" id="flash_iframe" width="0" height="0" frameborder="0" scrolling="no" src="" title="예매프레임"></iframe>
@@ -372,7 +311,7 @@
 									<header>
 										<h2>
 											<a href="index.html">
-												<img class="footer_logo" src="common\logo_white.png" alt="우신문화회관">
+												<img class="footer_logo" src="http://localhost/group2_prj/common\logo_white.png" alt="우신문화회관">
 											</a>
 										</h2>
 										<div class="l">
@@ -396,12 +335,12 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
 </html>

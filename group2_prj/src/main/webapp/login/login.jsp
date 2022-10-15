@@ -12,25 +12,25 @@
 		<title>로그인 | 통합회원서비스|</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="../static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="../assets\css\reset.css">
-		<link rel="stylesheet" href="../assets\css\subheader.css">
-		<link rel="stylesheet" href="../assets\css\headerFooter.css">
-		<link rel="stylesheet" href="../assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="http://localhost/group2_prj/static/commons/img/favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static/commons/img/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static/commons/img/favicon_16.png">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\headerFooter.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\login.css">
 	<!-- popup플러그인 0923 16:06 test -->
 	<script type="text/javascript" src="js\slide_me.js"></script>
 	<script type="text/javascript" 
 	src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
-   <link rel="stylesheet" href="../assets\css\popup.css">
+   <link rel="stylesheet" href="http://localhost/group2_prj/assets\css\popup.css">
 	
 	<!-- test -->
 	
-	 <link rel="stylesheet" type="text/css" href="../static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="../static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="../static/portal/css/layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/sub_new.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/style.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/layout_new.css">
 		<!-- 부트스트랩 -->
 		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
@@ -48,7 +48,7 @@
 	<style>
      section#header{
  		 /* background-image:  url("../images/subvisual-200001.jpg"); */
-  	background: url("../images/subvisual-common.jpg") no-repeat ; 
+  	background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
   
@@ -177,12 +177,12 @@
 							<li>
 								<li>
 									<div class="rel">
-									<a href="login.html"><span>로그인</span></a>
+									<a href="http://localhost/group2_prj/login/login.jsp"><span>로그인</span></a>
 									<ul class="depth">
-									<li><a href="login.html" ><span>로그인</span></a></li>
-									<li><a href="signup.html" ><span>회원가입</span></a></li>
-									<li><a href="find_id.html" ><span>아이디 찾기</span></a></li>
-									<li><a href="find_password.html" ><span>패스워드 찾기</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/login.jsp" ><span>로그인</span></a></li>
+									<li><a href="http://localhost/group2_prj/signUp.signup.jsp" ><span>회원가입</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/find_id.jsp" ><span>아이디 찾기</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/fin_password.jsp" ><span>패스워드 찾기</span></a></li>
 								
 									</ul>
 									</div>
@@ -245,19 +245,42 @@
 									if(id.trim() == ""){
 										alert("아이디를 입력해주세요.")
 										$("#memberId").val("");//입력된 공백 아이디를 초기화한다.
-									return false;
+									return ;
 								}else{
 									$("#pwd").focus();
 								}//end if
+								
+								//아이디 특수문자 제외 영문,숫자 4~20자이내+중복검사 필수
+								 if(!id.match('^[a-zA-Z0-9]{4,20}$')) {
+										 alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 사용 가능합니다.');
+										$('#memberId').focus();
+										 return ;
+									 }//idcheck
 								
 								//비밀번호에 입력한 값을 얻는다.
 								var pass=$("#pwd").val();
 								if( pass.trim() == ""){
 									alert("비밀번호를 입력해주세요.")
 									$("#pwd").val("");//입력된 공백 비밀번호를 초기화한다.
-									return false;
+									return;
 							
 								}//end if
+					
+							 var num = pass.search(/[0-9]/);
+							 var eng = pass.search(/[a-zA-Z]/);
+							 var spe= pass.search(/[~!@#$%^&*()_+|<>?:{}]/); 
+								//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
+								if(pass.length < 7 || pass.length >21){
+										  alert("비밀번호를 8자리 ~ 21자리 이내로 입력해주세요.");
+										  $("#password").focus();
+										  return ;
+									}
+							 
+										if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+										  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+										  $("#password").focus();
+										  return;
+									}
 								
 								//아이디와 비밀번호가 모두 입력된 후 form 태그의 action으로 설정된페이지로 요청을
 								//보낸다.
@@ -281,7 +304,7 @@
 					
 							 
 							<article class="login inner member_com">
-							<form name="memberLoginForm" id="memberLoginForm" action="login_process.jsp" method="post"/>
+							<form name="memberLoginForm" id="memberLoginForm" action="http://localhost/group2_prj/login/login_process.jsp" method="post">
 								<input type="hidden" name="loginFlag" value="" />
 								<input type="hidden" name="menuNo" value="200100" />
 								<input type="hidden" name="csrfToken" id="csrfToken" value="38394981-5565-4000-b859-9a058704f036"/>
@@ -293,19 +316,19 @@
 											<li class="id"><label for="username" class="hide">아이디</label><input type="text" name="memberId" id="memberId" placeholder="아 이 디" autofocus /> </li>
 											<li class="pw"><label for="password" class="hide">패스워드</label><input type="password" name="pwd" id="pwd" autocomplete="off"   placeholder="비밀번호" /></li>
 										</ul>
-										<div class="remeber">
+									<!-- 	<div class="remeber">
 											<input type="checkbox" name="save_id"  id="saveCookieUserId" />
 											<label for="saveCookieUserId">아이디 저장</label>
 										</div>
-							
+							 -->
 										
 										<button type="button" class="bg-black btn-login f20" id="btnLogin">로그인</button>
 									 
 							
 										<div class="etc">
-											<span><a href="find_id.jsp">아이디 찾기</a></span>
-											<span><a href="find_password.jsp">비밀번호 찾기</a></span>
-											<span><a href="signup.html">회원가입</a></span>
+											<span><a href="http://localhost/group2_prj/login/find_id.jsp">아이디 찾기</a></span>
+											<span><a href="http://localhost/group2_prj/login/find_password.jsp">비밀번호 찾기</a></span>
+											<span><a href="http://localhost/group2_prj/signUp/regisiter_agree.jsp">회원가입</a></span>
 											
 										</div>
 									</li>

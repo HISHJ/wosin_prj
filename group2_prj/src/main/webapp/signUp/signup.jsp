@@ -12,20 +12,20 @@
 		<title>회원가입</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\login.css">
-		<link rel="stylesheet" href="assets\css\signup.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="http://localhost/group2_prj/static/commons/img/favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static/commons/img/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static/commons/img/favicon_16.png">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\headerFooter.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\login.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\signup.css">
 	
-	 <link rel="stylesheet" type="text/css" href="static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/layout_new.css">
-	 <link rel="stylesheet" type="text/css" href="static/portal/css/bbs_new.css">
+	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/sub_new.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/style.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/bbs_new.css">
 	 
 		<!--google icons-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -46,7 +46,7 @@
 		<style>
 			section#header{
       /* background-image:  url("../../images/subvisual-200001.jpg"); */
-      background: url("images/subvisual-common.jpg") no-repeat ; 
+      background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
       background-size: 100%; 
       background-attachment: fixed;
 
@@ -342,7 +342,7 @@ input[type="date"] {
 			
 			
 			
-			<script src="/static/commons/js/validUtil.js"></script>
+			<script src="http://localhost/group2_prj/static/commons/js/validUtil.js"></script>
 			
 			
 			
@@ -350,7 +350,7 @@ input[type="date"] {
 			
 			
 			
-			<script src="/static/jslibrary/miya_validator.js"></script>
+			<script src="http://localhost/group2_prj/static/jslibrary/miya_validator.js"></script>
 			<script type="text/javascript">
 
 			/* 회원가입 유효성 검사 */
@@ -374,50 +374,7 @@ input[type="date"] {
 					window.open("id_dup.jsp","id_dup","width=510,height=310");
 				});
 				
-				//ID중복검사2
-
-				$("#btnDup2").click(function(){
-						
-					var id=$("#memberId2").val();
-					
-					if(id.trim()==""){
-						alert("아이디를 입력해주세요.");
-						$("#memberId2").focus();
-						return;
-					}//end if
-					
-					let paramJson={"id":id};
-					
-					$.ajax({
-						url : "http://localhost/prj2/design final intergration/id_dup2.jsp",
-						data:paramJson,
-						type:"post",
-						dataType:"json",
-						error:function(xhr){
-							alert("문제가 발생했습니다. 잠시후에 다시 시도해주세요.")
-							console.log("id중복검사 중 문제 : " + xhr.status);
-						},success:function(jsonObj){
-							let msg="사용중인 아이디";
-							let color="#FF0000";
-							if(!jsonObj.result){//파싱한 값
-								msg="사용가능한 아이디";
-								color="0000FF";
-								
-							}//end else
-							
-							$("#idResult").html(msg);
-							$("#idResult").css("color",color);
-							for(var i=0 ; i<8 ; i++){
-							$("#idResult").fadeIn(500).fadeOut(500);
-							}//end for
-							if(msg =="사용중인 아이디"){
-									$("#idResult").fadeIn(500);
-							}//end if
-						}//success
-					
-					});
-					
-				});
+			
 				
 				
 			});//ready
@@ -479,7 +436,7 @@ input[type="date"] {
 				 var eng = pass.search(/[a-zA-Z]/);
 				 var spe= pass.search(/[~!@#$%^&*()_+|<>?:{}]/); 
 					//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
-					if(pass.length > 7 || pass.length <21){
+					if(pass.length < 7 || pass.length >12){
 							  alert("8자리 ~ 21자리 이내로 입력해주세요.");
 							  $("#password").focus();
 							  return false;
@@ -773,15 +730,7 @@ input[type="date"] {
 								<span class="txt ml">특수문자를 제외한 영문, 숫자 8~21자 이내</span>
 							</div>
 						</li>
-						<li class="item">
-							<label for="memberId" class="t">ID <span class="color-purple">*</span></label>
-							<div class="cont ck_id">
-								<input type="text" value="" name="memberId" id="memberId2" value="" />
-								<button type="button" class="bg-black chkmemberId" id="btnDup2">중복확인</button>
-								<span class="txt ml">특수문자를 제외한 영문, 숫자 8~21자 이내</span>
-								 <span id="idResult"> </span>
-							</div>
-						</li>
+				
 						<li class="item">
 							<label for="password" class="t">비밀번호<span class="color-purple">*</span></label>
 							<div class="cont">
@@ -974,60 +923,7 @@ input[type="date"] {
 				<input type="hidden" name="EncodeData" value="AgAFRzY2OTlecEucLY2x581zMvmVX/R9ejFU7qHruF5GRJQ6lDw2qEGBS6kaH0geIGMa2q9CDDCTXGOxZ9e14WVJQFZLRNW3IIiTjXqIBrbFgHSBQk/n7Obw4eGFPegyMxnjcR4cf1YSkT0CXRsreRN6wIFG9k+8BXYrk3jjCWzZB0TQc22KP0s6cBn66cQY+LmhWxlAYFFxqp+EgqwAKXZ++D67/zSJ3nt7r9gcyuyVrrKHByQLY4arAKr1kOrYLSxdyxgBPi+lN3+L50sz0CaMIXuIM0kOB+Tp9Y83cpK/WFb6DbEcZKFJ5rYEeJczS+heVlyM9NaUX+qqaNQ/8O66htABY3NOSLYDbvRQ2klwY/RJ9dqYIm5ck14r+VnB5+X1AOrY0t1vv3se0dVydB+XcbgCbwVcWU1cJ+xLX0Kj6oS65Rr2Ni6cCmrb6sJFJEys7ypnHrykqz7SzpGzjpNUXohHhALSrwOE7eOkA78yFTeiPSSDOw==">		<!-- 위에서 업체정보를 암호화 한 데이타입니다. -->
 			</form>
 			
-			<script>
-				function isKid(birthday) {
-					var nowage = birthday;
-					var now = new Date();
-					var year = now.getFullYear();
-					var mon = (now.getMonth() + 1) > 9 ? '' + (now.getMonth() + 1) : '0' + (now.getMonth() + 1);
-					var day = now.getDate() > 9 ? '' + now.getDate() : '0' + now.getDate();
-					var todays = year + mon + day;
-					var dif = todays - parseInt(nowage) - 140000;
-			
-					if (dif >= 0) {
-						return false;
-					} else {
-						return true;
-					}
-				}
-				function isDate(dayStr) {
-					var valid = false;
-					if(dayStr.search(/\d{4}-(0[1-9]|1[0-2])-([0-3][0-9])/)==0) {
-						var arrDay = dayStr.split("-");
-						var year = parseInt(arrDay[0]);
-						var month = parseInt(arrDay[1].replace(/^0(\d)/g,"$1"));
-						var day = parseInt(arrDay[2].replace(/^0(\d)/g,"$1"));
-						var d = new Date(year,month-1,day);
-						if(d.getMonth() == month-1 && d.getDate() == day ) valid = true ;
-					}
-					return valid;
-				}
-			
-				function lpad(val, padLength, padString){
-					while(val.length < padLength){
-						val = padString + val;
-					}
-					return val;
-				}
-			
-				$('[name=birthdayYear], [name=birthdayMonth], [name=birthdayDay]').change(function(event) {
-					if (isDate($('[name=birthdayYear]').val() + '-' + lpad($('[name=birthdayMonth]').val(),2,'0') + '-' + lpad($('[name=birthdayDay]').val(),2,'0')))
-					{
-						if (isKid($('[name=birthdayYear]').val() + '' + lpad($('[name=birthdayMonth]').val(),2,'0') + '' + lpad($('[name=birthdayDay]').val(),2,'0')))
-						{
-							$('.manAgeSet').show()
-						}
-						else{
-							$('.manAgeSet').hide()
-						}
-					}
-					else{
-						$('.manAgeSet').hide()
-					}
-				});
-			
-			</script>
-			
+
 			
 					</div>
 				</div>
@@ -1046,7 +942,7 @@ input[type="date"] {
 									<header>
 										<h2>
 											<a href="index.html">
-												<img class="footer_logo" src="common\logo_white.png" alt="우신문화회관">
+												<img class="footer_logo" src="http://localhost/group2_prj/common\logo_white.png" alt="우신문화회관">
 											</a>
 										</h2>
 										<div class="l">
@@ -1070,12 +966,12 @@ input[type="date"] {
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
 </html>

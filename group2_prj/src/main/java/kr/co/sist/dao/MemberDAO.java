@@ -15,6 +15,7 @@ import kr.co.sist.vo.QuitMemberVO;
 
 public class MemberDAO {
 	private static MemberDAO mbrDAO;
+
 	private MemberDAO() {
 		
 	}//MemberDAO
@@ -391,9 +392,7 @@ public boolean selectChkId(MemberVO mbVO) throws SQLException {
 	
 		rs=pstmt.executeQuery();
 		
-		if(rs.next()) {
-			result=true;
-		}
+		result=rs.next();
 	
 
 	}finally {

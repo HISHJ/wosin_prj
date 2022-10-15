@@ -1,6 +1,6 @@
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info=""%>
+    pageEncoding="UTF-8" info="회원탈퇴"%>
 
     
     <!DOCTYPE HTML>
@@ -14,18 +14,18 @@
 		<title>회원정보 수정</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="http://localhost/group2_prj/static/commons/img/favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static/commons/img/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static/commons/img/favicon_16.png">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\headerFooter.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\login.css">
 	
-	 <link rel="stylesheet" type="text/css" href="static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/sub_new.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/style.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/layout_new.css">
 		<!-- 부트스트랩 -->
 		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
@@ -43,7 +43,7 @@
 		<style>
 			section#header{
 			 /* background-image:  url("../../images/subvisual-200001.jpg"); */
-		 background: url("images/subvisual-common.jpg") no-repeat ; 
+		 background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
 		 background-size: 100%; 
 		 background-attachment: fixed;
 	 
@@ -128,7 +128,7 @@
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
 						<div id="sut-t_wrap">
 						<h2 id="sub-t">
-							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">회원정보 수정</strong>
+							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">회원탈퇴</strong>
 						</h2>
 					</div>
 					</section>
@@ -237,9 +237,46 @@
 						
 						$(function(){
 							$("#btnQuit").click(function(){
-								$("#Quitboard").submit();
+									Quitcheck();
+						
 							})//click
 						});//ready
+						
+						
+						function Quitcheck(){
+							
+							var reason=$("#reason").val();
+							if(reason.trim()==""){
+								alert("탈퇴사유를 입력해주세요.")
+								$("#reason").focus();
+								return;
+							}//name
+							
+							var pass=$("#pwd").val();
+					
+							
+							if(pass.trim()==""){
+								alert("비밀번호를 입력해주세요.");
+								$("#pawd").focus();
+								return;
+							}
+							 var num = pass.search(/[0-9]/);
+							 var eng = pass.search(/[a-zA-Z]/);
+							 var spe= pass.search(/[~!@#$%^&*()_+|<>?:{}]/); 
+								//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
+								if(pass.length < 7 || pass.length >12){
+										  alert("8자리 ~ 21자리 이내로 입력해주세요.");
+										  $("#pwd").focus();
+										  return ;
+									}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
+										  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
+										  $("#pwd").focus();
+										  return;
+									}
+							
+							
+							$("#Quitboard").submit();
+						}//Quitcheck
 						
 						</script>
 				
@@ -255,9 +292,9 @@
 				
 				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 				<jsp:useBean id="qmVO" class="kr.co.sist.vo.QuitMemberVO" scope="session"/>
-				<%=mbVO %>
+			
 				
-				<script src="/static/jslibrary/miya_validator.js"></script>
+				<script src="http://localhost/group2_prj/static/jslibrary/miya_validator.js"></script>
 				
 				<form name="board" id="Quitboard" method="post" action="http://localhost/group2_prj/mypage/quit_process.jsp">
 				<input type="hidden" id="menuNo" name="menuNo" value="200168" />
@@ -279,8 +316,8 @@
 						<li class="item">
 							<label for="pw" class="t">비밀번호  <span class="color-purple">*</span></label>
 							<div class="cont">
-								<input type="password" name="pw" id="pw" />
-								<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 10자 ~ 12자 이내</span>
+								<input type="password" name="pwd" id="pwd" />
+								<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 8자 ~ 12자 이내</span>
 							</div>
 						</li>
 						

@@ -12,18 +12,18 @@
 		<title>비밀번호 변경</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="../static\commons\img\favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../static\commons\img\favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../static\commons\img\favicon_16.png">
-		<link rel="stylesheet" href="../assets\css\main.css" />
-		<link rel="stylesheet" href="../assets\css\reset.css">
-		<link rel="stylesheet" href="../assets\css\subheader.css">
-		<link rel="stylesheet" href="../assets\css\headerFooter.css">
-		<link rel="stylesheet" href="../assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="http://localhost/group2_prj/static\commons\img\favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static\commons\img\favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static\commons\img\favicon_16.png">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\headerFooter.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\login.css">
 	
-	 <link rel="stylesheet" type="text/css" href="../static\portal\css\sub_new.css">
-   <link rel="stylesheet" type="text/css" href="../static\portal\css\style.css">
-   <link rel="stylesheet" type="text/css" href="../static\portal\css\layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\sub_new.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\style.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\layout_new.css">
 		<!-- 부트스트랩 -->
 		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
@@ -35,7 +35,7 @@
 		<style>
 						section#header{
   /* background-image:  url("../../images/subvisual-200001.jpg"); */
- 	 background: url("../images/subvisual-common.jpg") no-repeat ; 
+ 	 background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
  	/*  z-index: 9999;  */
@@ -234,7 +234,7 @@
 						$(".tabs-st1").addClass("li"+len);
 						</script>
 						
-			<script>
+					<script>
 						$(function(){ 
 							$("#pwChange").click(function(){
 									pwChk();
@@ -301,7 +301,7 @@
 				
 				<!-- 세션 값 받아오기 useBean : scope="session"사용하면 필요없을듯! -->
 			<%-- 	<%String id=(String)session.getAttribute("memberId"); %> --%>
-			<form id="pmFrm" name="pmFrm" method="post" action="pm_process.jsp">
+			<form id="pmFrm" name="pmFrm" method="post" action="http://localhost/group2_prj/login/pm_process.jsp">
 				<article class="find_member inner member_com">
 						<div class="group">
 						<h3 class="tit-st4">비밀번호 변경</h3>
@@ -390,7 +390,7 @@
 									<header>
 										<h2>
 											<a href="index.html">
-												<img class="footer_logo" src="common\logo_white.png" alt="우신문화회관">
+												<img class="footer_logo" src="http://localhost/group2_prj/common\logo_white.png" alt="우신문화회관">
 											</a>
 										</h2>
 										<div class="l">
@@ -414,12 +414,12 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
 </html>

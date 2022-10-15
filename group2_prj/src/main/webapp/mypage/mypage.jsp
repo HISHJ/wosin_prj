@@ -14,18 +14,18 @@
 		<title>회원정보 수정</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="/static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets\css\reset.css">
-		<link rel="stylesheet" href="assets\css\subheader.css">
-		<link rel="stylesheet" href="assets\css\headerFooter.css">
-		<link rel="stylesheet" href="assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="http://localhost/group2_prj/static/commons/img/favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static/commons/img/favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static/commons/img/favicon_16.png">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\headerFooter.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\login.css">
 	
-	 <link rel="stylesheet" type="text/css" href="static/portal/css/layout_new.css">
-	 <link rel="stylesheet" type="text/css" href="static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="static/portal/css/style.css">
+	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/sub_new.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/style.css">
    
 
 
@@ -48,7 +48,7 @@
 	<style>
         section#header{
  		 /* background-image:  url("../../images/subvisual-200001.jpg"); */
-  	background: url("images/subvisual-common.jpg") no-repeat ; 
+  	background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
   
@@ -59,6 +59,7 @@
 		}
  	 .member_join .add .a2 > span:first-child{float: left; width: 57.5%}
 	.member_join .add .a2 .r{width:37.5%} 
+	.member_join input[type="text"]:read-only{border:1px solid #000; padding: 0}
 	</style>
 	</head>
 	<body class="homepage is-preload">
@@ -247,7 +248,7 @@
 				/* 유효성검사 */
 					$(function(){
 						$("#btnModify").click(function(){
-							$("#mypageboard").submit();  
+								check();
 										});//click
 										
 							});//ready
@@ -275,24 +276,9 @@
 							return false ;
 						}//gender
 						
-						
-						
-						var zipcode=$("#memberZipCd").val();
-						if(zipcode.trim()==""){
-							alert("우편번호를 입력해주세요..");
-							$("#memberZipCd").focus();
-							return false ;
-						}//zipcode
-							
-						var addr1=$("#memberAddr1").val();
-						if(addr1.trim()==""){
-							alert("주소를 입력해주세요..");
-							$("#memberAddr1").focus();
-							return false ;
-						}//addr1
 						var addr2=$("#memberAddr2").val();
 						if(addr2.trim()==""){
-							alert("주소를 입력해주세요..");
+							alert("상세주소를 입력해주세요..");
 							$("#memberAddr2").focus();
 							return false ;
 						}//addr2
@@ -499,7 +485,7 @@
 				request.setCharacterEncoding("UTF-8");
 				MemberDAO mbrDAO= MemberDAO.getInstance();
 				mbVO=mbrDAO.selectMember(mbVO.getMemberId()); %>
-				<%=mbVO%><br/>
+			
 			
 				
 			<form name="board" id="mypageboard" method="post"  action="http://localhost/group2_prj/mypage/mypage_process.jsp">
@@ -758,11 +744,7 @@
 				</article>
 				</form>
 				
-<!-- <input type="button" value="취소" class="layerClose bbs-btn-st2 bg-black_r" style="margin-left: 1px;" />
-								</div>
-								
-								
-							</div> -->
+
 					
 				<form name="form_chk" method="post">
 					<input type="hidden" name="m" value="checkplusSerivce">						<!-- 필수 데이타로, 누락하시면 안됩니다. -->
@@ -789,7 +771,7 @@
 									<header>
 										<h2>
 											<a href="index.html">
-												<img class="footer_logo" src="common\logo_white.png" alt="우신문화회관">
+												<img class="footer_logo" src="http://localhost/group2_prj/common\logo_white.png" alt="우신문화회관">
 											</a>
 										</h2>
 										<div class="l">
@@ -813,12 +795,12 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
 </html>

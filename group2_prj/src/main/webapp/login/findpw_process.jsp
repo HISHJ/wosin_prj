@@ -46,14 +46,14 @@
 				if(mbVO.getPwd()==null){%>
 					<script>
 						alert("일치하는 계정이 없습니다.");
-						location.href="find_password.jsp"
+						location.href="http://localhost/group2_prj/login/find_password.jsp"
 					</script>
 				
 				<%}else{
 						
 				
 						session.setAttribute("memberId", mbVO.getMemberId());
-						response.sendRedirect("passModify.jsp"); 
+						response.sendRedirect("http://localhost/group2_prj/login/passmodify.jsp"); 
 						
 					} %> 				
 

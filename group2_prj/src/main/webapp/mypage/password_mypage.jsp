@@ -9,21 +9,21 @@
 -->
 <html>
 	<head>
-		<title>비밀번호 찾기</title>
+		<title>마이페이지</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="apple-touch-icon" sizes="180x180" href="../static\commons\img\favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../static\commons\img\favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../static\commons\img\favicon_16.png">
-		<link rel="stylesheet" href="../assets\css\main.css" />
-		<link rel="stylesheet" href="../assets\css\reset.css">
-		<link rel="stylesheet" href="../assets\css\subheader.css">
-		<link rel="stylesheet" href="../assets\css\headerFooter.css">
-		<link rel="stylesheet" href="../assets\css\login.css">
+		<link rel="apple-touch-icon" sizes="180x180" href="http://localhost/group2_prj/static\commons\img\favicon_180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static\commons\img\favicon_32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static\commons\img\favicon_16.png">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\headerFooter.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\login.css">
 	
-	 <link rel="stylesheet" type="text/css" href="../static\portal\css\sub_new.css">
-   <link rel="stylesheet" type="text/css" href="../static\portal\css\style.css">
-   <link rel="stylesheet" type="text/css" href="../static\portal\css\layout_new.css">
+	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\sub_new.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\style.css">
+   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\layout_new.css">
 		<!-- 부트스트랩 -->
 		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
 		<!--google icons-->
@@ -35,7 +35,7 @@
 		<style>
 						section#header{
   /* background-image:  url("../../images/subvisual-200001.jpg"); */
- 	 background: url("../images/subvisual-common.jpg") no-repeat ; 
+ 	 background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
  	/*  z-index: 9999;  */
@@ -48,7 +48,7 @@
 		});
 
 		</script>
-	<link rel="stylesheet" href="static\portal\css\passChk.css">
+	<link rel="stylesheet" href="http://localhost/group2_prjstatic\portal\css\passChk.css">
 
 <!-- testtesttesttesttesttesttesttesttesttesttesttesttesttest -->
 
@@ -132,7 +132,7 @@
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
 						<div id="sut-t_wrap">
 						<h2 id="sub-t">
-							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">비밀번호 확인</strong>
+							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">마이페이지</strong>
 						</h2>
 					</div>
 					</section>
@@ -184,7 +184,6 @@
 						<a href="#"><span>마이페이지</span></a>
 						<ul class="depth">
 						<li><a href="memberMng.html" ><span>개인화서비스</span></a></li>
-						<li><a href="subpage-FAQ1.html" ><span>FAQ</span></a></li>
 						<li><a href="mypage.html" ><span>회원정보 수정</span></a></li>
 						<li><a href="find_password.html" ><span>예매내역 확인·취소</span></a></li>
 						
@@ -274,7 +273,7 @@
 						<div class="box box_2">
 						<!-- 세션연결 -->
 						  <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>  
-						  <%=mbVO %>
+						
 							<!-- String id=(String)session.getAttribute("memberId"); -->
 							<div class="form_w">
 								<h4 class="t">마이페이지를 이용하기 위해 현재 비밀번호를 입력해주세요.</h4>
@@ -351,7 +350,7 @@
 									<header>
 										<h2>
 											<a href="index.html">
-												<img class="footer_logo" src="common\logo_white.png" alt="우신문화회관">
+												<img class="footer_logo" src="http://localhost/group2_prjcommon\logo_white.png" alt="우신문화회관">
 											</a>
 										</h2>
 										<div class="l">
@@ -375,12 +374,12 @@
 		</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.dropotron.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
 </html>
