@@ -136,9 +136,10 @@ if( session.getAttribute("memberId") == null){%>
     <script type="text/javascript">
     $(function(){
 	 alert("인증이 필요한 페이지입니다. 로그인페이지로 이동합니다.");
+	 location.href="http://localhost/group2_prj/login/login.jsp";
     });//ready
 	 </script>
-<% 	 response.sendRedirect("http://localhost/group2_prj/login/login.jsp");
+<% 	
 } 
 %>
 

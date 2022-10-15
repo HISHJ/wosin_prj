@@ -11,6 +11,8 @@
    
  //검증완료
  String memberId= (String)session.getAttribute("memberId");
+ session.setAttribute("memberId", memberId); //include에 값을 session으로 보내기 위해...필요없나?
+ String memId = (String)session.getAttribute("memberId");;
    
 %>
     
@@ -109,11 +111,11 @@
 <body class="homepage is-preload">
 	<div id="page-wrapper">
 	
-<!-- 헤더 -->
-    <c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
-    <c:param name="memberId" value="<%=memberId %>"></c:param> 
+	<!-- 헤더 -->
+	<c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
+    <c:param name="memberId" value="<%= memId %>"></c:param> 
     </c:import>
-    <!-- 헤더 -->
+	<!-- 헤더 -->
    
 </section>
 				

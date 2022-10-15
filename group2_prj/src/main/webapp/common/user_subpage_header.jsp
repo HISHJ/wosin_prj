@@ -3,8 +3,8 @@
 <% 
 //값 넘김 검증 완료(메인에서 값 전달받음)
 
-//String memberId= request.getParameter("memberId");
-String memberId=(String)session.getAttribute("memberId");
+String memberId= request.getParameter("memberId");
+//String memberId=(String)session.getAttribute("memberId");
 System.out.println(memberId);
 
 %>    
@@ -21,7 +21,7 @@ System.out.println(memberId);
 								<li class="current">
 									<a href="page1.html">공연정보</a>
 									<ul>
-										<li><a href="page1.html">공연일정</a></li>
+										<li><a href="http://localhost/group2_prj/reservation/show_search.jsp">공연일정</a></li>
 										<!-- <li><a href="calendar.html">일정조회</a></li> -->
 										<!-- <li><a href="#">예매</a></li> -->
 										<li><a href="page2.html">공연정보상세보기</a></li>
@@ -51,7 +51,7 @@ System.out.println(memberId);
 	
 							<ul id="header_center">
 								<h1 id="logo">
-									<a href="index.html">
+									<a href="http://localhost/group2_prj/main/index.jsp">
 									우신문화회관
 									</a>
 									</h1>	
@@ -61,7 +61,7 @@ System.out.println(memberId);
 							<!--right  -->
 							<ul id="header_right">
 								<li class="current">
-								<% if(memberId != null){%>
+								<% if(memberId != null && memberId != "" ){%>
 								<a href="http://localhost/group2_prj/mypage/password_mypage.jsp">
 								<%="MYPAGE" %>
 								</a>
@@ -72,7 +72,7 @@ System.out.println(memberId);
 								<%}%>
 								</li>
 								
-								<% if(memberId != null){%>
+								<% if(memberId != null && memberId != ""){%>
 								<li>
 								<a href="http://localhost/group2_prj/login/logout_process.jsp">
 								<%="LOGOUT" %>

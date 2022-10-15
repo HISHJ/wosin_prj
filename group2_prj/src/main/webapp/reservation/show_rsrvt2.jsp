@@ -9,7 +9,19 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
-    
+<%
+//로그인 되어있지 않은 경우, 로그인페이지로 이동
+if( session.getAttribute("memberId") == null){
+response.sendRedirect("http://localhost/group2_prj/login/login.jsp");
+return;
+} 
+
+
+if(request.getParameter("showId")==null){
+    response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
+    return;
+}
+%>     
 <%  /* 여기서는 select 말고 상영일정이랑, 시간을 뿌려줘야되는데 무슨DAO쓰더라 */
 	/* String swId = request.getParameter("showId"); */
  	String swId = (String)session.getAttribute("showId");
