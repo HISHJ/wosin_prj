@@ -223,7 +223,7 @@
 				  DataEncrypt de= new DataEncrypt(key);
 				
 			 	  String Id=de.encryption(id);
-			 	  String pwd=DataEncrypt.messageDigest("MD5", pw);
+			 	  String pwd=DataEncrypt.messageDigest("SHA-1", pw);
 				  String Email=de.encryption(email);
 				  String Phone=de.encryption(phone);
 				  String hPhone=de.encryption(hphone);
@@ -254,7 +254,7 @@
 				  
 				  
 					MemberDAO mbrDAO = MemberDAO.getInstance();
-				try{
+			
 					int cnt = mbrDAO.insertMember(mbVO);
 					
 					if(cnt<0){%>
@@ -264,12 +264,7 @@
 							</script>
 					<%}else{ 
 						
-					}//endif
-					
-					}catch(Exception e) {
-						e.printStackTrace();
-					}finally{
-						
+				
 						
 					}//catch
 					%>
@@ -293,7 +288,7 @@
 						</div>
 						<div class="signup_btn">
 							<button class="main">
-								<a href="http://localhost/group2_prj/main.index.jsp">메인</a>
+								<a href="http://localhost/group2_prj/main/index.jsp">메인</a>
 							</button>
 							<button class="login_back">
 								<a href="http://localhost/group2_prj/login/login.jsp">로그인</a>

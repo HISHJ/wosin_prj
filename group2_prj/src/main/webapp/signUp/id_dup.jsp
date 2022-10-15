@@ -80,7 +80,7 @@ function useId( memberId ){
  <c:if test="${ not empty param.memberId  }"> 
 <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 <jsp:setProperty property="memberId" name="mbVO"/>
-<%=mbVO %>
+
  <%
 //DBMS 연동
 MemberDAO mbrDAO = MemberDAO.getInstance();

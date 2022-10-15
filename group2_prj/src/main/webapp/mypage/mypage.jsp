@@ -1,3 +1,6 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
+<%@page import="java.security.MessageDigest"%>
 <%@page import="java.util.Calendar"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -480,9 +483,16 @@
 				<!-- JSP부분 -->
 				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 				<jsp:setProperty property="*" name="mbVO"/>
-				
 				<%
 				request.setCharacterEncoding("UTF-8");
+			
+		
+				//key가져오기
+				  ServletContext sc = getServletContext();
+				  String plainText = sc.getInitParameter("keyU"); 
+				//복호화 : 암호화된 문자열을 원본문자열로 변경 
+				  DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
+				
 				MemberDAO mbrDAO= MemberDAO.getInstance();
 				mbVO=mbrDAO.selectMember(mbVO.getMemberId()); %>
 			
@@ -506,7 +516,7 @@
 							<li class="item">
 								<label for="id" class="t">ID <span class="color-purple">*</span></label>
 								<div class="cont">
-									<input type="text" value=<%=mbVO.getMemberId()%> name="memberId" id="id" readonly />
+									<input type="text" value=<%=dd.decryption(mbVO.getMemberId())%> name="memberId" id="id" readonly />
 								</div>
 							</li>
 							<%		
@@ -618,14 +628,15 @@
 											</span>
 											<span class="r">
 												<label for="memberAddr2" class="hide">나머지 주소</label>
-												<input type="text" name="addr2" id="memberAddr2" value="<%=mbVO.getAddr2()%>" class="long" />
+												<input type="text" name="addr2" id="memberAddr2" value="<%=dd.decryption(mbVO.getAddr2())%>" class="long" />
 											</span>
 										</li>
 									</ul>
 								</div>
 							</li>
 							<li class="item">
-								<% String email =mbVO.getEmail();
+								<% 
+									String email=dd.decryption(mbVO.getEmail());
 									 String email1=email.substring(0,email.indexOf("@"));
 									 String email2=email.substring(email.indexOf("@")+1,email.length());
 									 
@@ -668,7 +679,7 @@
 									<ul class="clearfix tel">	
 									<li>
 										<label for="tel3" class="hide">휴대폰</label>
-										<input type="text" value=<%=mbVO.getPhone()%> onkeyup="PhoneNumber(this)" id="phone" name="phone" class="small"  maxlength="13" style="width:320px;"  />
+										<input type="text" value=<%=dd.decryption(mbVO.getPhone())%> onkeyup="PhoneNumber(this)" id="phone" name="phone" class="small"  maxlength="13" style="width:320px;"  />
 									</li>
 										
 									</ul>
@@ -692,7 +703,7 @@
 									<ul class="clearfix tel">
 										<li>
 										<label for="memberTel3" class="hide">전화번호</label>
-										<input type="text" value=<%=mbVO.gethPhone()%> onkeyup="hPhoneNumber(this)" name="hPhone" id="hPhone" class="small" value=""  maxlength="13" style="width:320px;" />
+										<input type="text" value=<%=dd.decryption(mbVO.gethPhone())%> onkeyup="hPhoneNumber(this)" name="hPhone" id="hPhone" class="small" value=""  maxlength="13" style="width:320px;" />
 									</li>
 									</ul>
 									<input type="hidden" name="memberTel" id="memberTel" value="031-764-1374" />

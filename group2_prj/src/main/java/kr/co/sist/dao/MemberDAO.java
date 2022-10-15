@@ -225,7 +225,7 @@ public MemberVO selectMember(String memberId) throws SQLException {
 public int updateMember(MemberVO mbVO) throws SQLException {
 	
 
-	
+	int updateMbCnt=0;
 	DbConnection dc=DbConnection.getInstance();
 	PreparedStatement pstmt=null;
 	Connection con=null;
@@ -255,16 +255,15 @@ public int updateMember(MemberVO mbVO) throws SQLException {
 		pstmt.setString(12,mbVO.getMemberId());
 		pstmt.setString(13,mbVO.getPwd());
 		
-		return pstmt.executeUpdate();
+		updateMbCnt= pstmt.executeUpdate();
 		
-	}catch(Exception e) {
-			e.printStackTrace();
+	
 	}finally {
 		dc.dbClose(null, pstmt, con);
 	}
 	
 	
-	return -1;
+	return updateMbCnt;
 }//updateMember
 
 
@@ -272,7 +271,7 @@ public int updateMember(MemberVO mbVO) throws SQLException {
 
 public int insertMember(MemberVO mbVO) throws SQLException {
 	
-	
+	int cnt=0;
 	Connection con=null;
 	PreparedStatement pstmt=null;
 	DbConnection dc = DbConnection.getInstance();
@@ -311,18 +310,16 @@ public int insertMember(MemberVO mbVO) throws SQLException {
 
 
 		
-		return pstmt.executeUpdate();
+		cnt=pstmt.executeUpdate();
 		
-	}catch(Exception e){
-		e.printStackTrace();
-//		
+
 	}finally {
 //    6. 연결 끊기
 	dc.dbClose(null,pstmt,con);
 }//end catch
 	
 
-return -1;//데이터베이스오류
+return cnt;//데이터베이스오류
 	
 }//insertMember
 
