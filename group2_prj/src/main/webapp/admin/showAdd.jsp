@@ -112,7 +112,7 @@ AdminShowVO asVO= new AdminShowVO();
 			for(var i=0; i<blockExt.length; i++){
 				for(var j=0; j<blockExt.length; j++){
 					for(var k=0; k<blockExt.length; k++){
-						if(blockExt[i]==thImgExt&& blockExt[j]==mImgExt && blockExt[k]==infoImgExt){
+						if(blockExt[i]==thImgExt&& (blockExt[j]==mImgExt||mImgExt=="")&& blockExt[k]==infoImgExt){
 							flag=true;
 						}
 					}

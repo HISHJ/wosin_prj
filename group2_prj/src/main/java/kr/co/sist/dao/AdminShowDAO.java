@@ -59,42 +59,7 @@ public class AdminShowDAO {
 				   query+=" and s.status='"+status+"' ";
 			   }
 			  
-			   
-			   
-			   /* 왜또 안되는데 ㅠㅠ
-			   //기본값(전체,전체)
-			   if(genreId.equals(all)&&status.equals(all)) {
-				   query+=" ";
-			   }
-			   
-			   //장르만 선택시
-			   if(!genreId.equals(all)&&status.equals(all)) {
-				   query+=" and g.genreId='"+genreId+"' ";
-			   }
-			   
-			   //상태만 선택시
-			   if(genreId.equals(all)&&!status.equals(all)) {
-				   query+=" and s.status='"+status+"' ";
-			   }
-			   
-			   //둘다 선택시
-			   if(!genreId.equals(all)&&!status.equals(all)) {
-				   query+=" and g.genreId='"+genreId+"' and s.status='"+status+"' ";
-			   }
-			    */
-			   
-			   /*오류 무덤 ....
-			    
-			   if(genreId.equals("전체")&&status.equals("전체")) {
-				   System.out.println("이뤌이다");
-			   }//그냥 오류뜸(첫로딩)
-			   
-			   if(genreId=="전체"&&status=="전체") {
-				 System.out.println("이놈이 맞다!");
-			   }//출력안됨(첫로딩) 하나해도 안들어감
-			   
-			   */
-
+			  
 			   
 			pstmt = con.prepareStatement(query); 
 			rs = pstmt.executeQuery();
@@ -140,7 +105,7 @@ public class AdminShowDAO {
 			con=db.getConn();
 			
 			//select id, type
-			String query=" select s.showId s_showId, s.name s_name, s.startDate s_startDate, s.endDate s_endDate, s.runningTime s_runningTime, s.price s_price, s.thImg s_thImg, s.mImg s_mImg, s.infoImg s_infoImg, s.status s_status, r.ratingId r_ratingId, g.genreId g_genreId, s.inputdate s_inputdate "
+			String query=" select s.showId s_showId, s.name s_name, s.startDate s_startDate, s.endDate s_endDate, s.runningTime s_runningTime, s.price s_price, s.thImg s_thImg, s.mImg s_mImg, s.infoImg s_infoImg, s.status s_status, r.ratingType r_ratingType, g.genreType g_genreType, s.inputdate s_inputdate "
 					+ " from show s, rating r, genre g "
 					+ " where (s.ratingId=r.ratingId and s.genreId=g.genreId) and s.showId=? ";
 			pstmt = con.prepareStatement(query);
@@ -152,11 +117,11 @@ public class AdminShowDAO {
 				asVO=new AdminShowVO();
 				asVO.setShowId(rs.getString("s_showId"));
 				asVO.setName(rs.getString("s_name"));
-				asVO.setGenreId(rs.getString("g_genreId"));
+				asVO.setGenreId(rs.getString("g_genreType"));
 				asVO.setStartDate(rs.getString("s_startDate"));
 				asVO.setEndDate(rs.getString("s_endDate"));
 				asVO.setRunningTime(rs.getString("s_runningTime"));
-				asVO.setRatingId(rs.getString("r_ratingId"));
+				asVO.setRatingId(rs.getString("r_ratingType"));
 				asVO.setPrice(rs.getInt("s_price"));
 				asVO.setThImg(rs.getString("s_thImg"));
 				asVO.setmImg(rs.getString("s_mImg"));
@@ -242,11 +207,12 @@ public class AdminShowDAO {
 		try{
 			con=db.getConn();
 			
-			//
+			
 			String query=" update show "
 					+ " set name=?, genreId=?, startDate=?, endDate=?, runningTime=?, ratingId=?, price=?, thImg=?, mImg=?, infoImg=?, status=?  "
 					+ " where showId=? "; //where절 이게 맞나 jsp에서 어떻게 받아와야하지
 			
+			//asVO.setGenreId(rs.getString("g_genreType"));
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, asVO.getName());
 			pstmt.setString(2, asVO.getGenreId());
@@ -263,7 +229,6 @@ public class AdminShowDAO {
 			
 			pstmt.executeUpdate();
 			
-			System.out.println("섬네일: "+asVO.getThImg());
 		}finally {
 			db.dbClose(null, pstmt, con);
 		}
