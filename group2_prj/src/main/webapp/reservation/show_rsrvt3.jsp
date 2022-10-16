@@ -19,7 +19,7 @@ return;
 } 
 
 
-if(request.getParameter("showId")==null){
+if(session.getAttribute("showId")==null){
     response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
     return;
 }
@@ -60,14 +60,13 @@ if(request.getParameter("showId")==null){
 		<title>예매하기 | 내역</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="../assets\css\reset.css">
-		<link rel="stylesheet" href="../assets\css\headerFooter.css">
-		<link rel="stylesheet" href="../assets\css\subheader.css">
-		
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/headerFooter.css">
 		<!-- 공연상세페이지만을 위한 css -->
-		<link rel="stylesheet" href="../assets\css\perform.css">
-		<link rel="stylesheet" href="../assets\css\tab.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/perform.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/tab.css">
 		
 		
 		<!--google icons-->
@@ -81,17 +80,16 @@ if(request.getParameter("showId")==null){
 }
 </style>
 <%}%>
-<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+		<!-- Scripts -->
+		<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 			
-			<!-- tap관련 추가한거 -->
-			<script src="../assets/js/tab.js"></script>
-		<!-- //////////////////////////////////////////// -->
+		<!-- tap관련 추가한거 -->
+		<script src="http://localhost/group2_prj/assets/js/tab.js"></script>
 		<script>
 		$(function(){
 			
@@ -122,7 +120,7 @@ if(request.getParameter("showId")==null){
 						<!--------------------------------------위까지가 헤더----------------------------------------->
 				<!-- Main -->
 				<section id="main">
-				<form id="rsrvtInfoChkFrm" method="post" action="show_rsrvt3_process.jsp">	
+				<form id="rsrvtInfoChkFrm" method="post" action="http://localhost/group2_prj/reservation/show_rsrvt3_process.jsp">	
 						<div class="container">
 	
 	

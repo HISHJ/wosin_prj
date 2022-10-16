@@ -26,7 +26,9 @@ return;
     String swId = request.getParameter("showId");
 
     session.setMaxInactiveInterval(60*30);
-    session.setAttribute("showId",swId);
+    
+    session.setAttribute("showId",swId); // 세션에 공연코드 올리기
+    
     MainDAO mDAO = MainDAO.getInstance();
     ShowVO sVO = mDAO.selectShowMain(swId);
 %>
@@ -51,14 +53,15 @@ while(se.hasMoreElements()){
 		<title>공연일정 | 상세보기</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="../assets/css/reset.css">
-		<link rel="stylesheet" href="../assets/css/headerFooter.css">
-		<link rel="stylesheet" href="../assets/css/subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/headerFooter.css">
+		
 		
 		<!-- 공연상세페이지만을 위한 css -->
-		<link rel="stylesheet" href="../assets/css/perform.css">
-		<link rel="stylesheet" href="../assets/css/tab.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/perform.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/tab.css">
 		
 		
 		<!--google icons-->
@@ -66,15 +69,15 @@ while(se.hasMoreElements()){
 		<!--google fonts-->
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 			
 			<!-- tap관련 추가한거 -->
-			<script src="../assets/js/tab.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/tab.js"></script>
 
 <%if (memberId == null) { //2022-10-16 13:05 유설빈%>
 <style>

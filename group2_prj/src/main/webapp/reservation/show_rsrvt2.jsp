@@ -27,17 +27,17 @@ response.sendRedirect("http://localhost/group2_prj/login/login.jsp");
 return;
 } 
 
-
+if(session.getAttribute("showId")==null){
+	response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
+	 return;
+}
 
 %>     
-<%  /* 여기서는 select 말고 상영일정이랑, 시간을 뿌려줘야되는데 무슨DAO쓰더라 */
+<%  
 	// String swId = request.getParameter("showId"); 
  	String swId = (String)session.getAttribute("showId");
 	
- 	/* if(request.getParameter("showId")==null){
- 		response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
- 		 return;
- 	} */
+
 	
 	
 	MainDAO mDAO = MainDAO.getInstance();
@@ -92,14 +92,13 @@ while(se.hasMoreElements()){
 		<title>예매하기 | 좌석선택</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="../assets\css\reset.css">
-		<link rel="stylesheet" href="../assets\css\headerFooter.css">
-		<link rel="stylesheet" href="../assets\css\subheader.css">
-		
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/headerFooter.css">
 		<!-- 공연상세페이지만을 위한 css -->
-		<link rel="stylesheet" href="../assets\css\perform.css">
-		<link rel="stylesheet" href="../assets\css\tab.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/perform.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/tab.css">
 		
 		
 		<!--google icons-->
@@ -107,15 +106,16 @@ while(se.hasMoreElements()){
 		<!--google fonts-->
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!-- Scripts -->
-		<script src="../assets/js/jquery.min.js"></script>
-		<script src="../assets/js/jquery.dropotron.min.js"></script>
-		<script src="../assets/js/browser.min.js"></script>
-		<script src="../assets/js/breakpoints.min.js"></script>
-		<script src="../assets/js/util.js"></script>
-		<script src="../assets/js/main.js"></script>
-		
+		<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+			
 		<!-- tap관련 추가한거 -->
-		<script src="../assets/js/tab.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/tab.js"></script>
+		
 <%if (memberId == null) {%>
 <style>
 #nav {
@@ -296,7 +296,7 @@ while(se.hasMoreElements()){
 										<header>
 											<h3 class="h3">좌석선택</h3>
 										</header>
-										<form id="rsrvtInfoFrm" method="post" action="show_rsrvt3.jsp">
+										<form id="rsrvtInfoFrm" method="post" action="http://localhost/group2_prj/reservation/show_rsrvt3.jsp">
 										<footer>
 											<%-- <c:forEach var="seat" begin="1" end="16" step="1">
 												<c:if test="${fn:length(seatList)==0}">

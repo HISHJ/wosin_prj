@@ -13,7 +13,6 @@
 	<%! DashBoardVO member = null;%>
 	<%! List<DashBoardVO> rsrvtByShow = null;%>
 	<%! List<DashBoardVO> dailySales = null;%>
-	<%! String str = "2022-10-10 test중"; %>
 	<%
 	/* SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 	String today = sdf.format(new Date()); */
@@ -30,7 +29,7 @@
  
     //로그인되어있지 않은 경우 로그인페이지로 이동
     if( session.getAttribute("adminId") == null){
-   	 response.sendRedirect("admingLogin.jsp");
+   	 response.sendRedirect("http://localhost/group2_prj/admin/admingLogin.jsp");
     }
    //값검증완료
     String aId = (String)session.getAttribute("adminId");
@@ -229,12 +228,16 @@
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="../js/scripts.js"></script>
+        <!-- <script src="../js/scripts.js"></script> -->
+        <script src="http://localhost/group2_prj/js/scripts.js"></script>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="../js/chart-area-demo.js"></script>
-       <!--  <script src="js/chart-bar-demo.js"></script> -->
-        <script src="../js/chart-pie-demo.js"></script>
+        <!-- <script src="../js/chart-area-demo.js"></script> -->
+        <script src="http://localhost/group2_prj/js/chart-area-demo.js"></script>
+        <!-- <script src="../js/chart-pie-demo.js"></script> -->
+        <script src="http://localhost/group2_prj/js/chart-pie-demo.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="../js/datatables-simple-demo.js"></script>
+        <!-- <script src="../js/datatables-simple-demo.js"></script> -->
+        <script src="http://localhost/group2_prj/js/datatables-simple-demo.js"></script>
     </body>
 </html>

@@ -19,24 +19,23 @@ List<ShowVO> swList = mDAO.selectThImg();
 <head>
 <meta charset="UTF-8">
 <title>우신문화회관</title>
-<link rel="stylesheet" type="text/css" href="../slick/slick.css" />
-<link rel="stylesheet" type="text/css" href="../slick/slick-theme.css" />
-<link rel="stylesheet" href="../assets/css/main.css" />
+<link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/slick/slick.css" />
+<link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/slick/slick-theme.css" />
+<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
 <!-- jQuery -->
 <script type="text/javascript"
 	src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <!-- 슬라이드 라이브러리 -->
 <script type="text/javascript"
 	src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="../slick/slick.min.js"></script>
+<script type="text/javascript" src="http://localhost/group2_prj/slick/slick.min.js"></script>
 <!-- 팝업 플러그인 -->
-<script type="text/javascript" src="../js/slide_me.js"></script>
-<script type="text/javascript" 
-	src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
-<link rel="stylesheet" href="../assets/css/mainindex copy.css">
-<link rel="stylesheet" href="../assets/css/headerFooterIndex.css">
-<link rel="stylesheet" href="../assets/css/main_style.css">
-<link rel="stylesheet" href="../assets/css/popup.css">
+<script type="text/javascript" src="http://localhost/group2_prj/js/slide_me.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
+<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/mainindex copy.css"><!-- 왜 copy? -->
+<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/headerFooterIndex.css">
+<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main_style.css">
+<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/popup.css">
 <!--aos 라이브러리-->
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -140,7 +139,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 
 		<!--검색FORM-->
 
-		<link rel="stylesheet" href="../assets/css/mainindex copy.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/mainindex copy.css">
 		<style>
 			.js .slider-single>div:nth-child(1n+2) {
 				display: none
@@ -281,7 +280,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 
 
 			<!--마지막  영역(슬라이드 X)-->
-			<link rel="stylesheet" href="../assets/css/mainscdslide.css">
+			<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/mainscdslide.css">
 			<!--  class="inner aos-init aos-animate" data-aos="fade-up" -->
 			<!--썸네일 슬라이드ㅡ-->
 			<div class="inner_m aos-init aos-animate" date-aos="fade-up">
@@ -454,11 +453,11 @@ List<ShowVO> swList = mDAO.selectThImg();
 	</script>
 	
 	
-	<script src="../assets/js/jquery.dropotron.min.js"></script>
-	<script src="../assets/js/browser.min.js"></script>
-	<script src="../assets/js/breakpoints.min.js"></script>
-	<script src="../assets/js/util.js"></script>
-	<script src="../assets/js/main.js"></script>
+	<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+	<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+	<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+	<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+	<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 	
 </body>
 </html>

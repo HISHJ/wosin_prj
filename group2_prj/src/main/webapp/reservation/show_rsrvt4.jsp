@@ -71,25 +71,26 @@ if(session.getAttribute("showId")==null){
 		<title>예매하기 | 예매완료</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="../assets\css\reset.css">
-		<link rel="stylesheet" href="../assets\css\headerFooter.css">
-		<link rel="stylesheet" href="../assets\css\subheader.css">
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/headerFooter.css">
 		<!-- 공연상세페이지만을 위한 css -->
-		<link rel="stylesheet" href="../assets\css\perform.css">
-		<link rel="stylesheet" href="../assets\css\tab.css">
-		
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/perform.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/tab.css">
+	
 		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 			
-			<!-- tap관련 추가한거 -->
-			<script src="assets/js/tab.js"></script>
+		<!-- tap관련 추가한거 -->
+		<script src="http://localhost/group2_prj/assets/js/tab.js"></script>
+		
 		<!--google icons-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!--google fonts-->

@@ -41,7 +41,7 @@
 				// 2. 그럼 1로 넘겨야하나? showId는 info에서 session set 해주는거니까? 
 		alert("이미 예약된 좌석이 있습니다. 다시 선택해주세요.");
 		//location.href="show_rsrvt3_process_exception.jsp";
-		location.href="show_rsrvt2.jsp?schTest="<%=schId%>; // 3. 아닌가 이거 되나?
+		location.href="http://localhost/group2_prj/reservation/show_rsrvt2.jsp?schTest="<%=schId%>; // 3. 아닌가 이거 되나?
 		</script>
 	<%} else {
 		//System.out.println("이미예약된 좌석이 ㄴㄴ");
@@ -99,7 +99,7 @@
 	//되나? 10-10 20:59 test
 // 1010 21:17 RequestDispatcher 사용테스트
 // 근데 굳이 이걸로해야하나? 세션에넣어서 진행하고 마지막페이지에서 제일밑에 세션초기화 넣으면 안되는건가
-	RequestDispatcher rd = request.getRequestDispatcher("show_rsrvt4.jsp");
+	RequestDispatcher rd = request.getRequestDispatcher("show_rsrvt4.jsp"); // forward는 URI
 	request.setAttribute("req_rVO", rVO);
 	//System.out.println("show_rsrvt3_process"+rVO.toString());
 	//request.setAttribute("requestrVO", rVO); action으로 넘어가는게아니고 그냥 location.href로 이동하는거라 null이뜨나?
