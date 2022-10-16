@@ -157,9 +157,7 @@ if( session.getAttribute("memberId") == null){%>
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="homepage is-preload">
-<%
 
-%>
 
 <%
 request.setCharacterEncoding("UTF-8");

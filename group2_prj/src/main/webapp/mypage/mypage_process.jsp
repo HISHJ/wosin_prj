@@ -35,6 +35,7 @@
 				  String Phone=de.encryption(phone);
 				  String hPhone=de.encryption(hphone);
 				  String Addr2=de.encryption(addr2);
+				  
 				
 				//생일 합치기
 				String birth1 = request.getParameter("birthdayYear");

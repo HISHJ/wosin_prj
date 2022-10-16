@@ -36,7 +36,7 @@ public class ShowDAO {
 	      try {
 	         con = dc.getConn();
 	         StringBuilder selectShowInfo = new StringBuilder();
-	         selectShowInfo.append(" select sho.thimg thimg,sho.name showname, sho.startdate || '~' || sho.enddate showdate ,g.genretype genre ")
+	         selectShowInfo.append(" select  sho.showId showId, sho.thimg thimg,sho.name showname, sho.startdate || '~' || sho.enddate showdate ,g.genretype genre ")
 	                      .append(" from show sho ,genre g  ")
 	                      .append(" where (sho.genreid = g.genreid) and replace(sho.name,' ','') like '%'||?||'%' ");
 	         
@@ -50,6 +50,7 @@ public class ShowDAO {
 	      while(rs.next()) {
 	         sVO = new ShowVO();
 	         
+	         sVO.setShowId(rs.getString("showId"));
 	         sVO.setThImg(rs.getString("thimg"));
 	         sVO.setName(rs.getString("showname"));
 	         sVO.setTotalDate(rs.getString("showdate"));
