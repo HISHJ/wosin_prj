@@ -1,3 +1,6 @@
+<%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="java.security.MessageDigest"%>
 <%@page import="kr.co.sist.vo.MemberVO"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -177,33 +180,58 @@ section#header {
 		
 							
 </body>
+	<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+	
+	
+	
 
-					<%request.setCharacterEncoding("UTF-8");%>
+				<%request.setCharacterEncoding("UTF-8");
 				
-				<%
-							/* phone값 합치기  */
-									String tel1=request.getParameter("tel1");
-									String tel2=request.getParameter("tel2");
-									String tel3=request.getParameter("tel3");
-									
-									String phone=tel1+"-"+tel2+"-"+tel3;%>
+
+					/* phone값 합치기  */
+							String tel1=request.getParameter("tel1");
+							String tel2=request.getParameter("tel2");
+							String tel3=request.getParameter("tel3");
+							
+							String phone=tel1+"-"+tel2+"-"+tel3;
+
+					//key가져오기
+					  ServletContext sc = getServletContext();
+					  String plainText = sc.getInitParameter("keyU"); 
+					  //알고리즘 설정하여 MessageDigest
+					  MessageDigest md=MessageDigest.getInstance("MD5");
+					  md.update(plainText.getBytes());
+					  new String(md.digest());
+					  //키 생성
+					  String key=DataEncrypt.messageDigest("MD5", plainText);
+					  //키를 넣어 암호화 객체 생성
+					  DataEncrypt de= new DataEncrypt(key);
+					  DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
+						
+					
+					  String Phone=de.encryption(phone);
+					 
+					
+					%> 
+					
+					
+					
 			
-			
-				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+				
 				<jsp:setProperty property="name" name="mbVO"/>
-				<jsp:setProperty property="phone" name="mbVO" value="<%=phone %>"/>
+				<jsp:setProperty property="phone" name="mbVO" value="<%=Phone %>"/>
 				<jsp:setProperty property = "memberId" name="mbVO"/>
-				<jsp:setProperty property="mdate" name="mbVO"/>		
+				<jsp:setProperty property="mdate" name="mbVO"/> 
 			
 					
-		<% 		
+ 	<% 		
 				MemberDAO mbrDAO =MemberDAO.getInstance();
 			 	mbVO = mbrDAO.selectMemberId(mbVO);
 				
 				if(mbVO.getMemberId()==null){%>
 					<script>
 						alert("존재하지 않은 계정입니다.");
-						location.href="find_id.jsp"
+						location.href="http://localhost/group2_prj/login/find_id.jsp"
 					</script>
 				
 				<%}else{ %>
@@ -217,7 +245,7 @@ section#header {
 		<h4 class="t">${param.name }님이 가입하신 아이디는 다음과 같습니다.</h4>
 		<div class="bg">
 			<ul class="select f18">
-						<li><label for="id1">아이디명 : <%=mbVO.getMemberId() %> </label></li>
+						<li><label for="id1">아이디명 : <%=dd.decryption(mbVO.getMemberId()) %> </label></li>
 						<li><label for="id1">가입일: <%=mbVO.getMdate() %> </label></li>
 						 
 						
@@ -285,4 +313,4 @@ section#header {
 			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
-</html>
+</html> --%>

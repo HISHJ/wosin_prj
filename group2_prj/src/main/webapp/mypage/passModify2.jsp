@@ -263,24 +263,24 @@
 							if(pass.length < 7 || pass.length > 13){
 									  alert("8자리 ~ 12자리 이내로 입력해주세요.");
 									  $("#password").focus();
-									  return false;
+									  return;
 								}
 						 if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
 									  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
 									  $("#password").focus();
-									  return false;
+									  return;
 								}
 						 
 						 if(pass2!=pass){
 							 alert("비밀번호를 다시 확인해주세요.")
 							$("#repassword").focus();
-							 return false;
+							 return ;
 						 }
 						if(pass2.trim()==""){
 							alert("비밀번호를 한번 더 확인해주세요.")
 							$("#repassword").focus();
 							
-							return false;
+							return;
 						}//pass
 						$("#pmFrm").submit();
 					
@@ -301,7 +301,7 @@
 				
 				<!-- 세션 값 받아오기 useBean : scope="session"사용하면 필요없을듯! -->
 			<%-- 	<%String id=(String)session.getAttribute("memberId"); %> --%>
-			<form id="pmFrm" name="pmFrm" method="post" action="http://localhost/group2_prj/login/pm_process.jsp">
+			<form id="pmFrm" name="pmFrm" method="post" action="http://localhost/group2_prj/mypage/pm_process2.jsp">
 				<article class="find_member inner member_com">
 						<div class="group">
 						<h3 class="tit-st4">비밀번호 변경</h3>

@@ -1,3 +1,6 @@
+<%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="java.security.MessageDigest"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 
 
@@ -8,18 +11,41 @@
 <%request.setCharacterEncoding("UTF-8"); %>
 
 
-
 <!-- useBean을 사용하여  MemberVO를 불러온다 -->
 
 <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
-<!-- VO에 있는 모든 값을 set해줌  -->
-<%-- <jsp:setProperty property="*" name="mbVO"/> --%>
 
- 
+<%request.setCharacterEncoding("UTF-8"); 
+String id=request.getParameter("memberId");
+String pw=request.getParameter("pwd");
 
- <jsp:setProperty property="*" name="mbVO"/> 
-<%--  <jsp:setProperty property="memberId" name="mbVO" />
-<jsp:setProperty property="pwd" name="mbVO" />    --%>
+
+//key가져오기
+  ServletContext sc = getServletContext();
+  String plainText = sc.getInitParameter("keyU"); 
+  //알고리즘 설정하여 MessageDigest
+  MessageDigest md=MessageDigest.getInstance("MD5");
+  md.update(plainText.getBytes());
+  new String(md.digest());
+  //키 생성
+  String key=DataEncrypt.messageDigest("MD5", plainText);
+  //키를 넣어 암호화 객체 생성
+  DataEncrypt de= new DataEncrypt(key);
+
+
+  String Id=de.encryption(id);
+  String pwd=DataEncrypt.messageDigest("SHA-1", pw);
+
+
+
+%>
+
+
+
+
+<jsp:setProperty property="memberId" name="mbVO" value="<%=Id %>" />
+<jsp:setProperty property="pwd" name="mbVO"  value="<%=pwd %>"/> 
+
 
 
 
@@ -30,7 +56,7 @@ boolean result = mbrDAO.login(mbVO);
 if(result){
 	//로그인 성공
 	session.setAttribute("memberId", mbVO.getMemberId());  
-  //	String id=(String)session.getAttribute("memberId"); 
+ /* 	String id=(String)session.getAttribute("memberId");  */
 	
 /* 	out.println(id); 세션확인용*/
 	
@@ -49,8 +75,3 @@ if(result){
 	</script>
 	
 <%}//end if%>
-
-
-
-
-

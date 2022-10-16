@@ -53,7 +53,7 @@ String pw=request.getParameter("pwd");
   String key=DataEncrypt.messageDigest("MD5", plainText);
   //키를 넣어 암호화 객체 생성
   DataEncrypt de= new DataEncrypt(key);
-
+  DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("SHA-1", plainText));
 
   String Id=de.encryption(id);
   String pwd=DataEncrypt.messageDigest("SHA-1", pw);
@@ -69,6 +69,7 @@ String pw=request.getParameter("pwd");
 
 <jsp:setProperty property="memberId" name="mbVO" value="<%=Id %>" />
 <jsp:setProperty property="pwd" name="mbVO"  value="<%=pwd %>"/> 
+
 
 
 
@@ -101,4 +102,4 @@ if(result){
 
 
 </body>
-</html>
+</html> 

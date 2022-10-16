@@ -130,7 +130,7 @@
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
 						<div id="sut-t_wrap">
 						<h2 id="sub-t">
-							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">회원관리</strong>
+							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">개인화 서비스</strong>
 						</h2>
 					</div>
 					</section>
@@ -179,7 +179,7 @@
 									<a href="memberMng.html"><span>개인화서비스</span></a>
 									<ul class="depth">
 									<li><a href="memberMng.html" ><span>개인화서비스</span></a></li>
-									<li><a href="subpage-FAQ1.html" ><span>FAQ</span></a></li>
+									<li><a href="subpage-FAQ1.html" ><span>비밀번호변경</span></a></li>
 									<li><a href="mypage.html" ><span>회원정보 수정</span></a></li>
 									<li><a href="find_password.html" ><span>예매내역 확인·취소</span></a></li>
 									

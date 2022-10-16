@@ -450,7 +450,7 @@ public int updateMemberStatus(String memberId, String pwd) throws SQLException{
 //회원탈퇴 테이블에 추가
 public int insertQuitMember(QuitMemberVO qmVO) throws SQLException {
 	
-	
+	int qmCnt=0;
 	DbConnection dc = DbConnection.getInstance();
 	Connection con=null;
 	PreparedStatement pstmt=null;
@@ -468,16 +468,14 @@ public int insertQuitMember(QuitMemberVO qmVO) throws SQLException {
 		pstmt.setString(2, qmVO.getReason());//회원 언어정보 추가
 // SYSDATE는 어떻게 ????
 		
-		return pstmt.executeUpdate();
-	}catch(Exception e) {
-		e.printStackTrace();
+		qmCnt=pstmt.executeUpdate();
 
 	}finally {
 //    6. 연결 끊기
 	dc.dbClose(null,pstmt,con);
 }//end catch
 	
-	return -1;
+	return qmCnt;
 
 }//insertQuitMember
 

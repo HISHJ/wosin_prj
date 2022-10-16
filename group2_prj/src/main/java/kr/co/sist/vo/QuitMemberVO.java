@@ -3,24 +3,18 @@ package kr.co.sist.vo ;
 import java.sql.Date;
 
 public class QuitMemberVO {
-	private String memberId, pwd, reason;
+	private String memberId, pwd, reason,mdate;
 	private Date date;
 	
 	public QuitMemberVO() {
 	}
-	
-	public QuitMemberVO(String memberId, String pwd, String reason ,Date date) {
+
+	public QuitMemberVO(String memberId, String pwd, String reason, String mdate, Date date) {
+		super();
 		this.memberId = memberId;
 		this.pwd = pwd;
 		this.reason = reason;
-		this.date=date;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
+		this.mdate = mdate;
 		this.date = date;
 	}
 
@@ -48,5 +42,31 @@ public class QuitMemberVO {
 		this.reason = reason;
 	}
 
+	public String getMdate() {
+		return mdate;
+	}
+
+	public void setMdate(String mdate) {
+		this.mdate = mdate;
+	}
+
+	public Date getDate() {
+		return date;
+	}
+
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	@Override
+	public String toString() {
+		return "QuitMemberVO [memberId=" + memberId + ", pwd=" + pwd + ", reason=" + reason + ", mdate=" + mdate
+				+ ", date=" + date + "]";
+	}
+	
+
+	
+	
+	
 	
 }
