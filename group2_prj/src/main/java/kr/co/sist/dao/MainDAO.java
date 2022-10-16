@@ -54,7 +54,7 @@ public class MainDAO {
 			StringBuilder selectImgs = new StringBuilder();
 
 			selectImgs.append(" select showId, thImg, mImg ").append(" from show ")
-					.append(" where status = '공연예정' ");// 공연중인게없어서 일단예정으로 조회 ㅇㅇ 테이블갈면 수정해야함
+					.append(" where status = '공연중' ");// 공연중인게없어서 일단예정으로 조회 ㅇㅇ 테이블갈면 수정해야함
 
 			pstmt = con.prepareStatement(selectImgs.toString());
 

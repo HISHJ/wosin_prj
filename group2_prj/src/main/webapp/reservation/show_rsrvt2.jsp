@@ -215,7 +215,7 @@ while(se.hasMoreElements()){
 			alert(seatNum.value);
 		} */
 		function removeRow(s){ // 10-09 
-			alert(s);
+			//alert(s);
 			oTbl.deleteRow(oTbl.clickedRowIndex);
 			document.getElementById("st_"+s).checked = false;
 			/* seatNum.checked=false; */
@@ -255,9 +255,9 @@ while(se.hasMoreElements()){
 
 								<!-- Sidebar -->
 									<section class="box">
-										<a class="image featured"><img src="poster/rj.jpeg" alt="" /></a>
+										<a class="image featured"><img src="http://localhost/group2_prj/admin/img/<%=sVO.getThImg() %>" ></a>
 										<header>
-											<h3 class="h3"><%=sVO.getName() %></h3>
+											<h3 class="h3" style="width:270px; overflow:hidden; text-overflow:ellipsis;" title="<%=sVO.getName() %>"><%=sVO.getName() %></h3>
 										</header>
 									</section>
 									<section class="box">

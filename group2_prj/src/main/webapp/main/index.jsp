@@ -172,13 +172,12 @@ List<ShowVO> swList = mDAO.selectThImg();
 						<% for(int i=0;i<swList.size();i++){%>
 						<div>
 							<div class="img-box img-box-f ">
-							<!-- http://localhost/group2_prj/images/imageSrc%20(1).jpeg -->
-								<%-- <img src="http://localhost/group2_prj/images/'<%= swList.get(i).getmImg() %>'.jpeg"> --%>
-								<img src="http://localhost/group2_prj/images/imageSrc%20(1).jpeg">
+								<img src="http://localhost/group2_prj/admin/img/<%=swList.get(i).getmImg() %>">
 								<!-- <figcaption class="hide">2022 가을·겨울 시즌 패키지 티켓 오픈</figcaption> -->
 								<div class="btn-wrap">
-									<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">상세보기</a>
-									<!-- <button class="go_show_con"><a href="page2.html">상세보기</a></button>  -->
+									<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">
+									<button class="go_show_con">상세보기</button>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -192,7 +191,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 						<div class="div_slider_nav slider slider-nav">
 							<% for(int i=0;i<swList.size();i++){%>
 								<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">
-								<img src="<%= swList.get(i).getThImg() %>"/>
+								<img src="http://localhost/group2_prj/admin/img/<%=swList.get(i).getThImg() %>" style="width:80%; height:160px;">
 								</a>
 							<%} %>
 
@@ -225,7 +224,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 								tabindex="-1" style="width: 150px;" data-slick-index="0"
 								aria-hidden="false"><a href="calendar.html" tabindex="0">
 									<div class="img" style="top: 0px;">
-										<img src="images\m1_3.gif" alt="">
+										<img src="http://localhost/group2_prj/images/m1_3.gif" alt="">
 									</div>
 									<div class="txt">우신 일정</div>
 							</a></li>
@@ -236,7 +235,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 								aria-hidden="false"><a href="page7.html" class="hover"
 								tabindex="0">
 									<div class="img" style="top: 0px;">
-										<img src="images\m1_5.gif" alt="">
+										<img src="http://localhost/group2_prj/images/m1_5.gif" alt="">
 									</div>
 									<div class="txt">좌석배치도</div>
 							</a></li>
@@ -247,7 +246,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 								aria-hidden="false"><a href="subpage-ticketmethod.html"
 								class="hover" tabindex="0">
 									<div class="img" style="top: 0px;">
-										<img src="images\m1_7.gif" alt="">
+										<img src="http://localhost/group2_prj/images/m1_7.gif" alt="">
 									</div>
 									<div class="txt">예매안내</div>
 							</a></li>
@@ -257,7 +256,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 								tabindex="-1" style="width: 150px;" data-slick-index="3"
 								aria-hidden="false"><a href="subpage-way.html" tabindex="0">
 									<div class="img" style="top: 0px;">
-										<img src="images\m1_6.gif" alt="">
+										<img src="http://localhost/group2_prj/images/m1_6.gif" alt="">
 									</div>
 									<div class="txt">오시는 길</div>
 							</a></li>
@@ -267,7 +266,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 								tabindex="-1" style="width: 150px;" data-slick-index="0"
 								aria-hidden="false"><a href="subpage-FAQ1.html" tabindex="0">
 									<div class="img" style="top: 0px;">
-										<img src="images\m1_12.gif" alt="">
+										<img src="http://localhost/group2_prj/images/m1_12.gif" alt="">
 									</div>
 									<div class="txt">고객센터</div>
 							</a></li>

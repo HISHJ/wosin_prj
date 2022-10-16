@@ -151,9 +151,9 @@ if(session.getAttribute("showId")==null){
 									<div class="row">
 										<div class="col-4 col-12-small">
 											<section class="box" style="margin-bottom: 30px;">
-												<a class="image featured"><img src="poster/rj.jpeg" alt="포스터" /></a><!-- 사진에도 링크 ㅇㅇ  -->
+												<a class="image featured"><img src="http://localhost/group2_prj/admin/img/<%=sVO.getThImg() %>" ></a>
 												<header>
-													<h3><%=rVO.getShowName() %></h3>
+													<h3 class="h3" style="width:270px; overflow:hidden; text-overflow:ellipsis;" title="<%=rVO.getShowName() %>"><%=sVO.getName() %></h3>
 													
 												</header>
 											</section>

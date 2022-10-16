@@ -12,13 +12,6 @@
 String memberId = (String)session.getAttribute("memberId");
 %>
 <%
-  //로그인 되어있지 않은 경우, 로그인페이지로 이동
-if( session.getAttribute("memberId") == null){
-response.sendRedirect("http://localhost/group2_prj/login/login.jsp");
-return;
-}  
-%>      
-<%
     if(request.getParameter("showId")==null){
         response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
         return;
@@ -130,10 +123,10 @@ while(se.hasMoreElements()){
 
 								<!-- Sidebar -->
 									<section class="box">
-										<a class="image featured"><img src="poster/rj.jpeg" alt="" /></a>
-																	<!-- 여기도 경로수정해야하는데 -->
+										<a class="image featured"><img src="http://localhost/group2_prj/admin/img/<%=sVO.getThImg() %>" ></a>
 										<header>
-											<h3 class="h3"><%=sVO.getName() %></h3>
+											<h3 class="h3" style="width:270px; overflow:hidden; text-overflow:ellipsis;" title="<%=sVO.getName() %>"><%=sVO.getName() %></h3>
+											
 										</header>
 										<footer>
 											<!-- <a href="page3.html" class="button alt button_long">예매하기</a> -->
@@ -157,8 +150,9 @@ while(se.hasMoreElements()){
 							<!-- Content -->
 							<!-- 탭 메뉴 만들기 분석 ...하기... -->
 							<article class="box post tabnav">
-							<a class="image featured"><img src="poster/rj2.jpg" alt="" /></a>
-															<!-- 여기도 경로수정해야하는데 -->
+							<a class="image featured">
+								<img src="http://localhost/group2_prj/admin/img/<%=sVO.getInfoImg() %>" >
+							</a>
 						   		 </article>
 
 								

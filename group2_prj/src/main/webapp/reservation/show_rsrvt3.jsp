@@ -29,9 +29,9 @@ if(session.getAttribute("showId")==null){
 <%
 	String swId = (String)session.getAttribute("showId");
 	MainDAO mDAO = MainDAO.getInstance();
-	// ShowVO sVO = mDAO.selectShowMain(swId); // 다주는 메서드 10-15 주석처리후
+	ShowVO sVO = mDAO.selectShowMain(swId); // 다주는 메서드 10-15 주석처리후
 	
-	// pageContext.setAttribute("sVO", sVO); // 10-15 주석처리
+	pageContext.setAttribute("sVO", sVO); // 10-15 주석처리
 	
 	String schId = (String)session.getAttribute("schTest");
 	
@@ -132,12 +132,18 @@ if(session.getAttribute("showId")==null){
 										<div class="row">
 											<div class="col-4 col-12-small">
 												<section class="box" style="margin-bottom: 30px;">
-													<a class="image featured"><!-- 사진수정 --><img src="poster/rj.jpeg" alt="포스터" /></a>
+													<a class="image featured"><img src="http://localhost/group2_prj/admin/img/<%=sVO.getThImg() %>" ></a>
 													<header>
-														<%-- <h3><%=rsrvtVO.getShowName() %></h3> --%>
-														<h1><input type="text" name="showName" value="<%=rsrvtVO.getShowName() %>" readonly="readonly"
-																		style="border:none; display:inline; color:#555555; padding:0px;font-size:20px; font-weight: 900">
-														</h1>
+													<h3 class="h3" style="width:270px; overflow:hidden; text-overflow:ellipsis;" title="<%=sVO.getName() %>"><%=sVO.getName() %></h3>
+														<%-- <h1><input type="text" name="showName" value="<%=rsrvtVO.getShowName() %>" readonly="readonly" title="<%=rsrvtVO.getShowName() %>"
+																		style="border:none; display:inline; color:#555555; padding:0px;font-size:20px; font-weight: 900; ">
+																		
+														</h1> --%>
+														<!-- 10-16 showName 히든처리로 넘기도록 수정 -->
+														<input type="hidden" name="showName" value="<%=rsrvtVO.getShowName() %>" >
+																		
+																		
+														
 														
 													</header>
 												</section>

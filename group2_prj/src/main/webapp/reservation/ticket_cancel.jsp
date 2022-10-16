@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="kr.co.sist.vo.RsrvtInfoVO"%>
 <%@page import="kr.co.sist.dao.RsrvtDAO"%>
 <%@page import="javax.script.ScriptContext"%>
@@ -12,6 +13,43 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<%request.setCharacterEncoding("UTF-8"); %>
+<%
+String firstDate = request.getParameter("findStartDate");
+String endDate =request.getParameter("findEndDate");
+String rId = request.getParameter("rId");
+String rStatus= request.getParameter("rStatus");
+
+System.out.println("위치테스트"+firstDate);
+System.out.println(endDate);
+System.out.println(rId);
+System.out.println(rStatus);
+if(rId == null){
+	response.sendRedirect("http://localhost/group2_prj/reservation/ticket_page.jsp");
+} 
+System.out.println(rId);
+System.out.println(rStatus);
+
+RsrvtInfoVO ivo = new RsrvtInfoVO();
+ivo.getRsrvtStatus();
+ivo.getRsrvtId();
+
+String[] staArr={"예매완료","예매취소"};
+%>
+
+<%
+request.setCharacterEncoding("UTF-8");
+Enumeration rp = request.getParameterNames();
+while(rp.hasMoreElements()){
+	String getrp = rp.nextElement()+"";
+	System.out.println("ticket_cancel.jsp @@@@request : "+getrp+":"+request.getParameter(getrp)); // values안하니까 좌석 하나만 나옴 ㅇㅇ
+}
+Enumeration se = session.getAttributeNames();
+while(se.hasMoreElements()){
+	String getse = se.nextElement()+"";
+	System.out.println("ticket_cancel.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
+}
+%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -38,65 +76,52 @@ var ScriptPreFix ="/Flex";
 var PROGRAM_LIST ;
 var PROGRAM_LIST_COUNT ;
 var SEAT_ARRAY_LIST ;
-
-function onstart(){
-	// $( '#receipt_top' ).attr('style', "margin-top: -402px;");
-}
- 
-
-function ViewPrint(){
-	$( '#wrap' ).hide();
-	$( '.pop_btn_w2' ).hide();
-	window.print();
-	$( '#wrap' ).show();
-	$( '.pop_btn_w2').show();
-}
-
-
-function goMypageList(){
+$(function(){
+	 
 	
-
-}
-
-function fn_tranList(){
-	$('.box_r').hide();
-	var Listidx = $("#PTRS4224_TRAN").val();
-	$('#'+Listidx).show();
-}
-
-function goBack(){
-	  try{
-	      window.history.go(-2);
-	  }catch(e){
-		    history.back();
-		    alert(e.message);
-	  }
-}
+	function ViewPrint(){
+		$( '#wrap' ).hide();
+		$( '.pop_btn_w2' ).hide();
+		window.print();
+		$( '#wrap' ).show();
+		$( '.pop_btn_w2').show();
+	}
+	
+	
+	function goMypageList(){
+		
+	
+	}
+	
+	function fn_tranList(){
+		$('.box_r').hide();
+		var Listidx = $("#PTRS4224_TRAN").val();
+		$('#'+Listidx).show();
+	}
+	
+	function goBack(){
+		  try{
+		      window.history.go(-2);
+		  }catch(e){
+			    history.back();
+			    alert(e.message);
+		  }
+	}
+})
 </script>
+<script type="text/javascript">
+$(function(){
+	$("#okTest").click(function(){
+		location.href="http://localhost/group2_prj/reservation/ticket_page.jsp";
+	})
+});
 
+</script>
 </head>
  
-<body onload="onstart()">
+<body>
 
-<%request.setCharacterEncoding("UTF-8"); %>
-<%
-String firstDate = request.getParameter("findStartDate");
-String endDate =request.getParameter("findEndDate");
-String rId = request.getParameter("rId");
-String rStatus= request.getParameter("rStatus");
- 
-if(rId == null){
-	response.sendRedirect("http://localhost/group2_prj/reservation/ticket_page.jsp");
-} 
-System.out.println(rId);
-System.out.println(rStatus);
 
-RsrvtInfoVO ivo = new RsrvtInfoVO();
-ivo.getRsrvtStatus();
-ivo.getRsrvtId();
-
-String[] staArr={"예매완료","예매취소"};
-%>
 
 
 <jsp:useBean id="rVO" class="kr.co.sist.vo.RsrvtInfoVO" scope="page"/>
@@ -157,8 +182,7 @@ if(flag){ //업데이트가 된 경우
 			     
 			    </li>
 			  </ul>
-			
-			  <button class="btn-st1 bg-purple" onclick="javascrit:goBack();">확인</button>
+			  <button class="btn-st1 bg-purple" id="okTest">확인</button>
 		</div>
 			  
 	</div>
