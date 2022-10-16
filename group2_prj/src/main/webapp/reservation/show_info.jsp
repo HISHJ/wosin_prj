@@ -8,6 +8,10 @@
     pageEncoding="UTF-8" info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <%
+//세션 넘겨받기 검증 완료 //2022-10-16 13:05 유설빈
+String memberId = (String)session.getAttribute("memberId");
+%>
+<%
   //로그인 되어있지 않은 경우, 로그인페이지로 이동
 if( session.getAttribute("memberId") == null){
 response.sendRedirect("http://localhost/group2_prj/login/login.jsp");
@@ -71,11 +75,15 @@ while(se.hasMoreElements()){
 			
 			<!-- tap관련 추가한거 -->
 			<script src="../assets/js/tab.js"></script>
-			
-		<style>
-			#nav{margin-right: 150px;}
-		</style>
-		<script type="text/javascript">
+
+<%if (memberId == null) { //2022-10-16 13:05 유설빈%>
+<style>
+#nav {
+	margin-right: 130px;
+}
+</style>
+<%}%>
+<script type="text/javascript">
 		$(function(){
 			$("#rsrvtBtn").click(function(){
 				<%
@@ -97,9 +105,10 @@ while(se.hasMoreElements()){
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
-			<!-- header -->
-			<c:import url="http://localhost/group2_prj/common/user_subpage_header.jsp"/> 
-			<!-- header -->	
+				<!-- //2022-10-16 13:05 유설빈  -->
+        <c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
+    	<c:param name="memberId" value="<%= memberId %>"></c:param> 
+    	</c:import>
 					
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
 						<div id="sut-t_wrap">

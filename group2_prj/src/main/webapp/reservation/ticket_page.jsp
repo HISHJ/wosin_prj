@@ -44,7 +44,13 @@ String memberId = (String)session.getAttribute("memberId");
 	<script type="text/javascript" 
 		src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
 	
-
+	<%if(memberId == null){%>
+	<style>
+	#nav {
+	margin-right: 150px;
+	}
+	</style>
+	<%} %>
 	<style>
      		
     section#header{
@@ -61,10 +67,6 @@ String memberId = (String)session.getAttribute("memberId");
 	  pointer-event:none;
 	}
 	
-	#nav {
-	margin-right: 150px;
-	}
-
 	#caution_btn {
 	transition: all 0.3s;
 	}
@@ -192,7 +194,9 @@ String[] staArr ={"예매완료","예매취소"};
 
 		<div id="page-wrapper">
 		
-		<c:import url="http://localhost/group2_prj/common/user_subpage_header.jsp"/> 
+		<c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
+    	<c:param name="memberId" value="<%= memberId %>"></c:param> 
+    	</c:import>
    		
    		
 

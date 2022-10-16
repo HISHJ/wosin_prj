@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="서브페이지 header" %>
 <% 
-//값 넘김 검증 완료(메인에서 값 전달받음)
-
+//값 넘김 검증 완료(각 페이지에서 값 전달받음)
 String memberId= request.getParameter("memberId");
-//String memberId=(String)session.getAttribute("memberId");
-System.out.println(memberId);
 
 %>    
 
@@ -24,7 +21,7 @@ System.out.println(memberId);
 										<li><a href="http://localhost/group2_prj/reservation/show_search.jsp">공연일정</a></li>
 										<!-- <li><a href="calendar.html">일정조회</a></li> -->
 										<!-- <li><a href="#">예매</a></li> -->
-										<li><a href="page2.html">공연정보상세보기</a></li>
+										<!-- <li><a href="http://localhost/group2_prj/reservation/show_info.jsp">공연정보상세보기</a></li> -->
 										<li><a href="page7.html">좌석배치도</a></li>
 									</ul>
 								</li>

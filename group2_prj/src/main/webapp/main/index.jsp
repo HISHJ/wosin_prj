@@ -6,14 +6,12 @@
     
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<% MainDAO mDAO = MainDAO.getInstance(); 
-   List<ShowVO> swList = mDAO.selectThImg();
-   
- //검증완료
- String memberId= (String)session.getAttribute("memberId");
- session.setAttribute("memberId", memberId); //include에 값을 session으로 보내기 위해...필요없나?
- String memId = (String)session.getAttribute("memberId");;
-   
+<%
+//검증완료
+String memberId= (String)session.getAttribute("memberId");
+
+MainDAO mDAO = MainDAO.getInstance(); 
+List<ShowVO> swList = mDAO.selectThImg(); 
 %>
     
 <!DOCTYPE html>
@@ -35,15 +33,10 @@
 <script type="text/javascript" src="../js/slide_me.js"></script>
 <script type="text/javascript" 
 	src="https://cdnjs.cloudflare.com/ajax/libs/bPopup/0.11.0/jquery.bpopup.js"></script>
-
-
 <link rel="stylesheet" href="../assets/css/mainindex copy.css">
 <link rel="stylesheet" href="../assets/css/headerFooterIndex.css">
-<!-- <link rel="stylesheet" href="assets\css\headerFooter.css"> -->
 <link rel="stylesheet" href="../assets/css/main_style.css">
 <link rel="stylesheet" href="../assets/css/popup.css">
-
-
 <!--aos 라이브러리-->
 <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
@@ -113,7 +106,7 @@
 	
 	<!-- 헤더 -->
 	<c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
-    <c:param name="memberId" value="<%= memId %>"></c:param> 
+    <c:param name="memberId" value="<%= memberId %>"></c:param> 
     </c:import>
 	<!-- 헤더 -->
    
@@ -122,7 +115,7 @@
 
 					<!-- SEARCH FORM -->
 	<article id="top_sch">
-		<form name="searchFrm" id="searchFrm" action="http://localhost/group2_prj/reservation/mainSearch_result.jsp"	method="post">
+		<form name="searchFrm" id="searchFrm" action="http://localhost/group2_prj/reservation/mainSearch_result.jsp" method="get">
 		<div class="sch">
 			<label for="sch_word" class="hide">검색어</label>
 			<input type="text" name="kwd" id="sch_word" value="" placeholder="검색어를 입력해주세요." />

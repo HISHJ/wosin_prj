@@ -3,6 +3,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%
+//세션 넘겨받기 검증 완료 //2022-10-16 13:28 유설빈
+String memberId = (String)session.getAttribute("memberId");
+%>
 <%  //로그인되어있지 않은 경우 로그인페이지로 이동
  if( session.getAttribute("memberId") != null){
 response.sendRedirect("http://localhost/group2_prj/main/index.jsp");

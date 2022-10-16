@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>     
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%
+//세션 넘겨받기 검증 완료 //2022-10-16 13:40 유설빈
+String memberId = (String)session.getAttribute("memberId");
+%>    
 <%  //로그인 되어있지 않은 경우, 로그인페이지로 이동
  if( session.getAttribute("memberId") == null){
 response.sendRedirect("http://localhost/group2_prj/login/login.jsp");
@@ -30,18 +34,22 @@ response.sendRedirect("http://localhost/group2_prj/login/login.jsp");
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<style>
+<%if (memberId == null) {%>
+<style>
+#nav {
+	margin-right: 150px;
+}
+</style>
+<%}%>
+
+<style>
 section#header {
 	background:
 		url("http://localhost/group2_prj/images/subvisual-common.jpg")
 		no-repeat;
 	background-size: 100%;
 	background-attachment: fixed;
-}
 
-#nav {
-	margin-right: 150px;
-}
 </style>
 <script>
 $(function(){
@@ -53,8 +61,10 @@ $("input:checkbox[name='save_id']").prop("checked", true);
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
 
-	    <!-- header -->
-		<c:import url="http://localhost/group2_prj/common/user_subpage_header.jsp"/>
+		<!-- 2022-10-16 13:42 유설빈 -->
+	   <c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
+    	<c:param name="memberId" value="<%= memberId %>"></c:param> 
+    	</c:import>
 		<!-- header -->
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
 						<div id="sut-t_wrap">

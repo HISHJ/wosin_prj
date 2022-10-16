@@ -7,7 +7,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>       
-    
+<%
+//세션 넘겨받기 검증 완료 //2022-10-16 13:05 유설빈
+String memberId = (String)session.getAttribute("memberId");
+%>
+   
     <%
     //ShowVO sVO= new ShowVO();//<select할떄 필요할까 > 아닐듯? > 
     String sdate = request.getParameter("sdate"); 
@@ -60,8 +64,17 @@
       
       <!--제이쿼리--> <!--  이놈 빌런이다 조심해 -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+   	<%if(memberId == null){  //2022-10-16 13:05 유설빈%>
+	<style>
+	#nav {
+	margin-right: 130px;
+	}
+	</style>
+	<%} %>
+
    <style>
-   #nav{margin-right: 130px;}
+  
+   
    .txtColor{color: #111111;}
    a:hover{color: #111111;}
    </style>
@@ -195,9 +208,11 @@
    <body class="homepage is-preload">
       <div id="page-wrapper">
 
-          <!--header-->
-		<c:import url="http://localhost/group2_prj/common/user_subpage_header.jsp"/>		
-		<!--header-->
+		<!-- //2022-10-16 13:05 유설빈  -->
+       <c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
+    	<c:param name="memberId" value="<%= memberId %>"></c:param> 
+    	</c:import>
+   		
 
                   <!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
                   <div id="sut-t_wrap">
@@ -299,16 +314,16 @@
          </div>
             
          
-      
+      <!-- css 글자 영역 삐져나오는 것 수정 / 리스트 나열 고르게 수정 2022-10-16 유설빈 -->
       <!-- p에 있는 텍스트 마우스오버시 색상 안바뀌게, 이미지 배열 >> 수정완료-->
         <div id="performList" class="poster_wrap bbs-today_thumb clearfix">
            <div class="row row_flex" style="margin-left: 0.1px" >
             <%for(int i=0; i<showList.size(); i++){ %>
-                 <div class="col set" >
-               <div class="card" style="width: 19rem;">
+                 <div class="col set" style="display:flex;flex-wrap:wrap;justify-content:space-between;"  >
+               <div class="card" style="width: 19rem;margin-bottom:20px;">
                   <a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%=showList.get(i).getShowId() %>">
                   <img src="http://localhost/group2_prj/admin/img/<%=showList.get(i).getThImg() %>" class="card-img-top" alt="...">
-                   <div class="card-body" >
+                   <div class="card-body" style="white-space: normal;">
                    <h5 class="card-title h3"><%=showList.get(i).getName() %></h5>
                    <p class="card-text txtColor"><%=showList.get(i).getStartDate() %> ~ <%=showList.get(i).getEndDate() %></p>                    
                    <p class="card-text txtColor"><%=showList.get(i).getGenreId() %></p>
