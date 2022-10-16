@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="scriptlet의 사용"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%
+//검증완료
+String memberId= (String)session.getAttribute("memberId");
+%>    
 <!DOCTYPE HTML>
-<!--
-	Dopetrope by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
 		<title>FAQ-좌석</title>
@@ -23,6 +24,14 @@
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<%if(memberId == null){%>
+	<style>
+	#nav {
+	margin-right: 200px;
+	}
+	</style>
+	<%} %>
+	
 		
 	</head>
 	<body class="homepage is-preload">
@@ -345,39 +354,9 @@
 
 				<!----------------------------------------------여기서부터 끝까지 footer-------------------------------------------->
 
-			<!-- Footer -->
-				<section id="footer">
-					<div class="footer_line"></div>
-					<div class="container">
-						<div class="row">
-							<div class="col-8 col-12-medium">
-								<section>
-									<header>
-										<h2>
-											<a href="index.html">
-												<img class="footer_logo" src="common\logo_white.png" alt="우신문화회관">
-											</a>
-										</h2>
-										<div class="l">
-											<address>
-												재단법인 우신문화회관 서울특별시 쌍용구 우신대로 175 (우신로) (우)03172
-											  <br/>
-											  대표자 : 최정민 유원준 정선홍 하지윤 유설빈 사업자등록번호 : 101-12-12345
-												<br/>
-												통신판매업신고 : 서울쌍용-0988호
-											</address>
-											<p class="copyright">
-												COPYRIGHT(C) WOOSHIN CENTER FOR THE PERFORMING ARTS. ALL RIGHTS RESERVED</p>
-											</p>
-										</div>
-
-							</div>
-						</div>
-					</div>
-				</section>
-
-		</div>
-
+				<!-- Footer  -->
+			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
+	    <!-- End footer -->
 		<!-- Scripts -->
 			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
 			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>

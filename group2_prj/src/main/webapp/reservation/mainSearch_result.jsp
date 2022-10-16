@@ -145,7 +145,8 @@ if(showName == null){
            		<div class="col set" style="display:flex;flex-wrap:wrap;justify-content:space-between;">
 		<%for(ShowVO shVO : shoList){%>
 					<div class="card" style="width: 18rem;margin-bottom:20px;">
-					<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%=shVO.getShowId()%>"><img src="http://localhost/group2_prj/common/<%=shVO.getThImg() %>.do" class="card-img-top" alt="<%= shVO.getName() %>">
+					<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%=shVO.getShowId()%>">
+					<img src="http://localhost/group2_prj/admin/img/<%=shVO.getThImg() %>" class="card-img-top" alt="<%= shVO.getName() %>">
 						<!-- <a href="page2.html"><img src="poster/rj.jpeg" class="card-img-top" alt="..."> -->
 					 	<div class="card-body">
 					    <h5 class="card-title h3" style="white-space: normal;"><%= shVO.getName() %></h5>
