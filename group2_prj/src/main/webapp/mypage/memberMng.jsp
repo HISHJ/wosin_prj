@@ -39,12 +39,13 @@ if(memberId == null){
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script>
-		$(function(){
-			$("input:checkbox[name='save_id']").prop("checked", true);
-		});
-
-		</script>
+		<!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 		<style>
      section#header{
  		 /* background-image:  url("../../images/subvisual-200001.jpg"); */
@@ -100,7 +101,7 @@ if(memberId == null){
 									</a>
 									<!-- display:none -->
 									<ul class="depth" >
-										<a href="memberMng.html">
+										<a href="http://localhost/group2_prj/mypage/memberMng.jsp">
 											<span>마이페이지</span>
 										</a>
 										<li>
@@ -120,14 +121,12 @@ if(memberId == null){
 							</li>
 							<li>
 								<div class="rel">
-									<a href="memberMng.html"><span>개인화서비스</span></a>
+									<a href="http://localhost/group2_prj/mypage/memberMng.jsp"><span>개인화서비스</span></a>
 									<ul class="depth">
-									<li><a href="memberMng.html" ><span>개인화서비스</span></a></li>
-									<li><a href="subpage-FAQ1.html" ><span>비밀번호변경</span></a></li>
-									<li><a href="mypage.html" ><span>회원정보 수정</span></a></li>
-									<li><a href="find_password.html" ><span>예매내역 확인·취소</span></a></li>
-									
-							
+									<li><a href="http://localhost/group2_prj/mypage/memberMng.jsp" ><span>개인화서비스</span></a></li>
+									<li><a href="http://localhost/group2_prj/mypage/passModify.jsp" ><span>비밀번호변경</span></a></li>
+									<li><a href="http://localhost/group2_prj/mypage/mypage.jsp" ><span>회원정보 수정</span></a></li>
+									<li><a href="http://localhost/group2_prj/reservation/ticket_page.jsp" ><span>예매내역 확인·취소</span></a></li>
 									</ul>
 									</div>
 							
@@ -246,13 +245,7 @@ if(memberId == null){
 			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
 			
 			<!-- End footer -->
-		<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+
 
 	</body>
 </html>

@@ -1,27 +1,49 @@
+<%@page import="java.security.MessageDigest"%>
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
     
 
-<!-- 세션 값 받아오기 useBean : scope="session"사용하면 필요없을듯! -->
-<%-- <%String id=(String)session.getAttribute("memberId"); %> --%>
-
 
  <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
- <jsp:setProperty property="pwd" name="mbVO"/>
+
 
 
 
   <%
-	int updatePassCnt=0;	
+  request.setCharacterEncoding("UTF-8"); 
+  
+  String id=mbVO.getMemberId();
+  String pw=request.getParameter("pwd");
+//key가져오기
+  ServletContext sc = getServletContext();
+  String plainText = sc.getInitParameter("keyU"); 
+  //알고리즘 설정하여 MessageDigest
+  MessageDigest md=MessageDigest.getInstance("MD5");
+  md.update(plainText.getBytes());
+  new String(md.digest());
+  //키 생성
+  String key=DataEncrypt.messageDigest("MD5", plainText);
+  //키를 넣어 암호화 객체 생성
+  DataEncrypt de= new DataEncrypt(key);
+
+
+
+  String pwd=DataEncrypt.messageDigest("SHA-1", pw);
+
+
+  
+
+ 	int updatePassCnt=0;	
 	MemberDAO mbrDAO=MemberDAO.getInstance();
-	updatePassCnt= mbrDAO.updatePass(mbVO.getMemberId(), mbVO.getPwd());
+	updatePassCnt= mbrDAO.updatePass(id, pwd);
 	
 if(updatePassCnt==0){	
 %>   
 <script>
 	alert("비밀번호를 다시 확인해주세요.");
-	location.href="http://localhost/group2_prj/login/passmodify.jsp"
+	location.href="http://localhost/group2_prj/login/passModify.jsp"
 
 </script>
 <%}else{ %>

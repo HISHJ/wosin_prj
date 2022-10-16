@@ -45,12 +45,13 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!-- 제이쿼리 -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script>
-		$(function(){
-			$("input:checkbox[name='save_id']").prop("checked", true);
-		});
-
-		</script>
+		<!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 		
 		<style>
 			section#header{
@@ -79,12 +80,11 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 					</div>
 					</section>
 
-						------------------------------------위까지가 헤더---------------------------------------
-
+				<!-- 		------------------------------------위까지가 헤더--------------------------------------- -->
 				
-				</section>
+			
 
-			로그인 영역
+		<!-- 	로그인 영역 -->
 			<div id="depth_w">
 				<div class="inner">
 					<ul class="clrearfox dot dep1 li2">
@@ -117,19 +117,19 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 						</li>
 						<li>
 							<li>
-								<div class="rel">
-								<a href="signup.html"><span>회원가입</span></a>
-								<ul class="depth">
-								<li><a href="login.html" ><span>로그인</span></a></li>
-								<li><a href="signup.html" ><span>회원가입</span></a></li>
-								<li><a href="find_id.html" ><span>아이디 찾기</span></a></li>
-								<li><a href="find_password.html" ><span>패스워드 찾기</span></a></li>
-							
-								</ul>
-								</div>
+									<div class="rel">
+									<a href="http://localhost/group2_prj/signUp/signup.jsp" ><span>회원가입</span></a>
+									<ul class="depth">
+									<li><a href="http://localhost/group2_prj/login/login.jsp" ><span>로그인</span></a></li>
+									<li><a href="http://localhost/group2_prj/signUp/signup.jsp" ><span>회원가입</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/find_id.jsp" ><span>아이디 찾기</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/find_password.jsp" ><span>패스워드 찾기</span></a></li>
+									
+									</ul>
+									</div>
 							</li>
 						
-						</li>
+					
 					</ul>
 				</div>
 
@@ -194,24 +194,23 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 			
 				  
 				  
-					MemberDAO mbrDAO = MemberDAO.getInstance();
-			
-					int cnt = mbrDAO.insertMember(mbVO);
-					
+MemberDAO mbrDAO = MemberDAO.getInstance();
+boolean result=mbrDAO.selectChkId(mbVO.getMemberId());
+int cnt = mbrDAO.insertMember(mbVO);
+
+if(result){%>		
+		<script>
+			alert("${param.memberId}는 이미 가입된 아이디 입니다.");
+			location.href="http://localhost/group2_prj/signUp/signup.jsp"
+		</script>
+		
+	<%}else{ 
 					if(cnt<0){%>
 						<script>
 							alert("다시 시도해주세요.")
 							location.href="http://localhost/group2_prj/signUp/signup.jsp"
 							</script>
-					<%}else{ 
-						
-				
-						
-					}//catch
-					%>
-		
-					
-		
+					<%}else{ %>
 				<!------------------------------------------main-------------------------------------->
 				<div class="signup_result_wrap">
 					<div class="signup_result_inner">
@@ -241,7 +240,10 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 				</div>
 			
 				
+		<%
+					}//cnt
 		
+					}//result%>
 
 				<!----------------------------------------------여기서부터 끝까지 footer-------------------------------------------->
 
@@ -251,13 +253,6 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 			<!-- End footer -->
 
 
-		<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
 </html> 

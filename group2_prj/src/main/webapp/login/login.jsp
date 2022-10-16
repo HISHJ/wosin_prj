@@ -33,14 +33,13 @@
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script>
-		$(function(){
-			$("input:checkbox[name='save_id']").prop("checked", true);
-		});
-
-		</script>
-		
-		
+	    <!--js  -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+				
 	<style>
      section#header{
  		 /* background-image:  url("../images/subvisual-200001.jpg"); */
@@ -225,8 +224,7 @@
 							.tabs-st1,.tabs-st2{display: none;}
 							</style>
 							
-							<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-							<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+		
 					
 							 
 							<article class="login inner member_com">
@@ -242,11 +240,7 @@
 											<li class="id"><label for="username" class="hide">아이디</label><input type="text" name="memberId" id="memberId" placeholder="아 이 디" autofocus /> </li>
 											<li class="pw"><label for="password" class="hide">패스워드</label><input type="password" name="pwd" id="pwd" autocomplete="off"   placeholder="비밀번호" /></li>
 										</ul>
-									<!-- 	<div class="remeber">
-											<input type="checkbox" name="save_id"  id="saveCookieUserId" />
-											<label for="saveCookieUserId">아이디 저장</label>
-										</div>
-							 -->
+								
 										
 										<button type="button" class="bg-black btn-login f20" id="btnLogin" style="margin-left:3.5px;width:100%;">로그인</button>
 									 
@@ -269,11 +263,6 @@
 	<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
 	<!-- End footer -->
 
-	<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-	<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-	<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-	<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-	<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 </body>
 </html>

@@ -85,7 +85,7 @@ function useId( memberId ){
 //DBMS 연동
 MemberDAO mbrDAO = MemberDAO.getInstance();
 
-boolean result=mbrDAO.selectChkId(mbVO);
+boolean result=mbrDAO.selectChkId(mbVO.getMemberId());
 pageContext.setAttribute("result",result);//true면 사용중, false 미사용
 %>
 <div id="view">입력하신 <strong><c:out value="${ param.memberId }"/></strong>는

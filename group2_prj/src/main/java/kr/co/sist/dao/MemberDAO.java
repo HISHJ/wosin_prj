@@ -17,7 +17,7 @@ public class MemberDAO {
 	private static MemberDAO mbrDAO;
 	
 	private MemberDAO() {
-
+			
 	}//MemberDAO
 
 	public static MemberDAO getInstance(){
@@ -324,9 +324,9 @@ return cnt;//데이터베이스오류
 }//insertMember
 
 
-//회원가입할때 id중복확인
+//회원가입할때 id중복확인,회원가입 비연결성 확인
 
-public boolean selectChkId(MemberVO mbVO) throws SQLException {
+public boolean selectChkId(String memberId) throws SQLException {
 	
 	boolean result=false;
 	
@@ -339,7 +339,7 @@ public boolean selectChkId(MemberVO mbVO) throws SQLException {
 		String selectChk= "select memberId from member where memberId=?";
 		pstmt=con.prepareStatement(selectChk);
 		
-		pstmt.setString(1,mbVO.getMemberId());
+		pstmt.setString(1,memberId);
 	
 		rs=pstmt.executeQuery();
 		

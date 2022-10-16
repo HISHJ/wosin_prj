@@ -3,7 +3,7 @@
 <%@page import="kr.co.sist.vo.MemberVO"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="mypage진입 비밀번호 prcoess"%>
+    pageEncoding="UTF-8" info=" 비밀번호변경 전 비밀번호확인 prcoess"%>
     
 
 

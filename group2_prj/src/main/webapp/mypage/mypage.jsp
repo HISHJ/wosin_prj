@@ -50,6 +50,15 @@ if(memberId == null){
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<!-- 우편번호API -->
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+		<!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+		
+		
 <%-- <%  //로그인되어있지 않은 경우 로그인페이지로 이동
 if( session.getAttribute("memberId") == null){%>
     <script type="text/javascript">
@@ -63,12 +72,7 @@ if( session.getAttribute("memberId") == null){%>
 %> --%>
 		
 		
-		<script>
-		$(function(){
-			$("input:checkbox[name='save_id']").prop("checked", true);
-		});
-
-		</script>
+	
 	<%if(memberId == null){%>
 	<style>
 	#nav {
@@ -151,17 +155,15 @@ if( session.getAttribute("memberId") == null){%>
 								</li>
 								<li>
 									<li>
-										<div class="rel">
-										<a href="mypage.html"><span>회원정보 수정</span></a>
-										<ul class="depth">
-										<li><a href="memberMng.html" ><span>개인화서비스</span></a></li>
-										<li><a href="subpage-FAQ1.html" ><span>FAQ</span></a></li>
-										<li><a href="mypage.html" ><span>회원정보 수정</span></a></li>
-										<li><a href="find_password.html" ><span>예매내역 확인·취소</span></a></li>
-										
-								
-										</ul>
-										</div>
+									<div class="rel">
+									<a href="http://localhost/group2_prj/mypage/mypage.jsp" ><span>회원정보 수정</span></a>
+									<ul class="depth">
+									<li><a href="http://localhost/group2_prj/mypage/memberMng.jsp" ><span>개인화서비스</span></a></li>
+									<li><a href="http://localhost/group2_prj/mypage/passModify.jsp" ><span>비밀번호변경</span></a></li>
+									<li><a href="http://localhost/group2_prj/mypage/mypage.jsp" ><span>회원정보 수정</span></a></li>
+									<li><a href="http://localhost/group2_prj/reservation/ticket_page.jsp" ><span>예매내역 확인·취소</span></a></li>
+									</ul>
+									</div>
 									</li>
 								
 								</li>
@@ -449,15 +451,16 @@ if( session.getAttribute("memberId") == null){%>
 				<jsp:setProperty property="*" name="mbVO"/>
 				<%
 				request.setCharacterEncoding("UTF-8");
-			
+				
 		
 				//key가져오기
 				  ServletContext sc = getServletContext();
 				  String plainText = sc.getInitParameter("keyU"); 
 				//복호화 : 암호화된 문자열을 원본문자열로 변경 
-				  DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
+				 DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
 				
-				MemberDAO mbrDAO= MemberDAO.getInstance();
+				MemberDAO mbrDAO = MemberDAO.getInstance();
+				
 				mbVO=mbrDAO.selectMember(mbVO.getMemberId()); %>
 			
 			
@@ -743,13 +746,7 @@ if( session.getAttribute("memberId") == null){%>
 			
 			
 
-		<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+
 
 	</body>
 </html>

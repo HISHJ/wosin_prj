@@ -37,12 +37,14 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script>
-		$(function(){
-			$("input:checkbox[name='save_id']").prop("checked", true);
-		});
-
-		</script>
+		<!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="https://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="https://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="https://assets/js/breakpoints.min.js"></script>
+			<script src="https://assets/js/util.js"></script>
+			<script src="https://assets/js/main.js"></script>
+	
 	<%if(memberId == null){%>
 	<style>
 	#nav {
@@ -129,18 +131,18 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 							<li>
 								<li>
 									<div class="rel">
-									<a href="login.html"><span>로그인</span></a>
+									<a href="http://localhost/group2_prj/signUp/signup.jsp" ><span>회원가입</span></a>
 									<ul class="depth">
-									<li><a href="login.html" ><span>로그인</span></a></li>
-									<li><a href="signup.html" ><span>회원가입</span></a></li>
-									<li><a href="find_id.html" ><span>아이디 찾기</span></a></li>
-									<li><a href="find_password.html" ><span>패스워드 찾기</span></a></li>
-								
+									<li><a href="http://localhost/group2_prj/login/login.jsp" ><span>로그인</span></a></li>
+									<li><a href="http://localhost/group2_prj/signUp/signup.jsp" ><span>회원가입</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/find_id.jsp" ><span>아이디 찾기</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/find_password.jsp" ><span>패스워드 찾기</span></a></li>
+									
 									</ul>
 									</div>
 								</li>
 							
-							</li>
+							
 						</ul>
 					</div>
 
@@ -583,17 +585,6 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 											</td>
 											<td rowspan="3">탈퇴시까지</td>
 										</tr>
-																								 <!--
-										<tr>
-											<td>오프라인 유료회원</td>
-											<td>유료회원가입 및 관리</td>
-											<td>
-												<ul class="bul-dot tal">
-													<li>필수항목<br>  - 성명, 성별, 전화번호</li>
-												</ul>
-											</td>
-										</tr>
-																											 -->
 										<tr>
 											<td>대관시스템</td>
 											<td>대관신청단체 관리</td>
@@ -696,13 +687,7 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 			<!-- End footer -->
 
 
-		<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="https://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="https://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="https://assets/js/breakpoints.min.js"></script>
-			<script src="https://assets/js/util.js"></script>
-			<script src="https://assets/js/main.js"></script>
+	
 
 	</body>
 </html>

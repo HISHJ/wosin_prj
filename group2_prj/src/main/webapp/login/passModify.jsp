@@ -1,15 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-<%
-//세션 넘겨받기 검증 완료 //2022-10-16 13:40 유설빈
-String memberId = (String)session.getAttribute("memberId");
-%>    
-<%  //로그인 되어있지 않은 경우, 로그인페이지로 이동
- if( session.getAttribute("memberId") == null){
-response.sendRedirect("http://localhost/group2_prj/login/login.jsp");
-}  
-%>    
+
+<!-- session -->
+<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -34,7 +29,15 @@ response.sendRedirect("http://localhost/group2_prj/login/login.jsp");
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<%if (memberId == null) {%>
+		 <!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+		
+<%if (mbVO.getMemberId() == null) {%>
 <style>
 #nav {
 	margin-right: 150px;
@@ -51,11 +54,7 @@ section#header {
 	background-attachment: fixed;
 
 </style>
-<script>
-$(function(){
-$("input:checkbox[name='save_id']").prop("checked", true);
-});
-</script>
+
 
 </head>
 	<body class="homepage is-preload">
@@ -63,7 +62,6 @@ $("input:checkbox[name='save_id']").prop("checked", true);
 
 		<!-- 2022-10-16 13:42 유설빈 -->
 	   <c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
-    	<c:param name="memberId" value="<%= memberId %>"></c:param> 
     	</c:import>
 		<!-- header -->
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
@@ -110,12 +108,13 @@ $("input:checkbox[name='save_id']").prop("checked", true);
 							<li>
 								<li>
 									<div class="rel">
-									<a href="#"><span>회원정보 수정</span></a>
+									<a href="http://localhost/group2_prj/login/find_id.jsp"><span>패스워드 찾기</span></a>
 									<ul class="depth">
-									<li><a href="http://localhost/group2_prj/mypage/memberMng.jsp" ><span>개인화서비스</span></a></li>
-									<li><a href="subpage-FAQ1.html" ><span>FAQ</span></a></li>
-									<li><a href="http://localhost/group2_prj/mypage/mypage.jsp" ><span>회원정보 수정</span></a></li>
-									<li><a href="http://localhost/group2_prj/reservation/ticket_page.jsp" ><span>예매내역 확인·취소</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/login.jsp" ><span>로그인</span></a></li>
+									<li><a href="http://localhost/group2_prj/signUp/signup.jsp" ><span>회원가입</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/find_id.jsp" ><span>아이디 찾기</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/find_password.jsp" ><span>패스워드 찾기</span></a></li>
+									
 									</ul>
 									</div>
 									</li>
@@ -191,8 +190,8 @@ $("input:checkbox[name='save_id']").prop("checked", true);
 						 var eng = pass.search(/[a-zA-Z]/);
 						 var spe= pass.search(/[~!@#$%^&*()_+|<>?:{}]/); 
 							//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
-							if(pass.length <7 || pass.length >21){
-									  alert("8자리 ~ 21자리 이내로 입력해주세요.");
+							if(pass.length <7 || pass.length >12){
+									  alert("8자리 ~ 12자리 이내로 입력해주세요.");
 									  $("#password").focus();
 									  return;
 								}
@@ -226,8 +225,8 @@ $("input:checkbox[name='save_id']").prop("checked", true);
 				.t{ margin-top:30px;}
 				</style>
 				
-				<!-- 세션 값 받아오기 useBean : scope="session"사용하면 필요없을듯! -->
-			<%-- 	<%String id=(String)session.getAttribute("memberId"); %> --%>
+	
+
 			<form id="pmFrm" name="pmFrm" method="post" action="http://localhost/group2_prj/login/pm_process.jsp">
 				<article class="find_member inner member_com">
 						<div class="group">
@@ -241,7 +240,7 @@ $("input:checkbox[name='save_id']").prop("checked", true);
 											<label for="password" class="t" >새 비밀번호 </label>
 											<div class="cont">
 												<input type="password" name="pwd" id="password" style="width:350px; height:60px;" maxlength="20" autofocus="autofocus"/>
-												<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 8자 ~ 20자 이내</span>
+												<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 8자 ~ 12자 이내</span>
 											</div>
 										</li>
 										<li class="item  item2">
@@ -305,13 +304,7 @@ $("input:checkbox[name='save_id']").prop("checked", true);
 			<!-- End footer -->
 
 
-		    <!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+
 
 	</body>
 </html>

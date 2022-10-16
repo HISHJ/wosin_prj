@@ -42,7 +42,7 @@ if(updatePassCnt==0){
 %>   
 <script>
 	alert("비밀번호를 다시 확인해주세요.");
-	location.href="http://localhost/group2_prj/login/passModify2.jsp"
+	location.href="http://localhost/group2_prj/mypage/passModify2.jsp"
 
 </script>
 <%}else{ %>

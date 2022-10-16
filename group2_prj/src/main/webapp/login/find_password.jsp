@@ -1,17 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-//세션 넘겨받기 검증 완료 //2022-10-16 13:28 유설빈
-String memberId = (String)session.getAttribute("memberId");
-%>     
-<%  //로그인 되어있는 경우, 메인페이지로 이동
- if( session.getAttribute("memberId") != null){
-response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
-}  
-%>       
-<!DOCTYPE HTML>
 
+<!-- session -->
+<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+<!DOCTYPE HTML>
 <html>
 	<head>
 		<title>비밀번호 찾기</title>
@@ -35,13 +28,15 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<script>
-		$(function(){
-			$("input:checkbox[name='save_id']").prop("checked", true);
-		});
-
-		</script>
-	<%if(memberId == null){  //2022-10-16 13:30 유설빈%>
+		<!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+		
+	<%if(mbVO.getMemberId() == null){  //2022-10-16 13:30 유설빈%>
 	<style>
 	#nav {
 	margin-right: 130px;
@@ -64,7 +59,7 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 		<!-- //2022-10-16 13:30 유설빈  -->
 		<c:import
 			url="http://localhost/group2_prj/common/user_subpage_header.jsp">
-			<c:param name="memberId" value="<%=memberId%>"></c:param>
+			
 		</c:import>
 
 		<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
@@ -243,7 +238,7 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 							<div class="top top_find" id="ck_input">
 								<span><input type="radio" name="find1" id="find1_1" checked="checked"/> 
 									<label for="find1_1">회원정보에 등록한 휴대전화로 인증</label></span>
-								<!-- <span><input type="radio" name="find1" id="find1_2" /> <label for="find1_2">본인확인 이메일로 인증</label></span> -->
+
 							</div>
 							<div id="ck_cont">
 								<div class="form_w form1">
@@ -363,15 +358,9 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 	
 			<!-- Footer -->
 			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
-			<!-- End footer -
+			<!-- End footer -->
 
-		<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+
 
 	</body>
 </html>

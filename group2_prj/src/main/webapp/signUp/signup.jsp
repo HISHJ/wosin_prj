@@ -39,14 +39,16 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<!-- 우편번호API -->
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+			<!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 		
-		<script>
-		$(function(){
-			$("input:checkbox[name='save_id']").prop("checked", true);
-		});
+		
 
-
-		</script>
 		<style>
 			section#header{
       /* background-image:  url("../../images/subvisual-200001.jpg"); */
@@ -165,19 +167,19 @@ input[type="date"] {
 					</li>
 					<li>
 						<li>
-							<div class="rel">
-							<a href="signup.html"><span>회원가입</span></a>
-							<ul class="depth">
-							<li><a href="login.html" ><span>로그인</span></a></li>
-							<li><a href="signup.html" ><span>회원가입</span></a></li>
-							<li><a href="find_id.html" ><span>아이디 찾기</span></a></li>
-							<li><a href="find_password.html" ><span>패스워드 찾기</span></a></li>
-						
-							</ul>
-							</div>
+						<div class="rel">
+									<a href="http://localhost/group2_prj/signUp/signup.jsp" ><span>회원가입</span></a>
+									<ul class="depth">
+									<li><a href="http://localhost/group2_prj/login/login.jsp" ><span>로그인</span></a></li>
+									<li><a href="http://localhost/group2_prj/signUp/signup.jsp" ><span>회원가입</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/find_id.jsp" ><span>아이디 찾기</span></a></li>
+									<li><a href="http://localhost/group2_prj/login/find_password.jsp" ><span>패스워드 찾기</span></a></li>
+									
+									</ul>
+									</div>
 						</li>
 					
-					</li>
+					
 				</ul>
 			</div>
 
@@ -293,14 +295,8 @@ input[type="date"] {
 			/* 회원가입 유효성 검사 */
 			$(function(){
 				$("#btnSignup").click(function(){
-					$("#board").submit(); 
-						/* check();  */
-						
-					
+						check(); 
 				});//click
-				
-				
-				
 				$("#repassword").focusout(function(){
 					//비밀번호와 비밀번호 확인의 값이 같은지를 비교
 					chkPass();
@@ -342,14 +338,14 @@ input[type="date"] {
 				if(name.trim()==""){
 					alert("이름을 입력해주세요.")
 					$("#memberName").focus();
-					return false;
+					return ;
 				}//name
 				
 				var id=$("#memberId").val();	
 				if(id.trim()==""){
 					alert("아이디를 입력해주세요.");
 					$("#memberId").focus();
-					return false;
+					return;
 				}
 
 		
@@ -358,7 +354,7 @@ input[type="date"] {
 				 if(!id.match('^[a-zA-Z0-9]{4,20}$')) {
 						 alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 사용 가능합니다.');
 						$('#memberId').focus();
-						 return false;
+						 return;
 					 }//idcheck
 				
 				var pass=$("#password").val();
@@ -367,33 +363,33 @@ input[type="date"] {
 				if(pass.trim()==""){
 					alert("비밀번호를 입력해주세요.");
 					$("#password").focus();
-					return false;
+					return ;
 				}
 				 var num = pass.search(/[0-9]/);
 				 var eng = pass.search(/[a-zA-Z]/);
 				 var spe= pass.search(/[~!@#$%^&*()_+|<>?:{}]/); 
 					//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
-					if(pass.length < 7 || pass.length >12){
-							  alert("8자리 ~ 21자리 이내로 입력해주세요.");
+					if(pass.length < 7 || pass.length >13){
+							  alert("8자리 ~ 12자리 이내로 입력해주세요.");
 							  $("#password").focus();
-							  return false;
+							  return ;
 						}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){
 							  alert("영문,숫자, 특수문자 중 2가지 이상을 혼합하여 입력해주세요.");
 							  $("#password").focus();
-							  return false;
+							  return;
 						}
 				 
 				 if(pass2!=pass){
 					 alert("비밀번호를 다시 확인해주세요.")
 					$("#repassword").focus();
-					 return false;
+					 return;
 				 }
 				 
 				if(pass2.trim()==""){
 					alert("비밀번호를 한번 더 확인해주세요.")
 					$("#repassword").focus();
 					
-					return false;
+					return;
 				}//pass2
 			
 				
@@ -401,14 +397,14 @@ input[type="date"] {
 				if(birth.trim()==""){
 					alert("생년월일을 입력해주세요.");
 					$("#datepicker").focus();
-					return false ;
+					return  ;
 				}//
 				
 			var gender=$("#genderFlag").val();
 			if(gender.trim()==""){
 				alert("성별을 입력해주세요.");
 				$("#genderFlag").focus();
-				return false ;
+				return  ;
 			}//gender
 			
 
@@ -416,42 +412,42 @@ input[type="date"] {
 			if(addr2.trim()==""){
 				alert("주소를 입력해주세요..");
 				$("#memberAddr2").focus();
-				return false ;
+				return ;
 			}//addr2
 			
 			var email=$("#memberEmail").val();
 			if(email.trim()==""){
 				alert("이메일을 입력해주세요.");
 				$("#memberEmail").focus();
-				return false ;
+				return  ;
 			}//email
 				
 			var phone=$("#phone").val();
 			if(phone.trim()==""){
 				alert("휴대폰 번호를 입력해주세요.");
 				$("#phone").focus();
-				return false ;
+				return  ;
 			}//phone
 			
 			var hPhone=$("#hPhone").val();
 			if(hPhone.trim()==""){
 				alert("전화번호를 입력해주세요.");
 				$("#hPhone").focus();
-				return false ;
+				return  ;
 			}//hPhone
 			
 		
 			var mailChk =$(':radio[name=mailChk]:checked' );
 			if(mailChk.length<1){
 				alert("메일수신여부를 체크해주세요.");
-				return false;
+				return ;
 				
 			}//mailChk
 			
 			var smsChk =$(':radio[name=smsChk]:checked' );
 			if(smsChk.length<1){
 				alert("SMS수신여부를 체크해주세요.");
-				return false;
+				return;
 				
 			}//smsChk
 			if(confirm("등록하시겠습니까?")){
@@ -460,23 +456,7 @@ input[type="date"] {
 			}//confirm
 				
 			}//check
-			
-			
-			/* 아이디 중복검사 */
-		/* 		function idCheck(memberId){
-					frm=document.board;
-				if(memberId==""){
-					alert("아이디를 입력해주세요.");
-					$("#memberId").focus();
-					
-					return false;
-				}
-				
-				url="http://localhost/group2_prj/signUp/idCheck.jsp?memberId="+memberId;
-				window.open(url,"http://localhost/group2_prj/signUp/idCheck.jsp", "width=300, height=150")
-				$("#chkmemberIdYN").val("Y");
-				
-			}//idCheck */
+
 			
 			/* 우편번호시작 API */
 			 function execDaumPostcode() {
@@ -620,32 +600,8 @@ input[type="date"] {
 
 			
 			
-			<!-- action="http://localhost/jsp_prj/design%20final%20intergration/signup_process.jsp" -->
+
 			<form name="board" id="board" method="post" action="http://localhost/group2_prj/signUp/signup_process.jsp" >
-			<!-- {(joinExtCode,K)(joinExtID,1234528163)(joinExtEmail,hojin0703@nate.com)(joinExtName,김호진)(joinExtBirthDay,)(joinExtGender,)} -->
-					<input type="hidden" id="menuNo" name="menuNo" value="200144" />
-					<input type="hidden" name="extId" id="extId" value="" />
-					<input type="hidden" name="extCode" id="extCode" value="" />
-			
-					<input type="hidden" id="stipulationType" name="stipulation_type" value="" />
-					<input type="hidden" id="effectiveDate" name="effective_date" value="" />
-			
-					<input type="hidden" id="parentName" name="parentName" value="" />
-					<input type="hidden" id="parentDupinfo" name="parentDupinfo" value="" />
-					<input type="hidden" id="parentBirthday" name="parentBirthday" value="" />
-					<input type="hidden" id="parentAuthGubun" name="parentAuthGubun" value="" />
-			
-					<input type="hidden" id="joinType" name="joinType" value="" />
-			
-					<input type="hidden" name="regIdCheckFl" value="N" />
-					<input type="hidden" name="joinTypeCode" value="0001" />
-					<input type="hidden" name="receiveSms" value="" />
-					<input type="hidden" name="receivmemberEmail" value="" />
-			
-					<input type="hidden" name="regNoDate" id="regNoDate" value="" />
-					<input type="hidden" name="dupinfo" id="dupinfo" value="" />
-					<input type="hidden" name="siteType" id="siteType" value="" />
-					
 			<article class="member_join inner member_com">
 				<div class="group">
 					<h3 class="tit-st4 rel">기본정보입력 <span class="ab f16 color-purple">* 필수 입력 값</span></h3>
@@ -661,9 +617,8 @@ input[type="date"] {
 							<label for="memberId" class="t">ID <span class="color-purple">*</span></label>
 							<div class="cont ck_id">
 								<input type="text" name="memberId" id="memberId" value=""  readonly/>
-							<!-- 	<input type="hidden" name="chkmemberIdYN" id="chkmemberIdYN" value="N" /> -->
 								<button type="button" class="bg-black chkmemberId" id="btnDup">중복확인</button>
-								<span class="txt ml">특수문자를 제외한 영문, 숫자 8~21자 이내</span>
+								<span class="txt ml">특수문자를 제외한 영문, 숫자 4~20자 이내</span>
 							</div>
 						</li>
 				
@@ -671,7 +626,6 @@ input[type="date"] {
 							<label for="password" class="t">비밀번호<span class="color-purple">*</span></label>
 							<div class="cont">
 								<input type="password" name="pwd" id="password" />
-								
 								<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내</span>
 							</div>
 						</li>
@@ -685,7 +639,6 @@ input[type="date"] {
 						</li>
 						<li class="item item_birth" >
 							<label  class="t">생년월일  <span class="color-purple">*</span></label>
-							<!-- <strong class="t">생년월일  <span class="color-purple">*</span></strong> -->
 							<div class="cont">
 								<div class="birth_w clearfix">
 									<ul class="clearfix birth">
@@ -696,15 +649,7 @@ input[type="date"] {
 			
 								</div>
 							</div>
-			
 						</li>
-						<!-- <li class="item manAgeSet" style="display: none">
-							<label for="parent" class="t">부모님동의 <span class="color-purple">*</span></label>
-							<div class="cont">
-								<span class="txt">만 14세 미만의 어린이는 보호자 동의가 필요합니다.</span>
-								<button type="button" class="bg-black" onclick="javascript:checkPlusPopup();return false;">부모님 휴대전화 인증</button>
-							</div>
-						</li> -->
 						<li class="item">
 							<label for="genderFlag" class="t">성별 <span class="color-purple">*</span></label>
 							<div class="cont">
@@ -717,13 +662,12 @@ input[type="date"] {
 						</li>
 						<li class="item">
 							<label class="t">주소 <span class="color-purple">*</span></label>
-							<!-- <strong class="t">주소 <span class="color-purple">*</span></strong> -->
 							<div class="cont">
 								<ul class="add">
 									<li class="clearfix a1">
 										<div class="zipcode">
 											<label for="memberZipCd" class="hide">우편번호</label>
-											<input type="text" name="zipcode" id="memberZipCd" /> 
+											<input type="text" name="zipcode" id="memberZipCd" readonly/> 
 											<button id="addrBtn" type="button" class="bg-black" title="새창으로 열립니다." onclick="execDaumPostcode()">우편번호 찾기</button>
 											
 										</div>
@@ -731,7 +675,7 @@ input[type="date"] {
 									<li class="clearfix a2">
 										<span class="l">
 											<label for="memberAddr1" class="hide">주소</label>
-											<input type="text" name="addr1" id="memberAddr1"  />
+											<input type="text" name="addr1" id="memberAddr1"  readonly />
 										</span>
 										<span class="r">
 											<label for="memberAddr2" class="hide">나머지 주소</label>
@@ -764,25 +708,10 @@ input[type="date"] {
 										
 										</li>
 									</ul>
-				
 								</div>
-						<!-- 	<label class="t">이메일<span class="color-purple">*</span></label>
-							<strong class="t">이메일 <span class="color-purple">*</span></strong>
-							<div class="cont">
-								<ul class="memberEmail clearfix">
-									<li class="e1"><label for="memberEmail" class="hide">이메일 </label>
-										
-										
-											<input type="text" name="email" id="memberEmail" value="" />
-										
-			
-									</li>
-								</ul>
-							</div> -->
 						</li>
 						<li class="item">
 							<label class="t">휴대폰<span class="color-purple">*</span></strong></label>
-							<!-- <strong class="t">휴대폰  <span class="color-purple">*</span></strong> -->
 							<div class="cont tel_cont">
 								<div class="tel_w">
 								<ul class="clearfix tel">
@@ -794,18 +723,12 @@ input[type="date"] {
 								
 								<input type="hidden" name="memberCel" id="memberCel" value="">
 								</div>
-								<!-- <div class="tel_confirm" style="margin-top:10px;">
-									<label for="smsAuthNumber" class="hide">인증번호 입력</label>
-									<input type="text" name="smsAuthNumber" id="smsAuthNumber" placeholder="인증번호 6자리 숫자 입력" maxlength="6"/>
-									<input type="hidden" name="serverAuth" id="serverAuth" />
-								</div> -->
 							</div>
 						</li>
 						<li class="item">
 							<label class="t">전화번호<span class="color-purple">*</span></label>
 							<div class="cont">
 								<ul class="clearfix tel">
-									
 									<li>
 										<label for="memberTel3" class="hide">전화번호</label>
 										<input type="text" onkeyup="hPhoneNumber(this)" name="hPhone" id="hPhone" class="small" value=""  maxlength="13" style="width:320px;" />
@@ -814,19 +737,15 @@ input[type="date"] {
 								<input type="hidden" name="memberTel" id="memberTel" value="" />
 							</div>
 						</li>
-						
 					</ul>
 					<div class="agree_w f18">
 						<dl>
 							<dt class="bul-dot b">우신문화회관에서 제공하는 정보를 메일로 받아보시겠습니까?</dt>
 							<dd class="ck_com">
-							
 								<input type="radio" name="mailChk" id="agree1"  value="Y" />
 								 <label for="agree1" class="radio_lab lab_left lab_w">예</label>
-							
 								<input type="radio" name="mailChk" id="agree2"  value="N" />
 								 <label for="agree2" class="radio_lab">아니오</label>
-								 
 							</dd>
 						</dl>
 						<dl>
@@ -872,13 +791,6 @@ input[type="date"] {
 			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
 			<!-- End footer -->
 
-		<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
-
+	
 	</body>
 </html>

@@ -10,26 +10,34 @@
 <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 <jsp:useBean id="qmVO" class="kr.co.sist.vo.QuitMemberVO" scope="session"/>
 <jsp:setProperty property="*" name="mbVO"/>
-<%
+
+
+
+
+ <%
 String id=(String)session.getAttribute("memberId");
-String pw=mbVO.getPwd();
+String pw=request.getParameter("pwd");
 String reason=request.getParameter("reason");
 
-
 //key가져오기
-  ServletContext sc = getServletContext();
-  String plainText = sc.getInitParameter("keyU"); 
-  
-  //알고리즘 설정하여 MessageDigest
-  MessageDigest md=MessageDigest.getInstance("SHA-1");
-  md.update(plainText.getBytes());
-  new String(md.digest());
-  //키 생성
-  String key=DataEncrypt.messageDigest("SHA-1", plainText);
-  //키를 넣어 암호화 객체 생성
-  DataEncrypt de= new DataEncrypt(key);
+ServletContext sc = getServletContext();
+String plainText = sc.getInitParameter("keyU"); 
+//알고리즘 설정하여 MessageDigest
+MessageDigest md=MessageDigest.getInstance("MD5");
+md.update(plainText.getBytes());
+new String(md.digest());
+//키 생성
+String key=DataEncrypt.messageDigest("MD5", plainText);
+//키를 넣어 암호화 객체 생성
+DataEncrypt de= new DataEncrypt(key);
 
-String pwd=de.encryption(pw);
+
+
+String pwd=DataEncrypt.messageDigest("SHA-1", pw);
+
+
+
+
 
 %>
 
@@ -64,7 +72,7 @@ MemberDAO mbrDAO =MemberDAO.getInstance();
 				<%}else if(updateMbsCnt==-1){%>
 				<script>
 				alert("비밀번호를 다시 확인해주세요.");
-			
+				location.hrefp="http://localhost/group2_prj/mypage/quitmember.jsp";
 				</script>
 				<%}else{ 
 					if(qmCnt==-1){%>
@@ -86,3 +94,4 @@ MemberDAO mbrDAO =MemberDAO.getInstance();
 
 
 
+ --%>
