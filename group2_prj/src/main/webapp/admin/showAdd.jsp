@@ -75,11 +75,10 @@ AdminShowVO asVO= new AdminShowVO();
 			
 			var startDate=$("#startDate").val();
 			var endDate=$("#endDate").val();
-				if(startDate>endDate){
-					alert("종료일은 시작일보다 클 수 없습니다");
-					$("#endDate").focus();
-					return;
-				}
+			if(startDate>endDate){
+				alert("종료일은 시작일보다 클 수 없습니다");
+				$("#endDate").focus();
+				return;
 			}
 			
 			var price=$("#price").val();
@@ -153,7 +152,7 @@ AdminShowVO asVO= new AdminShowVO();
                                      <form id="frm" name="frm" action="show_insert.jsp">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-4"><img id="thImgPreview" class="img-thumbnail" alt="썸네일이미지"></div>
+                                            <div class="col-4"><img id="thImgPreview" class="img-thumbnail" src="http://localhost/group2_prj/admin/img/no_img.png" alt="썸네일이미지"></div>
                                         </div>  
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -235,11 +234,11 @@ AdminShowVO asVO= new AdminShowVO();
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"></div><div class="col-8">※jpg,jpeg,png,do 파일만 등록할 수 있습니다</div>
+                                            <div class="col-2"></div><div class="col-8 text-secondary">※jpg,jpeg,png,do 파일만 등록할 수 있습니다</div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"></div><div class="col-8">※썸네일 이미지와 소개 이미지는 필수입니다</div>
+                                            <div class="col-2"></div><div class="col-8 text-secondary">※썸네일 이미지와 소개 이미지는 필수입니다</div>
                                         </div>
                                     </form>
                                     

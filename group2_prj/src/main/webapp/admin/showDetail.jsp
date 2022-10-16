@@ -84,7 +84,7 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
     					$("#endDate").focus();
     					return;
     				}
-    			}
+    			
     			
     			var price=$("#price").val();
     			if(price.trim()==""){

@@ -16,32 +16,32 @@ String memberId= request.getParameter("memberId");
 							<!-- left -->
 							<ul id="header_left">
 								<li class="current">
-									<a href="page1.html">공연정보</a>
+									<a href="#">공연정보</a>
 									<ul>
 										<li><a href="http://localhost/group2_prj/reservation/show_search.jsp">공연일정</a></li>
 										<!-- <li><a href="calendar.html">일정조회</a></li> -->
 										<!-- <li><a href="#">예매</a></li> -->
 										<!-- <li><a href="http://localhost/group2_prj/reservation/show_info.jsp">공연정보상세보기</a></li> -->
-										<li><a href="page7.html">좌석배치도</a></li>
+										<li><a href="http://localhost/group2_prj/subpage/subpage-seatMap.jsp">좌석배치도</a></li>
 									</ul>
 								</li>
 								<li>
-									<a href="">예매정보</a>
+									<a href="#">예매정보</a>
 									<ul>
-										<li><a href="subpage-ticketmethod.html">티켓구입방법</a></li>
-										<li><a href="subpage-ticketreceive.html">티켓수령방법</a></li>
-										<li><a href="subpage-ticketcancel.html">예매취소,변경안내</a></li>
-										<li><a href="subpage-ticketprovision .html">예매약관</a></li>					
+										<li><a href="http://localhost/group2_prj/subpage/subpage-ticketMethod.jsp">티켓구입방법</a></li>
+										<li><a href="http://localhost/group2_prj/subpage/subpage-ticketReceive.jsp">티켓수령방법</a></li>
+										<li><a href="http://localhost/group2_prj/subpage/subpage-ticketCancel.jsp">예매취소,변경안내</a></li>
+										<li><a href="http://localhost/group2_prj/subpage/subpage-ticketProvision.jsp">예매약관</a></li>					
 									</ul>
 								</li>
 								<li>
-									<a href="page9.html">고객센터</a>
+									<a href="#">고객센터</a>
 									<ul>
-										<li><a href="page9.html">FAQ</a></li>
-										<li><a href="subpage-manner.html">관람예절</a></li>				
+										<li><a href="http://localhost/group2_prj/subpage/subpage-FAQ1.jsp">FAQ</a></li>
+										<li><a href="http://localhost/group2_prj/subpage/subpage-manner.jsp">관람예절</a></li>				
 									</ul>
 								</li>
-								<li><a href="subpage-way.html">오시는 길</a></li>
+								<li><a href="http://localhost/group2_prj/subpage/subpage-location.jsp">오시는 길</a></li>
 								
 								
 							</ul>
@@ -78,7 +78,7 @@ String memberId= request.getParameter("memberId");
 								<%}%>
 								<li><a href="http://localhost/group2_prj/reservation/ticket_page.jsp">티켓</a></li>
 								<li class="calender">
-									<a href="calendar.html">
+									<a href="http://localhost/group2_prj/reservation/calendar.jsp">
 										<span class="material-symbols-outlined md_20">
 											calendar_month
 											</span>
