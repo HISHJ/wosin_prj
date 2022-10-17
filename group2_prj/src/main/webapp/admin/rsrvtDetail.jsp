@@ -1,3 +1,5 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="kr.co.sist.vo.AdminRsrvtInfoVO"%>
 <%@page import="kr.co.sist.dao.AdminRsrvtDAO"%>
 <%@page import="java.util.Enumeration"%>
@@ -26,7 +28,7 @@
 		color: #d9d9d9; 
 
 		}
-        
+         
         </style>
 <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
 <!--JQuery Google CDN -->
@@ -40,8 +42,21 @@
 String rsrvtId = request.getParameter("rsrvtId");
 System.out.println(rsrvtId);
 
+//key가져오기
+ServletContext sc = getServletContext();
+String plainText = sc.getInitParameter("keyU"); 
+
+//복호화 : 암호화된 문자열을 원본 문자열로 변경
+ DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
+
 AdminRsrvtDAO aDAO = AdminRsrvtDAO.getInstance();
 AdminRsrvtInfoVO voList = aDAO.selectRsrvtDetail(rsrvtId);
+String id = dd.decryption(voList.getUserId());
+String phonNum = dd.decryption(voList.getPhone());
+String email = dd.decryption(voList.getEmail());
+
+
+
 %>
    <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
@@ -73,7 +88,7 @@ AdminRsrvtInfoVO voList = aDAO.selectRsrvtDetail(rsrvtId);
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-3"><b>아이디</b></div> 
-                                            <div class="col-6"><%=voList.getUserId() %></div>
+                                            <div class="col-6"><%=id  %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -93,12 +108,12 @@ AdminRsrvtInfoVO voList = aDAO.selectRsrvtDetail(rsrvtId);
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-3"><b>휴대전화</b></div>
-                                             <div class="col-6"><%= voList.getPhone() %></div>
+                                             <div class="col-6"><%= phonNum %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-3"><b>이메일</b></div> 
-                                            <div class="col-6"><%= voList.getEmail() %></div>
+                                            <div class="col-6"><%= email %></div>
                                         </div>
                                         
                                         <div class="dataTable-top"></div>

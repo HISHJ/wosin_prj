@@ -1,3 +1,5 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="kr.co.sist.dao.AdminRsrvtDAO"%>
 <%@page import="kr.co.sist.vo.AdminRsrvtInfoVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -38,6 +40,13 @@ String endDate = request.getParameter("endDate");
 //상태 가져오기
 String status = request.getParameter("status");
 
+
+
+//key가져오기
+ServletContext sc = getServletContext();
+String plainText = sc.getInitParameter("keyU"); 
+//복호화 : 암호화된 문자열을 원본 문자열로 변경
+DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
 
 //기본예매내역조회
 AdminRsrvtInfoVO asRVO = new AdminRsrvtInfoVO();
@@ -167,7 +176,7 @@ $(function(){
                               			<tr>
                                             <td><%= rsrvtid %></td>
                                             <td><%=asVO.getUserName() %></td>
-                                            <td><%=asVO.getUserId() %></td>
+                                            <td><%=dd.decryption(asVO.getUserId()) %></td>
                                             <td><%= date %></td>
                                             <td><%=asVO.getRsrvtStatus() %></td>                                          
                                             <td><input type="button" value="상세보기" onClick="getHiddenVal('<%=rsId%>')"></td> 

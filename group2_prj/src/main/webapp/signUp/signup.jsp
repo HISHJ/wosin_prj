@@ -17,8 +17,8 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="apple-touch-icon" sizes="180x180" href="http://localhost/group2_prj/static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static/commons/img/favicon_16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static/commons/img/favicon_32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static/commons/img/favicon_16.png">
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\reset.css">
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\subheader.css">
@@ -27,8 +27,8 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\signup.css">
 	
 	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/layout_new.css">
+   	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/style.css">
+     <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/layout_new.css">
 	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static/portal/css/bbs_new.css">
 	 
 		<!--google icons-->

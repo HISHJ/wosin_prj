@@ -11,7 +11,7 @@
     pageEncoding="UTF-8" info="예매취소, 좌석테이블 삭제 여부묻는 페이지" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+ 
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -66,6 +66,7 @@ function fn_tranList(){
 
 function goBack(){
 	  try{
+		  alert("취소버튼을 누르셨습니다. 예매내역 페이지로 돌아갑니다.");
 	      window.history.go(-1);
 	  }catch(e){
 		    history.back();
