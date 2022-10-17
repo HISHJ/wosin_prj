@@ -41,14 +41,37 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
         <script type="text/javascript">
         
       
-       
-    	$("#modifyBtn").click(function() {
-    	
-    			$("#frm").submit();
-    	
-    		
-		});
-  
+        $(function() {   
+            
+        	$("#modifyBtn").click(function() {
+        		if(confirm("상영일정을 변경하시겠습니까?")){
+        		}
+        		alert("상영일정을 변경 완료하였습니다.");
+        			$("#frm").submit();
+        		
+        			
+        			
+        		
+    		 });
+      }); 
+        
+        
+        
+        $(function() {
+			//삭제하기
+        	$("#removeBtn").click(function() {
+        		var name=$("#name").val();
+        		var del=confirm("공연을 삭제하시겠습니까?");
+        		
+    			if(del){
+    				alert("상영일정이 삭제되었습니다");
+    				$("#deleteFrm").submit();	
+    			}else{
+    				return;
+    			}
+				
+			});
+      
 </script>
     </head>
     <body>
@@ -65,7 +88,7 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                     
                                        <!-- **update form 태그 위치**  -->
                                        
-                                       <form action="schedule_update.jsp" method="post" id="frm"  name="frm">
+                                       <form action="schedule_update.jsp?schId=<%=schData.getSchId() %>" method="post" id="frm"  name="frm">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-4"><img id="thImgPreview" src="img/<%=schData.getThImg() %>" class="img-thumbnail" alt="썸네일이미지"></div>
@@ -193,8 +216,8 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                             
                                                 <div class="mt-4 mb-0">
                                                     <div class="col text-center">
-                                                        <input type="submit" class="btn btn-secondary btn-sm" id="modifyBtn" formaction="schedule_update.jsp?schId=<%=schData.getSchId() %>" value="변경"></a>
-                                                        <input type="button" class="btn btn-default btn-sm" id="cancelBtn" value="취소">
+                                                         <a class="btn btn-secondary btn-sm" id="modifyBtn" >변경</a>
+                                                        <input type="button" class="btn btn-default btn-sm" id="cancelBtn" value="취소" onclick="history.back()">
                                                     </div>
                                                 </div>
                                             </div>

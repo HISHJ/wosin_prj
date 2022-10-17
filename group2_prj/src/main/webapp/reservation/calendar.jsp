@@ -16,12 +16,12 @@
   String name = request.getParameter("name");
   String startDate = request.getParameter("startDate");
   String endDate = request.getParameter("endDate");
- //
-/*  ScheduleShowVO sVO = ScheduleShowVO();
+ 
+
  ScheduleDAO sDAO = ScheduleDAO.getInstance();
  List<ScheduleShowVO> list=sDAO.selectSchedule(showId);
- //
- HashMap map = new HashMap();*/
+
+/*  HashMap map = new HashMap();
  
  ArrayList list = new ArrayList(); //DB에서 가져온 목록이라고 생각하세요.
  HashMap map = new HashMap();  //DB에서 가져온 목록중 1개의 로우 (모델) 이라고 생각하세요. 
@@ -48,7 +48,7 @@
  map.put("START_DATE",20100329);  //네번째 로우값에 시작일 대입
  map.put("END_DATE",20100330);  //네번째 로우값에 종료일 대입
  map.put("CONTENT","청소");  //네번째 로우값에 내용 추가
- list.add(map); 
+ list.add(map);  */
     
 //날짜  JSP
  int year;

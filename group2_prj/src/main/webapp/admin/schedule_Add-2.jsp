@@ -50,12 +50,20 @@ System.out.println( showId );
     	<script type="text/javascript">
     	
     	
-    	function addBtn() {
+    	  $(function() { 
+    		   
+    	      	$("#addBtn").click(function() {
+    	      		
+    	      		
+    	      		var schDate=$("#schDate").val();
+    	      		if(schDate==""){
+    	      			alert("상영일정을 입력해주세요.");
+    	      			return;
+    	      		}
     		
-    	
-				alert("공연이 추가되었습니다"); 
-				$("#frm").submit();	
-			
+    	      		alert("상영일정이 추가되었습니다.");
+          			$("#frm").submit();
+          		
 		}//추가하기버튼
 	
     	
@@ -74,7 +82,7 @@ System.out.println( showId );
                                     <div class="card-header navy bg-dark"><h3 class="text-start text-white font-weight-light my-4 " style="font-weight: bold;">상영일정 추가</h3></div>
                                     <div class="card-body">
                                        <!-- **insert form 태그 위치**  -->
-                                    <form id="frm" name="frm" action="schedule_insert.jsp" method="post">
+                                    <form id="frm" name="frm" action="schedule_insert.jsp?showId=<%=showId %>" method="post">
                                     
                       				<input type="hidden" name="hid" id="hid" value=<%=sel.getShowId()%>>
                       				<input type="hidden" name="hid2" id="hid2" value=<%=sel.getStartDate()%>>
@@ -129,8 +137,7 @@ System.out.println( showId );
                                                     <div class="col text-center">
                                                     
                                                     
-                                                    <input type="submit" class="btn btn-secondary btn-sm" id="modifyBtn" formaction="schedule_insert.jsp?showId=<%=showId %>" value="추가"></a>
-                   <%--  <a href="schedule_insert.jsp?showId=<%=swId%>"><a class="btn btn-secondary btn-sm" onclick="addBtn()">추가</a></a> --%>
+                                                    <a class="btn btn-secondary btn-sm" id="addBtn" >추가</a>
                                                         <a class="btn btn-default btn-sm" href="schedule_Add-1.jsp">닫기</a>
                                                         
                                                     </div>

@@ -29,7 +29,7 @@ String schTime = schTime1+":"+schTime2;
 		//board페이지로 이동
 		if(schCnt != -99){%>
 					<script>
-				alert("상영일정 변경 완료")
+				
 			location.href="schedule_Board.jsp"; 
 					</script>
 <%} %>
