@@ -40,6 +40,7 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script type="text/javascript">
         
+      
       //삭제	
         $(function() {
 		
@@ -64,14 +65,11 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
         		alert("상영일정을 변경 완료하였습니다.");
         			$("#frm").submit();
         		
-        			
+        			return;
         		
         		
     		 });//modify
       }); 
-        
-			
-			
       
 </script>
     </head>
@@ -213,12 +211,12 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                     </form>  
                                        
                                     <!-- 10/17 하지윤: 링크 및 id 등등 수정하시면 됩니다 -->   
-                                    <form id="deleteFrm" action="schedule_delete.jsp">
+                                    <form id="deleteFrm" action="show_remove.jsp">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>공연삭제</b></div> <div class="col-4">
                                             <input type="button" id="removeBtn" value="삭제하기"></div>
-                                            <input type="hidden" id="schId" name="schId" value="<%=schData.getSchId() %>">
+                                            <input type="hidden" id="showId" name="showId" value="">
                                         </div>
                                    	</form>
                                         
