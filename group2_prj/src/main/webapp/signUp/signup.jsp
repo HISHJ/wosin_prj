@@ -426,13 +426,7 @@ input[type="date"] {
 				return  ;
 			}//phone
 			
-			var hPhone=$("#hPhone").val();
-			if(hPhone.trim()==""){
-				alert("전화번호를 입력해주세요.");
-				$("#hPhone").focus();
-				return  ;
-			}//hPhone
-			
+	
 		
 			var mailChk =$(':radio[name=mailChk]:checked' );
 			if(mailChk.length<1){

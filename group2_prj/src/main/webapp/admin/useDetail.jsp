@@ -8,7 +8,7 @@
     
     <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
     <jsp:setProperty property="*" name="admVO"/>
-    
+ 
     <%
     request.setCharacterEncoding("UTF-8");
     

@@ -192,7 +192,7 @@ if( session.getAttribute("adminId") == null){
                                             <td><%=admVO1.getMailChk()%></td>
                                             <td><%=admVO1.getSmsChk()%></td>
                                             <td><%=admVO1.getStatus()%></td>
-                                            <td><a href="useDetail.jsp?memberId=<%=admVO1.getMemberId()%>">
+                                            <td><a href="http://localhost/group2_prj/admin/useDetail.jsp?memberId=<%=admVO1.getMemberId()%>">
                                             <input type="button" value="상세보기" class="useDetailBtn"/></a></td>
                                         </tr>
                                    <%}%>

@@ -283,7 +283,7 @@ public int insertMember(MemberVO mbVO) throws SQLException {
 		
 		  StringBuilder join = new StringBuilder(); join.append(" insert into member ")
 		 .append(" (name,memberId,pwd,birth,gender,zipcode,addr1,addr2,email,phone,mailChk,smsChk,inputdate,status) ")
-		   .append(" values(?,?,?,?,?,?,?,?,?,?,?,?,?,to_char(sysdate,'yyyy-MM-dd'),'Y')");
+		   .append(" values(?,?,?,?,?,?,?,?,?,?,?,?,to_char(sysdate,'yyyy-MM-dd'),'Y')");
 		 
 		
 		
