@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <display-name>project_g2</display-name>
+  <display-name>group2_prj</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -18,4 +18,20 @@
 <param-name>keyA</param-name>
 <param-value>xO4uy3dsdAt1S1iSOJMYAQ==</param-value>
 </context-param>
+
+<!-- 에러처리 -->
+<!-- 10/18 하지윤: 위에꺼는 안건드림. 여기부터 추가한것  -->
+<!-- 절대경로 삽입이 안됨 -->
+<error-page>
+	<error-code>401</error-code>
+	<location>/admin/401.jsp</location>
+</error-page>
+<error-page>
+	<error-code>404</error-code>
+	<location>/admin/404.jsp</location>
+</error-page>
+<error-page>
+	<error-code>500</error-code>
+	<location>/admin/500.jsp</location>
+</error-page>
 </web-app>

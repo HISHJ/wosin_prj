@@ -90,7 +90,6 @@ String memberId = (String)session.getAttribute("memberId");
       //공연명 검색
       $("#nameSearchBtn").click(function() {
          var name=$("#name").val();
-         //alert(name);
          
          $("#nameFrm").submit();
          
@@ -130,8 +129,9 @@ String memberId = (String)session.getAttribute("memberId");
          $("#period2").val(dateFormat(date));
          $(".datepickerRange").val(sdate + " ~ " + dateFormat(date));
          //fn_search2('1');
+         //fn_search2();
          
-         $("#dateFrm").submit(); //2022-10-12 유설빈
+         $("#dateFrm").submit(); 
          
       });
       
@@ -308,7 +308,7 @@ String memberId = (String)session.getAttribute("memberId");
          <div class="top clearfix">
             <div class="category">
                <span class="active">
-                  <a href="page1.jsp" onfocus="this.blur()" >전체보기</a> <!-- 링크클릭시 border 없앰 -->
+                  <a href="http://localhost/group2_prj/reservation/show_search.jsp" onfocus="this.blur()" >전체보기</a> <!-- 링크클릭시 border 없앰 -->
                </span>
             </div>
          </div>

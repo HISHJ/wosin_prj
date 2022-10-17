@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="500 error page"%>
+    
+    <%  // 현재 페이지가 정상적으로 응답되는 페이지임을 지정
+    // 코드 생략 시 웹 브라우저가 자체적으로 제공하는 에러 페이지 출력
+    response.setStatus(HttpServletResponse.SC_OK);
+	%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -22,9 +27,9 @@
                                 <div class="text-center mt-4">
                                     <h1 class="display-1">500</h1>
                                     <p class="lead">Internal Server Error</p>
-                                    <a href="http://localhost/group2_prj/admin/dashBoard.jsp">
+                                    <a href="#" onclick="history.back()">
                                         <i class="fas fa-arrow-left me-1"></i>
-                                        Return to Dashboard
+                                        Return to back
                                     </a>
                                 </div>
                             </div>
