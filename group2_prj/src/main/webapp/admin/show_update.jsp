@@ -31,6 +31,7 @@
 					//board페이지로 이동
 					if(cnt!=-99){%>
 						<script>
+						alert("상영일정 변경 완료")
 						location.href="showBoard.jsp";
 						</script>
 					<%}%>  --%>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8" info=""%>
 <%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
 <%@page import="com.oreilly.servlet.MultipartRequest"%>
-
+<%@page import="kr.co.sist.vo.AdminShowVO"%>
 <%@page import="kr.co.sist.dao.AdminScheduleDAO"%>
 <%@page import="kr.co.sist.vo.AdminScheduleVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -64,8 +64,8 @@ System.out.println( showId );
     	      		alert("상영일정이 추가되었습니다.");
           			$("#frm").submit();
           		
-		}//추가하기버튼
-	
+    	   	 });
+    	    }); 
     	
     	</script>
         
