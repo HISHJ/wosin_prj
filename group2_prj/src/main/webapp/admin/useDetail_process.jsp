@@ -1,3 +1,5 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="java.security.MessageDigest"%>
 <%@page import="kr.co.sist.dao.AdminMemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
@@ -25,26 +27,49 @@
 </head>
 <body>
 
-<%
-%>
 <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
 <jsp:useBean id="aqmVO" class="kr.co.sist.vo.AdminQuitMemberVO" scope="page"/>
-<jsp:setProperty property="memberId" name="aqmVO" value="<%=admVO.getMemberId()%>"/>
 <jsp:setProperty property="*" name="admVO"/>
-<%-- <jsp:setProperty property="memberId" name="admVO" />
-<jsp:setProperty property="pwd" name="admVO"/> --%>
 
-<%=admVO %>
+
+<%
+String id=(String)session.getAttribute("memberId");
+String pw=admVO.getPwd();%>
+
+<%= %>
+<%-- 
+//key가져오기
+ServletContext sc = getServletContext();
+String plainText = sc.getInitParameter("keyU"); 
+//알고리즘 설정하여 MessageDigest
+MessageDigest md=MessageDigest.getInstance("MD5");
+md.update(plainText.getBytes());
+new String(md.digest());
+//키 생성
+String key=DataEncrypt.messageDigest("MD5", plainText);
+//키를 넣어 암호화 객체 생성
+DataEncrypt de= new DataEncrypt(key);
+
+
+
+String pwd=DataEncrypt.messageDigest("SHA-1", pw);
+
+%>
+<jsp:setProperty property="memberId" name="aqmVO" value="<%=id%>"/>
+<jsp:setProperty property="pwd" name="aqmVO" value="<%=pwd %>"/>
+
+
+
  <%
 AdminMemberDAO admDAO=AdminMemberDAO.getInstance();
 int  updateMemberCnt = admDAO.updateMemberStatus(admVO.getMemberId());
 int insertCnt=admDAO.insertQuitMember(aqmVO);
-%>
 
 
 
 
- <% if(updateMemberCnt==0){/* 회원정보수정 실패 */	%>
+
+ 		if(updateMemberCnt==0){/* 회원정보수정 실패 */	%>
 					<script>
 						alert("비밀번호를 다시 확인해주세요");
 					</script>
@@ -65,4 +90,4 @@ int insertCnt=admDAO.insertQuitMember(aqmVO);
 				<%}//end if(insert)
 					}//end if(update)%> 
 </body>
-</html>
+</html> --%>

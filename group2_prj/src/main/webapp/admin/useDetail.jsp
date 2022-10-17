@@ -1,3 +1,5 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="kr.co.sist.dao.AdminMemberDAO"%>
 <%@page import="kr.co.sist.vo.AdminMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -9,20 +11,25 @@
     
     <%
     request.setCharacterEncoding("UTF-8");
+    
 
+	//key가져오기
+	  ServletContext sc = getServletContext();
+	  String plainText = sc.getInitParameter("keyU"); 
+	//복호화 : 암호화된 문자열을 원본문자열로 변경 
+	 DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
  	AdminMemberDAO admDAO= AdminMemberDAO.getInstance();
 
  	admVO= admDAO.selectMemberDetail(admVO.getMemberId());
  	String zipcode=admVO.getZipcode();
  	String addr1 = admVO.getAddr1();
- 	String addr2= admVO.getAddr2();
+ 	String addr2= dd.decryption(admVO.getAddr2());
  	
  	String Addr = zipcode+" "+addr1+" "+addr2;
   
     %>
 
-    
-   <%=admVO %>
+
     
   <!DOCTYPE html>
 <html lang="en">
@@ -83,19 +90,15 @@
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>아이디</b></div> <div class="col-4"><%=admVO.getMemberId() %></div>
+                                            <div class="col-2"><b>아이디</b></div> <div class="col-4"><%=dd.decryption(admVO.getMemberId()) %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>이메일</b></div> <div class="col-4"><%=admVO.getEmail() %></div>
+                                            <div class="col-2"><b>이메일</b></div> <div class="col-4"><%=dd.decryption(admVO.getEmail())%></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>휴대전화</b></div> <div class="col-4"><%=admVO.getPhone() %></div>
-                                        </div>
-                                        <div class="dataTable-top"></div>
-                                        <div class="row">
-                                            <div class="col-2"><b>전화번호</b></div> <div class="col-4"><%=admVO.gethPhone() %></div>
+                                            <div class="col-2"><b>휴대전화</b></div> <div class="col-4"><%=dd.decryption(admVO.getPhone())%></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">

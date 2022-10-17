@@ -336,38 +336,9 @@ if( session.getAttribute("memberId") == null){%>
 							    }//execDaumPostcode() 
 							    
 							    /* 하이픈 추가 */
-				 function PhoneNumber(obj) {
-
-				    var number = obj.value.replace(/[^0-9]/g, "");
-				    var phone = "";
 			
-				    if(number.length < 4) {
-				        return number;
-				    } else if(number.length < 7) {
-				        phone += number.substr(0, 3);
-				        phone += "-";
-				        phone += number.substr(3);
-				        
-				        
-				    } else if(number.length < 11) {
-				        phone += number.substr(0, 3);
-				        phone += "-";
-				        phone += number.substr(3, 3);
-				        phone += "-";
-				        phone += number.substr(6);
-				    } else {
-				        phone += number.substr(0, 3);
-				        phone += "-";
-				        phone += number.substr(3, 4);
-				        phone += "-";
-				        phone += number.substr(7);
-				    }
-				    obj.value = phone;
-				    return false;
-				}//PhoneNumber
-		
 			/* 전화번호 하이픈추가  */
-				function hPhoneNumber(obj) {
+				function PhoneNumber(obj) {
 
 				    var number = obj.value.replace(/[^0-9]/g, "");
 				    var phone = "";
@@ -550,14 +521,6 @@ if( session.getAttribute("memberId") == null){%>
 										</ul>
 										<input type="hidden" name="birthDay" id="birthDay" value="19970103" />
 										<input type="hidden" name="birthMonth" id="birthMonth" value="0103" />
-				
-										<!-- <div class="solar ck_com birth_solar">
-											<input type="radio" name="lunarFlag" id="lunarFlag1" value="N" checked="checked" /> 
-											<label for="lunarFlag1">양력</label>
-											<input type="radio" name="lunarFlag" id="lunarFlag2" value="Y"  /> 
-											<label for="lunarFlag2">음력</label>
-										</div> -->
-									
 
 									</div>
 								</div>
@@ -655,27 +618,10 @@ if( session.getAttribute("memberId") == null){%>
 									<input type="hidden" name="memberCel" id="memberCel" value="010-4807-1274" />
 									<input type="hidden" name="memberCelOri" id="memberCelOri" value="010-4807-1274" />
 									<input type="hidden" name="changeCel" id="changeCel" value="0" />
-									<!-- <div class="tel_confirm" style="margin-top:10px;">
-										<label for="smsAuthNumber" class="hide">인증번호 입력</label>
-										<input type="text" name="smsAuthNumber" id="smsAuthNumber" placeholder="인증번호 6자리 숫자 입력" maxlength="6"/>
-										<input type="hidden" name="serverAuth" id="serverAuth" />
-									</div> -->
+							
 								</div>
 							</li>
-							<li class="item">
-								<label class="t">전화번호</label>
-								<div class="cont">
-									
-				
-									<ul class="clearfix tel">
-										<li>
-										<label for="memberTel3" class="hide">전화번호</label>
-										<input type="text" value=<%=dd.decryption(mbVO.gethPhone())%> onkeyup="hPhoneNumber(this)" name="hPhone" id="hPhone" class="small" value=""  maxlength="13" style="width:320px;" />
-									</li>
-									</ul>
-									<input type="hidden" name="memberTel" id="memberTel" value="031-764-1374" />
-								</div>
-							</li>
+							
 
 							<!--------------------------------------------------------------------------------------->
 

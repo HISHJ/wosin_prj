@@ -98,7 +98,6 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 								<a href="#">
 									<span>회원서비스</span>
 								</a>
-								display:none
 								<ul class="depth" >
 									<li>
 										<a href="page1.html">공연정보</a>
@@ -143,7 +142,6 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 					String id=request.getParameter("memberId");
 					String pw=request.getParameter("pwd");
 					String phone=request.getParameter("phone");
-					String hphone=request.getParameter("hPhone");
 					String addr2=request.getParameter("addr2");
 					String email1=request.getParameter("email1");
 					String email2=request.getParameter("email2");
@@ -167,7 +165,6 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 			 	  String pwd=DataEncrypt.messageDigest("SHA-1", pw);
 				  String Email=de.encryption(email);
 				  String Phone=de.encryption(phone);
-				  String hPhone=de.encryption(hphone);
 				  String Addr2=de.encryption(addr2);
 				 
 
@@ -183,7 +180,6 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 					<jsp:setProperty property="addr2" name="mbVO" value="<%=Addr2 %>"/>
 					<jsp:setProperty property="email" name="mbVO" value="<%=Email %>"/>
 					<jsp:setProperty property="phone" name="mbVO" value="<%=Phone %>"/>
-					<jsp:setProperty property="hPhone" name="mbVO" value="<%=hPhone %>"/>
 					<jsp:setProperty property="mailChk" name="mbVO"/>
 					<jsp:setProperty property="smsChk" name="mbVO"/>  
 				    <jsp:setProperty property="mdate" name="mbVO"/> 

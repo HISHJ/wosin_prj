@@ -1,3 +1,6 @@
+<%@page import="java.security.MessageDigest"%>
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="javax.websocket.Session"%>
 <%@page import="kr.co.sist.vo.AdminMemberVO"%>
 <%@page import="java.util.ArrayList"%>
@@ -11,15 +14,37 @@
 <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
 <%
   request.setCharacterEncoding("UTF-8");
+
   String id=request.getParameter("memberId");
   String mailchk=request.getParameter("mailChk");
   String smschk=request.getParameter("smsChk");
   String status=request.getParameter("status");
-	AdminMemberDAO admDAO = AdminMemberDAO.getInstance();
-	
- List<AdminMemberVO> Mlist =admDAO.selectMember(id,mailchk,smschk,status);  
+  
+//key가져오기
+ServletContext sc = getServletContext();
+String plainText = sc.getInitParameter("keyU");  
+//알고리즘 설정하여 MessageDigest
+MessageDigest md=MessageDigest.getInstance("MD5");
+md.update(plainText.getBytes());
+new String(md.digest());
+//키 생성
+String key=DataEncrypt.messageDigest("MD5", plainText);
+//복호화 : 암호화된 문자열을 원본문자열로 변경 
+DataEncrypt de= new DataEncrypt(key);
+DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
+
+//아이디 암호화
 
 
+
+AdminMemberDAO admDAO = AdminMemberDAO.getInstance();
+List<AdminMemberVO> Mlist =null;
+
+if(id!=null){
+ Mlist =admDAO.selectMember(de.encryption(id),mailchk,smschk,status);  
+}else{
+Mlist =admDAO.selectMember(id,mailchk,smschk,status);   
+}
   
   %> 
   <%
@@ -74,69 +99,7 @@ if( session.getAttribute("adminId") == null){
      <!-- 여기서부터 <nav>-->
 <jsp:include page="admin_common_header.jsp"/>      
 <!-- -여기까지 <div id="layoutSidenav_content"> 전  -->
-    
-    <!-- 
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            Navbar Brand
-            <a class="navbar-brand ps-3" href="dashBoard.html">C&nbsp;M&nbsp;S&nbsp;</a>
-            Sidebar Toggle
-            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!"><i class="fas fa-bars"></i></button>
-            Navbar Search
-            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-           
-                <div class="input-group" style="color:#FFFFFF">
-                하지윤님
-                </div>
-            </form>
-            Navbar
-            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="javascript:passwordChange()" target="_parent">정보변경</a></li>
-                        <li><a class="dropdown-item" href="passwordchange.html" target="_parent">정보변경</a></li>
-                        <li><a class="dropdown-item" href="#!">로그아웃</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-        <div id="layoutSidenav">
-            <div id="layoutSidenav_nav">
-                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
-                    <div class="sb-sidenav-menu">
-                        <div class="nav">
-                             <div class="sb-sidenav-menu-heading">Menu</div>
-                             <a class="nav-link" href="dashBoard.html">
-                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                 Dashboard
-                             </a>
-                             <hr>
-                             <a class="nav-link collapsed" href="userBoard.html">
-                                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                                 회원관리   
-                             </a>
-                             <hr>
-                             <a class="nav-link" href="showBoard.html">
-                                 <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                                 공연관리
-                             </a>
-                            <hr>
-                            <a class="nav-link" href="showINGBoard.html">
-                                 <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
-                                 상영관리
-                             </a>
-                             <hr>
-                             <a class="nav-link" href="rsrvtBoard.html">
-                                 <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
-                                 예매관리
-                             </a>
-                        </div>
-                    </div>
-                    <div class="sb-sidenav-footer">
-                        <img src="/img/logo_white.png" style="width:200px;height:60px"/>
-                    </div>
-                </nav>
-            </div> -->
+ 
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
@@ -224,7 +187,7 @@ if( session.getAttribute("adminId") == null){
                                      <%for(AdminMemberVO admVO1 : Mlist){%>
                                         <tr>
                                             <td><%=admVO1.getName()%></td>
-                                            <td><%=admVO1.getMemberId()%></td>
+                                            <td><%=dd.decryption(admVO1.getMemberId())%></td>
                                             <td><%=admVO1.getMdate()%></td>
                                             <td><%=admVO1.getMailChk()%></td>
                                             <td><%=admVO1.getSmsChk()%></td>

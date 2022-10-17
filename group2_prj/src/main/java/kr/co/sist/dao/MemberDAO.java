@@ -189,7 +189,7 @@ public MemberVO selectMember(String memberId) throws SQLException {
 	
 	try {
 		con=dc.getConn();
-		String selectInfo = "select name,memberId,pwd,birth,gender,zipcode,addr1,addr2,email,phone,hphone,"
+		String selectInfo = "select name,memberId,pwd,birth,gender,zipcode,addr1,addr2,email,phone,"
 				+ "mailChk,smsChk from member where memberId=?";
 		pstmt=con.prepareStatement(selectInfo);
 		pstmt.setString(1, memberId);
@@ -209,7 +209,6 @@ public MemberVO selectMember(String memberId) throws SQLException {
 			mbVO.setAddr2(rs.getString("addr2"));
 			mbVO.setEmail(rs.getString("email"));
 			mbVO.setPhone(rs.getString("phone"));
-			mbVO.sethPhone(rs.getString("hPhone"));
 			mbVO.setMailChk(rs.getString("mailChk"));
 			mbVO.setSmsChk(rs.getString("smsChk"));
 				
@@ -235,7 +234,7 @@ public int updateMember(MemberVO mbVO) throws SQLException {
 		con=dc.getConn();
 		StringBuilder updateMb = new StringBuilder();
     	updateMb.append("	update member")
-    						  .append("	set name=?,birth=?,gender=?, zipcode=?,addr1=?,addr2=?,email=?,phone=?,hphone=?,mailChk=?,smsChk=?")
+    						  .append("	set name=?,birth=?,gender=?, zipcode=?,addr1=?,addr2=?,email=?,phone=?,mailChk=?,smsChk=?")
     						  .append("	where memberId=? and pwd=?	");
 		
 		
@@ -249,11 +248,10 @@ public int updateMember(MemberVO mbVO) throws SQLException {
 		pstmt.setString(6,mbVO.getAddr2());
 		pstmt.setString(7,mbVO.getEmail());
 		pstmt.setString(8,mbVO.getPhone());
-		pstmt.setString(9,mbVO.gethPhone());
-		pstmt.setString(10,mbVO.getMailChk());
-		pstmt.setString(11,mbVO.getSmsChk());
-		pstmt.setString(12,mbVO.getMemberId());
-		pstmt.setString(13,mbVO.getPwd());
+		pstmt.setString(9,mbVO.getMailChk());
+		pstmt.setString(10,mbVO.getSmsChk());
+		pstmt.setString(11,mbVO.getMemberId());
+		pstmt.setString(12,mbVO.getPwd());
 		
 		updateMbCnt= pstmt.executeUpdate();
 		
@@ -284,7 +282,7 @@ public int insertMember(MemberVO mbVO) throws SQLException {
 //	3. 쿼리문생성객체얻기
 		
 		  StringBuilder join = new StringBuilder(); join.append(" insert into member ")
-		 .append(" (name,memberId,pwd,birth,gender,zipcode,addr1,addr2,email,phone,hPhone,mailChk,smsChk,inputdate,status) ")
+		 .append(" (name,memberId,pwd,birth,gender,zipcode,addr1,addr2,email,phone,mailChk,smsChk,inputdate,status) ")
 		   .append(" values(?,?,?,?,?,?,?,?,?,?,?,?,?,to_char(sysdate,'yyyy-MM-dd'),'Y')");
 		 
 		
@@ -302,9 +300,8 @@ public int insertMember(MemberVO mbVO) throws SQLException {
 		pstmt.setString(8, mbVO.getAddr2());
 		pstmt.setString(9, mbVO.getEmail());
 		pstmt.setString(10, mbVO.getPhone());
-		pstmt.setString(11, mbVO.gethPhone());
-		pstmt.setString(12, mbVO.getMailChk());
-		pstmt.setString(13, mbVO.getSmsChk());
+		pstmt.setString(11, mbVO.getMailChk());
+		pstmt.setString(12, mbVO.getSmsChk());
 		
 //		가입일 넣는거 그냥 getDate 맞나....? SYSDATE를 어떻게 넣어야하나....to_char(sysdate,"yyyy-mm-dd")
 
@@ -379,7 +376,7 @@ public MemberVO selectMember(QuitMemberVO qmVO) throws SQLException {
 	
 	try {
 		con=dc.getConn();
-		String selectMb = "select name,pwd,memberId,birth,gender,zipcode,addr1,addr2,email,phone,hphone,"
+		String selectMb = "select name,pwd,memberId,birth,gender,zipcode,addr1,addr2,email,phone,"
 				+ "mailChk,smsChk,status,to_char(inputdate,'yyyy-MM-dd')mdate from member where pwd=?";
 		pstmt=con.prepareStatement(selectMb);
 		
@@ -399,7 +396,6 @@ public MemberVO selectMember(QuitMemberVO qmVO) throws SQLException {
 			mbVO.setAddr1(rs.getString("addr1"));
 			mbVO.setAddr2(rs.getString("addr2"));
 			mbVO.setPhone(rs.getString("phone"));
-			mbVO.sethPhone(rs.getString("hPhone"));
 			mbVO.setMailChk(rs.getString("mailChk"));
 			mbVO.setSmsChk(rs.getString("smsChk"));
 			mbVO.setStatus(rs.getString("status"));	
@@ -427,7 +423,7 @@ public int updateMemberStatus(String memberId, String pwd) throws SQLException{
 		con=dc.getConn();
 		
 		
-    	String updateMbs ="update member set  pwd=' ', name=' ', birth=' ', gender=' ',zipcode=' ',addr1=' ', addr2=' ', email=' ',phone=' ',hphone=' ',mailchk=' ',smschk=' ', inputdate=to_date(inputdate,null), status='N' where memberid=? and  pwd=?";
+    	String updateMbs ="update member set  pwd=' ', name=' ', birth=' ', gender=' ',zipcode=' ',addr1=' ', addr2=' ', email=' ',phone=' ',mailchk=' ',smschk=' ', inputdate=to_date(inputdate,null), status='N' where memberid=? and  pwd=?";
     
 		pstmt=con.prepareStatement(updateMbs);
 		

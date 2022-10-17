@@ -5,7 +5,7 @@
 String memberId= request.getParameter("memberId");
 
 %>    
-
+<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 			<!-- Header -->
 				<section id="header">
 			

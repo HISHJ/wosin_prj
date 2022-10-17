@@ -97,7 +97,7 @@ public class AdminMemberDAO {
 		
 		try {
 			con=dc.getConn();
-			String selectInfo = "select name,memberId,birth,gender,zipcode,addr1,addr2,email,phone,hphone,"
+			String selectInfo = "select name,memberId,birth,gender,zipcode,addr1,addr2,email,phone,"
 					+ "mailChk,smsChk,status from member where memberId=?";
 			pstmt=con.prepareStatement(selectInfo);
 			pstmt.setString(1, memberId);	
@@ -115,7 +115,6 @@ public class AdminMemberDAO {
 				admVO.setAddr1(rs.getString("addr1"));
 				admVO.setAddr2(rs.getString("addr2"));
 				admVO.setPhone(rs.getString("phone"));
-				admVO.sethPhone(rs.getString("hPhone"));
 				admVO.setMailChk(rs.getString("mailChk"));
 				admVO.setSmsChk(rs.getString("smsChk"));
 				admVO.setStatus(rs.getString("Status"));
@@ -141,7 +140,7 @@ public class AdminMemberDAO {
 	    try {
 
 	    con=dc.getConn();
-	    String updateMs ="update member set  pwd=' ', name=' ', birth=' ', gender=' ',zipcode=' ',addr1=' ', addr2=' ', email=' ',phone=' ',hphone=' ',mailchk=' ',smschk=' ', inputdate=to_date(inputdate,null), status='N' where memberid=?";
+	    String updateMs ="update member set  pwd=' ', name=' ', birth=' ', gender=' ',zipcode=' ',addr1=' ', addr2=' ', email=' ',phone=' ',mailchk=' ',smschk=' ', inputdate=to_date(inputdate,null), status='N' where memberid=?";
 	    	
 	    	pstmt=con.prepareStatement(updateMs);
 	    	pstmt.setString(1,memberId);

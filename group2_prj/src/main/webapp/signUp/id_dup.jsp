@@ -1,3 +1,5 @@
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
+<%@page import="java.security.MessageDigest"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,9 +10,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="http://211.63.89.130/jsp_prj/common/css/main_v1_220901.css"/>
 <style type="text/css">
-#dupWrap{ margin: 0px auto; width: 502px; height: 303px; position: relative;}
+#dupWrap{ margin: 0px auto; width: 502px; height: 303px; position: relative; background-color:#ffffff}
 #dup{ width: 502px; height: 303px;}
 #frm{ position: absolute;top:100px; left:60px; }
 #view{position: absolute;top:200px; left:60px;  }
@@ -79,13 +80,35 @@ function useId( memberId ){
 </div>
  <c:if test="${ not empty param.memberId  }"> 
 <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
-<jsp:setProperty property="memberId" name="mbVO"/>
+
 
  <%
-//DBMS 연동
-MemberDAO mbrDAO = MemberDAO.getInstance();
+	String id=request.getParameter("memberId");
 
-boolean result=mbrDAO.selectChkId(mbVO.getMemberId());
+	//key가져오기
+	  ServletContext sc = getServletContext();
+	  String plainText = sc.getInitParameter("keyU"); 
+	  //System.out.println( plainText );
+	  
+	  //알고리즘 설정하여 MessageDigest
+	  MessageDigest md=MessageDigest.getInstance("MD5");
+	  md.update(plainText.getBytes());
+	  new String(md.digest());
+	  //키 생성
+	  String key=DataEncrypt.messageDigest("MD5", plainText);
+	  //키를 넣어 암호화 객체 생성
+	  DataEncrypt de= new DataEncrypt(key);
+	
+	  String Id=de.encryption(id);
+ 
+ 
+ 
+//DBMS 연동
+MemberDAO mbrDAO = MemberDAO.getInstance();%>
+ 
+ <jsp:setProperty property="memberId" name="mbVO" value="<%=Id %>"/>
+
+<%boolean result=mbrDAO.selectChkId(mbVO.getMemberId());
 pageContext.setAttribute("result",result);//true면 사용중, false 미사용
 %>
 <div id="view">입력하신 <strong><c:out value="${ param.memberId }"/></strong>는

@@ -120,7 +120,7 @@ if(memberId == null){
 				</li>
 				<li>
 					<li>
-						<	<div class="rel">
+						<div class="rel">
 									<a href="http://localhost/group2_prj/mypage/passModify.jsp" ><span>비밀번호변경</span></a>
 									<ul class="depth">
 									<li><a href="http://localhost/group2_prj/mypage/memberMng.jsp" ><span>개인화서비스</span></a></li>
@@ -128,9 +128,8 @@ if(memberId == null){
 									<li><a href="http://localhost/group2_prj/mypage/mypage.jsp" ><span>회원정보 수정</span></a></li>
 									<li><a href="http://localhost/group2_prj/reservation/ticket_page.jsp" ><span>예매내역 확인·취소</span></a></li>
 									</ul>
-									</div>
+							</div>
 					</li>
-				
 				</li>
 			</ul>
 		</div>
@@ -255,16 +254,6 @@ if(memberId == null){
 										<button type="button" class="bbs-btn-st2 bg-black_r">
 										<a href="http://localhost/group2_prj/mypage/memberMng.jsp">취소</a></button>
 									</div>
-
-
-							
-								<!-- <div class="find_info find_id">
-									<!-- ✔️값 받아와야하는 영역  : 회원 테이블 - 아이디, 가입일?-
-									<span class="find_id_inner">아이디명: 아이디명</span>
-									<span >가입일 : 가입날짜</span>
-
-								</div> -->
-								<!-- <button class="bg-black btn-form" type="button" onclick="checkPlusPopup();" >확인</button> -->
 							</div>
 						</div>
 					</div>

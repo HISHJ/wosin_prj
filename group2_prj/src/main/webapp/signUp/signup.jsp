@@ -39,13 +39,7 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<!-- 우편번호API -->
 		<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-			<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+	
 		
 		
 
@@ -308,6 +302,9 @@ input[type="date"] {
 				});
 				
 			
+		
+				
+			
 				
 				
 			});//ready
@@ -456,7 +453,7 @@ input[type="date"] {
 			}//confirm
 				
 			}//check
-
+			
 			
 			/* 우편번호시작 API */
 			 function execDaumPostcode() {
@@ -495,38 +492,10 @@ input[type="date"] {
 			    }//execDaumPostcode() 
 			    
 			/* 휴대전화 하이폰 추가  */  
-			function PhoneNumber(obj) {
-
-				    var number = obj.value.replace(/[^0-9]/g, "");
-				    var phone = "";
-			
-				    if(number.length < 4) {
-				        return number;
-				    } else if(number.length < 7) {
-				        phone += number.substr(0, 3);
-				        phone += "-";
-				        phone += number.substr(3);
-				        
-				        
-				    } else if(number.length < 11) {
-				        phone += number.substr(0, 3);
-				        phone += "-";
-				        phone += number.substr(3, 3);
-				        phone += "-";
-				        phone += number.substr(6);
-				    } else {
-				        phone += number.substr(0, 3);
-				        phone += "-";
-				        phone += number.substr(3, 4);
-				        phone += "-";
-				        phone += number.substr(7);
-				    }
-				    obj.value = phone;
-				    return false;
-				}//PhoneNumber
+		
 		
 			/* 전화번호 하이픈추가  */
-				function hPhoneNumber(obj) {
+				function PhoneNumber(obj) {
 
 				    var number = obj.value.replace(/[^0-9]/g, "");
 				    var phone = "";
@@ -616,9 +585,10 @@ input[type="date"] {
 						<li class="item">
 							<label for="memberId" class="t">ID <span class="color-purple">*</span></label>
 							<div class="cont ck_id">
-								<input type="text" name="memberId" id="memberId" value=""  readonly/>
+								<input type="text" name="memberId" id="memberId" value=""  readonly />
 								<button type="button" class="bg-black chkmemberId" id="btnDup">중복확인</button>
 								<span class="txt ml">특수문자를 제외한 영문, 숫자 4~20자 이내</span>
+								
 							</div>
 						</li>
 				
@@ -725,18 +695,7 @@ input[type="date"] {
 								</div>
 							</div>
 						</li>
-						<li class="item">
-							<label class="t">전화번호<span class="color-purple">*</span></label>
-							<div class="cont">
-								<ul class="clearfix tel">
-									<li>
-										<label for="memberTel3" class="hide">전화번호</label>
-										<input type="text" onkeyup="hPhoneNumber(this)" name="hPhone" id="hPhone" class="small" value=""  maxlength="13" style="width:320px;" />
-									</li>
-								</ul>
-								<input type="hidden" name="memberTel" id="memberTel" value="" />
-							</div>
-						</li>
+						
 					</ul>
 					<div class="agree_w f18">
 						<dl>
@@ -790,7 +749,13 @@ input[type="date"] {
 			<!-- Footer -->
 			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
 			<!-- End footer -->
-
+					<!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 	
 	</body>
 </html>

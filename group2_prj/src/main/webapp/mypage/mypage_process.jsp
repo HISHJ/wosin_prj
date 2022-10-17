@@ -14,7 +14,6 @@
 				
 				String id=mbVO.getMemberId();
 				String phone=mbVO.getPhone();
-				String hphone=mbVO.gethPhone();
 				String addr2=mbVO.getAddr2();
 				
 				//key가져오기
@@ -33,7 +32,6 @@
 				  String Id=de.encryption(id);
 				  String Email=de.encryption(email);
 				  String Phone=de.encryption(phone);
-				  String hPhone=de.encryption(hphone);
 				  String Addr2=de.encryption(addr2);
 				  
 				
@@ -56,7 +54,6 @@
 					<jsp:setProperty property="addr2" name="mbVO" value="<%=Addr2 %>"/>
 					<jsp:setProperty property="email" name="mbVO" value="<%=Email %>"/>
 					<jsp:setProperty property="phone" name="mbVO" value="<%=Phone %>"/>
-					<jsp:setProperty property="hPhone" name="mbVO" value="<%=hPhone %>"/>
 					<jsp:setProperty property="mailChk" name="mbVO"/>
 					<jsp:setProperty property="smsChk" name="mbVO"/>  
 	
