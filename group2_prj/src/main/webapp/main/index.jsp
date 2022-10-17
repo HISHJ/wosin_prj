@@ -222,7 +222,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 							<li class="slick-slide slick-current slick-active"
 								role="tabpanel" id="slickSlide90" aria-labelledby="slickDot90"
 								tabindex="-1" style="width: 150px;" data-slick-index="0"
-								aria-hidden="false"><a href="calendar.html" tabindex="0">
+								aria-hidden="false"><a href="http://localhost/group2_prj/reservation/calendar.jsp" tabindex="0">
 									<div class="img" style="top: 0px;">
 										<img src="http://localhost/group2_prj/images/m1_3.gif" alt="">
 									</div>
@@ -232,7 +232,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 							<li class="slick-slide slick-current slick-active"
 								role="tabpanel" id="slickSlide90" aria-labelledby="slickDot90"
 								tabindex="-1" style="width: 150px;" data-slick-index="1"
-								aria-hidden="false"><a href="page7.html" class="hover"
+								aria-hidden="false"><a href="http://localhost/group2_prj/subpage/subpage-seatMap.jsp" class="hover"
 								tabindex="0">
 									<div class="img" style="top: 0px;">
 										<img src="http://localhost/group2_prj/images/m1_5.gif" alt="">
@@ -243,7 +243,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 							<li class="slick-slide slick-current slick-active"
 								role="tabpanel" id="slickSlide90" aria-labelledby="slickDot90"
 								tabindex="-1" style="width: 150px;" data-slick-index="2"
-								aria-hidden="false"><a href="subpage-ticketmethod.html"
+								aria-hidden="false"><a href="http://localhost/group2_prj/subpage/subpage-ticketMethod.jsp"
 								class="hover" tabindex="0">
 									<div class="img" style="top: 0px;">
 										<img src="http://localhost/group2_prj/images/m1_7.gif" alt="">
@@ -254,7 +254,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 							<li class="slick-slide slick-current slick-active"
 								role="tabpanel" id="slickSlide90" aria-labelledby="slickDot90"
 								tabindex="-1" style="width: 150px;" data-slick-index="3"
-								aria-hidden="false"><a href="subpage-way.html" tabindex="0">
+								aria-hidden="false"><a href="http://localhost/group2_prj/subpage/subpage-location.jsp" tabindex="0">
 									<div class="img" style="top: 0px;">
 										<img src="http://localhost/group2_prj/images/m1_6.gif" alt="">
 									</div>
@@ -264,7 +264,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 							<li class="slick-slide slick-current slick-active"
 								role="tabpanel" id="slickSlide90" aria-labelledby="slickDot90"
 								tabindex="-1" style="width: 150px;" data-slick-index="0"
-								aria-hidden="false"><a href="subpage-FAQ1.html" tabindex="0">
+								aria-hidden="false"><a href="http://localhost/group2_prj/subpage/subpage-FAQ1.jsp" tabindex="0">
 									<div class="img" style="top: 0px;">
 										<img src="http://localhost/group2_prj/images/m1_12.gif" alt="">
 									</div>
@@ -283,7 +283,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 			<!--  class="inner aos-init aos-animate" data-aos="fade-up" -->
 			<!--썸네일 슬라이드ㅡ-->
 			<div class="inner_m aos-init aos-animate" date-aos="fade-up">
-				<div id="m2" date-aos="fade-up" class="aos-init aos-animate">
+				<div id="m2" date-aos="fade-up" class="aos-init aos-animate" >
 					<div class="in">
 						<div class="tit-main">
 							<span class="small"> Recommended Program </span>
@@ -296,138 +296,36 @@ List<ShowVO> swList = mDAO.selectThImg();
 
 						</div>
 					</div>
-					<ul class="clearfix cont s slick-initialized slick-slider">
 						<div aria-live="polite" class="slick-list draggable">
-							<div class="slick-track"
-								style="opacity: 1; width: 3405px; transform: translate3d(-1589px, 0px, 0px);">
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (8).jpeg" alt="상세"></a>
+								
+								<%-- <a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">
+								<img src="http://localhost/group2_prj/admin/img/<%=swList.get(i).getThImg() %>" style="width:80%; height:160px;">
+								</a> --%>
+								
+								<!-- 추천프로그램 뭐 어떻게 하라는거??? swList -->
+					<ul class="clearfix cont s slick-initialized slick-slider">
+								<%for(int i=0;i<5;i++){  //swList.size()%>
+									<li class="rel" tabindex="<%=i %>" style="float:left; display:block;">
+										<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">
+										<img src="http://localhost/group2_prj/admin/img/<%=swList.get(i).getThImg() %>" style="width:100%; height:160px;">
+										</a>
 
-									</div>
-								</li>
-
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (1).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (2).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-
-
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (1).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (5).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (8).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-
-
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (9).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-
-
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (15).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-
-
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (10).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-
-
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (12).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-
-
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (8).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-
-								<li class="item slick-slide slick-cloned" role="option"
-									tabindex="-1" style="width: 227px" data-slick-index="-3" id
-									aria-hidden="true">
-									<div class="rel" tabindex="0">
-										<a href="page2.html" class="d" tabindex="-1"><img
-											src="images\imageSrc (21).jpeg" alt="상세"></a>
-
-									</div>
-								</li>
-
-							</div>
-						</div>
+									</li>
+								<%} %>
 					</ul>
+								
+								<!-- <li class="item slick-slide slick-cloned" role="option"
+									tabindex="-1" style="width: 227px" data-slick-index="-3" id
+									aria-hidden="true">
+									<div class="rel" tabindex="0">
+										<a href="page2.html" class="d" tabindex="-1"><img
+											src="images\imageSrc (8).jpeg" alt="상세"></a>
+
+									</div>
+								</li> -->
+
+
+						</div>
 				</div>
 
 			</div>

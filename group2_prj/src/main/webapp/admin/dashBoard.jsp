@@ -59,8 +59,8 @@
     <body class="sb-nav-fixed">
 		<%for(int i=0;i<rsrvtByShow.size();i++){%>
 		
-		<input type="hidden" value="<%=rsrvtByShow.get(i).getShowName()%>" id="show_<%=i+1%>">
-		<input type="hidden" value="<%=rsrvtByShow.get(i).getRsrvtCnt()%>" id="cnt_<%=i+1%>">
+		<input type="hidden" value="<%=rsrvtByShow.get(i).getShowName()%>" id="show_<%=i+1%>" name="shows">
+		<input type="hidden" value="<%=rsrvtByShow.get(i).getRsrvtCnt()%>" id="cnt_<%=i+1%>" name="cnt">
 		
 		<%};  %> 
 		
