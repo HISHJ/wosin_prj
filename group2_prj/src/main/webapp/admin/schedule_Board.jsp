@@ -157,7 +157,6 @@ if( session.getAttribute("adminId") == null){
  -->
 
             <div id="layoutSidenav_content">
-                <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">상영관리</h1>
                         <ol class="breadcrumb mb-4">
@@ -214,9 +213,10 @@ if( session.getAttribute("adminId") == null){
 								</select><input type="button" id="genreSearchBtn" name="genreSearchBtn" value="검색">
                                </div>
                               </form>
-                           <div>
                             <a href="schedule_Board.jsp"><button id="addBtn" type="button" class="btn btn-outline-dark float-end mx-md-4" >전체보기</button></a>
                            </div>
+                           </div>
+                           
                            
                            <!-- form  action-->
                        <form action="shcedule_Detail.jsp" method="post" id="Frm" name="Frm" >
@@ -254,16 +254,15 @@ if( session.getAttribute("adminId") == null){
                                             <td><a href="schedule_Detail.jsp?schId=<%=aschVO.getSchId() %>"><input type="button" value="상세보기" id="scbtn" ></a></td>
                                         </tr>
                                         <%} %>
-                              
-                                        
                                     </tbody>
-                                    
-                                </table>
-                         </form>
+                                  </table>
+                                  
+                                  
+                                  <!-- 10/17 하지윤: 링크 및 id 등등 수정함. 이상하게 돼있으면 수정부탁드립니다 -->
+                                <div><a href="http://localhost/group2_prj/admin/schedule_Add-1.jsp"><button id="scbtn" type="button" class="btn btn-dark">상영일정추가</button></a></div>
+                         	  </form>
                             </div>
                         </div>
-                    </div>
-                </main>
                 <!--  -->
                 
                 <jsp:include page="admin_common_footer.jsp"/>

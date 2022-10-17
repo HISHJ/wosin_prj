@@ -175,11 +175,8 @@ if( session.getAttribute("adminId") == null){
                                     </tbody>
                                 </table>
                             <div><a href="http://localhost/group2_prj/admin/showAdd.jsp"><button id="addBtn" type="button" class="btn btn-dark">공연추가</button></a></div>
-                            </div>
-                       
+                         </div>
                     </div>
-                </main>
-                 </div>
              
                 <!--  -->
               <%--  <jsp:include page="admin_common_footer.jsp"/> --%>

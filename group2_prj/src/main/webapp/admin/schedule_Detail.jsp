@@ -194,10 +194,9 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>작품소개</b></div> <div class="col-4"><input type="file" name="infoImg" value="파일선택" disabled>
+                                            <div class="col-2"><b>소개이미지</b></div> <div class="col-4"><input type="file" name="infoImg" value="파일선택" disabled></div>
                                             <div class="col-2 my-1"><b>원본파일</b></div><div class="col-4 my-1"><%=schData.getInfoImg() %></div>
-                                   
-                                            </div>
+                                        </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                            <div class="col-2"><b>공연상태</b></div> 
@@ -207,11 +206,20 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                                 <%for(int i=0; i<statusArr.length; i++){ %>
                                                      <option<%=statusArr[i].equals(schData.getStatus())?" selected='selected'":"" %>><%=statusArr[i] %></option>
 												 <%} %>
-                                                    </select>
-                                                </div>
+                                                </select>
                                             </div>
                                         </div>
+                                    </form>  
                                        
+                                    <!-- 10/17 하지윤: 링크 및 id 등등 수정하시면 됩니다 -->   
+                                    <form id="deleteFrm" action="show_remove.jsp">
+                                        <div class="dataTable-top"></div>
+                                        <div class="row">
+                                            <div class="col-2"><b>공연삭제</b></div> <div class="col-4">
+                                            <input type="button" id="removeBtn" value="삭제하기"></div>
+                                            <input type="hidden" id="showId" name="showId" value="">
+                                        </div>
+                                   	</form>
                                         
                                             
                                                 <div class="mt-4 mb-0">
@@ -221,7 +229,6 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                                     </div>
                                                 </div>
                                             </div>
-                                    </form>  
 
                                                 
                                     </div>
