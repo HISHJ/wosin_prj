@@ -13,22 +13,15 @@ request.setCharacterEncoding("UTF-8");
 
 String showId = request.getParameter("showId");
 
-AdminScheduleVO schVO = new AdminScheduleVO();
-AdminShowVO asVO = new AdminShowVO();
-AdminScheduleDAO aschDAO= AdminScheduleDAO.getInstance();
- AdminShowVO sel = aschDAO.selectshow(showId);
-
-/* AdminScheduleVO sel= aschDAO.selectshow(showId); */
-
-// ???????????
-String startDate=request.getParameter("startDate"); 
-String endDate=request.getParameter("endDate");
-String thImg=request.getParameter("thImg");
-
-System.out.println( startDate );
-System.out.println( endDate );
-System.out.println( thImg );
 System.out.println( showId );
+
+AdminScheduleVO sch = new AdminScheduleVO();
+AdminScheduleDAO aschDAO= AdminScheduleDAO.getInstance();
+AdminScheduleVO sel= aschDAO.selectShow(showId);
+ 
+System.out.println( sel.toString());
+
+
 
 %>
 
@@ -53,8 +46,10 @@ System.out.println( showId );
     	<script type="text/javascript">
     	
     	
-    	  $(function() { 
-    		   
+    
+    		 
+    		  $(function() { 
+    	   
     	      	$("#addBtn").click(function() {
     	      		
     	      		
@@ -62,113 +57,134 @@ System.out.println( showId );
     	      		if(schDate==""){
     	      			alert("상영일정을 입력해주세요.");
     	      			return;
-    	      		}
-    		
+    	      		}//end if
+    	      		
+    	      		var startDate=$("#startDate").val();
+    	      		var endDate=$("#endDate").val();
+    	      		var schDate=$("#schDate").val();
+						if(startDate > schDate){
+							alert("해당 공연의 기간은 "+startDate+" ~ "+endDate+"입니다."+" 해당 공연기간 사이에 상영일정을 등록해주세요.");
+							return;
+						}//end if
+						
+					var startDate=$("#startDate").val();	
+					var endDate=$("#endDate").val();
+					var schDate=$("#schDate").val();
+					if(endDate < schDate){
+						alert("해당 공연의 기간은 "+startDate+" ~ "+endDate+"입니다."+" 해당 공연기간 사이에 상영일정을 등록해주세요.");
+						return;
+					}//end if
+    	      	
     	      		alert("상영일정이 추가되었습니다.");
-          			$("#frm").submit();
-          		
-    	   	 });
+    	      			$("#frm").submit();
+    	      		
+    	      			
+    	      			
+    	      		
+    	  		 });
     	    }); 
-    	
-    	</script>
-        
-    </head>
-    <body>
-        <div id="layoutAuthentication">
-            <div id="layoutAuthentication_content">
-                <main>
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <!-- col lg 5 - 크기 조정 -->
-                            <div class="col-lg-5">
-                                <div class="card shadow-lg border-0 rounded-lg mt-5">
-                                    <div class="card-header navy bg-dark"><h3 class="text-start text-white font-weight-light my-4 " style="font-weight: bold;">상영일정 추가</h3></div>
-                                    <div class="card-body">
-                                       <!-- **insert form 태그 위치**  -->
-                                    <form id="frm" name="frm" action="schedule_insert.jsp?showId=<%=showId %>" method="post">
-                                    
-                      				<input type="hidden" name="hid" id="hid" value=<%=sel.getShowId()%>>
-                      				<input type="hidden" name="hid2" id="hid2" value=<%=sel.getStartDate()%>>
-                      				<input type="hidden" name="hid3" id="hid3" value=<%=sel.getEndDate()%>>
-                      				
-                      				  
-                                        <div class="dataTable-top"></div>
-                                        <div class="row">
-                                            <div class="col-6"><img src=<%=sel.getThImg() %>class="img-thumbnail" alt="썸네일이미지"></div>
-                                        </div> 
-                                        <div class="dataTable-top"></div>
-                                        <div class="row">
-                                            <div class="col-4"><b>상영일정</b></div> <div class="col-6"><input type="date" class="dataTable-input"  id="schDate" name="schDate" value="<%=schVO.getSchDate()%>"></div>
-                                        </div> 
-                                        <div class="dataTable-top"></div>
-                                        <div class="row">
-                                            <div class="col-4"><b>시작시간</b></div> 
-                                            <div class="col-6">
-                                            
-                                            <% 
-                                           
-                                        	String schTime = schVO.getSchTime();
-                                        	String schTime1 = schTime.substring(0, 1);
-                                        	String schTime2 = schTime.substring(0, 1);
-                                     
-            
-                                            %>
-                                            
-                                            
-                                                <select name="schTime1" class="dataTable-dropdown dataTable-selector" id="schTime">
-                                                <%String[] runing_timeArr={"10","11","12","13","14","15","16","17","18","19","20","21","22"}; %>
-                                                  <%for(int i=0; i<runing_timeArr.length; i++){ %>
-                                                    <option <%=runing_timeArr[i].equals(schTime1)?" selected='selected'":"" %>><%=runing_timeArr[i] %></option>
-                                                   <%} %>
-                                          
-                                                </select>
-                                                <label> 시</label>
-                                                <select name="schTime2" class="dataTable-dropdown dataTable-selector" id="schTime">
-                                                    <%String[] runing_timeArr2={"00","30"};%>
-                                                    <%for(int i=0; i<runing_timeArr2.length; i++){ %>
-													 <option <%=runing_timeArr[i].equals(schTime2)?" selected='selected'":"" %>><%=runing_timeArr2[i] %></option>
-     
-                                                    <%} %>
-                                                </select>
-                                                <label> 분</label>
-                                            </div>
-                                        </div> 
-                                        
-                                        
-                                            
-                                                <div class="mt-4 mb-0">
-                                                    <div class="col text-center">
-                                                    
-                                                    
-                                                    <a class="btn btn-secondary btn-sm" id="addBtn" >추가</a>
-                                                        <a class="btn btn-default btn-sm" href="schedule_Add-1.jsp">닫기</a>
-                                                        
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    </form>  
+    		 
+    	    	
+    	    	</script>
+    	        
+    	    </head>
+    	    <body>
+    	        <div id="layoutAuthentication">
+    	            <div id="layoutAuthentication_content">
+    	                <main>
+    	                    <div class="container">
+    	                        <div class="row justify-content-center">
+    	                            <!-- col lg 5 - 크기 조정 -->
+    	                            <div class="col-lg-5">
+    	                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+    	                                    <div class="card-header navy bg-dark"><h3 class="text-start text-white font-weight-light my-4 " style="font-weight: bold;">상영일정 추가</h3></div>
+    	                                    <div class="card-body">
+    	                                       <!-- **insert form 태그 위치**  -->
+    	                                    <form id="frm" name="frm" action="schedule_insert.jsp?showId=<%=showId %>" method="post">
+    	                      				<input type="hidden" name="hid" id="hid" value=<%=sel.getShowId()%>>
+    	                      				<input type="hidden" name="startDate" id="startDate" value=<%=sel.getStartDate()%>>
+    	                      				<input type="hidden" name="endDate" id="endDate" value=<%=sel.getEndDate()%>>
+    	                      				
+    	                      				  
+    	                                        <div class="dataTable-top"></div>
+    	                                        <div class="row">
+    	                                            <div class="col-6"><img src="img/<%=sel.getThImg() %>"class="img-thumbnail" alt="썸네일이미지"></div>
+    	                                            <div><%=sel.getName() %></div>
+    	                                        </div> 
+    	                                        <div class="dataTable-top"></div>
+    	                                        <div class="row">
+    	                                            <div class="col-4"><b>상영일정</b></div> <div class="col-6"><input type="date" class="dataTable-input"  id="schDate" name="schDate" value="<%=sel.getSchDate()%>"></div>
+    	                                        </div> 
+    	                                        <div class="dataTable-top"></div>
+    	                                        <div class="row">
+    	                                            <div class="col-4"><b>시작시간</b></div> 
+    	                                            <div class="col-6">
+    	                                            
+    	                                            <% 
+    	                                           
+    	                                        	String schTime = sel.getSchTime();
+    	                                      /*   	String schTime1 = schTime.substring(0, 1);
+    	                                        	String schTime2 = schTime.substring(0, 1); */
+    	                                   			  String schTime1= sel.getSchTime();
+    	                                        	String schTime2= sel.getSchTime();
+    	                                            %>
+    	                                            
+    	                                            
+    	                                                <select name="schTime1"  id="schTime1" class="dataTable-dropdown dataTable-selector" id="schTime">
+    	                                                <%String[] runing_timeArr={"10","11","12","13","14","15","16","17","18","19","20","21","22"}; %>
+    	                                                  <%for(int i=0; i<runing_timeArr.length; i++){ %>
+    	                                                    <option <%=runing_timeArr[i].equals(schTime1)?" selected='selected'":"" %>><%=runing_timeArr[i] %></option>
+    	                                                   <%} %>
+    	                                          
+    	                                                </select>
+    	                                                <label> 시</label>
+    	                                                <select name="schTime2" id="schTime2" class="dataTable-dropdown dataTable-selector" id="schTime">
+    	                                                    <%String[] runing_timeArr2={"00","30"};%>
+    	                                                    <%for(int i=0; i<runing_timeArr2.length; i++){ %>
+    														 <option <%=runing_timeArr[i].equals(schTime2)?" selected='selected'":"" %>><%=runing_timeArr2[i] %></option>
+    	     
+    	                                                    <%} %>
+    	                                                </select>
+    	                                                <label> 분</label>
+    	                                            </div>
+    	                                        </div> 
+    	                                        
+    	                                        
+    	                                            
+    	                                                <div class="mt-4 mb-0">
+    	                                                    <div class="col text-center">
+    	                                                    
+    	                                                    
+    	                                                    <a class="btn btn-secondary btn-sm" id="addBtn" >추가</a>
+    	                   <%--  <a href="schedule_insert.jsp?showId=<%=swId%>"><a class="btn btn-secondary btn-sm" onclick="addBtn()">추가</a></a> --%>
+    	                                                        <a class="btn btn-default btn-sm" href="schedule_Add-1.jsp">닫기</a>
+    	                                                        
+    	                                                    </div>
+    	                                                </div>
+    	                                            </div>
+    	                                    </form>  
 
-                                                
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            </div>
-            <div id="layoutAuthentication_footer">
-                <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                           
-                           
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-    </body>
-</html>
+    	                                                
+    	                                    </div>
+    	                                </div>
+    	                            </div>
+    	                        </div>
+    	                    </div>
+    	                </main>
+    	            </div>
+    	            <div id="layoutAuthentication_footer">
+    	                <footer class="py-4 bg-light mt-auto">
+    	                    <div class="container-fluid px-4">
+    	                        <div class="d-flex align-items-center justify-content-between small">
+    	                           
+    	                           
+    	                        </div>
+    	                    </div>
+    	                </footer>
+    	            </div>
+    	        </div>
+    	        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    	        <script src="js/scripts.js"></script>
+    	    </body>
+    	</html>
 

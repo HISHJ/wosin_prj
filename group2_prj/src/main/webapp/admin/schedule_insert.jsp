@@ -1,17 +1,14 @@
-<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
-<%@page import="com.oreilly.servlet.MultipartRequest"%>
-<%@page import="kr.co.sist.vo.ShowVO"%>
+
 <%@page import="kr.co.sist.dao.AdminScheduleDAO"%>
 <%@page import="kr.co.sist.vo.AdminScheduleVO"%>
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="상영추가"%>
+    pageEncoding="UTF-8" info=""%>
     
     
 
 
 <% //POST방식의 요청 한글 처리 
-
 request.setCharacterEncoding("UTF-8"); 
 //값 가져오기
 String showId=request.getParameter("showId");
@@ -30,10 +27,8 @@ String schTime = schTime1+":"+schTime2;
 <jsp:setProperty property="showId" name="schVO"/>
 <jsp:setProperty property="schTime" name="schVO" value="<%=schTime %>"/>
 
-
-<%
-
-	AdminScheduleDAO schDAO = AdminScheduleDAO.getInstance();
+<% 
+AdminScheduleDAO schDAO = AdminScheduleDAO.getInstance();
 	int schCnt = schDAO.insertSchedule(schVO);
 
 
@@ -50,8 +45,6 @@ System.out.println("schDate:"+ schDate);
 System.out.println("showId:" + showId);
 System.out.println("schTime:" + schTime);
 %>
-
-
 
 
  

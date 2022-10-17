@@ -175,6 +175,7 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
 												  <option<%=ratingArr[i].equals(schData.getRatingId())?" selected='selected'":"" %>><%=ratingArr[i] %></option>
 												  <%} %> 
                                                 </select>
+                                                <!--  -->
                                             </div>
                                         </div>
                                         <div class="dataTable-top"></div>
@@ -211,12 +212,12 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                     </form>  
                                        
                                     <!-- 10/17 하지윤: 링크 및 id 등등 수정하시면 됩니다 -->   
-                                    <form id="deleteFrm" action="show_remove.jsp">
+                                    <form id="deleteFrm" action="schedule_delete.jsp">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>공연삭제</b></div> <div class="col-4">
                                             <input type="button" id="removeBtn" value="삭제하기"></div>
-                                            <input type="hidden" id="showId" name="showId" value="">
+                                            <input type="hidden" id="schId" name="schId" value="<%=schData.getSchId()%>">
                                         </div>
                                    	</form>
                                         

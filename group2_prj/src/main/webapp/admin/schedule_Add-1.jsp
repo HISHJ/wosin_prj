@@ -90,7 +90,7 @@ List<AdminShowVO> list=aschDAO.selectAdminScheduleAll();
                                             
                                                 <div class="mt-4 mb-0">
                                                     <div class="col text-center">
-                                                        <a class="btn btn-secondary btn-sm" href="showINGBoard.html">닫기</a>
+                                                        <a class="btn btn-secondary btn-sm" href="schedule_Board.jsp">닫기</a>
                                                         
                                                     </div>
                                                 </div>
