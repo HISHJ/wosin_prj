@@ -306,6 +306,30 @@ public class AdminScheduleDAO {
 		return i;
 	}//insertSchedule
 	
+	public int deleteSchedule(String schId) throws SQLException {
+		int i=0;
+		
+		DbConnection db=DbConnection.getInstance();
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		
+		try{
+			con=db.getConn();
+			
+			String query=" delete from schedule where schId=? ";
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, schId);
+			
+			pstmt.executeUpdate();
+		}finally {
+			db.dbClose(null, pstmt, con);
+		}
+		
+		return i;
+	}//deleteShow
+	
+	
+	
 
 
 }//class

@@ -40,9 +40,24 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
         <script type="text/javascript">
         
-      
-        $(function() {   
-            
+      //삭제	
+        $(function() {
+		
+        	$("#removeBtn").click(function() {
+        		
+        		var del=confirm("상영일정을 삭제하시겠습니까?");
+        		
+    			if(del){
+    				alert("상영일정이 삭제되었습니다");
+    				$("#deleteFrm").submit();	
+				
+    			}else{
+    				return;
+    			}
+        	});//remove
+
+        
+      //변경      
         	$("#modifyBtn").click(function() {
         		if(confirm("상영일정을 변경하시겠습니까?")){
         		}
@@ -50,27 +65,13 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
         			$("#frm").submit();
         		
         			
-        			
         		
-    		 });
+        		
+    		 });//modify
       }); 
         
-        
-        
-        $(function() {
-			//삭제하기
-        	$("#removeBtn").click(function() {
-        		var name=$("#name").val();
-        		var del=confirm("공연을 삭제하시겠습니까?");
-        		
-    			if(del){
-    				alert("상영일정이 삭제되었습니다");
-    				$("#deleteFrm").submit();	
-    			}else{
-    				return;
-    			}
-				
-			});
+			
+			
       
 </script>
     </head>
@@ -212,12 +213,12 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
                                     </form>  
                                        
                                     <!-- 10/17 하지윤: 링크 및 id 등등 수정하시면 됩니다 -->   
-                                    <form id="deleteFrm" action="show_remove.jsp">
+                                    <form id="deleteFrm" action="schedule_delete.jsp">
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>공연삭제</b></div> <div class="col-4">
                                             <input type="button" id="removeBtn" value="삭제하기"></div>
-                                            <input type="hidden" id="showId" name="showId" value="">
+                                            <input type="hidden" id="schId" name="schId" value="<%=schData.getSchId() %>">
                                         </div>
                                    	</form>
                                         
