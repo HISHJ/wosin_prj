@@ -304,11 +304,11 @@ List<ShowVO> swList = mDAO.selectThImg();
 								
 								<!-- 추천프로그램 뭐 어떻게 하라는거??? swList -->
 					<ul class="clearfix cont s slick-initialized slick-slider">
-								<%for(int i=0;i<5;i++){  //swList.size()%>
+								<%for(int i=0;i<4;i++){  //swList.size()%>
 									<li class="rel" tabindex="<%=i %>" style="float:left; display:block;">
 										<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">
-										<img src="http://localhost/group2_prj/admin/img/<%=swList.get(i).getThImg() %>" style="width:100%; height:160px;">
-										</a>
+										<img src="http://localhost/group2_prj/admin/img/<%=swList.get(i).getThImg() %>" style="width:209px; height:294.08px;">
+										</a><!-- style="width:209px; height:294.08px;" -->
 
 									</li>
 								<%} %>
