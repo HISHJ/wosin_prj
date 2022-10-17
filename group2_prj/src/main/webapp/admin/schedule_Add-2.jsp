@@ -13,9 +13,12 @@ request.setCharacterEncoding("UTF-8");
 
 String showId = request.getParameter("showId");
 
-AdminScheduleVO aschVO = new AdminScheduleVO();
+AdminScheduleVO schVO = new AdminScheduleVO();
+AdminShowVO asVO = new AdminShowVO();
 AdminScheduleDAO aschDAO= AdminScheduleDAO.getInstance();
-AdminScheduleVO sel = aschDAO.selectshow(showId);
+ AdminShowVO sel = aschDAO.selectshow(showId);
+
+/* AdminScheduleVO sel= aschDAO.selectshow(showId); */
 
 // ???????????
 String startDate=request.getParameter("startDate"); 
@@ -95,7 +98,7 @@ System.out.println( showId );
                                         </div> 
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-4"><b>상영일정</b></div> <div class="col-6"><input type="date" class="dataTable-input"  id="schDate" name="schDate" value="<%=sel.getSchDate()%>"></div>
+                                            <div class="col-4"><b>상영일정</b></div> <div class="col-6"><input type="date" class="dataTable-input"  id="schDate" name="schDate" value="<%=schVO.getSchDate()%>"></div>
                                         </div> 
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -104,7 +107,7 @@ System.out.println( showId );
                                             
                                             <% 
                                            
-                                        	String schTime = sel.getSchTime();
+                                        	String schTime = schVO.getSchTime();
                                         	String schTime1 = schTime.substring(0, 1);
                                         	String schTime2 = schTime.substring(0, 1);
                                      

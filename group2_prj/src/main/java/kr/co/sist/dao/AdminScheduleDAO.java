@@ -233,7 +233,8 @@ public class AdminScheduleDAO {
 	// 상영일정 추가 전 조회  [schedule_Add-2]
 	// showId 받에 안받아짐, 나머지 null ????
 	public AdminScheduleVO selectshow(String showId) throws SQLException{
-		AdminScheduleVO aschVO=null;
+		AdminScheduleVO asVO=null;
+		/* AdminShowVO asVO=null; */
 		
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -254,11 +255,14 @@ public class AdminScheduleDAO {
 			
 			
 				while(rs.next()) { 	
-					aschVO=new AdminScheduleVO();
-					aschVO.setThImg("thImg");
-					aschVO.setSchDate("startDate");
-					aschVO.setSchTime("endDate");
-					aschVO.setShowId("showId");
+				
+					asVO=new AdminScheduleVO();
+					asVO.setThImg(rs.getString("thImg"));
+					asVO.setName(rs.getString("name"));
+					asVO.setStartDate(rs.getString("startDate"));
+					asVO.setEndDate(rs.getString("endDate"));
+					asVO.setShowId(rs.getString("showId"));
+				
 				}//end while
 				
 		}finally {
@@ -266,7 +270,7 @@ public class AdminScheduleDAO {
 			db.dbClose(rs, pstmt, con);
 		}//end finally
 			
-		return aschVO;
+		return asVO;
 	}//selectshow
 	
 	
