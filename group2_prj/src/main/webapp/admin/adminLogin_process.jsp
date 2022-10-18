@@ -38,14 +38,8 @@ String aPass = request.getParameter("adminPassword");
 
 //key가져오기
 ServletContext sc = getServletContext();
-String plainText = sc.getInitParameter("keyA");
+String key = sc.getInitParameter("keyA");
 
-MessageDigest md;
-md = MessageDigest.getInstance("MD5");
-md.update(plainText.getBytes());
-new String(md.digest());
-//0.키 생성
-String key= DataEncrypt.messageDigest("MD5", plainText);
 //1. 키를 넣어 암호화 객체 생성
 DataEncrypt de = new DataEncrypt(key);
 

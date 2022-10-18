@@ -57,19 +57,20 @@ public class DbAdminService {
 		// 아이디 암호화
 		// 1. 알고리즘을 설정하여 MessageDigest객체얻음
 		//try {
-			md = MessageDigest.getInstance("MD5");
-			md.update(plainText.getBytes());
-			new String(md.digest());
-			String key = DataEncrypt.messageDigest("MD5", plainText);
+		/*
+		 * md = MessageDigest.getInstance("MD5"); md.update(plainText.getBytes()); new
+		 * String(md.digest()); String key = DataEncrypt.messageDigest("MD5",
+		 * plainText);
+		 */
 			//System.out.println(key);// xO4uy3dsdAt1S1iSOJMYAQ==
 			// 1. 키를 넣어 암호화 객체 생성
-			DataEncrypt de = new DataEncrypt(key);
+			DataEncrypt de = new DataEncrypt(plainText);
 
 			// 아이디 암호화
 			String adminId = de.encryption(infoArr[0]);
 
 			// 아이디 복호화 DataDecrypt
-			DataDecrypt dd = new DataDecrypt(key);
+			DataDecrypt dd = new DataDecrypt(plainText);
 			String plainId = dd.decryption(adminId);
 			System.out.println("아이디복호화" + plainId);// team2
 

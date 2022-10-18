@@ -40,8 +40,6 @@ String endDate = request.getParameter("endDate");
 //상태 가져오기
 String status = request.getParameter("status");
 
-
-
 //key가져오기
 ServletContext sc = getServletContext();
 String plainText = sc.getInitParameter("keyU"); 

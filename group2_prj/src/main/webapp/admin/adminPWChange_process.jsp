@@ -1,5 +1,3 @@
-
-
 <%@page import="kr.co.sist.dao.AdminDAO"%>
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="kr.co.sist.service.DbAdminService"%>
@@ -7,7 +5,6 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="비밀번호 변경 값 확인 페이지" %>
-
 
 <!DOCTYPE html>
 <html>
@@ -37,14 +34,8 @@
 //plainText
 //key가져오기
 ServletContext sc = getServletContext();
-String plainText = sc.getInitParameter("keyA"); 
+String key = sc.getInitParameter("keyA"); 
 
-MessageDigest md;
-md = MessageDigest.getInstance("MD5");
-md.update(plainText.getBytes());
-new String(md.digest());
-//0.키 생성
-String key= DataEncrypt.messageDigest("MD5", plainText);
 //1. 키를 넣어 암호화 객체 생성
 DataEncrypt de = new DataEncrypt(key);
 //아이디 암호화
@@ -53,11 +44,7 @@ String adminId = de.encryption(aId);
 String adminPass =DataEncrypt.messageDigest("SHA-1", pw);
 //새로운 비번 암호화
 String rePass =DataEncrypt.messageDigest("SHA-1", rePw); 
-//out.print("플레인텍스트" +plainText);
-//out.println("아이디" + adminId + "CDMbdBAjloHNARWDFzTx0w=="); 
-//out.println("새비번"+adminPass);
-//out.println("2" + rePass);  
-//System.out.println("플레인텍스트" +plainText);
+
 
 AdminDAO aDAO = AdminDAO.getInstance();
 //현재 비밀번호가 맞으면 새로운 비번으로 테이블 update
@@ -65,7 +52,9 @@ int chk = aDAO.updateAdmin(adminId, adminPass , rePass);
  
  //페이지 이동
   
- if(chk > 0){%>
+ if(chk > 0){
+if(session != null && session.getAttribute("adminId") != null){
+session.invalidate(); //세션 값 초기화%>
 <script type="text/javascript">
 $(function(){
 	alert("비밀번호변경이 완료되었습니다.다시 로그인 해 주세요.");
@@ -73,7 +62,7 @@ $(function(){
 })
 </script> 
 <%
- }else{%>
+ }}else{%>
  <script type="text/javascript">
 $(function(){
 	alert("입력된 현재 비밀번호가 맞지 않습니다. 다시 입력해주세요.");
