@@ -129,7 +129,6 @@ String memberId = (String)session.getAttribute("memberId");
          $("#period2").val(dateFormat(date));
          $(".datepickerRange").val(sdate + " ~ " + dateFormat(date));
          //fn_search2('1');
-         //fn_search2();
          
          $("#dateFrm").submit(); 
          

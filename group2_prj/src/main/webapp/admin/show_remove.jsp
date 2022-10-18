@@ -20,6 +20,7 @@
 					//board페이지로 이동
 					if(cnt!=-99){%>
 						<script>
+						alert("delete process 파일로 넘어왔다");
 						location.href="showBoard.jsp";
 						</script>
 					<%}%>  --%>

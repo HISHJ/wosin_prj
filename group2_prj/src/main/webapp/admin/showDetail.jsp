@@ -264,8 +264,8 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>공연삭제</b></div> <div class="col-4">
-                                            <input type="button" id="removeBtn" value="삭제하기"></div>
                                             <input type="hidden" id="showId" name="showId" value="<%=showDetail.getShowId() %>">
+                                            <input type="button" id="removeBtn" value="삭제하기"></div>
                                         </div>
                                      </form>
                                         

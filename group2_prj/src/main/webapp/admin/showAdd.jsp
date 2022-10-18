@@ -54,7 +54,6 @@ AdminShowVO asVO= new AdminShowVO();
     		var name=$("#name").val();
 			if(name.trim()==""){ //null 아니라 ""로 처리
 				alert("공연명을 입력해주세요");
-				alert(price);
 				$("#name").focus();	
 				return;
 			}

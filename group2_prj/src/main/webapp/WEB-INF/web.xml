@@ -22,16 +22,16 @@
 <!-- 에러처리 -->
 <!-- 10/18 하지윤: 위에꺼는 안건드림. 여기부터 추가한것  -->
 <!-- 절대경로 삽입이 안됨 -->
-<error-page>
+<!-- <error-page>
 	<error-code>401</error-code>
-	<location>/admin/401.jsp</location>
+	<location>/error/401.jsp</location>
 </error-page>
 <error-page>
 	<error-code>404</error-code>
-	<location>/admin/404.jsp</location>
+	<location>/error/404.jsp</location>
 </error-page>
 <error-page>
 	<error-code>500</error-code>
-	<location>/admin/500.jsp</location>
-</error-page>
+	<location>/error/500.jsp</location>
+</error-page> -->
 </web-app>
