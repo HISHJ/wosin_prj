@@ -9,8 +9,12 @@
 <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
 <jsp:useBean id="aqmVO" class="kr.co.sist.vo.AdminQuitMemberVO" scope="page"/>
 <jsp:setProperty property="memberId" name="admVO"/>
+<jsp:setProperty property="memberId" name="aqmVO" value="<%=admVO.getMemberId()%>"/>
 
-<% 
+
+
+
+ <% 
 AdminMemberDAO admDAO=AdminMemberDAO.getInstance();
 int  updateMemberCnt = admDAO.updateMemberStatus(admVO.getMemberId());
 int insertCnt=admDAO.insertQuitMember(aqmVO);
@@ -21,7 +25,8 @@ int insertCnt=admDAO.insertQuitMember(aqmVO);
 
  if(updateMemberCnt==0){/* 회원정보수정 실패 */	%>
 					<script>
-						alert("비밀번호를 다시 확인해주세요");
+						alert("다시시도해주세요");
+						location="http://localhost/group2_prj/admin/useDetail.jsp";
 					</script>
 				<%}else{%>
 							
@@ -33,9 +38,9 @@ int insertCnt=admDAO.insertQuitMember(aqmVO);
 					<%}else{%>
 					<script>
 					alert("회원 탈퇴 실패하였습니다. 다시 시도해주세요");
+					location="http://localhost/group2_prj/admin/useDetail.jsp";
 					</script>
 				<%}//insertCnt end
 		}//updateMemberCnt end%> 
-
 
 

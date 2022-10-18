@@ -47,7 +47,8 @@
 
     				<jsp:setProperty property="name" name="mbVO"/>
     				<jsp:setProperty property="memberId" name="mbVO" value="<%=Id %>"/>
-					<jsp:setProperty property="birth" name="mbVO" value="<%=birth %>"/>
+    				<jsp:setProperty property="pwd" name="mbVO" />
+ 					<jsp:setProperty property="birth" name="mbVO" value="<%=birth %>"/>
 					<jsp:setProperty property="gender" name="mbVO"/>
 					<jsp:setProperty property="zipcode" name="mbVO"/>
 					<jsp:setProperty property="addr1" name="mbVO"/>
@@ -63,15 +64,17 @@
 				if(updateMbCnt==0){/* 회원정보수정 실패 */	%>
 					<script>
 						alert("회원정보를 다시 확인해주세요.");
-						location href="https://localhost/group2_prj/mypage/mypage.jsp"
+						location.href="https://localhost/group2_prj/mypage/mypage.jsp";
 					</script>
 		
 				<%}else{ %>
 					<script>
 						alert("회원정보가 수정되었습니다.");
-						location.href="http://localhost/group2_prj/mypage/mypage.jsp"
+						location.href="http://localhost/group2_prj/mypage/mypage.jsp";
 					</script>
-				<%} %>   
+				<%}  
+				
+				System.out.println(updateMbCnt);%>   
 
 
 

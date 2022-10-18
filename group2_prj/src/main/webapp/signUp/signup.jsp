@@ -301,7 +301,62 @@ input[type="date"] {
 					window.open("id_dup.jsp","id_dup","width=510,height=310");
 				});
 				
-			
+				$("#btnDup2").click(function(){
+					
+					//AJAX로 아이디 중복확인 => hidden에 중복확인 여부가 들어가야한다. 10-13 2022코드 추가 
+				   var id=$("#memberId").val();
+					
+					if(id.trim()==""){
+						alert("아이디 필수 입력");
+						$("#memberId").focus();
+						return;
+					}//end if
+					
+					//아이디 특수문자 제외 영문,숫자 4~20자이내+중복검사 필수
+					 if(!id.match('^[a-zA-Z0-9]{4,20}$')) {
+							 alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 사용 가능합니다.');
+							$('#memberId').focus();
+							 return ;
+						 }//idcheck
+					
+					
+					
+				   let paramJson={"memberId" : id };
+
+					$.ajax({
+						url : "http://localhost/group2_prj/signUp/id_dup2.jsp",
+						data:paramJson,
+						type:"post",
+						dataType:"json",
+						error:function(xhr){
+							alert("문제가 발생했습니다. 잠시후에 다시 시도해주세요.")
+							console.log("id중복검사 중 문제 : " + xhr.status);
+						},success:function(login){
+							let msg="사용중인 아이디";
+							let color="#FF0000";
+							if(!login.result){//파싱한 값
+								msg="사용가능한 아이디";
+								color="#0000FF";
+								
+							}//end else
+							
+							$("#idResult").html(msg);
+							$("#idResult").css("color",color);
+							
+							for(var i=0 ; i<10 ; i++){
+							$("#idResult").fadeIn(500).fadeOut(500);
+							}//end for
+							
+							if(msg =="사용중인 아이디"){
+									$("#idResult").fadeIn(500);
+							}//end if
+	
+						}//success
+		
+				
+					});//ajax
+				
+				});//btnDup2
 		
 				
 			
@@ -402,12 +457,27 @@ input[type="date"] {
 				alert("성별을 입력해주세요.");
 				$("#genderFlag").focus();
 				return  ;
-			}//gender
+			}//gender	
+			var zipcode=$("#memberZipCd").val();
+			if(zipcode.trim()==""){
+				alert("우편번호를 입력해주세요..");
+				$("#memberZipCd").focus();
+				return ;
+			}//addr2
+			
+
+			var addr1=$("#memberAddr1").val();
+			if(addr1.trim()==""){
+				alert("주소를 입력해주세요..");
+				$("#memberAddr1").focus();
+				return ;
+			}//addr2
+			
 			
 
 			var addr2=$("#memberAddr2").val();
 			if(addr2.trim()==""){
-				alert("주소를 입력해주세요..");
+				alert("상세주소를 입력해주세요..");
 				$("#memberAddr2").focus();
 				return ;
 			}//addr2
@@ -416,6 +486,12 @@ input[type="date"] {
 			if(email.trim()==""){
 				alert("이메일을 입력해주세요.");
 				$("#memberEmail").focus();
+				return  ;
+			}//email
+			var email=$("#memberEmail2").val();
+			if(email.trim()==""){
+				alert("이메일을 입력해주세요.");
+				$("#memberEmail2").focus();
 				return  ;
 			}//email
 				
@@ -579,10 +655,10 @@ input[type="date"] {
 						<li class="item">
 							<label for="memberId" class="t">ID <span class="color-purple">*</span></label>
 							<div class="cont ck_id">
-								<input type="text" name="memberId" id="memberId" value=""  readonly />
-								<button type="button" class="bg-black chkmemberId" id="btnDup">중복확인</button>
+								<input type="text" name="memberId" id="memberId" />&nbsp;
+								<button type="button" class="bg-black chkmemberId" id="btnDup2">중복확인</button>
 								<span class="txt ml">특수문자를 제외한 영문, 숫자 4~20자 이내</span>
-								
+								  <span id="idResult"> </span>
 							</div>
 						</li>
 				
@@ -655,7 +731,7 @@ input[type="date"] {
 									<ul class="email clearfix">
 										<li class="e1"><label for="memberEmail1" class="hide">이메일 아이디</label><input type="text" name="email1" id="memberEmail1"  /></li>
 										<li class="dash">@</li>
-										<li class="e2"><label for="memberEmail2" class="hide">이메일 주소</label><input type="text" name="email2" id=memberEmail2  class="long" /></li>
+										<li class="e2"><label for="memberEmail2" class="hide">이메일 주소</label><input type="text" name="email2" id="memberEmail2"  class="long" /></li>
 										<li class="e3"><label for="email3" class="hide">이메일 주소 선택</label>
 										
 										<%String emailData="naver.com,hanmail.net,gmail.com,yahoo.com,nate.com,hotmail.com,korea.com"; 

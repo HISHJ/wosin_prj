@@ -200,10 +200,10 @@ section#header {
 				  
 				  
 MemberDAO mbrDAO = MemberDAO.getInstance();
-boolean result=mbrDAO.selectChkId(mbVO.getMemberId());
+
 int cnt = mbrDAO.insertMember(mbVO);
 
-if(result){%>		
+if(mbrDAO.selectChkId(mbVO.getMemberId())){%>		
 		<script>
 			alert("${param.memberId}는 이미 가입된 아이디 입니다.");
 			location.href="http://localhost/group2_prj/signUp/signup.jsp"

@@ -17,7 +17,7 @@ public class AdminMemberDAO {
 
 	private static AdminMemberDAO admDAO;
 	private AdminMemberDAO() {
-		
+
 		
 	}//AdminMemberDAO
 	
@@ -46,7 +46,7 @@ public class AdminMemberDAO {
 			String selectMb = "select name,memberId,to_char(InputDate,'yyyy-MM-dd')mdate,mailChk,smsChk,status from member where 1=1 ";
 //			검색조건(아이디,메일수신,회원탈퇴)
 			if(memberId!=null) {
-				selectMb+=" and memberId='"+memberId+"' ";
+				selectMb+=" and memberId Like'%"+memberId.trim()+"%' ";
 			}
 			if(mailChk!=null){
 				selectMb+=" and MailChk='Y' ";
@@ -140,7 +140,7 @@ public class AdminMemberDAO {
 	    try {
 
 	    con=dc.getConn();
-	    String updateMs ="update member set  pwd=' ', name=' ', birth=' ', gender=' ',zipcode=' ',addr1=' ', addr2=' ', email=' ',phone=' ',mailchk=' ',smschk=' ', inputdate=to_date(inputdate,null), status='N' where memberid=?";
+	    String updateMs ="update member set  pwd=' ', name=' ', birth=' ', gender=' ',zipcode=' ',addr1=' ', addr2=' ', email=' ',phone=' ',mailchk=' ',smschk=' ', inputdate=to_date(inputdate,null), status='N' where memberId=?";
 	    	
 	    	pstmt=con.prepareStatement(updateMs);
 	    	pstmt.setString(1,memberId);

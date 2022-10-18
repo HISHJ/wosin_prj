@@ -3,31 +3,8 @@
 <%@page import="kr.co.sist.dao.AdminMemberDAO"%>
 <%@page import="kr.co.sist.vo.AdminMemberVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info=""%>
+    pageEncoding="UTF-8" info="회원관리 상세내역"%>
     
-    
-    <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
-    <jsp:setProperty property="*" name="admVO"/>
- 
-    <%
-    request.setCharacterEncoding("UTF-8");
-    
-
-	//key가져오기
-	  ServletContext sc = getServletContext();
-	  String plainText = sc.getInitParameter("keyU"); 
-	//복호화 : 암호화된 문자열을 원본문자열로 변경 
-	 DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
- 	AdminMemberDAO admDAO= AdminMemberDAO.getInstance();
-
- 	admVO= admDAO.selectMemberDetail(admVO.getMemberId());
- 	String zipcode=admVO.getZipcode();
- 	String addr1 = admVO.getAddr1();
- 	String addr2= dd.decryption(admVO.getAddr2());
- 	
- 	String Addr = zipcode+" "+addr1+" "+addr2;
-  
-    %>
 
 
     
@@ -72,6 +49,39 @@
     </head>
     <body>
      
+    <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
+
+
+    <%
+    
+    String id=request.getParameter("memberId");
+    		
+    System.out.println(id);
+
+    
+
+  	AdminMemberDAO admDAO= AdminMemberDAO.getInstance();
+ 	admVO= admDAO.selectMemberDetail(id);
+
+ 	
+ 
+
+ //key가져오기
+	  ServletContext sc = getServletContext();
+	  String plainText = sc.getInitParameter("keyU"); 
+	//복호화 : 암호화된 문자열을 원본문자열로 변경 
+	DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
+ 	String zipcode=admVO.getZipcode();
+ 	String addr1 = admVO.getAddr1();
+ 	String addr2= dd.decryption(admVO.getAddr2());
+ 	
+ 	String Addr = zipcode+" "+addr1+" "+addr2;
+  
+    %>
+	    
+    <jsp:setProperty property="*" name="admVO"/> 
+     
+     
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
@@ -90,7 +100,7 @@
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
-                                            <div class="col-2"><b>아이디</b></div> <div class="col-4"><%=dd.decryption(admVO.getMemberId()) %></div>
+                                            <div class="col-2"><b>아이디</b></div> <div class="col-4"><%=dd.decryption(admVO.getMemberId())%></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -183,5 +193,4 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/scripts.js"></script>
     </body>
-</html>
-  
+</html>  

@@ -74,7 +74,7 @@ public class MemberDAO {
 	public MemberVO selectMemberId(MemberVO mbVO) throws SQLException {
 		
 		
-		
+		String id=null;
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -190,7 +190,7 @@ public MemberVO selectMember(String memberId) throws SQLException {
 	try {
 		con=dc.getConn();
 		String selectInfo = "select name,memberId,pwd,birth,gender,zipcode,addr1,addr2,email,phone,"
-				+ "mailChk,smsChk from member where memberId=?";
+				+ "mailChk,smsChk,to_char(inputdate,'yyyy-MM-dd')mdate from member where memberId=?";
 		pstmt=con.prepareStatement(selectInfo);
 		pstmt.setString(1, memberId);
 		
@@ -211,7 +211,7 @@ public MemberVO selectMember(String memberId) throws SQLException {
 			mbVO.setPhone(rs.getString("phone"));
 			mbVO.setMailChk(rs.getString("mailChk"));
 			mbVO.setSmsChk(rs.getString("smsChk"));
-				
+			mbVO.setMdate(rs.getString("mdate"));	
 		}//end if
 	}finally{
 		

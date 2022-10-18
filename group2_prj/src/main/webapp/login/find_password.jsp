@@ -82,23 +82,23 @@
 								</span>
 							</li>
 							<li>
-								<div class="rel">
-									<a href="memberMng.html">
+									<div class="rel">
+									<a href="http://localhost/group2_prj/login/login.jsp" >
 										<span>통합회원서비스</span>
 									</a>
 									<!-- display:none -->
 									<ul class="depth" >
 										<li>
-											<a href="page1.html">공연정보</a>
+											<a href="http://localhost/group2_prj/reservation/show_search.jsp">공연정보</a>
 										</li>
 										<li>
-											<a href="subpage-ticketmethod.html">예매정보</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-ticketMethod.jsp">예매정보</a>
 										</li>
 										<li>
-											<a href="page9.html">고객센터</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-FAQ1.jsp">고객센터</a>
 										</li>
 										<li>
-											<a href="subpage-way.html">오시는길</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-location.jsp">오시는길</a>
 										</li>
 									</ul>
 								</div>
@@ -181,21 +181,21 @@
 				if(id.trim()==""){
 					alert("아이디를 입력해주세요.");
 					$("#memberId").focus();
-					return false;
+					return;
 				}
 
 				//아이디 특수문자 제외 영문,숫자 4~20자이내+중복검사 필수
 				 if(!id.match('^[a-zA-Z0-9]{4,20}$')) {
 						 alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 입력해주세요.');
 						$('#memberId').focus();
-						 return false;
+						 return;
 					 }//idcheck
 				
 						var name=$("#memberName").val();
 						if(name.trim()==""){
 							alert("이름을 입력해주세요.")
 							$("#memberName").focus();
-							return false;
+							return;
 						}//name
 						
 						var phone2=$("#tel2").val();
@@ -203,13 +203,13 @@
 						if(phone2.trim()==""){
 							alert("휴대폰 중간번호를 입력해주세요.");
 							$("#tel2").focus();
-							return false ;
+							return  ;
 						}//phone
 						
 						if(phone3.trim()==""){
 							alert("휴대폰 중간번호를 입력해주세요.");
 							$("#tel3").focus();
-							return false ;
+							return  ;
 						}//phone
 						
 						 	$("#pwFrm").submit(); 

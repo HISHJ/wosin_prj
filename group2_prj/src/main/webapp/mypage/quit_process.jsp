@@ -53,8 +53,11 @@ String pwd=DataEncrypt.messageDigest("SHA-1", pw);
 
 
 
-
  <%
+ System.out.println(mbVO);
+ System.out.println(qmVO);
+
+ 
 MemberDAO mbrDAO =MemberDAO.getInstance();
 
  int updateMbsCnt = mbrDAO.updateMemberStatus(mbVO.getMemberId(), mbVO.getPwd());
@@ -72,7 +75,7 @@ MemberDAO mbrDAO =MemberDAO.getInstance();
 				<%}else if(updateMbsCnt==-1){%>
 				<script>
 				alert("비밀번호를 다시 확인해주세요.");
-				location.hrefp="http://localhost/group2_prj/mypage/quitmember.jsp";
+				location.href="http://localhost/group2_prj/mypage/quitmember.jsp";
 				</script>
 				<%}else{ 
 					if(qmCnt==-1){%>
@@ -87,11 +90,12 @@ MemberDAO mbrDAO =MemberDAO.getInstance();
 								location.href="http://localhost/group2_prj/main/index.jsp";
 								</script>
 						<%} 
-						
+					 System.out.println(updateMbsCnt);
+					 System.out.println(qmCnt);
+					 
 				}//endif
 						%>
 			
 
 
 
- --%>

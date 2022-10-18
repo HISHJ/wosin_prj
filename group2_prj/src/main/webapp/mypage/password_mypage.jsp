@@ -99,44 +99,38 @@ if(memberId == null){
 					</span>
 				</li>
 				<li>
-					<div class="rel">
-						<a href="memberMng.html">
-							<span>마이페이지</span>
-						</a>
-						<!-- display:none -->
-						<ul class="depth" >
-							<li>
-								<a href="memberMng.html">
-									<span>마이페이지</span>
-								</a>
-							</li>
-							<li>
-								<a href="page1.html">공연정보</a>
-							</li>
-							<li>
-								<a href="subpage-ticketmethod.html">예매정보</a>
-							</li>
-							<li>
-								<a href="page9.html">고객센터</a>
-							</li>
-							<li>
-								<a href="subpage-way.html">오시는길</a>
-							</li>
-						</ul>
-					</div>
+						<div class="rel">
+										<a href="http://localhost/group2_prj/mypage/memberMng.jsp">
+											<span>개인화서비스</span>
+										</a>
+										<!-- display:none -->
+									<ul class="depth" >
+										<li>
+											<a href="http://localhost/group2_prj/reservation/show_search.jsp">공연정보</a>
+										</li>
+										<li>
+											<a href="http://localhost/group2_prj/subpage/subpage-ticketMethod.jsp">예매정보</a>
+										</li>
+										<li>
+											<a href="http://localhost/group2_prj/subpage/subpage-FAQ1.jsp">고객센터</a>
+										</li>
+										<li>
+											<a href="http://localhost/group2_prj/subpage/subpage-location.jsp">오시는길</a>
+										</li>
+									</ul>
+									</div>
 				</li>
 				<li>
 					<li>
-						<div class="rel">
-						<a href="#"><span>마이페이지</span></a>
-						<ul class="depth">
-						<li><a href="memberMng.html" ><span>개인화서비스</span></a></li>
-						<li><a href="mypage.html" ><span>회원정보 수정</span></a></li>
-						<li><a href="find_password.html" ><span>예매내역 확인·취소</span></a></li>
-						
-				
-						</ul>
-						</div>
+							<div class="rel">
+									<a href="http://localhost/group2_prj/mypage/memberMng.jsp" ><span>개인화서비스</span></a>
+									<ul class="depth">
+									<li><a href="http://localhost/group2_prj/mypage/memberMng.jsp" ><span>개인화서비스</span></a></li>
+									<li><a href="http://localhost/group2_prj/mypage/passModify.jsp" ><span>비밀번호변경</span></a></li>
+									<li><a href="http://localhost/group2_prj/mypage/mypage.jsp" ><span>회원정보 수정</span></a></li>
+									<li><a href="http://localhost/group2_prj/reservation/ticket_page.jsp" ><span>예매내역 확인·취소</span></a></li>
+									</ul>
+									</div>
 					</li>
 				
 				</li>

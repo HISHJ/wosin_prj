@@ -7,7 +7,7 @@
 <%@page import="java.util.List"%>
 <%@page import="kr.co.sist.dao.AdminMemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info=""%>/
+    pageEncoding="UTF-8" info=""%>
     
     
     
@@ -19,7 +19,7 @@
   String mailchk=request.getParameter("mailChk");
   String smschk=request.getParameter("smsChk");
   String status=request.getParameter("status");
-  
+  String memberId=null;
 //key가져오기
 ServletContext sc = getServletContext();
 String plainText = sc.getInitParameter("keyU");  
@@ -88,8 +88,12 @@ if( session.getAttribute("adminId") == null){
 	    		$("#statusFrm").submit();
 	    	});//상태 검색
 	    	
-	    	
    		});//ready
+	    	function HiddenVal(Id){
+	    		$("#memberId").val(Id);
+	    		$("#userFrm").submit();
+	    	}
+	    	
 			
 	
 	</script>
@@ -159,7 +163,8 @@ if( session.getAttribute("adminId") == null){
                                 <a href="useBoard.jsp"><button id="addBtn" type="button" class="btn btn-outline-dark float-end mx-md-4" >전체보기</button></a>
                                 </div>
                             </div>
-                        
+                        	<form id="userFrm" name="userFrm" action="useDetail.jsp" method="post">
+                               <input type="hidden" name="memberId" id="memberId">
                                 <table id="datatablesSimple">
                                     <thead>
                                         <tr>
@@ -184,7 +189,11 @@ if( session.getAttribute("adminId") == null){
                                         </tr>
                                         </tfoot>
                                      <tbody>
-                                     <%for(AdminMemberVO admVO1 : Mlist){%>
+                                     <%for(AdminMemberVO admVO1 : Mlist){
+                                     	memberId=admVO1.getMemberId();
+                                     	session.setAttribute("Id",memberId);
+                                     	String memberid=(String)session.getAttribute("Id");
+                                     %>
                                         <tr>
                                             <td><%=admVO1.getName()%></td>
                                             <td><%=dd.decryption(admVO1.getMemberId())%></td>
@@ -192,12 +201,12 @@ if( session.getAttribute("adminId") == null){
                                             <td><%=admVO1.getMailChk()%></td>
                                             <td><%=admVO1.getSmsChk()%></td>
                                             <td><%=admVO1.getStatus()%></td>
-                                            <td><a href="http://localhost/group2_prj/admin/useDetail.jsp?memberId=<%=admVO1.getMemberId()%>">
-                                            <input type="button" value="상세보기" class="useDetailBtn"/></a></td>
+                                            <td><input type="button" value="상세보기" onclick="HiddenVal('<%=memberid%>')"></td>
                                         </tr>
                                    <%}%>
                                     </tbody>
                                 </table>
+                              </form>
                             </div>
                         </div>
                     </div>
@@ -205,22 +214,4 @@ if( session.getAttribute("adminId") == null){
                 <!--  -->
                 <jsp:include page="admin_common_footer.jsp"/>
                 
-               <!--  <footer class="py-4 bg-light mt-auto">
-                    <div class="container-fluid px-4">
-                        <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Your Website 2022</div>
-                        </div>
-                    </div>
-                </footer>
-            </div>
-        </div>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-        <script src="assets/demo/chart-area-demo.js"></script>
-        <script src="assets/demo/chart-bar-demo.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
-        <script src="js/datatables-simple-demo.js"></script>
-    </body>
-</html>
-    -->
+             

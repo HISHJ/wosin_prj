@@ -41,9 +41,9 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
 			<script src="https://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
 			<script src="https://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="https://assets/js/breakpoints.min.js"></script>
-			<script src="https://assets/js/util.js"></script>
-			<script src="https://assets/js/main.js"></script>
+			<script src="https://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="https://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="https://localhost/group2_prj/assets/js/main.js"></script>
 	
 	<%if(memberId == null){%>
 	<style>
@@ -665,7 +665,7 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 				
 						<div class="bbs-btn tac">
 							<a href="javascript:fn_agree();" class="bbs-btn-st2 bg-purple3">다음</a>
-							<a href="#" class="bbs-btn-st2 bg-black_r">이전</a>
+							<a href="http://localhost/group2_prj/login/login.jsp" class="bbs-btn-st2 bg-black_r">이전</a>
 						</div>
 					</article>
 				</form>

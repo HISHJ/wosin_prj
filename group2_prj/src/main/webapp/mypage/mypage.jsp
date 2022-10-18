@@ -82,7 +82,7 @@ if( session.getAttribute("memberId") == null){%>
 	<%} %>
 	<style>	
 		
-	<style>
+
         section#header{
  		 /* background-image:  url("../../images/subvisual-200001.jpg"); */
   	background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
@@ -94,6 +94,23 @@ if( session.getAttribute("memberId") == null){%>
  	.member_join .add .a2 > span:first-child{float: left; width: 57.5%}
 	.member_join .add .a2 .r{width:37.5%} 
 	.member_join input[type="text"]:read-only{border:1px solid #000; padding: 0}
+	
+	input[type="date"]::-webkit-clear-button, input[type="date"]::-webkit-inner-spin-button { 
+ display: none; 
+} 
+
+input[type="date"] { 
+		display: table !important;
+    	width: 100%;
+    	padding: 1em;
+    	border-bottom: 1px solid #000;
+    	min-height: 3.75em;
+    	border-radius: 5px ;
+    	font-weight: normal;
+}
+	
+	
+	
 	</style>
 	</head>
 	<body class="homepage is-preload">
@@ -128,29 +145,24 @@ if( session.getAttribute("memberId") == null){%>
 								</li>
 								<li>
 									<div class="rel">
-										<a href="memberMng.html">
-											<span>마이페이지</span>
+										<a href="http://localhost/group2_prj/mypage/memberMng.jsp">
+											<span>개인화서비스</span>
 										</a>
 										<!-- display:none -->
-										<ul class="depth" >
-											<li>
-												<a href="memberMng.html">
-													<span>마이페이지</span>
-												</a>
-											</li>
-											<li>
-												<a href="page1.html">공연정보</a>
-											</li>
-											<li>
-												<a href="subpage-ticketmethod.html">예매정보</a>
-											</li>
-											<li>
-												<a href="page9.html">고객센터</a>
-											</li>
-											<li>
-												<a href="subpage-way.html">오시는길</a>
-											</li>
-										</ul>
+									<ul class="depth" >
+										<li>
+											<a href="http://localhost/group2_prj/reservation/show_search.jsp">공연정보</a>
+										</li>
+										<li>
+											<a href="http://localhost/group2_prj/subpage/subpage-ticketMethod.jsp">예매정보</a>
+										</li>
+										<li>
+											<a href="http://localhost/group2_prj/subpage/subpage-FAQ1.jsp">고객센터</a>
+										</li>
+										<li>
+											<a href="http://localhost/group2_prj/subpage/subpage-location.jsp">오시는길</a>
+										</li>
+									</ul>
 									</div>
 								</li>
 								<li>
@@ -230,10 +242,9 @@ if( session.getAttribute("memberId") == null){%>
 						if(name.trim()==""){
 							alert("이름을 입력해주세요.")
 							$("#memberName").focus();
-							return false;
+							return;
 						}//name
 						
-						/* 생년월일 생각하기*/
 						
 					
 						
@@ -242,14 +253,26 @@ if( session.getAttribute("memberId") == null){%>
 						if(gender.trim()==""){
 							alert("성별을 선택해주세요.");
 							$("#genderFlag").focus();
-							return false ;
-						}//gender
+							return;
+						}//gender		
+						var zipcode=$("#memberZipCd").val();
+						if(zipcode.trim()==""){
+							alert("우편번호를 입력해주세요.");
+							$("#memberZipCd").focus();
+							return ;
+						}//addr2
+						var addr1=$("#memberAddr1").val();
+						if(addr1.trim()==""){
+							alert("주소를 입력해주세요..");
+							$("#memberAddr2").focus();
+							return ;
+						}//addr2			
 						
 						var addr2=$("#memberAddr2").val();
 						if(addr2.trim()==""){
 							alert("상세주소를 입력해주세요..");
 							$("#memberAddr2").focus();
-							return false ;
+							return ;
 						}//addr2
 						
 						var email1=$("#memberEmail1").val();
@@ -259,9 +282,6 @@ if( session.getAttribute("memberId") == null){%>
 							$("#memberEmail1").focus();
 							return false ;
 						}//email
-						
-						
-					
 						
 						if(email2.trim()==""){
 							alert("도메인을 입력해주세요.");
@@ -399,7 +419,7 @@ if( session.getAttribute("memberId") == null){%>
 				
 			}//else
 				    obj.value = phone;
-					return false;
+					return;
 				}//PhoneNumber
 		
 				//이메일 select값 넘기기
@@ -432,7 +452,11 @@ if( session.getAttribute("memberId") == null){%>
 				
 				MemberDAO mbrDAO = MemberDAO.getInstance();
 				
-				mbVO=mbrDAO.selectMember(mbVO.getMemberId()); %>
+				mbVO=mbrDAO.selectMember(mbVO.getMemberId()); 
+				
+			 	 System.out.println(mbVO);
+				
+				%>
 			
 			
 				
@@ -458,11 +482,11 @@ if( session.getAttribute("memberId") == null){%>
 								</div>
 							</li>
 							<%		
-								Calendar cal=Calendar.getInstance();
+							/* 	Calendar cal=Calendar.getInstance();
 									session.setAttribute("year", Calendar.getInstance().get(Calendar.YEAR));
 									session.setAttribute("month", Calendar.getInstance().get(Calendar.MONTH+1));
 									session.setAttribute("lastDay", Calendar.getInstance().getActualMaximum(Calendar.DATE));
-									session.setAttribute("day", Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
+									session.setAttribute("day", Calendar.getInstance().get(Calendar.DAY_OF_MONTH)); */
 									
 									/* 생일 년 월 일 3등분하기 */
 									String birth = mbVO.getBirth();
@@ -470,11 +494,11 @@ if( session.getAttribute("memberId") == null){%>
 									String birth2=birth.substring(birth.indexOf("-")+1,birth.lastIndexOf("-"));
 									String birth3=birth.substring(birth.lastIndexOf("-")+1,birth.length());
 								
-									/* el사용하기위해서 넣기 */
+								/* el사용하기위해서 넣기 */
 									pageContext.setAttribute("bYear", birth1);
 									pageContext.setAttribute("bMonth", birth2);
 									pageContext.setAttribute("bDay", birth3);
-									
+									 
 									
 									
 									
@@ -484,8 +508,24 @@ if( session.getAttribute("memberId") == null){%>
 							
 							<li class="item">
 								<label class="t">생년월일 <span class="color-purple">*</span></label>
-								<!-- <strong class="t">생년월일  <span class="color-purple">*</span></strong> -->
-								<div class="cont birth_cont">
+									<div class="cont">
+								<div class="birth_w clearfix">
+									<ul class="clearfix birth">
+											<li>
+											<p><input type="date" name="birth" id="datepicker"  value ="<%=birth%>"style="width:320px;" /></p>
+											</li>
+									</ul>
+			
+								</div>
+							</div>
+								
+								
+								
+								
+								
+								
+								
+							<%-- 	<div class="cont birth_cont">
 									<div class="birth_w clearfix">
 				
 									 
@@ -523,7 +563,7 @@ if( session.getAttribute("memberId") == null){%>
 										<input type="hidden" name="birthMonth" id="birthMonth" value="0103" />
 
 									</div>
-								</div>
+								</div> --%>
 							</li>
 							<li class="item">
 								<label for="genderFlag" class="t">성별 <span class="color-purple">*</span></label>
@@ -546,10 +586,7 @@ if( session.getAttribute("memberId") == null){%>
 												<input type="text" name="zipcode" id="memberZipCd" value="<%=mbVO.getZipcode() %>"  readonly /> <button id="addrBtn" type="button" class="bg-black"  onclick="execDaumPostcode()">우편번호 찾기</button>
 												
 											</div>
-											<!-- <div class="select ck_com">
-												<input type="radio" name="defaultContact" id="defaultContact1" value="P" checked="checked" /> <label for="defaultContact1">자택 </label>
-												<input type="radio" name="defaultContact" id="defaultContact2" value="C"   /> <label for="defaultContact2">직장</label>
-											</div> -->
+								
 										</li>
 										<li class="clearfix a2"><!--login.css 수정 -->
 											<span class="l">

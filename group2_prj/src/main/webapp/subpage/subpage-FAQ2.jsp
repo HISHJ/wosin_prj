@@ -66,25 +66,25 @@ String memberId= (String)session.getAttribute("memberId");
 							</li>
 							<li>
 								<div class="rel">
-									<a href="#">
-										<span>고객센터</span>
-									</a>
-									<!-- display:none -->
+										<a href="http://localhost/group2_prj/subpage/subpage-FAQ1.jsp">
+											<span>고객센터</span>
+										</a>
+										<!-- display:none -->
 									<ul class="depth" >
 										<li>
-											<a href="#">공연정보</a>
+											<a href="http://localhost/group2_prj/reservation/show_search.jsp">공연정보</a>
 										</li>
 										<li>
-											<a href="#">예매정보</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-ticketMethod.jsp">예매정보</a>
 										</li>
 										<li>
-											<a href="#">고객센터</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-FAQ1.jsp">고객센터</a>
 										</li>
 										<li>
-											<a href="#">오시는길</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-location.jsp">오시는길</a>
 										</li>
 									</ul>
-								</div>
+									</div>
 							</li>
 							<li>
 								<li>

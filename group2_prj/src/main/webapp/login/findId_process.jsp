@@ -84,22 +84,22 @@ section#header {
 							</li>
 							<li>
 								<div class="rel">
-									<a href="memberMng.html">
+									<a href="http://localhost/group2_prj/login/login.jsp" >
 										<span>통합회원서비스</span>
 									</a>
 									<!-- display:none -->
 									<ul class="depth" >
 										<li>
-											<a href="page1.html">공연정보</a>
+											<a href="http://localhost/group2_prj/reservation/show_search.jsp">공연정보</a>
 										</li>
 										<li>
-											<a href="subpage-ticketmethod.html">예매정보</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-ticketMethod.jsp">예매정보</a>
 										</li>
 										<li>
-											<a href="page9.html">고객센터</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-FAQ1.jsp">고객센터</a>
 										</li>
 										<li>
-											<a href="subpage-way.html">오시는길</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-location.jsp">오시는길</a>
 										</li>
 									</ul>
 								</div>
@@ -235,11 +235,13 @@ section#header {
 					</script>
 				
 				<%}else{ %>
-						
+						<script>
+							location.href=""
+						</script>
 					<%} %> 
 				
 					
-<article class="find_confirm inner member_com">
+<%-- <article class="find_confirm inner member_com">
 	<h3 class="tit-st4">아이디 찾기 결과 </h3>
 	<div class="box">
 		<h4 class="t">${param.name }님이 가입하신 아이디는 다음과 같습니다.</h4>
@@ -313,4 +315,4 @@ section#header {
 			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
-</html> --%>
+</html>  --%>

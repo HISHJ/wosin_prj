@@ -59,11 +59,13 @@
 						location.href="http://localhost/group2_prj/login/find_password.jsp"
 					</script>
 				
-				<%}else{
-						
-						response.sendRedirect("http://localhost/group2_prj/login/passModify.jsp"); 
-						
-					} %> 				
+				<%}else{%>
+						<script>
+						locatin.href="http://localhost/group2_prj/login/passModify.jsp";
+						</script>
+					<%} 
+					System.out.println(mbVO);
+					%> 				
 
 
 
