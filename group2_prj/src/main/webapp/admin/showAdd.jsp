@@ -32,6 +32,7 @@ AdminShowVO asVO= new AdminShowVO();
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script type="text/javascript" src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
     	<script type="text/javascript">
     	
     	//썸네일이미지 미리보기
@@ -58,22 +59,22 @@ AdminShowVO asVO= new AdminShowVO();
 				return;
 			}
 			
+			
+			
 			var startDate=$("#startDate").val();
+			var endDate=$("#endDate").val();
 			if(startDate==""){
 				alert("시작일을 입력해주세요");
 				$("#startDate").focus();
 				return;
 			}
 			
-			var endDate=$("#endDate").val();
 			if(endDate==""){
 				alert("종료일을 입력해주세요");
 				$("#endDate").focus();
 				return;
 			}
 			
-			var startDate=$("#startDate").val();
-			var endDate=$("#endDate").val();
 			if(startDate>endDate){
 				alert("종료일은 시작일보다 클 수 없습니다");
 				$("#endDate").focus();
@@ -83,6 +84,12 @@ AdminShowVO asVO= new AdminShowVO();
 			var price=$("#price").val();
 			if(price.trim()==""){
 				alert("금액을 입력해주세요");
+				$("#price").focus();	
+				return;
+			}
+			
+			if(price<10000){
+				alert("금액은 최소 10,000원 부터입니다");
 				$("#price").focus();	
 				return;
 			}
@@ -178,6 +185,17 @@ AdminShowVO asVO= new AdminShowVO();
                                         <div class="row">
                                             <div class="col-2"><b>종료일</b></div> <div class="col-4"><input type="date" class="dataTable-input"  name="endDate" id="endDate"></div>
                                         </div>
+                                       		<!-- 오늘 이전날은 선택못하도록 비활성화 시킴 -->
+                                            <script language="javascript">
+										        var today = new Date();
+										        var dd = String(today.getDate()).padStart(2, '0');
+										        var mm = String(today.getMonth() + 1).padStart(2, '0');
+										        var yyyy = today.getFullYear();
+										
+										        today = yyyy + '-' + mm + '-' + dd;
+										        $('#startDate').attr('min',today);
+										        $('#endDate').attr('min',today);
+										    </script>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>관람시간</b></div> 

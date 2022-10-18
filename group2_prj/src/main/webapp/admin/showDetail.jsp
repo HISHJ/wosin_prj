@@ -93,6 +93,12 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
     				return;
     			}
     			
+    			if(price<10000){
+    				alert("금액은 최소 10,000원 부터입니다");
+    				$("#price").focus();	
+    				return;
+    			}
+    			
             	//파일은 focus 안돼서 뺌
     			var thImg=$("#thImg").val();
     			var mImg=$("#mImg").val();
@@ -189,6 +195,17 @@ AdminShowVO showDetail=asDAO.selectShowDetail(showId);
                                         <div class="row">
                                             <div class="col-2"><b>종료일</b></div> <div class="col-4"><input type="date" class="dataTable-input"  name="endDate" id="endDate" value="<%=showDetail.getEndDate()%>"></div>
                                         </div>
+                                        	<!-- 오늘 이전날은 선택못하도록 비활성화 시킴 -->
+                                            <script language="javascript">
+										        var today = new Date();
+										        var dd = String(today.getDate()).padStart(2, '0');
+										        var mm = String(today.getMonth() + 1).padStart(2, '0');
+										        var yyyy = today.getFullYear();
+										
+										        today = yyyy + '-' + mm + '-' + dd;
+										        $('#startDate').attr('min',today);
+										        $('#endDate').attr('min',today);
+										    </script>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>관람시간</b></div> 

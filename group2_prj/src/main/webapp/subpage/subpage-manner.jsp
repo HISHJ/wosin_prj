@@ -199,7 +199,7 @@ String memberId= (String)session.getAttribute("memberId");
 											</div>
 										</li>
 										<li class="item clearfix">
-											<div class="ico"><img src="http://localhost/group2_prj/images/images/ee4.gif" alt="04" /></div>
+											<div class="ico"><img src="http://localhost/group2_prj/images/ee4.gif" alt="04" /></div>
 											<div class="cont">
 												<strong class="t">공연장 도착은 20분전, 
 													<br/>객석 입장은 10분 전 </strong>
@@ -211,7 +211,7 @@ String memberId= (String)session.getAttribute("memberId");
 											</div>
 										</li>
 										<li class="item clearfix">
-											<div class="ico"><img src="http://localhost/group2_prj/images/images/ee5.gif" alt="05" /></div>
+											<div class="ico"><img src="http://localhost/group2_prj/images/ee5.gif" alt="05" /></div>
 											<div class="cont">
 												<strong class="t">음식물은 휴게실에서<br/> 공연장에선 공연감상만 </strong>
 												<ul class="bul-dot">
@@ -223,7 +223,7 @@ String memberId= (String)session.getAttribute("memberId");
 											</div>
 										</li>
 										<li class="item clearfix">
-											<div class="ico"><img src="http://localhost/group2_prj/images/images/ee6.gif" alt="06" /></div>
+											<div class="ico"><img src="http://localhost/group2_prj/images/ee6.gif" alt="06" /></div>
 											<div class="cont">
 												<strong class="t">공연장에서 조심해야 할 물건들 </strong>
 												<ul class="bul-dot">

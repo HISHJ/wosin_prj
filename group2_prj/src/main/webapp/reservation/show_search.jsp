@@ -181,7 +181,7 @@ String memberId = (String)session.getAttribute("memberId");
        return year + "-" + month + "-" + day;
    }//dateFormat
    
-    function fn_search(pageNo) {
+   /*  function fn_search(pageNo) {
          
          if (pageNo != null || pageNo != undefined ) {
             document.frm.pageIndex.value = pageNo;
@@ -198,8 +198,10 @@ String memberId = (String)session.getAttribute("memberId");
                $("#performList").html(data);
               }
          });
-      } 
+      }  */
    
+      
+      
    
    
    </script>

@@ -137,7 +137,7 @@ public class ShowDAO {
 			con=db.getConn();
 			
 			//ratingId ratingType 
-			String query=" select s.showId s_showId, s.thImg s_thImg, s.name s_name, s.startDate s_startDate, s.endDate s_endDate, g.genreId g_genreId "
+			String query=" select s.showId s_showId, s.thImg s_thImg, s.name s_name, s.startDate s_startDate, s.endDate s_endDate, g.genreId g_genreId, g.genreType g_genreType "
 					+ " from show s, genre g "
 					+ " where (s.genreId=g.genreId) ";
 			
@@ -174,7 +174,7 @@ public class ShowDAO {
 				sVO2.setName(rs.getString("s_name"));
 				sVO2.setStartDate(rs.getString("s_startDate"));
 				sVO2.setEndDate(rs.getString("s_endDate"));
-				sVO2.setGenreId(rs.getString("g_genreId"));
+				sVO2.setGenreId(rs.getString("g_genreType"));
 				sVO2.setShowId(rs.getString("s_showId")); //쇼아이디!
 				list.add(sVO2);
 			}
