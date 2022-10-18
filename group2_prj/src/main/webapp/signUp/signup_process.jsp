@@ -158,15 +158,10 @@ section#header {
 			
 				//key가져오기
 				  ServletContext sc = getServletContext();
-				  String plainText = sc.getInitParameter("keyU"); 
+				  String key = sc.getInitParameter("keyU"); 
 				  //System.out.println( plainText );
 				  
-				  //알고리즘 설정하여 MessageDigest
-				  MessageDigest md=MessageDigest.getInstance("MD5");
-				  md.update(plainText.getBytes());
-				  new String(md.digest());
 				  //키 생성
-				  String key=DataEncrypt.messageDigest("MD5", plainText);
 				  //키를 넣어 암호화 객체 생성
 				  DataEncrypt de= new DataEncrypt(key);
 				
@@ -195,27 +190,15 @@ section#header {
 					<jsp:setProperty property="status" name="mbVO"/>
 
 	
- <% 
-			
-				  
-				  
-MemberDAO mbrDAO = MemberDAO.getInstance();
-
-int cnt = mbrDAO.insertMember(mbVO);
-
-if(mbrDAO.selectChkId(mbVO.getMemberId())){%>		
-		<script>
-			alert("${param.memberId}는 이미 가입된 아이디 입니다.");
-			location.href="http://localhost/group2_prj/signUp/signup.jsp"
-		</script>
-		
-	<%}else{ 
+<% 			  
+				MemberDAO mbrDAO = MemberDAO.getInstance();
+					int cnt = mbrDAO.insertMember(mbVO);
 					if(cnt<0){%>
 						<script>
 							alert("다시 시도해주세요.")
 							location.href="http://localhost/group2_prj/signUp/signup.jsp"
-							</script>
-					<%}else{ %>
+						</script>
+		<%}else{ %>
 				<!------------------------------------------main-------------------------------------->
 				<div class="signup_result_wrap">
 					<div class="signup_result_inner">
@@ -248,7 +231,7 @@ if(mbrDAO.selectChkId(mbVO.getMemberId())){%>
 		<%
 					}//cnt
 		
-					}//result%>
+					%>
 
 				<!----------------------------------------------여기서부터 끝까지 footer-------------------------------------------->
 

@@ -1,4 +1,4 @@
-<%@page import="java.security.MessageDigest"%>
+
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="javax.websocket.Session"%>
@@ -22,16 +22,12 @@
   String memberId=null;
 //key가져오기
 ServletContext sc = getServletContext();
-String plainText = sc.getInitParameter("keyU");  
-//알고리즘 설정하여 MessageDigest
-MessageDigest md=MessageDigest.getInstance("MD5");
-md.update(plainText.getBytes());
-new String(md.digest());
+String key = sc.getInitParameter("keyU");  
+
 //키 생성
-String key=DataEncrypt.messageDigest("MD5", plainText);
 //복호화 : 암호화된 문자열을 원본문자열로 변경 
 DataEncrypt de= new DataEncrypt(key);
-DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
+DataDecrypt dd= new DataDecrypt(key);
 
 //아이디 암호화
 
@@ -40,11 +36,12 @@ DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
 AdminMemberDAO admDAO = AdminMemberDAO.getInstance();
 List<AdminMemberVO> Mlist =null;
 
-if(id!=null){
+
+ if(id!=null){
  Mlist =admDAO.selectMember(de.encryption(id),mailchk,smschk,status);  
 }else{
 Mlist =admDAO.selectMember(id,mailchk,smschk,status);   
-}
+} 
   
   %> 
   <%
@@ -75,7 +72,6 @@ if( session.getAttribute("adminId") == null){
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(function(){
-			
 		   	$("#idSearchBtn").click(function() {
 	    		$("#idFrm").submit();
 			});//아이디 검색

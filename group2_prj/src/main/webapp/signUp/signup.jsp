@@ -296,11 +296,7 @@ input[type="date"] {
 					chkPass();
 				});//pass
 				
-				//ID중복검사1
-				$("#btnDup").click(function(){
-					window.open("id_dup.jsp","id_dup","width=510,height=310");
-				});
-				
+			
 				$("#btnDup2").click(function(){
 					
 					//AJAX로 아이디 중복확인 => hidden에 중복확인 여부가 들어가야한다. 10-13 2022코드 추가 
@@ -315,7 +311,7 @@ input[type="date"] {
 					//아이디 특수문자 제외 영문,숫자 4~20자이내+중복검사 필수
 					 if(!id.match('^[a-zA-Z0-9]{4,20}$')) {
 							 alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 사용 가능합니다.');
-							$('#memberId').focus();
+							$("#memberId").focus();
 							 return ;
 						 }//idcheck
 					
@@ -665,14 +661,14 @@ input[type="date"] {
 						<li class="item">
 							<label for="password" class="t">비밀번호<span class="color-purple">*</span></label>
 							<div class="cont">
-								<input type="password" name="pwd" id="password" />
+								<input type="password" name="pwd" id="password" maxlength="12"/>
 								<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내</span>
 							</div>
 						</li>
 						<li class="item">
 							<label for="repassword" class="t">비밀번호 확인  <span class="color-purple">*</span></label>
 							<div class="cont">
-								<input type="password" name="repassword" id="repassword" />
+								<input type="password" name="repassword" id="repassword" maxlength="12"/>
 								<span class="txt ml">확인을 위해 한번 더 입력하시기 바랍니다.</span>
 								<span id="passMsg" style="color:#FF0000"></span>
 							</div>
