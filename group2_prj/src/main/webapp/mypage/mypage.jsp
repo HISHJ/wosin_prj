@@ -288,34 +288,34 @@ input:nth-child(1) {
 						if(email1.trim()==""){
 							alert("이메일을 입력해주세요.");
 							$("#memberEmail1").focus();
-							return false ;
+							return ;
 						}//email
 						
 						if(email2.trim()==""){
 							alert("도메인을 입력해주세요.");
 							$("#memberEmail2").focus();
-							return false ;
+							return ;
 						}//email
 							
 						var phone=$("#phone").val();
 						if(phone.trim()==""){
 							alert("휴대폰 번호를 입력해주세요.");
 							$("#phone").focus();
-							return false ;
+							return;
 						}//phone
 						
 
 						var mailChk =$(':radio[name=mailChk]:checked' );
 						if(mailChk.length<1){
 							alert("메일수신여부를 체크해주세요.");
-							return false;
+							return;
 							
 						}//mailChk
 						
 						var smsChk =$(':radio[name=smsChk]:checked' );
 						if(smsChk.length<1){
 							alert("SMS수신여부를 체크해주세요.");
-							return false;
+							return;
 							
 						}//smsChk
 						
@@ -456,12 +456,9 @@ input:nth-child(1) {
 				  ServletContext sc = getServletContext();
 				  String plainText = sc.getInitParameter("keyU"); 
 				//복호화 : 암호화된 문자열을 원본문자열로 변경 
-				 DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
-				
+				 DataDecrypt dd= new DataDecrypt(plainText);
 				MemberDAO mbrDAO = MemberDAO.getInstance();
-				
 				mbVO=mbrDAO.selectMember(mbVO.getMemberId()); 
-				
 			 	 System.out.println(mbVO);
 				
 				%>
@@ -599,7 +596,7 @@ input:nth-child(1) {
 										<li class="clearfix a2"><!--login.css 수정 -->
 											<span class="l">
 												<label for="memberAddr1" class="hide">주소</label>
-												<input type="text"  value="<%=mbVO.getAddr1()%>" name="addr1" id="memberAddr1"/>
+												<input type="text"  value="<%=mbVO.getAddr1()%>" name="addr1" id="memberAddr1" readonly/>
 											</span>
 											<span class="r">
 												<label for="memberAddr2" class="hide">나머지 주소</label>

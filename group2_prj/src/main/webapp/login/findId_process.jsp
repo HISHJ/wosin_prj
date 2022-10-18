@@ -1,6 +1,5 @@
 <%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
-<%@page import="java.security.MessageDigest"%>
 <%@page import="kr.co.sist.vo.MemberVO"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -180,7 +179,7 @@ section#header {
 		
 							
 </body>
-	<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
 	
 	
 	
@@ -194,19 +193,22 @@ section#header {
 							String tel3=request.getParameter("tel3");
 							
 							String phone=tel1+"-"+tel2+"-"+tel3;
-
+							String name=request.getParameter("name");
 					//key가져오기
 					  ServletContext sc = getServletContext();
 					  String plainText = sc.getInitParameter("keyU"); 
+					  
 					
-			
 					  //키를 넣어 암호화 객체 생성
 					  DataEncrypt de= new DataEncrypt(plainText);
-					  DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
+					  DataDecrypt dd= new DataDecrypt(plainText);
 						
 					
 					  String Phone=de.encryption(phone);
 					 
+					  MemberDAO mbrDAO= MemberDAO.getInstance();
+					  MemberVO mVO= mbrDAO.selectMemberId(name,Phone);
+					  
 					
 					%> 
 					
@@ -214,37 +216,33 @@ section#header {
 					
 			
 				
-				<jsp:setProperty property="name" name="mbVO"/>
-				<jsp:setProperty property="phone" name="mbVO" value="<%=Phone %>"/>
-				<jsp:setProperty property = "memberId" name="mbVO"/>
-				<jsp:setProperty property="mdate" name="mbVO"/> 
+			
 			
 					
- 	<% 		
-				MemberDAO mbrDAO =MemberDAO.getInstance();
-			 	mbVO = mbrDAO.selectMemberId(mbVO);
+ 	
+			
+	
+		
 				
-				if(mbVO.getMemberId()==null){%>
+<% 		if(mVO==null){%>
 					<script>
 						alert("존재하지 않은 계정입니다.");
 						location.href="http://localhost/group2_prj/login/find_id.jsp"
 					</script>
 				
-				<%}else{ %>
-						<script>
-							location.href=""
-						</script>
-					<%} %> 
-				
+				<%} %>
 					
-<%-- <article class="find_confirm inner member_com">
+					
+				
+ 					
+  <article class="find_confirm inner member_com">
 	<h3 class="tit-st4">아이디 찾기 결과 </h3>
 	<div class="box">
 		<h4 class="t">${param.name }님이 가입하신 아이디는 다음과 같습니다.</h4>
 		<div class="bg">
 			<ul class="select f18">
-						<li><label for="id1">아이디명 : <%=dd.decryption(mbVO.getMemberId()) %> </label></li>
-						<li><label for="id1">가입일: <%=mbVO.getMdate() %> </label></li>
+						<li><label for="id1">아이디명 :<%=mVO.getMemberId() %>  </label></li>
+						<li><label for="id1">가입일: <%=mVO.getMdate() %> </label></li>
 						 
 						
 					
@@ -261,7 +259,7 @@ section#header {
 </article>
 		</div>
 	</div>
-				
+		
 				<form method="post" name="authForm">
 					<input type="hidden" name="serverAuth" id="serverAuth" />
 				</form>
@@ -311,4 +309,4 @@ section#header {
 			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
-</html>  --%>
+</html>   --%> 

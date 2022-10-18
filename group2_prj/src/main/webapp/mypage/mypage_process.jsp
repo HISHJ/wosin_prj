@@ -3,10 +3,12 @@
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="mypage update process"%>
-<%request.setCharacterEncoding("UTF-8"); %>    
+<%request.setCharacterEncoding("UTF-8"); %>   
+ 
 <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
 <jsp:setProperty property="*" name="mbVO"/>
-			<%
+
+	<%
 				
 				String email1=request.getParameter("email1");
 				String email2=request.getParameter("email2");
@@ -20,14 +22,7 @@
 				  ServletContext sc = getServletContext();
 				  String plainText = sc.getInitParameter("keyU"); 
 				  
-				  //알고리즘 설정하여 MessageDigest
-				  MessageDigest md=MessageDigest.getInstance("MD5");
-				  md.update(plainText.getBytes());
-				  new String(md.digest());
-				  //키 생성
-				  String key=DataEncrypt.messageDigest("MD5", plainText);
-				  //키를 넣어 암호화 객체 생성
-				  DataEncrypt de= new DataEncrypt(key);
+				  DataEncrypt de= new DataEncrypt(plainText);
 				
 				  String Id=de.encryption(id);
 				  String Email=de.encryption(email);
@@ -35,12 +30,9 @@
 				  String Addr2=de.encryption(addr2);
 				  
 				
-				//생일 합치기
-				String birth1 = request.getParameter("birthdayYear");
-				String birth2 = request.getParameter("birthdayMonth");
-				String birth3 = request.getParameter("birthdayDay");
-				
-				String birth = birth1+"-"+birth2+"-"+birth3;
+
+			
+			
 				
 				
 				%>
@@ -48,7 +40,7 @@
     				<jsp:setProperty property="name" name="mbVO"/>
     				<jsp:setProperty property="memberId" name="mbVO" value="<%=Id %>"/>
     				<jsp:setProperty property="pwd" name="mbVO" />
- 					<jsp:setProperty property="birth" name="mbVO" value="<%=birth %>"/>
+ 					<jsp:setProperty property="birth" name="mbVO"/>
 					<jsp:setProperty property="gender" name="mbVO"/>
 					<jsp:setProperty property="zipcode" name="mbVO"/>
 					<jsp:setProperty property="addr1" name="mbVO"/>
@@ -59,7 +51,7 @@
 					<jsp:setProperty property="smsChk" name="mbVO"/>  
 	
 
-	<%			MemberDAO mbrDAO= MemberDAO.getInstance();
+ <%			MemberDAO mbrDAO= MemberDAO.getInstance();
 				int updateMbCnt=mbrDAO.updateMember(mbVO);
 				if(updateMbCnt==0){/* 회원정보수정 실패 */	%>
 					<script>

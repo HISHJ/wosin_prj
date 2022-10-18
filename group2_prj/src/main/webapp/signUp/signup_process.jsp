@@ -124,25 +124,7 @@ span#getID, span#getMember{
 							</span>
 						</li>
 						<li>
-							<div class="rel">
-								<a href="#">
-									<span>회원서비스</span>
-								</a>
-								<ul class="depth" >
-									<li>
-										<a href="page1.html">공연정보</a>
-									</li>
-									<li>
-										<a href="subpage-ticketmethod.html">예매정보</a>
-									</li>
-									<li>
-										<a href="subpage-FAQ1.html">고객센터</a>
-									</li>
-									<li>
-										<a href="subpage-way.html">오시는길</a>
-									</li>
-								</ul>
-							</div>
+						
 						</li>
 						<li>
 							<li>
@@ -166,7 +148,7 @@ span#getID, span#getMember{
 				<!-- 로그인 영역끝 -->
 				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
 				
-				<!-- 이메일 병홥 -->
+				<!--  -->
 				<%request.setCharacterEncoding("UTF-8"); 
 					
 					String id=request.getParameter("memberId");
@@ -213,6 +195,14 @@ span#getID, span#getMember{
 	
 <% 			  
 				MemberDAO mbrDAO = MemberDAO.getInstance();
+
+if(mbrDAO.selectChkId(Id)){%>
+	<script>
+	alert("${param.memberId}는 이미 가입된 아이디 입니다.");
+	location.href="http://localhost/group2_prj/signUp/signup.jsp";
+	</script>
+	
+<%}else{
 					int cnt = mbrDAO.insertMember(mbVO);
 					if(cnt<0){%>
 						<script>
@@ -251,7 +241,7 @@ span#getID, span#getMember{
 				
 		<%
 					}//cnt
-		
+}
 					%>
 
 				<!----------------------------------------------여기서부터 끝까지 footer-------------------------------------------->

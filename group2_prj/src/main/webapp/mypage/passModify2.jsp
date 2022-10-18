@@ -338,14 +338,14 @@ if(memberId == null){
 										<li class="item item2">
 											<label for="password" class="t">새 비밀번호 </label>
 											<div class="cont">
-												<input type="password" name="pwd" id="password" style="width:300px; height:50px;" maxlength="20" autofocus="autofocus"/>
+												<input type="password" name="pwd" id="password" style="width:300px; height:50px;" maxlength="12" autofocus="autofocus"/>
 												<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 8자 ~ 12자 이내</span>
 											</div>
 										</li>
 										<li class="item  item2 item3">
 											<label for="repassword" class="t">비밀번호 확인  </label>
 											<div class="cont">
-												<input class="check_pass" type="password" name="repassword" id="repassword"  style="width:300px; height:50px;" maxlength="20"/>
+												<input class="check_pass" type="password" name="repassword" id="repassword"  style="width:300px; height:50px;" maxlength="12"/>
 												<span class="txt ml ml2">안전한 비밀번호 변경을 위해 다시 한번 입력해주시길 바랍니다.</span>
 											</div>
 										</li>

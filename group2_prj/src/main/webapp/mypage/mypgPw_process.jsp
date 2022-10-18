@@ -16,20 +16,7 @@
 String pw=request.getParameter("pwd");
 
 
-//key가져오기
-  ServletContext sc = getServletContext();
-  String plainText = sc.getInitParameter("keyU"); 
-  //알고리즘 설정하여 MessageDigest
-  MessageDigest md=MessageDigest.getInstance("MD5");
-  md.update(plainText.getBytes());
-  new String(md.digest());
-  //키 생성
-  String key=DataEncrypt.messageDigest("MD5", plainText);
-  //키를 넣어 암호화 객체 생성
-  DataEncrypt de= new DataEncrypt(key);
-
-
-
+//들어오는 pw암호화
   String pwd=DataEncrypt.messageDigest("SHA-1", pw);
 
 

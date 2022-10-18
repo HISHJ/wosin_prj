@@ -70,7 +70,7 @@
 	  ServletContext sc = getServletContext();
 	  String plainText = sc.getInitParameter("keyU"); 
 	//복호화 : 암호화된 문자열을 원본문자열로 변경 
-	DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
+	DataDecrypt dd= new DataDecrypt(plainText);
  	String zipcode=admVO.getZipcode();
  	String addr1 = admVO.getAddr1();
  	String addr2= dd.decryption(admVO.getAddr2());

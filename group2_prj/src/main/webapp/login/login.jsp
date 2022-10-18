@@ -180,7 +180,7 @@
 								
 								//아이디 특수문자 제외 영문,숫자 4~20자이내+중복검사 필수
 								 if(!id.match('^[a-zA-Z0-9]{4,20}$')) {
-										 alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 사용 가능합니다.');
+										 alert('아이디는 특수문자를 제외한 영문, 숫자 조합 4~20자로 입력해주세요.');
 										$('#memberId').focus();
 										 return ;
 									 }//idcheck
@@ -198,7 +198,7 @@
 							 var eng = pass.search(/[a-zA-Z]/);
 							 var spe= pass.search(/[~!@#$%^&*()_+|<>?:{}]/); 
 								//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
-								if(pass.length < 7 || pass.length >21){
+								if(pass.length < 7 || pass.length >13){
 										  alert("비밀번호를 8자리 ~ 21자리 이내로 입력해주세요.");
 										  $("#password").focus();
 										  return ;
@@ -238,7 +238,7 @@
 							
 										<ul class="form f20">
 											<li class="id"><label for="username" class="hide">아이디</label><input type="text" name="memberId" id="memberId" placeholder="아 이 디" autofocus /> </li>
-											<li class="pw"><label for="password" class="hide">패스워드</label><input type="password" name="pwd" id="pwd" autocomplete="off"   placeholder="비밀번호" /></li>
+											<li class="pw"><label for="password" class="hide">패스워드</label><input type="password" name="pwd" id="pwd" maxlength="12"autocomplete="off"   placeholder="비밀번호" /></li>
 										</ul>
 								
 										

@@ -20,14 +20,10 @@
 									  ServletContext sc = getServletContext();
 									  String plainText = sc.getInitParameter("keyU"); 
 									  
-									  //알고리즘 설정하여 MessageDigest
-									  MessageDigest md=MessageDigest.getInstance("MD5");
-									  md.update(plainText.getBytes());
-									  new String(md.digest());
-									  //키 생성
-									  String key=DataEncrypt.messageDigest("MD5", plainText);
+									 
+									
 									  //키를 넣어 암호화 객체 생성
-									  DataEncrypt de= new DataEncrypt(key);
+									  DataEncrypt de= new DataEncrypt(plainText);
 									
 								 	  String Id=de.encryption(id);
 								 	  String Phone=de.encryption(phone);
@@ -56,15 +52,15 @@
 				if(mbVO.getPwd()==null){%>
 					<script>
 						alert("일치하는 계정이 없습니다.");
-						location.href="http://localhost/group2_prj/login/find_password.jsp"
+						location.href="http://localhost/group2_prj/login/find_password.jsp";
 					</script>
 				
 				<%}else{%>
 						<script>
-						locatin.href="http://localhost/group2_prj/login/passModify.jsp";
+						location.href="http://localhost/group2_prj/login/passModify.jsp";
 						</script>
 					<%} 
-					System.out.println(mbVO);
+					
 					%> 				
 
 

@@ -293,7 +293,7 @@ if(memberId == null){
 										<li class="item item2">
 											<label for="password" class="t">현재 비밀번호 </label>
 											<div class="cont">
-												<input type="password" name="pwd" id="pwd"  style="width:300px; height:50px;"/>
+												<input type="password" name="pwd" id="pwd"  style="width:300px; height:50px;" maxlength="12"/>
 											</div>
 										</li>
 									</ul>
