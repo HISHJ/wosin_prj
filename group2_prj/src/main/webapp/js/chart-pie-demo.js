@@ -33,26 +33,26 @@ for(var i=1;i<showCnt.length+1;i++){
 //alert("showArr : "+showArr.length);
 var showStr = "";
 var cntStr = "";
-for(var i=0;i<showArr.length;i++){
-	showStr += showArr[i];
-	cntStr += cntArr[i];
-	if(i<showArr.length-1){ // 공연하나 추가해서 예매되면 다시 테스트해보기
-		showStr += ",";
-		cntStr += ",";
-	}
-} 
+//for(var i=0;i<showArr.length;i++){
+//	showStr += showArr[i];
+//	cntStr += cntArr[i];
+//	if(i<showArr.length-1){ // 공연하나 추가해서 예매되면 다시 테스트해보기
+		//showStr += ",";
+		//cntStr += ",";
+	//}
+//} 
 //alert("showStr : "+showStr);
 //alert("cntStr : "+cntStr);
 var myPieChart = new Chart(ctx, {
   type: 'pie',
   data: {
 //    labels: [show1, show2, show3, show4,show5],
-    //labels: [showArr[0], showArr[1], showArr[2], showArr[3],showArr[4]],
-    labels: [showStr],
+    labels: [showArr[0], showArr[1], showArr[2], showArr[3],showArr[4]],
+    //labels: [showStr],
     datasets: [{
 //      data: [cnt1, cnt2, cnt3, cnt4, cnt5],
-      //data: [cntArr[0], cntArr[1], cntArr[2], cntArr[3], cntArr[4]],
-      data: [cntStr],
+      data: [cntArr[0], cntArr[1], cntArr[2], cntArr[3], cntArr[4]],
+      //data: [cntStr],
       backgroundColor: ['#030066', '#dc3545', '#ffc107', '#198754', '#adb5bd'], // 색은 별도처리없어도 잘 되나?
       
     }],

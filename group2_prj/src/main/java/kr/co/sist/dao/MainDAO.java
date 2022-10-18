@@ -86,9 +86,21 @@ public class MainDAO {
 		try {
 			con = dc.getConn();
 			StringBuilder selectImgs = new StringBuilder();
-			
-			selectImgs.append(" select * ").append(" from show ")
-			.append(" where showid = ? ");
+			//selectImgs.append(" select * ").append(" from show ")
+			//.append(" where showid = ? ");
+			/*
+			 * select s.showid,s.name,g.genretype,r.ratingtype,startdate,enddate,runningtime,price,mimg,thimg,infoimg,status,inputdate
+				from show s,genre g,rating r
+				where s.genreid = g.genreid
+					and s.ratingid = r.ratingid
+					and showid = 'sh_0000203';
+			 */
+			// 10-18 장르, 연령 id말고 type 으로 변경 쿼리문 수정
+			selectImgs.append(" select s.showid,s.name,g.genretype,r.ratingtype,startdate,enddate,runningtime,price,mimg,thimg,infoimg,status,inputdate ")
+			.append(" from show s,genre g,rating r ")
+			.append(" where s.genreid = g.genreid ")
+			.append(" and s.ratingid = r.ratingid ")
+			.append(" and showid = ? ");
 			
 			pstmt = con.prepareStatement(selectImgs.toString());
 			pstmt.setString(1, showId);
@@ -99,8 +111,8 @@ public class MainDAO {
 				showVO = new ShowVO();
 				showVO.setShowId(rs.getString("showId"));
 				showVO.setName(rs.getString("name"));
-				showVO.setGenreId(rs.getString("genreid"));
-				showVO.setRatingId(rs.getString("RatingId"));
+				showVO.setGenreId(rs.getString("genretype"));
+				showVO.setRatingId(rs.getString("ratingtype"));
 				showVO.setStartDate(rs.getString("startdate"));
 				showVO.setEndDate(rs.getString("enddate"));
 				showVO.setRunningTime(rs.getString("runningtime"));

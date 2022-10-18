@@ -68,6 +68,8 @@ if(session.getAttribute("showId")==null){
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/perform.css">
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/tab.css">
 		
+		<!-- 빌런이라는코드 추가 10-18 위에 서브메뉴 안나옴 테스트 ㅇㅇ 됨-->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		
 		<!--google icons-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -110,16 +112,7 @@ border-radius:3px;
 }
 </style>
 
-		<!-- Scripts -->
-		<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-		<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-		<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-		<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-		<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-		<script src="http://localhost/group2_prj/assets/js/main.js"></script>
-			
-		<!-- tap관련 추가한거 -->
-		<script src="http://localhost/group2_prj/assets/js/tab.js"></script>
+		
 		<script>
 		$(function(){
 			
@@ -237,7 +230,17 @@ border-radius:3px;
 			<!-- Footer  -->
 			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
 	    	<!-- End footer -->
-
+	    	
+		<!-- Scripts -->
+		<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+		<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+			
+		<!-- tap관련 추가한거 -->
+		<script src="http://localhost/group2_prj/assets/js/tab.js"></script>
 		
 
 	</body>

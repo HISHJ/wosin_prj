@@ -76,6 +76,8 @@
 	} 
 	
 	boolean flag = false; // 추가되었을경우 ㅇㅇ
+	// 10-18 값없으면 insert까지 안가게? 왜들어갔지 없숨저게?
+	// 다 하나하나 검사해서 널이아닐경우를 해야해..?			
 	if(rDAO.insertRsrvtTest(rVO)==1){
 		System.out.println("ㅇㅇ됐음");				
 		flag = true;
