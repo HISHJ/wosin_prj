@@ -103,11 +103,19 @@ input[type="date"] {
 		display: table !important;
     	width: 100%;
     	padding: 1em;
-    	border-bottom: 1px solid #000;
+    	
     	min-height: 3.75em;
     	border-radius: 5px ;
     	font-weight: normal;
 }
+
+input[type="text"]{
+ padding-left:10px !important;
+}
+
+input:nth-child(1) {
+	border:5px solid #333;
+}	
 	
 	
 	
@@ -470,7 +478,7 @@ input[type="date"] {
 								<label for="name" class="t">이름 <span class="color-purple">*</span></label>
 								<div class="cont">
 									<div class="btn-member_w dib">
-										<input type="text" value=<%=mbVO.getName()%> name="name" id="memberName"  />
+										<input type="text" value=<%=mbVO.getName()%> name="name" id="memberName" style="margin-left:10px;"  />
 										
 									</div>
 								</div>
@@ -478,7 +486,7 @@ input[type="date"] {
 							<li class="item">
 								<label for="id" class="t">ID <span class="color-purple">*</span></label>
 								<div class="cont">
-									<input type="text" value=<%=dd.decryption(mbVO.getMemberId())%> name="memberId" id="id" readonly />
+									<input type="text" value=<%=dd.decryption(mbVO.getMemberId())%> name="memberId" id="id" style="margin-left:10px;" readonly />
 								</div>
 							</li>
 							<%		
@@ -512,7 +520,7 @@ input[type="date"] {
 								<div class="birth_w clearfix">
 									<ul class="clearfix birth">
 											<li>
-											<p><input type="date" name="birth" id="datepicker"  value ="<%=birth%>"style="width:320px;" /></p>
+											<p><input type="date" name="birth" id="datepicker"  value ="<%=birth%>"style="width:320px;margin-left:10px;border:1px solid #333 !important;" /></p>
 											</li>
 									</ul>
 			
@@ -567,7 +575,7 @@ input[type="date"] {
 							</li>
 							<li class="item">
 								<label for="genderFlag" class="t">성별 <span class="color-purple">*</span></label>
-								<div class="cont">
+								<div class="cont" style="margin-left:10px;">
 									<select name="gender" id="genderFlag" class="small" >
 										<option value="남자" 
 										<%if(mbVO.getGender().equals("남자")){%>selected="selected"<%}%>>남자</option>

@@ -50,6 +50,95 @@ if(memberId == null){
   	 background-size: 100%; 
   	 background-attachment: fixed;
 	 }
+	 
+	/*2022-10-18 13:45 유설빈*/
+	
+	h4.t{
+	 font-weight:500 !important;
+	 margin-left:10px;
+	
+	}
+	
+	
+	.find_member .form_w{
+	  white-space: normal;
+	
+	}
+	
+	.find_member .form_w{
+	 font-weight:bold !important;
+	}
+	
+	ul.sect.sect2{
+	
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	justify-content:center;
+	margin-left:-100px;
+	}
+	
+	span.txt{
+	 font-weight:300 !important;
+	}
+	
+	
+	button.bg-purple3{
+	 margin-right:15px;
+	}
+	
+	button.bg-black{
+	  margin-left:15px;
+	}
+	
+	.item3{
+
+	margin-left:75px;
+	}
+	
+/* 	ul.sect li.item{
+	 margin-left:100px;
+	 margin-bottom:20px !important; 
+	
+	}
+	
+	li.item3{
+	 margin-left:200px !important;
+	 
+	
+	}
+	
+	.cont input[type="password"]{
+	 height:60px !important;
+	 border-radius: 3px !important;
+	}
+	
+	label[for="password"]{
+	 font-size:20spx;
+	 margin-top:28px;
+	
+	}
+	
+	h4.t{
+	 font-weight:500 !important;
+	  margin-left:10px;
+	
+	}
+	
+	button.bg-purple3{
+	 margin-right:15px;
+	}
+	
+	button.bg-black{
+	  margin-left:15px;
+	}
+	
+	span.ml2{
+	 padding-left:50px;
+	} */
+	
+
+	 
 		</style>
 		<script>
 		$(function(){
@@ -243,21 +332,21 @@ if(memberId == null){
 						<h3 class="tit-st4">비밀번호 변경</h3>
 						<div class="box box_2">
 						
-							<div class="form_w">
+							<div class="form_w" style="white-space:normal;">
 								<h4 class="t">변경하실 비밀번호를 입력해주세요.</h4>
 									<ul class="sect sect2">
 										<li class="item item2">
 											<label for="password" class="t">새 비밀번호 </label>
 											<div class="cont">
-												<input type="password" name="pwd" id="password" style="width:300px; height:50px;" maxlength="20"/>
+												<input type="password" name="pwd" id="password" style="width:300px; height:50px;" maxlength="20" autofocus="autofocus"/>
 												<span class="txt ml">영문, 숫자, 특수문자 중 2종류 이상 8자 ~ 12자 이내</span>
 											</div>
 										</li>
-										<li class="item  item2">
+										<li class="item  item2 item3">
 											<label for="repassword" class="t">비밀번호 확인  </label>
 											<div class="cont">
-												<input type="password" name="repassword" id="repassword"  style="width:300px; height:50px;" maxlength="20"/>
-												<span class="txt ml">안전한 비밀번호 변경을 위해 다시 한번 입력해주시길 바랍니다.</span>
+												<input class="check_pass" type="password" name="repassword" id="repassword"  style="width:300px; height:50px;" maxlength="20"/>
+												<span class="txt ml ml2">안전한 비밀번호 변경을 위해 다시 한번 입력해주시길 바랍니다.</span>
 											</div>
 										</li>
 

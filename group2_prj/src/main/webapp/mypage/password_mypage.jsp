@@ -55,9 +55,46 @@ if(memberId == null){
 	 font-weight:bold !important;
 	}
 	
+	ul.sect{
+	
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	/* margin-right:300px; */
+	margin-left:-150px;
+	}
+	
 	ul.sect li.item{
 	 margin-left:100px;
+	 margin-bottom:20px !important; 
+	
 	}
+	
+	.cont input[type="password"]{
+	 height:60px !important;
+	 border-radius: 3px !important;
+	}
+	
+	label[for="password"]{
+	 font-size:20spx;
+	 margin-top:28px;
+	
+	}
+	
+	h4.t{
+	 font-weight:500 !important;
+	  margin-left:10px;
+	
+	}
+	
+	button.bg-purple3{
+	 margin-right:15px;
+	}
+	
+	button.bg-black{
+	  margin-left:15px;
+	}
+	
 		</style>
 		<script>
 		$(function(){
@@ -247,7 +284,7 @@ if(memberId == null){
 										<li class="item item2">
 											<label for="password" class="t">현재 비밀번호 </label>
 											<div class="cont">
-												<input type="password" name="pwd" id="password"  style="width:300px; height:50px;"/>
+												<input type="password" name="pwd" id="password"  style="width:300px; height:50px;" autofocus="autofocus""/>
 											</div>
 										</li>
 									</ul>

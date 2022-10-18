@@ -52,6 +52,59 @@ if(memberId == null){
   	background-attachment: fixed;
   
 	}
+	
+	/*음..css업데이트가 안됨 왜 그러지.. 보류*/
+	/*2022-10-17 22:45 유설빈*/
+	.find_member .form_w{
+	  white-space: normal;
+	
+	}
+	
+	.find_member .form_w{
+	 font-weight:bold !important;
+	}
+	
+	ul.sect{
+	
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	/* margin-right:300px; */
+	margin-left:-150px;
+	}
+	
+	ul.sect li.item{
+	 margin-left:100px;
+	 margin-bottom:20px !important; 
+	
+	}
+	
+	.cont input[type="password"]{
+	 height:60px !important;
+	 border-radius: 3px !important;
+	}
+	
+	label[for="password"]{
+	 font-size:20spx;
+	 margin-top:28px;
+	
+	}
+	
+	h4.t{
+	 font-weight:500 !important;
+	 margin-left:10px;
+	
+	}
+	
+	button.bg-purple3{
+	 margin-right:15px;
+	}
+	
+	button.bg-black{
+	  margin-left:15px;
+	}
+	
+	
 		</style>
 	
 	<link rel="stylesheet" href="http://localhost/group2_prj/static\portal\css\passChk.css">

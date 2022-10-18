@@ -92,7 +92,7 @@ border-radius:3px;
 .btn_wrap{
  position:relative;
  height:100px;
- bottom:300px;
+ bottom:280px;
 }
 
 .btn_wrap input[type="button"]{

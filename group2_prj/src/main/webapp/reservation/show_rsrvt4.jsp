@@ -118,7 +118,7 @@ input[type="button"].alt {
 }
 
 .btn_wrap {
-	margin-top: -270px;
+	margin-top: -145px;
 	height:100px;
 	position:relative;
 }
