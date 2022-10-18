@@ -59,6 +59,79 @@ List<ShowVO> swList = mDAO.selectThImg();
 		margin-right:20px;
 		margin-left:10px
 	}
+	
+	/*설빈 2022-10-17*/
+	#m2{
+	padding:60px 130px !important;
+	}
+	
+	.slick-slide{
+	width:92px;
+	}
+	
+	button.go_show_con{
+	  bottom:-130px !important;
+	  left:300px !important; 
+	
+	}
+	
+	div.btn-wrap{
+	
+	 width:0px !important;
+	 height:0px !important;
+	 margin-top:100px;
+	 
+	}
+	
+	@media screen and (max-width: 1700px){
+	  button.go_show_con{
+	  bottom:-50px !important;
+	  left:240px !important; 	
+	}
+	}/* 1700px */
+	@media screen and (max-width: 1620px){
+	   button.go_show_con{
+	  bottom:-20px !important;
+	  left:210px !important; 	
+	}
+	
+	}/* 1600px */
+	
+	@media screen and (max-width: 1550px){
+	   button.go_show_con{
+	  bottom:0px !important;
+	  left:200px !important; 	
+	}
+	
+	}/* 1600px */
+	
+	@media screen and (max-width: 1530px){
+	   button.go_show_con{
+	  bottom:0px !important;
+	  left:200px !important; 	
+	}
+	
+	}/* 1530px */
+	
+	
+	@media screen and (max-width: 1430px){
+	   button.go_show_con{
+	   margin-bottom:300px;
+	  left:170px !important; 	
+	}
+	
+	@media screen and (max-width: 1297px){
+	   button.go_show_con{
+	   margin-bottom:310px;
+	  left:150px !important; 	
+	}
+	
+	@media screen and (max-width: 1290px){
+	   button.go_show_con{
+	   display:none;
+	}
+	
+	}/* 1530px */
 </style>
 
 <script>
@@ -176,7 +249,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 								<!-- <figcaption class="hide">2022 가을·겨울 시즌 패키지 티켓 오픈</figcaption> -->
 								<div class="btn-wrap">
 									<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">
-									<button class="go_show_con">상세보기</button>
+									<button class="go_show_con" style="padding:15px 30px;">상세보기</button>
 									</a>
 								</div>
 							</div>
@@ -188,17 +261,17 @@ List<ShowVO> swList = mDAO.selectThImg();
 
 					<div class="nav_wrap">
 
-						<div class="div_slider_nav slider slider-nav">
+						<div class="div_slider_nav slider slider-nav" style="padding-top:30px;;">
 							<% for(int i=0;i<swList.size();i++){%>
 								<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">
-								<img src="http://localhost/group2_prj/admin/img/<%=swList.get(i).getThImg() %>" style="width:80%; height:160px;">
+								<img src="http://localhost/group2_prj/admin/img/<%=swList.get(i).getThImg() %>" style="width:120px; height:140.91px;margin-left:-100px;">
 								</a>
 							<%} %>
 
 						</div>
 						<!--슬라이드 시작, 정지버튼-->
-						<div class="btn_wrap">
-							<button class="play">
+						<div class="btn_wrap" >
+							<button class="play" >
 								<span class="material-symbols-outlined play"> play_arrow
 								</span>
 							</button>
@@ -304,7 +377,7 @@ List<ShowVO> swList = mDAO.selectThImg();
 								
 								<!-- 추천프로그램 뭐 어떻게 하라는거??? swList -->
 					<ul class="clearfix cont s slick-initialized slick-slider">
-								<%for(int i=0;i<4;i++){  //swList.size()%>
+								<%for(int i=0;i<5;i++){  //swList.size()%>
 									<li class="rel" tabindex="<%=i %>" style="float:left; display:block;">
 										<a href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%= swList.get(i).getShowId() %>">
 										<img src="http://localhost/group2_prj/admin/img/<%=swList.get(i).getThImg() %>" style="width:209px; height:294.08px;">

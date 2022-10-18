@@ -74,6 +74,8 @@ margin-bottom:30px;
     border-left: 0;
 
 }
+
+
 </style>
 <script type="text/javascript">
 $(function(){

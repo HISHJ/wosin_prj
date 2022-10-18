@@ -18,36 +18,45 @@ if(memberId == null){
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="apple-touch-icon" sizes="180x180" href="http://localhost/group2_prj/static\commons\img\favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static\commons\img\favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static\commons\img\favicon_16.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="http://localhost/group2_prj/static\commons\img\favicon_32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="http://localhost/group2_prj/static\commons\img\favicon_16.png">
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\main.css" />
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\reset.css">
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\subheader.css">
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\headerFooter.css">
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets\css\login.css">
 	
-	 <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\sub_new.css">
-   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\style.css">
-   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\layout_new.css">
+	   <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\sub_new.css">
+       <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\style.css">
+       <link rel="stylesheet" type="text/css" href="http://localhost/group2_prj/static\portal\css\layout_new.css">
 		<!--google icons-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!--google fonts-->
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+		
 		<style>
 	section#header{
  	background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
   
+	}
+	
+	/*음..css업데이트가 안됨 왜 그러지.. 보류*/
+	/*2022-10-17 22:45 유설빈*/
+	.find_member .form_w{
+	  white-space: normal;
+	
+	}
+	
+	.find_member .form_w{
+	 font-weight:bold !important;
+	}
+	
+	ul.sect li.item{
+	 margin-left:100px;
 	}
 		</style>
 		<script>
@@ -58,7 +67,6 @@ if(memberId == null){
 		</script>
 	<link rel="stylesheet" href="http://localhost/group2_prjstatic\portal\css\passChk.css">
 
-<!-- testtesttesttesttesttesttesttesttesttesttesttesttesttest -->
 
 	</head>
 	<body class="homepage is-preload">
@@ -301,6 +309,13 @@ if(memberId == null){
 			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
 			
 			<!-- End footer -->
+			<!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 
 

@@ -60,11 +60,9 @@ while(se.hasMoreElements()){
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/subheader.css">
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/headerFooter.css">
 		
-		
 		<!-- 공연상세페이지만을 위한 css -->
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/perform.css">
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/tab.css">
-		
 		
 		<!--google icons-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -81,7 +79,6 @@ while(se.hasMoreElements()){
 		<!-- tap관련 추가한거 -->
 		<script src="http://localhost/group2_prj/assets/js/tab.js"></script>
 
-	
 	<%if(memberId == null){%>
 	<style>
 	#nav {
@@ -89,6 +86,28 @@ while(se.hasMoreElements()){
 	}
 	</style>
 	<%} %>
+	<style>
+	/*2022-10-17 23:48 유설빈 */
+	input[type="button"].alt{
+	padding: 0.65em 1.5em 0.65em 1.5em;
+	border-radius: 5px;
+	font-weight: 700;
+	font-size: 1.1em;
+	letter-spacing:1.75px;
+	text-align: center;
+	border:1px solid #555555 !important;
+	
+	
+	}
+	
+	.preBtn{
+	 background-color:#fff !important;
+	 color: #555555 !important;
+	 
+	 padding-left:55px !important;
+	 padding-right:55px !important;
+	}
+	</style>
 <script type="text/javascript">
 			$(function(){
 				$("#nextBtn").click(function(){
@@ -125,7 +144,7 @@ while(se.hasMoreElements()){
 									<section class="box">
 										<a class="image featured"><img src="http://localhost/group2_prj/admin/img/<%=sVO.getThImg() %>" ></a>
 										<header>
-											<h3 class="h3" style="width:270px; overflow:hidden; text-overflow:ellipsis;" title="<%=sVO.getName() %>"><%=sVO.getName() %></h3>
+											<h3 class="h3" style="width:270px;white-space:pre-line; " title="<%=sVO.getName() %>"><%=sVO.getName() %></h3>
 										</header>
 									</section>
 									<section class="box">
@@ -160,10 +179,10 @@ while(se.hasMoreElements()){
 										
 										</footer>
 									</section>
-								<a href="javascript:history.back();" class="button alt button_minBack" style="background: #c5c5c3;">이전</a>
 								<!-- <a href="show_rsrvt2.jsp" class="button alt button_minNext">다음</a> -->
 								<!-- 10-15 버튼변경 -->
-								<input type="button" value="다음" class="button alt button_minNext" id="nextBtn">
+								<input class="preBtn button alt" onClick="javascript:history.back();" type="button" value="이전" id="nextBtn2" style="color:#555555 !important">
+								<input type="button" value="다음" class="button alt button_minNext" id="nextBtn" style="background-color:#555555;">
 							</form>	
 							<!-- /////////////////////////////////////////////////// -->
 							</div>

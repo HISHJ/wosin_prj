@@ -79,6 +79,16 @@ while(se.hasMoreElements()){
 }
 </style>
 <%}%>
+
+<style>
+/*로그인하고나면 css가 적용이 안된다..파일을못읽는다..=>해결 :쿠키삭제해서 갱신된 css를 읽게해야 함*/
+/*2022-10-17 유설빈*/
+input[type="button"].alt{
+ padding:15px 25px;
+ border-radius:2px;
+}
+</style>
+
 <script type="text/javascript">
 		$(function(){
 			$("#rsrvtBtn").click(function(){
@@ -106,7 +116,6 @@ while(se.hasMoreElements()){
     	<c:param name="memberId" value="<%= memberId %>"></c:param> 
     	</c:import>
 					
-						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
 						<div id="sut-t_wrap">
 						<h2 id="sub-t">
 							<strong style="opacity:1;font-family: 'Noto Sans KR', sans-serif;font-weight: 700;" class="ani">공연일정</strong>
@@ -125,7 +134,7 @@ while(se.hasMoreElements()){
 									<section class="box">
 										<a class="image featured"><img src="http://localhost/group2_prj/admin/img/<%=sVO.getThImg() %>" ></a>
 										<header>
-											<h3 class="h3" style="width:270px; overflow:hidden; text-overflow:ellipsis;" title="<%=sVO.getName() %>"><%=sVO.getName() %></h3>
+											<h3 class="h3" style="width:270px;white-space:normal;" title="<%=sVO.getName() %>"><%=sVO.getName() %></h3>
 											
 										</header>
 										<footer>
@@ -151,7 +160,7 @@ while(se.hasMoreElements()){
 							<!-- 탭 메뉴 만들기 분석 ...하기... -->
 							<article class="box post tabnav">
 							<a class="image featured">
-								<img src="http://localhost/group2_prj/admin/img/<%=sVO.getInfoImg() %>" >
+								<img src="http://localhost/group2_prj/admin/img/<%=sVO.getInfoImg() %>" style="width:670px;" >
 							</a>
 						   		 </article>
 

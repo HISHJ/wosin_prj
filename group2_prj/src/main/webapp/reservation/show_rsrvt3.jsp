@@ -80,6 +80,36 @@ if(session.getAttribute("showId")==null){
 }
 </style>
 <%}%>
+<style>
+input[type="button"]{
+padding:0.65em 1.5em 0.65em 1.5em;
+border:1px solid #555555 !important;
+font-weight:700 !important;
+margin-right:20px;
+border-radius:3px;
+}
+
+.btn_wrap{
+ position:relative;
+ height:100px;
+ bottom:300px;
+}
+
+.btn_wrap input[type="button"]{
+ position:absolute;
+ right:-5px;
+}
+
+.preBtn{
+ /* border:2px solid #555555 !important; */
+ color:#555555 !important;
+ padding-left:43px !important;
+ padding-right:43px !important;
+ margin-left:-20px !important;
+ 
+}
+</style>
+
 		<!-- Scripts -->
 		<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
 		<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
@@ -134,7 +164,7 @@ if(session.getAttribute("showId")==null){
 												<section class="box" style="margin-bottom: 30px;">
 													<a class="image featured"><img src="http://localhost/group2_prj/admin/img/<%=sVO.getThImg() %>" ></a>
 													<header>
-													<h3 class="h3" style="width:270px; overflow:hidden; text-overflow:ellipsis;" title="<%=sVO.getName() %>"><%=sVO.getName() %></h3>
+													<h3 class="h3" style="width:270px; white-space:pre-line;" title="<%=sVO.getName() %>"><%=sVO.getName() %></h3>
 														<%-- <h1><input type="text" name="showName" value="<%=rsrvtVO.getShowName() %>" readonly="readonly" title="<%=rsrvtVO.getShowName() %>"
 																		style="border:none; display:inline; color:#555555; padding:0px;font-size:20px; font-weight: 900; ">
 																		
@@ -192,9 +222,10 @@ if(session.getAttribute("showId")==null){
 									</section>
 	
 							</div>
-	
-								<a href="javascript:history.back();">이전</a>
-								<input type="button" value="예매하기" id="rsrvtBtnOk" style="background-color:#555555;">
+							    <div class="btn_wrap">
+								<input class="preBtn" onClick="javascript:history.back();" type="button" value="이전" id="rsrvtBtnOk2" style="background-color:#fff;color:#555555 !important;margin-right:155px !important;">
+								<input type="button" value="예매하기" id="rsrvtBtnOk" style="background-color:#555555;padding-left:30px;padding-right:30px;">
+								</div>
 							
 						</div>
 				</form>

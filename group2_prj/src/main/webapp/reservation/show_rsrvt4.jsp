@@ -7,7 +7,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
-    
+<%
+//세션 넘겨받기 검증 완료
+String memberId = (String)session.getAttribute("memberId");
+//System.out.println("여기여기"+memberId);
+%>    
 <%
 //로그인 되어있지 않은 경우, 로그인페이지로 이동
 if( session.getAttribute("memberId") == null){
@@ -95,13 +99,34 @@ if(session.getAttribute("showId")==null){
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!--google fonts-->
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-		
+	<%if(memberId == null){%>
+	<style>
+	#nav {
+	margin-right: 150px;
+	}
+	</style>
+	<%} %>
 		<style>
-#nav{
-			margin-right: 150px;
-		}
+input[type="button"].alt {
+	margin-bottom: 200px;
+	position:absolute;
+	right:0px;
+	padding-top:10px;
+	padding-bottom:10px;
+	border-radius: 3px;
+	
+}
 
-		</style>
+.btn_wrap {
+	margin-top: -270px;
+	height:100px;
+	position:relative;
+}
+
+.empty_container{
+  height:70px;
+}
+</style>
 		<script>
 		$(function(){
 			$("#rsrvt_test_ok").click(function(){
@@ -124,9 +149,9 @@ if(session.getAttribute("showId")==null){
 		<div id="page-wrapper">
 
 			
-			<!-- header -->
-			<c:import url="http://localhost/group2_prj/common/user_subpage_header.jsp"/> 
-			<!-- header -->	
+			<c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
+    		<c:param name="memberId" value="<%= memberId %>"></c:param> 
+    		</c:import>
 
 
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
@@ -150,10 +175,10 @@ if(session.getAttribute("showId")==null){
 								<section>
 									<div class="row">
 										<div class="col-4 col-12-small">
-											<section class="box" style="margin-bottom: 30px;">
+											<section class="box" style="margin-bottom: 100px;">
 												<a class="image featured"><img src="http://localhost/group2_prj/admin/img/<%=sVO.getThImg() %>" ></a>
 												<header>
-													<h3 class="h3" style="width:270px; overflow:hidden; text-overflow:ellipsis;" title="<%=rVO.getShowName() %>"><%=sVO.getName() %></h3>
+													<h3 class="h3" style="width:270px;white-space: pre-line;" title="<%=rVO.getShowName() %>"><%=sVO.getName() %></h3>
 													
 												</header>
 											</section>
@@ -182,13 +207,14 @@ if(session.getAttribute("showId")==null){
 									</div>
 								</section>
 
+							<div class="btn_wrap">	
+							<input type="button" id="rsrvt_test_ok" class="button alt button_minNext" value="메인으로">
+						   </div>
 						</div>
 
-
-							<!-- <a href="index.jsp" class="button alt button_minNext">메인으로</a> -->
-							<input type="button" id="rsrvt_test_ok" class="button alt button_minNext" value="메인으로">
-						
 					</div>
+					<!-- 디자인때문에 필요한 div입니다.지우지 마세요 -->
+					<div class="empty_container"></div>
 				</form>					
 				</section>
 		
