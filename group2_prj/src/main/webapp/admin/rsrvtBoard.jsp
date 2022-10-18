@@ -42,10 +42,9 @@ String status = request.getParameter("status");
 
 //key가져오기
 ServletContext sc = getServletContext();
-String plainText = sc.getInitParameter("keyU"); 
+String key= sc.getInitParameter("keyU"); 
 //복호화 : 암호화된 문자열을 원본 문자열로 변경
-DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
-
+DataDecrypt dd = new DataDecrypt(key);
 //기본예매내역조회
 AdminRsrvtInfoVO asRVO = new AdminRsrvtInfoVO();
 asRVO.setFindStartDate(firstDate);
@@ -58,7 +57,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 String date = null;  
 String rsrvtid = ""; //vo 예매번호 담을 변수
 String rsId=""; //세션담을변수
-
+String[] statusArr = {"예매완료", "예매취소"};
 //예매 검색 조회
 
 %>
@@ -72,10 +71,20 @@ $(function(){
 		$("#rsrvtStatus").submit();
 	})//end get status parameter
 })//ready
- 
- function getHiddenVal(rid){
+</script>
+<%-- <% if(){%>  요부분이야--%>
+
+<script> 
+ function getHiddenVal(rid, status){
     $("#rsrvtId").val(rid);
-	$("#resultFrm").submit(); 
+    var sta = $("#status").val(status);
+    if(sta === "예매완료"){
+    $("#resultFrm").submit();
+    }else{
+      alert("취소된 예매는 상세내역을 볼 수 없습니다.")	
+    }
+    
+  
  }//getHiddenVal(rid)(상세내역을 위한)
 </script>
 
@@ -129,6 +138,7 @@ $(function(){
                                         <input class="form-check-input" type="radio" name="status" id="inlineRadio2" value="예매취소">
                                         <label class="form-check-label" for="inlineRadio2">예매취소</label>
                                     </div>
+                                   
                                     <input type="button" id="showSatusSearchBtn" name="showSatusSearchBtn" value="검색">
                            	 </form>
                                 </div>
@@ -137,7 +147,7 @@ $(function(){
                                
                            <form id="resultFrm" name="resultFrm" action="rsrvtDetail.jsp" method="post"> 
                    		  <input type="hidden" name="rsrvtId" id="rsrvtId">
-		 				   
+		 				  <input type="hidden" name="status" id="status">
                                 <table id="datatablesSimple">
                                
                                     <thead>
@@ -165,6 +175,7 @@ $(function(){
                                  <%
                                  for(AdminRsrvtInfoVO asVO :  voList ){
                                 	 rsrvtid =asVO.getRsrvtId();
+                                	 status = asVO.getRsrvtStatus();
                                 	 session.setAttribute("rId",  rsrvtid );
                                 	 rsId = (String)session.getAttribute("rId");                                 	 
                                 	 if(asVO.getRsrvtInputDate() != null) {
@@ -177,7 +188,7 @@ $(function(){
                                             <td><%=dd.decryption(asVO.getUserId()) %></td>
                                             <td><%= date %></td>
                                             <td><%=asVO.getRsrvtStatus() %></td>                                          
-                                            <td><input type="button" value="상세보기" onClick="getHiddenVal('<%=rsId%>')"></td> 
+                                            <td><input type="button" value="상세보기" onClick="getHiddenVal('<%=rsId%>','<%=status%>')"></td> 
                                         </tr>
                                        
                                         <% } %>                                 

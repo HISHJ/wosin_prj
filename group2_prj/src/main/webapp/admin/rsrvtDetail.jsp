@@ -1,3 +1,4 @@
+<%@page import="javax.script.ScriptContext"%>
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="kr.co.sist.vo.AdminRsrvtInfoVO"%>
@@ -42,23 +43,28 @@
 String rsrvtId = request.getParameter("rsrvtId");
 System.out.println(rsrvtId);
 
-//key가져오기
-ServletContext sc = getServletContext();
-String plainText = sc.getInitParameter("keyU"); 
 
+
+
+//key가져오기
+ ServletContext sc = getServletContext();
+ String key = sc.getInitParameter("keyU"); 
 //복호화 : 암호화된 문자열을 원본 문자열로 변경
- DataDecrypt dd= new DataDecrypt(DataEncrypt.messageDigest("MD5", plainText));
+ DataDecrypt dd = new DataDecrypt(key);
 
 AdminRsrvtDAO aDAO = AdminRsrvtDAO.getInstance();
 AdminRsrvtInfoVO voList = aDAO.selectRsrvtDetail(rsrvtId);
-String id = dd.decryption(voList.getUserId());
+ String id = dd.decryption(voList.getUserId());
 String phonNum = dd.decryption(voList.getPhone());
-String email = dd.decryption(voList.getEmail());
+String email = dd.decryption(voList.getEmail());  
 
 
 
 %>
-   <div id="layoutAuthentication">
+
+	
+	
+	<div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
                     <div class="container">
@@ -88,7 +94,7 @@ String email = dd.decryption(voList.getEmail());
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-3"><b>아이디</b></div> 
-                                            <div class="col-6"><%=id  %></div>
+                                            <div class="col-6"><%=voList.getUserId()  %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -108,12 +114,12 @@ String email = dd.decryption(voList.getEmail());
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-3"><b>휴대전화</b></div>
-                                             <div class="col-6"><%= phonNum %></div>
+                                             <div class="col-6"><%= voList.getPhone() %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-3"><b>이메일</b></div> 
-                                            <div class="col-6"><%= email %></div>
+                                            <div class="col-6"><%= voList.getEmail() %></div>
                                         </div>
                                         
                                         <div class="dataTable-top"></div>
@@ -123,8 +129,10 @@ String email = dd.decryption(voList.getEmail());
                                             <div class="col-4">
                                                 <select id="status_sel" name="ge_type" class="dataTable-dropdown dataTable-selector" class="readonly"> 
                                                 
+                                                  
+                                                  
                                                   <%
-                                                  String[] statusArr = {"예매완료","예매취소"}; 
+                                                  String[] statusArr = {"예매완료", "예매취소"};
                                                   AdminRsrvtInfoVO arVO = new AdminRsrvtInfoVO();  
                                                   
                                                   for(int i=0;i<statusArr.length;i++){%>
