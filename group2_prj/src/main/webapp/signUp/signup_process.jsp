@@ -61,6 +61,10 @@ section#header {
 	margin-right: 130px;
 }
 
+.signup_result_wrap{
+  height:600px !important;
+}
+
 .signup_result_wrap .signup_result_inner {
 	width: 80%;
 	margin: 0 auto;
@@ -71,6 +75,23 @@ section#header {
 	/*  max-height: 100vh;
  */
 }
+
+.signup_result_inner{
+  margin-top:300px !important;
+  margin-bottom:-500px !important;
+}
+
+span#getID, span#getMember{
+ 	font-size:18px !important;
+ 	margin-top:10px !important;
+
+}
+
+.sign_info{
+  margin-top:30px !important;
+  font-size:18px !important;
+}
+
 </style>
 	</head>
 	<body class="homepage is-preload">
@@ -209,7 +230,7 @@ section#header {
 						</div>
 						<div class="sign_info" style="padding-top:20px;">
 							<div class="sign_info_inner">
-								<span>가입정보</span><br/>
+								<span class="sign_info">가입정보</span><br/>
 								
 								<span id="getID"> 아이디 : ${param.memberId}</span>
 							</div>
