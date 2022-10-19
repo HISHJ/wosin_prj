@@ -189,4 +189,41 @@ public class AdminMemberDAO {
 	}//insertQuitMember	
 	
 	
+	public AdminQuitMemberVO selectReason(String memberId) throws SQLException {
+		
+
+		AdminQuitMemberVO aqmVO =null;
+		
+		Connection con=null;
+		PreparedStatement pstmt=null;
+		ResultSet rs=null;
+		
+		DbConnection dc=DbConnection.getInstance();
+		
+		try {
+			con=dc.getConn();
+			String selectInfo = "select reason from quitmember where memberId=?";
+			pstmt=con.prepareStatement(selectInfo);
+			pstmt.setString(1, memberId);	
+			rs=pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				aqmVO=new AdminQuitMemberVO();
+		
+				aqmVO.setReason(rs.getString("reason"));
+					
+			}//end if
+	
+		}finally{
+			
+			dc.dbClose(rs, pstmt, con);
+		}//end
+		
+		return aqmVO;
+		
+		
+	}//
+	
+	
 }//AdminMemberDAO

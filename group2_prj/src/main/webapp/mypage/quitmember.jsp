@@ -255,8 +255,9 @@ if(memberId == null){
 						</ul>
 						
 						<div class="bbs-btn_w clearfix tac mt flr">
-							<button type="button" class="bbs-btn-st2 bg-purple3" id="btnCancel" >취소</button>
 							<button type="button" class="bbs-btn-st2 bg-black_r" id="btnQuit">회원탈퇴</button>
+							<a href="http://localhost/group2_prj/mypage/mypage.jsp">
+							<button type="button" class="bbs-btn-st2 bg-purple3" id="btnCancel" >취소</button></a>
 						</div>
 					</div>
 				

@@ -786,7 +786,8 @@ input[type="date"] {
 				
 					<div class="bbs-btn_w clearfix tac">
 						<button type="button" class="bbs-btn-st2 bg-purple3"id="btnSignup" >등록</button>
-						<button type="button" class="bbs-btn-st2 bg-black_r" id="btnSignupC">취소</button>
+						<a href="http://localhost/group2_prj/main/index.jsp">
+						<button type="button" class="bbs-btn-st2 bg-black_r" id="btnSignupC" >취소</button></a>
 						
 					</div>
 

@@ -49,8 +49,8 @@
     </head>
     <body>
      
-    <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
-
+    <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="page"/>
+	<jsp:useBean id="aqmVO" class="kr.co.sist.vo.AdminQuitMemberVO" scope="page"/>
 
     <%
     
@@ -62,7 +62,8 @@
 
   	AdminMemberDAO admDAO= AdminMemberDAO.getInstance();
  	admVO= admDAO.selectMemberDetail(id);
-
+ 	aqmVO = admDAO.selectReason(id);
+	
  	
  
 
@@ -77,7 +78,8 @@
  	
  	String Addr = zipcode+" "+addr1+" "+addr2;
   
-    %>
+ 	session.setAttribute("status", admVO.getStatus());
+%>
 	    
     <jsp:setProperty property="*" name="admVO"/> 
      
@@ -125,7 +127,10 @@
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>상태</b></div> <div class="col-4"><%=admVO.getStatus() %></div>
-                                        </div>
+                                            <%if(admVO.getStatus().equals("N")){ %> 
+                                            <div class="col-2"><b>탈퇴이유</b></div> <div class="col-4"><%=aqmVO.getReason() %></div>
+                                            <%} %>
+                                        </div>												
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-2"><b>이메일수신</b></div>

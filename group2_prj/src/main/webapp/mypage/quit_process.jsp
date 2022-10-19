@@ -7,8 +7,8 @@
     
 
 
-<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
-<jsp:useBean id="qmVO" class="kr.co.sist.vo.QuitMemberVO" scope="session"/>
+<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
+<jsp:useBean id="qmVO" class="kr.co.sist.vo.QuitMemberVO" scope="page"/>
 <jsp:setProperty property="*" name="mbVO"/>
 
 

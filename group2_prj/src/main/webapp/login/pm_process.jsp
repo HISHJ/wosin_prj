@@ -6,7 +6,7 @@
     
 
 
- <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+ <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
 
 
 
@@ -14,7 +14,7 @@
   <%
   request.setCharacterEncoding("UTF-8"); 
   
-  String id=mbVO.getMemberId();
+  String id=(String)session.getAttribute("Id");
   String pw=request.getParameter("pwd");
   String pwd=DataEncrypt.messageDigest("SHA-1", pw);
 

@@ -8,38 +8,23 @@
 
 
 
- <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/> 
+ <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/> 
 
  
 <%request.setCharacterEncoding("UTF-8"); 
-
-String pw=request.getParameter("pwd");
-
-
-//key가져오기
-  ServletContext sc = getServletContext();
-  String plainText = sc.getInitParameter("keyU"); 
-  //알고리즘 설정하여 MessageDigest
-  MessageDigest md=MessageDigest.getInstance("MD5");
-  md.update(plainText.getBytes());
-  new String(md.digest());
-  //키 생성
-  String key=DataEncrypt.messageDigest("MD5", plainText);
-  //키를 넣어 암호화 객체 생성
-  DataEncrypt de= new DataEncrypt(key);
-
-
-
-  String pwd=DataEncrypt.messageDigest("SHA-1", pw);
+String pw=(String)session.getAttribute("pwd");
+String memberId = (String)session.getAttribute("memberId");
 
 
 
 %>
+<jsp:setProperty property="memberId" name="mbVO" value="<%=memberId%>"/>
+<jsp:setProperty property="pwd" name="mbVO"  value="<%=pw%>"/> 
 
-<jsp:setProperty property="pwd" name="mbVO"  value="<%=pwd %>"/> 
 
 
-<%MemberDAO mbrDAO =MemberDAO.getInstance();
+
+ <%MemberDAO mbrDAO =MemberDAO.getInstance();
 	
 boolean result= mbrDAO.login(mbVO);
 
@@ -51,8 +36,5 @@ if(result){
 		location.href="http://localhost/group2_prj/mypage/passModify.jsp";
 	</script>
 
-<%}//endif %>
-
-
-
+<%}//endif %> 
 

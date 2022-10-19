@@ -2,8 +2,7 @@
     pageEncoding="UTF-8" info=""%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 
-<!-- session -->
-<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+<%String memberId =(String)session.getAttribute("Id"); %>
 
 <!DOCTYPE HTML>
 <html>
@@ -29,21 +28,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		 <!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 		
-<%if (mbVO.getMemberId() == null) {%>
-<style>
-#nav {
-	margin-right: 150px;
-}
-</style>
-<%}%>
 
 <style>
 section#header {
@@ -254,7 +239,8 @@ section#header {
 									</ul>
 									<div class="bbs-btn_w clearfix tac" style="margin-left:-50p;margin-top:60px;margin-bottom:30px;">
 										<button type="button" id="pwChange" class="bbs-btn-st2 bg-purple3" style="margin-right:30px;"  >변경</button>
-										<button type="button" class="bbs-btn-st2 bg-black_r">취소</button>
+										<a href="http://localhost/group2_prj/main/index.jsp">
+										<button type="button" class="bbs-btn-st2 bg-black_r">취소</button></a>
 									</div>
 							
 
@@ -302,7 +288,13 @@ section#header {
 			<!-- Footer -->
 			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
 			<!-- End footer -->
-
+				 <!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 
 

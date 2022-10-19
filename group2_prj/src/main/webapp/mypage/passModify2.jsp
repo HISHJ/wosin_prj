@@ -4,7 +4,7 @@
 <%
 
 String memberId = (String)session.getAttribute("memberId");
-
+String pw=(String)session.getAttribute("pwd");
 %>
 <%
 if(memberId == null){
@@ -324,8 +324,7 @@ if(memberId == null){
 				.tabs-st1,.tabs-st2{display: none;}
 				</style>
 				
-				<!-- 세션 값 받아오기 useBean : scope="session"사용하면 필요없을듯! -->
-			<%-- 	<%String id=(String)session.getAttribute("memberId"); %> --%>
+			
 			<form id="pmFrm" name="pmFrm" method="post" action="http://localhost/group2_prj/mypage/pm_process2.jsp">
 				<article class="find_member inner member_com">
 						<div class="group">
@@ -353,7 +352,8 @@ if(memberId == null){
 									</ul>
 									<div class="bbs-btn_w clearfix tac">
 										<button type="button" id="pwChange" class="bbs-btn-st2 bg-purple3"  >변경</button>
-										<button type="button" class="bbs-btn-st2 bg-black_r">취소</button>
+										<a href="http://localhost/group2_prj/mypage/memberMng.jsp">
+										<button type="button" class="bbs-btn-st2 bg-black_r">취소</button></a>
 									</div>
 							
 

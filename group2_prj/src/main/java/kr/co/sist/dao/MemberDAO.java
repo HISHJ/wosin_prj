@@ -71,10 +71,10 @@ public class MemberDAO {
 	
 //	아이디 찾기
 	
-	public MemberVO selectMemberId(String name, String phone) throws SQLException {
+	public MemberVO selectMemberId(MemberVO mbVO) throws SQLException {
 		
 		
-		MemberVO mbVO= null;
+	
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -84,8 +84,8 @@ public class MemberDAO {
 			String idFind= "select memberId,to_char(inputdate,'yyyy-MM-dd')mdate from member where name=? and phone=?";
 			pstmt=con.prepareStatement(idFind);
 			//회원가입할때 to_char(inputdate,'yyy-MM-dd')하면 select할때는 to_char 안해도 되지 않을까?
-			pstmt.setString(1,name);
-			pstmt.setString(2,phone);
+			pstmt.setString(1,mbVO.getName());
+			pstmt.setString(2,mbVO.getPhone());
 			rs=pstmt.executeQuery();
 			// 아이디 휴대폰번호 일치하지 않는경우는...?  :jsp로
 			
@@ -109,7 +109,8 @@ public class MemberDAO {
 		
 	}//mbVO
 //	비밀번호 찾기
-	public MemberVO selectMemberPass(MemberVO mbVO) throws SQLException {
+	public MemberVO selectMemberPass(String memberId,String name,String phone) throws SQLException {
+		MemberVO mbVO=null;
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
@@ -119,14 +120,15 @@ public class MemberDAO {
 			String passFind= "select memberId,pwd from member where memberId=? and name=? and phone=?";
 			pstmt=con.prepareStatement(passFind);
 			
-			pstmt.setString(1,mbVO.getMemberId());
-			pstmt.setString(2,mbVO.getName());
-			pstmt.setString(3,mbVO.getPhone());
+			pstmt.setString(1,memberId);
+			pstmt.setString(2,name);
+			pstmt.setString(3,phone);
 			rs=pstmt.executeQuery();
 			// 아이디 휴대폰번호,이름 일치하지 않는경우는...? 
 			
 			//일치했을때=>비밀번호변경 페이지로 이동  
 			if(rs.next()) {
+				mbVO= new MemberVO();
 				mbVO=new MemberVO();
 				mbVO.setMemberId(rs.getString("memberId"));
 				mbVO.setPwd(rs.getString("pwd"));

@@ -11,7 +11,7 @@
     
     
     
-<jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
+
 <%
   request.setCharacterEncoding("UTF-8");
 
@@ -36,13 +36,12 @@ DataDecrypt dd= new DataDecrypt(key);
 AdminMemberDAO admDAO = AdminMemberDAO.getInstance();
 List<AdminMemberVO> Mlist =null;
 
-
- if(id!=null){
- Mlist =admDAO.selectMember(de.encryption(id),mailchk,smschk,status);  
+if(id!=null){
+Mlist =admDAO.selectMember(de.encryption(id),mailchk,smschk,status);   
 }else{
 Mlist =admDAO.selectMember(id,mailchk,smschk,status);   
-} 
-  
+}
+
   %> 
   <%
  //로그인되어있지 않은 경우 로그인페이지로 이동
@@ -127,7 +126,7 @@ if( session.getAttribute("adminId") == null){
                                 <div class="dataTable-top"></div>
                                 <label>수신동의　</label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="emailChk"
+                                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="mailChk"
                                     value="Y">
                                     <label class="form-check-label" for="inlineCheckbox1">이메일</label>
                                 </div>

@@ -3,10 +3,13 @@
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="mypage update process"%>
-<%request.setCharacterEncoding("UTF-8"); %>   
+<%request.setCharacterEncoding("UTF-8");
+
+%>   
  
-<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
-<jsp:setProperty property="*" name="mbVO"/>
+<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
+
+
 
 	<%
 				
@@ -14,9 +17,10 @@
 				String email2=request.getParameter("email2");
 				String email=email1+"@"+email2;
 				
-				String id=mbVO.getMemberId();
-				String phone=mbVO.getPhone();
-				String addr2=mbVO.getAddr2();
+				String id= (String)session.getAttribute("memberId");
+				String phone=request.getParameter("phone");
+				String addr2=request.getParameter("addr2");
+				String pw=(String)session.getAttribute("pwd");
 				
 				//key가져오기
 				  ServletContext sc = getServletContext();
@@ -24,22 +28,17 @@
 				  
 				  DataEncrypt de= new DataEncrypt(plainText);
 				
-				  String Id=de.encryption(id);
+		
 				  String Email=de.encryption(email);
 				  String Phone=de.encryption(phone);
 				  String Addr2=de.encryption(addr2);
 				  
 				
-
-			
-			
-				
-				
 				%>
 
     				<jsp:setProperty property="name" name="mbVO"/>
-    				<jsp:setProperty property="memberId" name="mbVO" value="<%=Id %>"/>
-    				<jsp:setProperty property="pwd" name="mbVO" />
+    				<jsp:setProperty property="memberId" name="mbVO" value="<%=id %>"/>
+    				<jsp:setProperty property="pwd" name="mbVO" value="<%=pw %>"/>
  					<jsp:setProperty property="birth" name="mbVO"/>
 					<jsp:setProperty property="gender" name="mbVO"/>
 					<jsp:setProperty property="zipcode" name="mbVO"/>
@@ -49,9 +48,9 @@
 					<jsp:setProperty property="phone" name="mbVO" value="<%=Phone %>"/>
 					<jsp:setProperty property="mailChk" name="mbVO"/>
 					<jsp:setProperty property="smsChk" name="mbVO"/>  
-	
 
- <%			MemberDAO mbrDAO= MemberDAO.getInstance();
+
+  <%			MemberDAO mbrDAO= MemberDAO.getInstance();
 				int updateMbCnt=mbrDAO.updateMember(mbVO);
 				if(updateMbCnt==0){/* 회원정보수정 실패 */	%>
 					<script>
@@ -65,8 +64,8 @@
 						location.href="http://localhost/group2_prj/mypage/mypage.jsp";
 					</script>
 				<%}  
-				
-				System.out.println(updateMbCnt);%>   
+				System.out.println(mbVO);
+				System.out.println(updateMbCnt);%>    
 
 
 

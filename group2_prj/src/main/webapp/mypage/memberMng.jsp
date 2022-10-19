@@ -4,7 +4,8 @@
 <%
 //세션 넘겨받기 검증 완료
 String memberId = (String)session.getAttribute("memberId");
-
+//비밀번호 세션에 저장
+String pw=(String)session.getAttribute("pwd");
 %> 
 <%
 if(memberId == null){
@@ -39,13 +40,7 @@ if(memberId == null){
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-		<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+		
 		<style>
      section#header{
  		 /* background-image:  url("../../images/subvisual-200001.jpg"); */
@@ -102,19 +97,19 @@ if(memberId == null){
 									<!-- display:none -->
 									<ul class="depth" >
 										<a href="http://localhost/group2_prj/mypage/memberMng.jsp">
-											<span>마이페이지</span>
+											<span>개인화서비스</span>
 										</a>
 										<li>
-											<a href="page1.html">공연정보</a>
+											<a href="http://localhost/group2_prj/reservation/show_search.jsp">공연정보</a>
 										</li>
 										<li>
-											<a href="subpage-ticketmethod.html">예매정보</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-ticketMethod.jsp">예매정보</a>
 										</li>
 										<li>
-											<a href="subpage-FAQ1.html">고객센터</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-FAQ1.jsp">고객센터</a>
 										</li>
 										<li>
-											<a href="subpage-way.html">오시는길</a>
+											<a href="http://localhost/group2_prj/subpage/subpage-location.jsp">오시는길</a>
 										</li>
 									</ul>
 								</div>
@@ -181,7 +176,7 @@ if(memberId == null){
 						<div class="sub_page">
 						
 				
-				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+
 				
 		
 				<%-- <!-- 로그인 안했을때 로그인페이지로 돌려보내기 -->
@@ -245,7 +240,13 @@ if(memberId == null){
 			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
 			
 			<!-- End footer -->
-
+<!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 	</body>
 </html>

@@ -8,35 +8,36 @@
 
 
 
- <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/> 
+ <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/> 
 
  
 <%request.setCharacterEncoding("UTF-8"); 
-
+String id=(String)session.getAttribute("memberId");
 String pw=request.getParameter("pwd");
 
 
-//들어오는 pw암호화
-  String pwd=DataEncrypt.messageDigest("SHA-1", pw);
+String pwd=DataEncrypt.messageDigest("SHA-1", pw);
 
 
 
 %>
 
-<jsp:setProperty property="pwd" name="mbVO"  value="<%=pwd %>"/> 
+<jsp:setProperty property ="memberId" name="mbVO" value="<%=id %>"/>
+ <jsp:setProperty property="pwd" name="mbVO"  value="<%=pwd%>"/> 
 
 
-
-<%MemberDAO mbrDAO =MemberDAO.getInstance();
-	
+<%
+MemberDAO mbrDAO =MemberDAO.getInstance();	
 boolean result= mbrDAO.login(mbVO);
 
 if(result){
+		session.setAttribute("pwd", mbVO.getPwd());
 		response.sendRedirect("http://localhost/group2_prj/mypage/memberMng.jsp");
 }else { %>
 	<script>
 		alert("비밀번호가 일치하지 않습니다.");
 		location.href="http://localhost/group2_prj/mypage/password_mypage.jsp";
+		System.out.println(mbVO);
 	</script>
 
 <%}//endif %>

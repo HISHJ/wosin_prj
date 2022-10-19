@@ -275,9 +275,7 @@ if(memberId == null){
 						<h3 class="tit-st4">비밀번호 확인</h3>
 						<div class="box box_2">
 						<!-- 세션연결 -->
-						  <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>  
 						
-							<!-- String id=(String)session.getAttribute("memberId"); -->
 							<div class="form_w">
 								<h4 class="t">마이페이지를 이용하기 위해 현재 비밀번호를 입력해주세요.</h4>
 									<ul class="sect sect2">
@@ -290,7 +288,8 @@ if(memberId == null){
 									</ul>
 									<div class="bbs-btn_w clearfix tac">
 										<button type="button" class="bbs-btn-st2 bg-purple3"  id="pwChk">확인</button>
-										<button type="button" class="bbs-btn-st2 bg-black_r">취소</button>
+										<a href="http://localhost/group2_prj/main/index.jsp">
+										<button type="button" class="bbs-btn-st2 bg-black_r">취소</button></a>
 									</div>
 
 

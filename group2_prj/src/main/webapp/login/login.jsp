@@ -33,12 +33,7 @@
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 		<!--제이쿼리-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	    <!--js  -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+
 				
 	<style>
      section#header{
@@ -55,6 +50,7 @@
 	</style>
 	</head>
 	<body class="homepage is-preload">
+
 		<div id="page-wrapper">
 		<!--header-->
 		<c:import url="http://localhost/group2_prj/common/user_subpage_header.jsp"/>		
@@ -262,7 +258,12 @@
 	<!-- Footer -->
 	<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
 	<!-- End footer -->
-
+		    <!--js  -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 
 </body>
 </html>

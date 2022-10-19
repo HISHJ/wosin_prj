@@ -9,7 +9,8 @@
 <%
 //세션 넘겨받기 검증 완료
 String memberId = (String)session.getAttribute("memberId");
-//System.out.println("여기여기"+memberId);
+String pw=(String)session.getAttribute("pwd");
+System.out.println("여기여기"+memberId+pw);
 %>
 <%
 if(memberId == null){
@@ -239,6 +240,7 @@ input:nth-child(1) {
 						$("#btnModify").click(function(){
 								check();
 										});//click
+								
 										
 							});//ready
 				
@@ -446,8 +448,8 @@ input:nth-child(1) {
 				
 	<!-- 			<script src="/static/jslibrary/miya_validator.js"></script> -->
 				<!-- JSP부분 -->
-				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
-				<jsp:setProperty property="*" name="mbVO"/>
+				<jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
+				<jsp:setProperty property="memberId" name="mbVO" value="<%=memberId %>"/>
 				<%
 				request.setCharacterEncoding("UTF-8");
 				
@@ -459,10 +461,11 @@ input:nth-child(1) {
 				 DataDecrypt dd= new DataDecrypt(plainText);
 				MemberDAO mbrDAO = MemberDAO.getInstance();
 				mbVO=mbrDAO.selectMember(mbVO.getMemberId()); 
-			 	 System.out.println(mbVO);
+			 	
+				
 				
 				%>
-			
+		
 			
 				
 			<form name="board" id="mypageboard" method="post"  action="http://localhost/group2_prj/mypage/mypage_process.jsp">
@@ -517,7 +520,7 @@ input:nth-child(1) {
 								<div class="birth_w clearfix">
 									<ul class="clearfix birth">
 											<li>
-											<p><input type="date" name="birth" id="datepicker"  value ="<%=birth%>"style="width:320px;margin-left:10px;border:1px solid #333 !important;" /></p>
+											<p><input type="text" name="birth" id="datepicker"  value ="<%=birth%>"style="width:320px;margin-left:10px;border:1px solid #333 !important;" readonly/></p>
 											</li>
 									</ul>
 			
@@ -702,7 +705,8 @@ input:nth-child(1) {
 				
 						<span class="fr">
 						<button type="button" class="bbs-btn-st2 bg-purple3" id="btnModify">수정</button>
-						<button type="button" class="bbs-btn-st2 bg-black_r"  id="btnCancel">취소</button>
+						<a href="http://localhost/group2_prj/mypage/memberMng.jsp">
+						<button type="button" class="bbs-btn-st2 bg-black_r"  id="btnCancel">취소</button></a>
 						
 					
 						</span>

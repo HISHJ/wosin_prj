@@ -7,7 +7,7 @@
 
 
 
- <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>
+ <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
 
 
 
@@ -15,17 +15,13 @@
   <%
   request.setCharacterEncoding("UTF-8"); 
   
-  String id=mbVO.getMemberId();
-  String pw=mbVO.getPwd();
-//key가져오기
-  ServletContext sc = getServletContext();
-  String plainText = sc.getInitParameter("keyU"); 
-  //키를 넣어 암호화 객체 생성
-  DataEncrypt de= new DataEncrypt(plainText);
-  String pwd=DataEncrypt.messageDigest("SHA-1", pw);
+  String id= (String)session.getAttribute("memberId");
+  String pw=(String)session.getAttribute("pwd");
+
+
 	int updatePassCnt=0;	
 	MemberDAO mbrDAO=MemberDAO.getInstance();
-	updatePassCnt= mbrDAO.updatePass(id, pwd);
+	updatePassCnt= mbrDAO.updatePass(id, pw);
 	
 if(updatePassCnt==0){	
 %>   

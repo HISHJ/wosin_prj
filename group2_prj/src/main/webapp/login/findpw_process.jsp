@@ -1,3 +1,4 @@
+<%@page import="kr.co.sist.vo.MemberVO"%>
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="java.security.MessageDigest"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
@@ -5,7 +6,7 @@
     pageEncoding="UTF-8" info="비밀번호찾기 process"%>
     
     
-  <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="session"/>			
+	
 <%								
 
 									request.setCharacterEncoding("UTF-8");			
@@ -27,41 +28,28 @@
 									
 								 	  String Id=de.encryption(id);
 								 	  String Phone=de.encryption(phone);
+									  String name=request.getParameter("name");
 									
-									%>
 														
 									
-									<jsp:setProperty property="name" name="mbVO"/>
-									<jsp:setProperty property="phone" name="mbVO" value="<%=Phone %>"/>
-									<jsp:setProperty property = "memberId" name="mbVO" value="<%=Id %>"/>
-									 
-									 
-									
-									
-									
-									
-									
-									
-				 
-
-				 
-			<% 		
-				MemberDAO mbrDAO =MemberDAO.getInstance();
-			 	mbVO = mbrDAO.selectMemberPass(mbVO);
-		
-				if(mbVO.getPwd()==null){%>
-					<script>
-						alert("일치하는 계정이 없습니다.");
-						location.href="http://localhost/group2_prj/login/find_password.jsp";
-					</script>
-				
-				<%}else{%>
-						<script>
-						location.href="http://localhost/group2_prj/login/passModify.jsp";
-						</script>
-					<%} 
+														
+										MemberVO mbVO = new MemberVO();
+										MemberDAO mbrDAO =MemberDAO.getInstance();
+									 	mbVO = mbrDAO.selectMemberPass(Id,name,Phone);
+							
+								
+									if(mbVO==null){%>
+											<script>
+												alert("일치하는 계정이 없습니다.");
+												location.href="http://localhost/group2_prj/login/find_password.jsp";
+											</script>
+										
+										<%}else{
+												session.setAttribute("Id",mbVO.getMemberId());
+												session.setAttribute("pwd",mbVO.getPwd());%>
+												<script>
+												location.href="http://localhost/group2_prj/login/passModify.jsp";
+												</script>
+											<%} %> 				
+						
 					
-					%> 				
-
-
-
