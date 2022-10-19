@@ -463,7 +463,7 @@ String[] staArr ={"예매완료","예매취소"};
 												</table>
 												<%}//end if %>
 												</div>
-												<ul class="paging"><li class="active"><a href="#">1</a></li></ul>
+											<!-- 	<ul class="paging"><li class="active"><a href="#">1</a></li></ul> -->
 											</div>
 											</div>
 										</article>

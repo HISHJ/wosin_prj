@@ -8,7 +8,7 @@
 								<section>
 									<header>
 										<h2>
-											<a href="index.html">
+											<a href="http://localhost/group2_prj/main/index.jsp">
 												<img class="footer_logo" src="http://localhost/group2_prj/common/logo_white.png" alt="우신문화회관">
 											</a>
 										</h2>

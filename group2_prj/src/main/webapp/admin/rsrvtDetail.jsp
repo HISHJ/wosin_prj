@@ -24,10 +24,10 @@
         
         body{background-color : #fff;}
         
-        .readonly{
-
-		color: #d9d9d9; 
-
+        
+		
+		select:disabled {
+  		color: #333;
 		}
          
         </style>
@@ -54,10 +54,12 @@ System.out.println(rsrvtId);
 
 AdminRsrvtDAO aDAO = AdminRsrvtDAO.getInstance();
 AdminRsrvtInfoVO voList = aDAO.selectRsrvtDetail(rsrvtId);
- String id = dd.decryption(voList.getUserId());
+String id = dd.decryption(voList.getUserId());
 String phonNum = dd.decryption(voList.getPhone());
 String email = dd.decryption(voList.getEmail());  
-
+System.out.println(id);
+System.out.println(phonNum);
+System.out.println(email);
 
 
 %>
@@ -94,7 +96,7 @@ String email = dd.decryption(voList.getEmail());
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-3"><b>아이디</b></div> 
-                                            <div class="col-6"><%=voList.getUserId()  %></div>
+                                            <div class="col-6"><%=id %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
@@ -114,12 +116,12 @@ String email = dd.decryption(voList.getEmail());
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-3"><b>휴대전화</b></div>
-                                             <div class="col-6"><%= voList.getPhone() %></div>
+                                             <div class="col-6"><%= phonNum %></div>
                                         </div>
                                         <div class="dataTable-top"></div>
                                         <div class="row">
                                             <div class="col-3"><b>이메일</b></div> 
-                                            <div class="col-6"><%= voList.getEmail() %></div>
+                                            <div class="col-6"><%= email %></div>
                                         </div>
                                         
                                         <div class="dataTable-top"></div>
@@ -127,7 +129,7 @@ String email = dd.decryption(voList.getEmail());
                                        <div class="row">
                                             <div class="col-3"><b>처리현황</b></div> 
                                             <div class="col-4">
-                                                <select id="status_sel" name="ge_type" class="dataTable-dropdown dataTable-selector" class="readonly"> 
+                                                <select id="status_sel" name="ge_type" class="dataTable-dropdown dataTable-selector readonly" disabled="disabled" > 
                                                 
                                                   
                                                   
@@ -136,7 +138,7 @@ String email = dd.decryption(voList.getEmail());
                                                   AdminRsrvtInfoVO arVO = new AdminRsrvtInfoVO();  
                                                   
                                                   for(int i=0;i<statusArr.length;i++){%>
-                                                  <option value="<%=statusArr[i] %>"<%=(statusArr[i].equals(voList.getRsrvtStatus()))? " selected='selected'":""%> >
+                                                  <option style="color:#333;" value="<%=statusArr[i] %>"<%=(statusArr[i].equals(voList.getRsrvtStatus()))? " selected='selected'":""%>  >
                                                        <%=statusArr[i] %>
                                                   </option ><%}%> 
                                                   
@@ -151,7 +153,7 @@ String email = dd.decryption(voList.getEmail());
                                      
                                         <div class="mt-4 mb-0">
                                             <div class="col text-center">
-                                                <button class="btn btn-secondary btn-sm" id="change_btn">변경</button>
+                                                <!-- <button class="btn btn-secondary btn-sm" id="change_btn">변경</button> -->
                                                 <button class="btn btn-default btn-sm" id="can_btn" onclick="javascript:history.back();">취소</button>
                                             </div>
                                         </div>

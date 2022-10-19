@@ -9,6 +9,12 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info="scriptlet의 사용" %>
+<%
+ //로그인되어있지 않은 경우 로그인페이지로 이동
+if( session.getAttribute("adminId") == null){
+   response.sendRedirect("http://localhost/group2_prj/admin/admingLogin.jsp");
+}
+%>       
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,16 +29,11 @@
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
         <!--JQuery Google CDN -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
+	
 
     </head>
 <body class="sb-nav-fixed">
-<%
- //로그인되어있지 않은 경우 로그인페이지로 이동
-if( session.getAttribute("adminId") == null){
-   response.sendRedirect("admingLogin.jsp");
-}
-%>
+
 <%
 //날짜가져오기
 String firstDate = request.getParameter("firstDate");
@@ -55,8 +56,10 @@ List<AdminRsrvtInfoVO> voList = aDAO.selectRsrvt(asRVO);
 
 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 String date = null;  
-String rsrvtid = ""; //vo 예매번호 담을 변수
-String rsId=""; //세션담을변수
+String rsrvtid = ""; 
+String rsId=""; 
+String sta="";
+String name = "";
 String[] statusArr = {"예매완료", "예매취소"};
 //예매 검색 조회
 
@@ -72,20 +75,24 @@ $(function(){
 	})//end get status parameter
 })//ready
 </script>
-<%-- <% if(){%>  요부분이야--%>
 
 <script> 
- function getHiddenVal(rid, status){
+ function getHiddenVal(rid, status,name){
+	 
     $("#rsrvtId").val(rid);
-    var sta = $("#status").val(status);
-    if(sta === "예매완료"){
-    $("#resultFrm").submit();
+    $("#status").val(status);
+    $("#name").val(name);
+
+    var sta = $("#status").val();
+    var name = $("#name").val();
+     
+    if(sta == "예매취소" || name==" " ){
+      alert("취소된 예매나 탈퇴한 회원의 예매상세내역은 열람할 수 없습니다.")	;
     }else{
-      alert("취소된 예매는 상세내역을 볼 수 없습니다.")	
-    }
-    
-  
- }//getHiddenVal(rid)(상세내역을 위한)
+    $("#resultFrm").submit();
+    };
+ 
+ }//getHiddenVal
 </script>
 
  <!-- 여기서부터 <nav>-->
@@ -146,8 +153,10 @@ $(function(){
                         
                                
                            <form id="resultFrm" name="resultFrm" action="rsrvtDetail.jsp" method="post"> 
-                   		  <input type="hidden" name="rsrvtId" id="rsrvtId">
-		 				  <input type="hidden" name="status" id="status">
+                   		  <input type="hidden" name="rsrvtId" id="rsrvtId" >
+		 				  <input type="hidden" name="status" id="status" >
+		 				  <input type="hidden" name="name" id="name" >
+		 				  
                                 <table id="datatablesSimple">
                                
                                     <thead>
@@ -175,9 +184,12 @@ $(function(){
                                  <%
                                  for(AdminRsrvtInfoVO asVO :  voList ){
                                 	 rsrvtid =asVO.getRsrvtId();
-                                	 status = asVO.getRsrvtStatus();
-                                	 session.setAttribute("rId",  rsrvtid );
-                                	 rsId = (String)session.getAttribute("rId");                                 	 
+                                	 sta = asVO.getRsrvtStatus();
+                                	 name = asVO.getUserName();
+                                	
+                                      session.setAttribute("rId",  rsrvtid );
+                                	  rsId = (String)session.getAttribute("rId"); 
+                                	
                                 	 if(asVO.getRsrvtInputDate() != null) {
                      				   date = sdf.format(asVO.getRsrvtInputDate());                     					
                      				}//end if
@@ -187,8 +199,8 @@ $(function(){
                                             <td><%=asVO.getUserName() %></td>
                                             <td><%=dd.decryption(asVO.getUserId()) %></td>
                                             <td><%= date %></td>
-                                            <td><%=asVO.getRsrvtStatus() %></td>                                          
-                                            <td><input type="button" value="상세보기" onClick="getHiddenVal('<%=rsId%>','<%=status%>')"></td> 
+                                            <td><%=sta %></td>                                          
+                                            <td><input type="button" value="상세보기" onClick="getHiddenVal('<%=rsId%>','<%=sta%>','<%=name%>')"></td> 
                                         </tr>
                                        
                                         <% } %>                                 
