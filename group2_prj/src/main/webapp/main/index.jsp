@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.co.sist.dao.MainDAO"%>
 <%@page import="kr.co.sist.vo.ShowVO"%>
@@ -12,6 +13,23 @@ String memberId= (String)session.getAttribute("memberId");
 
 MainDAO mDAO = MainDAO.getInstance(); 
 List<ShowVO> swList = mDAO.selectThImg(); 
+
+session.removeAttribute("selectedSeats");
+session.removeAttribute("showId");
+session.removeAttribute("schTest");
+session.removeAttribute("year");
+session.removeAttribute("lastday");
+session.removeAttribute("adminId");
+session.removeAttribute("rId");
+session.removeAttribute("day");
+session.removeAttribute("month");
+
+//Enumeration se = session.getAttributeNames();
+//while(se.hasMoreElements()){
+//	String getse = se.nextElement()+"";
+//	System.out.println("index.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
+//}
+
 %>
     
 <!DOCTYPE html>

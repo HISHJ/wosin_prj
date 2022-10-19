@@ -253,7 +253,8 @@ public class RsrvtDAO {
          //sb.append(" select sch.schdate sch_schdate, sch.schtime sch_schtime, sch.schid sch_schid ")
          sb.append(" select sch.schdate sch_schdate, sch.schtime sch_schtime, sch.schid sch_schid, to_char(to_date(schdate),'dy') sch_day ")
                .append(" from schedule sch, show sho  ")
-               .append(" where (sch.showid = sho.showid) and sho.showid= ? ");
+               .append(" where (sch.showid = sho.showid) and sho.showid= ? ")
+               .append(" order by schdate, schtime ");
 
          pstmt = con.prepareStatement(sb.toString());
 

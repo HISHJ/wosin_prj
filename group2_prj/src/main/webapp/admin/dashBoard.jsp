@@ -93,11 +93,11 @@
                                     <div class="card-body" style=" height:150px;">
                                         
                                         <h6 class="fw-bold">공연 예정작 수</h6>
-                                        <%= show.getStandByShow() %>
+                                        <%= show.getStandByShow() %> 건
                                         <div class="dataTable-top"></div>
                                         <div class="dataTable-top"></div>
                                         <h6 class="fw-bold">현재 공연작 수</h6>
-                                        <%= show.getOnTheShow() %>
+                                        <%= show.getOnTheShow() %> 건
                                         
                                     </div>   
                                 </div>
@@ -110,11 +110,11 @@
                                     </div>
                                     <div class="card-body" style=" height:150px;">
                                         <h6 class="fw-bold">금일 가입회원 수</h6>
-                                        <%= member.getSignUpMember() %>
+                                        <%= member.getSignUpMember() %> 명
                                         <div class="dataTable-top"></div>
                                         <div class="dataTable-top"></div>
                                         <h6 class="fw-bold">금일 탈퇴회원 수</h6>
-                                        <%= member.getQuitMember() %>
+                                        <%= member.getQuitMember() %> 명
                                         
                                     </div>   
                                 </div>
