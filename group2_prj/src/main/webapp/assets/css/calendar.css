@@ -159,7 +159,7 @@ table {
   position: relative;
 }
 
-.performanceCalendar__table .item li.m::before {
+/* .performanceCalendar__table .item li.m::before {
   content: 'M';
   color: #fff;
   background: #ff2929;
@@ -175,7 +175,7 @@ table {
   font-size: 14px;
   font-weight: 500;
   margin-right: 10px;
-}
+} */
 
 .performanceCalendar__table .item li > a {
   white-space: nowrap;

@@ -152,6 +152,7 @@ session.removeAttribute("month");
 	}/* 1530px */
 </style>
 
+
 <script>
 	$(function() {
 		//썸네일 클릭

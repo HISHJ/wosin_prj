@@ -16,7 +16,12 @@
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" info=" Calendar 만들기 "%>
-    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+//세션 넘겨받기 검증 완료
+String memberId = (String)session.getAttribute("memberId");
+//System.out.println("여기여기"+memberId);
+%>    
     
     
 <%
@@ -136,128 +141,108 @@ for(int i=0;i<resultList.size();i++){
    
  %>  
 <!DOCTYPE HTML>
-<!--
-	Dopetrope by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
+
 <html>
 	<head>
 		<title>전체일정</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="apple-touch-icon" sizes="180x180" href="../static/commons/img/favicon_180.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../static/commons/img/favicon_32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../static/commons/img/favicon_16.png">
-		<link rel="stylesheet" href="../assets/css/main.css" />
-		<link rel="stylesheet" href="../assets\css\reset.css">
-		<link rel="stylesheet" href="../assets\css\subheader.css">
-		<link rel="stylesheet" href="../assets\css\headerFooter.css">
-		<link rel="stylesheet" href="../assets\css\login.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="../static/commons/img/favicon_32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../static/commons/img/favicon_16.png">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/main.css" />
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/reset.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/subheader.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/headerFooter.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/login.css">
 
-		<link rel="stylesheet" href="../assets\css\calendar.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/calendar.css">
 		<!-- Scripts -->
-			<script src="../assets/js/jquery.min.js"></script>
-			<script src="../assets/js/jquery.dropotron.min.js"></script>
-			<script src="../assets/js/browser.min.js"></script>
-			<script src="../assets/js/breakpoints.min.js"></script>
-			<script src="../assets/js/util.js"></script>
-			<script src="../assets/js/main.js"></script>
-			
-	 <!-- <link rel="stylesheet" type="text/css" href="/static/portal/css/sub_new.css">
-   <link rel="stylesheet" type="text/css" href="/static/portal/css/style.css">
-   <link rel="stylesheet" type="text/css" href="/static/portal/css/layout_new.css"> -->
-		<!-- 부트스트랩 -->
-		<!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			 <script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 		<!--google icons-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!--google fonts-->
 		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 	<style>
-					section#header{
-  /* background-image:  url("../../images/subvisual-200001.jpg"); */
- 	 background: url("images/subvisual-common.jpg") no-repeat ; 
+	section#header{
+ 	 background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
   	background-size: 100%; 
   	background-attachment: fixed;
- 	/*  z-index: 9999;  */
   
 	}
 		#nav{
 		
-			margin-right:180px;
+			margin-right:130px;
 		}
+		
+	.performanceCalendar_table tbody td:last-child{
+	  /*border-width:1px 0;*/
+	   border-width:1px 1px 1px 0 !important
+	}	
+	
+	.performanceCalendar__table tbody td:not(:last-child){
+	  border-width:1px 1px 1px 0 !important;
+	}
+	
+	.performanceCalendar__table tbody td{
+	  padding:20px;
+	  vertical-align:top;
+	  height:250px;
+	  border-style:solid;
+	  border-color:#e2e2e2;
+	}
+	
+	
+
+ul{
+padding-inline-start: 0px !important;
+}
+
+a{
+font-size:13px !important;
+}
+
+.performanceCalendar__table .item li.m::before {
+  content: 'S';
+  color: #01010;
+  background: #ffe800;
+}
+
+.performanceCalendar__table .item li::before {
+  display: flex;
+  min-width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+
 	</style>
+	
+	<%if(memberId != null){%>
+	<style>
+	#nav {
+	margin-right: 0px;
+	}
+	</style>
+	<%} %>
+	
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
 
-		<!-- Header -->
-		<section id="header">
-			
-			<!-- Logo -->
-				
-			<!-- Nav -->
-				<nav id="nav">
-					<!-- left -->
-					<ul id="header_left">
-						<li class="current">
-							<a href="page1.html">공연정보</a>
-							<ul>
-								<li><a href="page1.html">공연일정</a></li>
-								<!-- <li><a href="calendar.html">일정조회</a></li> -->
-								<!-- <li><a href="#">예매</a></li> -->
-								<li><a href="page2.html">공연정보상세보기</a></li>
-								<li><a href="page7.html">좌석배치도</a></li>
-							</ul>
-						</li>
-						<li>
-							<a href="">예매정보</a>
-							<ul>
-								<li><a href="subpage-ticketmethod.html">티켓구입방법</a></li>
-								<li><a href="subpage-ticketreceive.html">티켓수령방법</a></li>
-								<li><a href="subpage-ticketcancel.html">예매취소,변경안내</a></li>
-								<li><a href="subpage-ticketprovision .html">예매약관</a></li>					
-							</ul>
-						</li>
-						<li>
-							<a href="page9.html">고객센터</a>
-							<ul>
-								<li><a href="page9.html">FAQ</a></li>
-								<li><a href="subpage-manner.html">관람예절</a></li>				
-							</ul>
-						</li>
-						<li><a href="subpage-way.html">오시는 길</a></li>
-						
-						
-					</ul>
-
-					<ul id="header_center">
-						<h1 id="logo">
-							<a href="index.html">
-							우신문화회관
-							</a>
-							</h1>	
-						
-					</ul>
-
-					<!--right  -->
-					<ul id="header_right">
-						<li class="current"><a href="login.html">LOGIN</a></li>
-						<li><a href="ticket.html">티켓</a></li>
-						<li class="calender">
-							<a href="calendar.html">
-								<span class="material-symbols-outlined md_20">
-									calendar_month
-									</span>
-						 </a>
-						</li>
-						<li class="search_icon"><a href="#">
-							<span class="material-symbols-outlined md_20">
-								search
-								</span>
-						</a></li>
-					</ul>
-				</nav>
+	    <c:import  url="http://localhost/group2_prj/common/user_subpage_header.jsp" > 
+    	<c:param name="memberId" value="<%= memberId %>"></c:param> 
+    	</c:import>
 
 
 						<!--❤️여기에 서브제목 입력하세욮 ex) 공연일정-->
@@ -356,6 +341,8 @@ for(int i=0;i<resultList.size();i++){
 													</tr>
 												</thead>
 												<tbody>
+												
+												
 								<%  
 									cal.set(year, month-1, 1);
 									int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
@@ -371,6 +358,8 @@ for(int i=0;i<resultList.size();i++){
 					String nowYear = Integer.toString(cal.get(Calendar.YEAR));
 					 String nowMonth = Integer.toString(cal.get(Calendar.MONTH)+1).length() == 1 ? "0" + Integer.toString(cal.get(Calendar.MONTH)+1): Integer.toString(cal.get(Calendar.MONTH)+1);
 					 String printStr  = "";
+					 
+					 String contentW = ""; //설빈
 					 //a : for (int i=1; i<= cal.getActualMaximum(Calendar.DAY_OF_MONTH);i++) {
 					  //list : for (int g=0; g < list.size(); g++) {
 						  int testCnt = 0;
@@ -386,6 +375,7 @@ for(int i=0;i<resultList.size();i++){
 						  
 						   // 컨텐트를 여기에 올리면 하나만나오는건아니고 각 일자별로 하나씩은 나옴; 10-20 01:41
 						 String content = "";
+						
 						   
 					 	 list : for(int j=0;j<resultList.size();j++){
 						 
@@ -406,8 +396,14 @@ for(int i=0;i<resultList.size();i++){
 						   	 //content += "<div class=\"content\" >"+schMap.getValue().getName()+ "</div>"; 그나마 되는코드..
 				 //되는코드		 content += "<div class=\"content\" ><a href='http://localhost/group2_prj/reservation/show_info.jsp?showId="+schMap.getValue().getShowId()+"'>"
 				 // 		 +schMap.getValue().getName()+ "</a></div>";
-				 		 content += "<div class=\"content\" style='overflow:hidden; text-overflow:ellipsis;' title='"+schMap.getValue().getName()+"'><a href='http://localhost/group2_prj/reservation/show_info.jsp?showId="+schMap.getValue().getShowId()+"'>"
-				  			 +schMap.getValue().getName()+ "</a></div>";
+				 
+				 
+				 		/*  content += "<div class=\"content\" style='overflow:hidden; text-overflow:ellipsis;' title='"+schMap.getValue().getName()+"'><a  href='http://localhost/group2_prj/reservation/show_info.jsp?showId="+schMap.getValue().getShowId()+"'>"
+				  			 +schMap.getValue().getName()+ "</a></div> </div>"; */
+				  			 //설빈 : 여기 쪼매 바꿨습니다,,,
+				  			content += "<li class='m'><div class=\"content\" style='overflow:hidden; text-overflow:ellipsis;' title='"+schMap.getValue().getName()+"'><a  href='http://localhost/group2_prj/reservation/show_info.jsp?showId="+schMap.getValue().getShowId()+"'>"
+						  			 +schMap.getValue().getName()+ "</a></div> </div><li/>";
+				  			 
 			//			   	 content += "<input type='text' maxlength='6' value='"+schMap.getValue().getName()+"' onclick='http://localhost/group2_prj/reservation/show_info.jsp?showId="+schMap.getValue().getShowId()+"'>"
 			//			   	 +"</input><br>";
 						   //	onclick=\"location.href=\"http://localhost/group2_prj/reservation/show_info.jsp?showId="+schMap.getValue().getShowId()+
@@ -429,15 +425,19 @@ for(int i=0;i<resultList.size();i++){
 						      //출력하는 날짜들과 데이터베이스에 조회해서 나온날짜들을 비교하여 일치한다면// 아래와같은 형식을 만들어서 뿌려줌~
 					//	      System.out.println("if탔음"+printStr);
 						    // printStr = printStr + "<div class=\"content\">"  + content + "</div>";
-						     printStr = printStr +"<br>"+ content;
 						     
-						     //break list; //for문의 list를 빠져나옴.
+						    //printStr = printStr +"<br>"+ content;
+						     contentW =  content ; //여어기도..
+						    
+						    
+						    //break list; //for문의 list를 빠져나옴.
 						     // break를 쓰면 공연이 하나밖에 안나오고
 						     // 안쓰면 list의 마지막이 null이 아닌거만 즉, 하나만 들어가네?
 						     
 					//00:57	  }
 						   } else{
-						     printStr = printStr + "<div class=\"content\"></div>";
+						     //printStr = printStr + "<div class=\"content\"></div>";
+						     contentW ="<li><div class=\"content\"></div></li>"; //여어기도,,
 						   }
 				//}	
 					   }
@@ -459,12 +459,16 @@ for(int i=0;i<resultList.size();i++){
 						  
 				%>		  
 					
-							 <td>
-						<%= printStr %>
-    								<ul class="item">
-																<li class="m">
-																<div class="itemLayer">
-   										</td>
+						<td>
+						<p class="day"><%=printStr%></p>
+						
+    					<ul class="item">
+			            
+						<%= contentW %>
+			            <!-- </li> -->
+			            </ul>
+					   <div class="itemLayer"></div>
+   						</td>
 									
      									<%if ((dayOfWeek-1+i)%7==0) {%> 
 										
@@ -477,13 +481,13 @@ for(int i=0;i<resultList.size();i++){
 										</tr>
 										
 											
-														<td></td>
+														<!-- <td></td> -->
 														<form name="dataFrm" id="dataFrm" action=""></form>
 														<input type="hidden" id="searchYear" value="2022">
 														<input type="hidden" id="searchMonth" value="8">
 														<input type="hidden" id="searchSMonth" value="9">
 
-													</tr>
+													<!-- </tr> -->
 												</tbody>
 												<script></script>
 											</table>
@@ -500,46 +504,13 @@ for(int i=0;i<resultList.size();i++){
 					
 						</div><!-- #cont -->
 
-			
-
-	
-
 				<!----------------------------------------------여기서부터 끝까지 footer-------------------------------------------->
 
 			<!-- Footer -->
-				<section id="footer">
-					<div class="footer_line"></div>
-					<div class="container">
-						<div class="row">
-							<div class="col-8 col-12-medium">
-								<section>
-									<header>
-										<h2>
-											<a href="index.html">
-												<img class="footer_logo" src="common\logo_white.png" alt="우신문화회관">
-											</a>
-										</h2>
-										<div class="l">
-											<address>
-												재단법인 우신문화회관 서울특별시 쌍용구 우신대로 175 (우신로) (우)03172
-											  <br/>
-											  대표자 : 최정민 유원준 정선홍 하지윤 유설빈 사업자등록번호 : 101-12-12345
-												<br/>
-												통신판매업신고 : 서울쌍용-0988호
-											</address>
-											<p class="copyright">
-												COPYRIGHT(C) WOOSHIN CENTER FOR THE PERFORMING ARTS. ALL RIGHTS RESERVED</p>
-											</p>
-										</div>
-
-							</div>
-						</div>
-					</div>
-				</section>
-
-		</div>
-
-
+			
+			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
+			
+			<!-- End footer -->
 
 	</body>
 </html>
