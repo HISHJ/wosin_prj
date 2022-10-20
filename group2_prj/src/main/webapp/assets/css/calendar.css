@@ -131,7 +131,7 @@ option {
 }
 
 .performanceCalendar__info select:nth-of-type(2) {
-  width: 70px;
+  width: 90px;
 }
 
 .performanceCalendar__info button.next {

@@ -11,7 +11,6 @@
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.co.sist.dao.ScheduleDAO"%>
-<%@page import="kr.co.sist.vo.ScheduleShowVO"%>
 <%@page import="java.util.GregorianCalendar"%>
 <%@page import="java.util.Calendar"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -63,7 +62,7 @@ String memberId = (String)session.getAttribute("memberId");
 /* 
  ScheduleDAO sDAO = ScheduleDAO.getInstance();
  List<ScheduleShowVO> list=sDAO.selectSchedule(showId); */
- CalendarDAO cDAO = CalendarDAO.getInstance();
+ ScheduleDAO cDAO = ScheduleDAO.getInstance();
  System.out.println(sYear+"/"+sMonth);
  List<ScheduleVO> list = cDAO.selectTest(sYear,sMonth);
  System.out.println("list의 사이즈 : "+list.size());
@@ -157,13 +156,12 @@ for(int i=0;i<resultList.size();i++){
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/login.css">
 
 		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/calendar.css">
-		<!-- Scripts -->
-			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			 <script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+		<!-- 공연상세페이지만을 위한 css -->
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/perform.css">
+		<link rel="stylesheet" href="http://localhost/group2_prj/assets/css/tab.css">
+		<!--제이쿼리--> <!--  이놈 빌런이다 조심해 -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		
 		<!--google icons-->
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 		<!--google fonts-->
@@ -236,6 +234,7 @@ font-size:13px !important;
 	</style>
 	<%} %>
 	
+
 	</head>
 	<body class="homepage is-preload">
 		<div id="page-wrapper">
@@ -300,7 +299,6 @@ font-size:13px !important;
 									<div class="performanceCalendar inner">
 										
 								
-										
 									
 					
 										<p class="table-bottom-deco color-reddish-purple mobile-txt">※해당일을 클릭하면 하단에 공연/전시 목록이 표시됩니다.</p>
@@ -311,19 +309,31 @@ font-size:13px !important;
 												<button type="button" class="prev">이전달</button></a>
 												
 											<!-- 년도 ?? -->	
-											<select id="calendarYear">
-													<option value="2022"><%=cal.get(Calendar.YEAR)%>년</option>
-													<option value="2023"><%=cal.get(Calendar.YEAR)+1%>년</option>
-													<option value="2024"><%=cal.get(Calendar.YEAR)+2%>년</option>
+											<form action="http://localhost/group2_prj/reservation/calendar.jsp" id="selectDateForm" >
+											<select id="year" id="year_sel" name="year" style="float:left; width:120px;">
+													<%-- <option value="<%=cal.get(Calendar.YEAR)-1%>"><%=cal.get(Calendar.YEAR)-1%>년</option>
+													<option value="<%=cal.get(Calendar.YEAR)+1%>"><%=cal.get(Calendar.YEAR)+1%>년</option> --%>
+													<option value="<%=cal.get(Calendar.YEAR)%>" selected="selected" ><%=cal.get(Calendar.YEAR)%>년</option>
 												</select>
 										
-												<select id="calendarMonth">
-													<option value="1"><%=(cal.get(Calendar.MONTH)+1)%>월</option>
-													<option value="1"><%=(cal.get(Calendar.MONTH)+1)+1%>월</option>
-													<option value="1"><%=(cal.get(Calendar.MONTH)+1)+2%>월</option>
-										
+												<select id="month" id="monthBtn" name="month"style="float:left; ">
+												<%
+												for(int i=0;i<12;i++){
+													if(i+1==cal.get(Calendar.MONTH)+1){
+													%>
+													<option value="<%=i+1%>" selected="selected"><%=i+1%>월</option>
+													
+												<%}else{%>
+													<option value="<%=i+1%>"><%=i+1%>월</option>
+												<%}
+													
+												}
+												%>
+													<%-- <option value="1"><%=(cal.get(Calendar.MONTH)+1)+1%>월</option>
+													<option value="1"><%=(cal.get(Calendar.MONTH)+1)+2%>월</option> --%>
 							
 												</select>
+										</form>
 												  <a href='calendar.jsp?year=<%=cal.get(Calendar.YEAR)%>&month=<%=((cal.get(Calendar.MONTH)+1)+1)%>'>
 												<button type="button" class="next">다음달</button></a>
 											</div>
@@ -354,7 +364,7 @@ font-size:13px !important;
 								<td>&nbsp;</td>
 								<%
 											}
-						
+								int temp =0;
 					String nowYear = Integer.toString(cal.get(Calendar.YEAR));
 					 String nowMonth = Integer.toString(cal.get(Calendar.MONTH)+1).length() == 1 ? "0" + Integer.toString(cal.get(Calendar.MONTH)+1): Integer.toString(cal.get(Calendar.MONTH)+1);
 					 String printStr  = "";
@@ -470,22 +480,31 @@ font-size:13px !important;
 					   <div class="itemLayer"></div>
    						</td>
 									
-     									<%if ((dayOfWeek-1+i)%7==0) {%> 
+     									<%//System.out.print((dayOfWeek-1+i)%7+"/");
+     									temp = (dayOfWeek-1+i)%7;
+     									if ((dayOfWeek-1+i)%7==0) {%> 
 										
 												</tr><tr>
 										<%}// if
-     									} 
-						  //for%>
+     									}
+					  //System.out.println(temp);//for 
+     									//System.out.println(2%7);
+     						if(temp!=0){
+						    //for(int m=1;m<8-temp;m++){
+						    for(int m=0;m<7-temp;m++){%>
+						    	<td></td>
+						    <%}}
+						  %>
 										
 					   				
 										</tr>
 										
 											
 														<!-- <td></td> -->
-														<form name="dataFrm" id="dataFrm" action=""></form>
+														<!-- <form name="dataFrm" id="dataFrm" action=""></form>
 														<input type="hidden" id="searchYear" value="2022">
 														<input type="hidden" id="searchMonth" value="8">
-														<input type="hidden" id="searchSMonth" value="9">
+														<input type="hidden" id="searchSMonth" value="9"> -->
 
 													<!-- </tr> -->
 												</tbody>
@@ -511,7 +530,25 @@ font-size:13px !important;
 			<c:import url="http://localhost/group2_prj/common/user_allPage_footer.jsp"/> 
 			
 			<!-- End footer -->
-
+	<script>
+	$(function(){
+		$("#year").change(function(){
+			$("#selectDateForm").submit();
+		})
+		$("#month").change(function(){
+			$("#selectDateForm").submit();
+		})
+	})
+	</script>
+	<!-- Scripts -->
+			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
+			 <script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
+			<!-- tap관련 추가한거 -->
+			<script src="http://localhost/group2_prj/assets/js/tab.js"></script>
 	</body>
 </html>
 
