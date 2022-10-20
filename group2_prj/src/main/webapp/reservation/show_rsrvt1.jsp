@@ -36,7 +36,7 @@ if(session.getAttribute("showId")==null){
 	
 	
 %>    
-<%
+<%--
 request.setCharacterEncoding("UTF-8");
 Enumeration rp = request.getParameterNames();
 while(rp.hasMoreElements()){
@@ -48,7 +48,7 @@ while(se.hasMoreElements()){
 	String getse = se.nextElement()+"";
 	System.out.println("show_rsrvt1.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
 }
-%>
+--%>
 <!DOCTYPE HTML>
 <html>
 	<head>

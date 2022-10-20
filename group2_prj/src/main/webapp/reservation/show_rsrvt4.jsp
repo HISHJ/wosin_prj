@@ -44,26 +44,26 @@ if(session.getAttribute("showId")==null){
 	
 	//받아온값을 다 활용해서 RsrvtInfoVO에 넣고 그 VO를 script에서 버튼눌리면 VO를 넣는다?? 되나?되겠지뭐
 	
-	request.setCharacterEncoding("UTF-8");
-	Enumeration rp = request.getParameterNames();
-	while(rp.hasMoreElements()){
-		String getrp = rp.nextElement()+"";
-		System.out.println("show_rsrvt4.jsp @@@@request : "+getrp+":"+request.getParameter(getrp)); // values안하니까 좌석 하나만 나옴 ㅇㅇ
-	}
-	Enumeration se = session.getAttributeNames();
-	while(se.hasMoreElements()){
-		String getse = se.nextElement()+"";
-		System.out.println("show_rsrvt4.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
-	}
+	//request.setCharacterEncoding("UTF-8");
+	//Enumeration rp = request.getParameterNames();
+	//while(rp.hasMoreElements()){
+//		String getrp = rp.nextElement()+"";
+		//System.out.println("show_rsrvt4.jsp @@@@request : "+getrp+":"+request.getParameter(getrp)); // values안하니까 좌석 하나만 나옴 ㅇㅇ
+	//}
+	//Enumeration se = session.getAttributeNames();
+	//while(se.hasMoreElements()){
+//		String getse = se.nextElement()+"";
+		//System.out.println("show_rsrvt4.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
+	//} 
 	
 	
 	RsrvtInfoVO rVO = (RsrvtInfoVO)request.getAttribute("req_rVO");
 	System.out.println("show_rsrvt4.jsp에서 받음 ㅇㅇ"+rVO.toString());
 	
 	String[] selectedSeats = (String[])session.getAttribute("selectedSeats");
-	for(String str : selectedSeats){
-		System.out.print(str+",");
-	}
+	//for(String str : selectedSeats){
+	//	System.out.print(str+",");
+	//}
 	
 	
 	//******************* rsrvtInfoVO 를 만들고 거기에 값을 다 넣고 이 VO로 쿼리문을 실행해야지?

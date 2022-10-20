@@ -11,7 +11,7 @@
 
 	// ✅✅ ✅✅ ✅✅ 예매에 insert
 	// 		좌석에 insert
-	request.setCharacterEncoding("UTF-8");
+	/* request.setCharacterEncoding("UTF-8");
 	Enumeration rp = request.getParameterNames();
 	while(rp.hasMoreElements()){
 		String getrp = rp.nextElement()+"";
@@ -21,7 +21,7 @@
 	while(se.hasMoreElements()){
 		String getse = se.nextElement()+"";
 		System.out.println("show_rsrvt3_process.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
-	}
+	} */
 	
 	//✅✅ 세션에서 id를 받아서 이름을 받아와서 여기에 넣는다? 뭐가 데이터가 왜이렇게 엉키는거같지
 			
@@ -89,7 +89,7 @@
 	// 예매번호를 받아야함
 	String rsrvtId = rDAO.selectRsrvtId(rVO);
 	
-	System.out.println(rsrvtId);
+	//System.out.println(rsrvtId);
 	
 	int test = 0;
 	if(flag){	

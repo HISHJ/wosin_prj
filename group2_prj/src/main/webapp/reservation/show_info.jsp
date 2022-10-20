@@ -27,7 +27,7 @@ String memberId = (String)session.getAttribute("memberId");
 %>
 
 
-<%
+<%--
 request.setCharacterEncoding("UTF-8");
 Enumeration rp = request.getParameterNames();
 while(rp.hasMoreElements()){
@@ -39,7 +39,7 @@ while(se.hasMoreElements()){
 	String getse = se.nextElement()+"";
 	System.out.println("show_info.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
 }
-%>
+--%>
 <!DOCTYPE HTML>
 <html>
 	<head>

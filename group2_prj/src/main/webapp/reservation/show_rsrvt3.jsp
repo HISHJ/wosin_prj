@@ -43,14 +43,13 @@ if(session.getAttribute("showId")==null){
 	
 	RsrvtInfoVO rsrvtVO = rDAO.selectRsrvtInfo(schId,selectedArr.length);
 	
-	Enumeration se = session.getAttributeNames();
+	//Enumeration se = session.getAttributeNames();
+	//while(se.hasMoreElements()){
+//		
+		//String getse = se.nextElement()+"";
+		//System.out.println("show_rsrvt3.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
 	
-	while(se.hasMoreElements()){
-		
-		String getse = se.nextElement()+"";
-		System.out.println("show_rsrvt3.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
-	
-	}
+	//}
 	
 %>    
 <!DOCTYPE HTML>

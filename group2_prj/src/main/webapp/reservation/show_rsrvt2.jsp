@@ -18,7 +18,7 @@
 <% 
 //값 넘김 검증 완료(각 페이지에서 값 전달받음)
 String memberId= (String)session.getAttribute("memberId");
-System.out.println("로그인세션연결" + memberId);
+//System.out.println("로그인세션연결" + memberId);
 
 %>        
 <%
@@ -73,7 +73,7 @@ if(session.getAttribute("showId")==null){
 	
 %>
 
-<%
+<%--
 request.setCharacterEncoding("UTF-8");
 Enumeration rp = request.getParameterNames();
 while(rp.hasMoreElements()){
@@ -86,7 +86,7 @@ while(se.hasMoreElements()){
 	System.out.println("show_rsrvt2.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
 }
 
-%>        
+--%>        
 <!DOCTYPE HTML>
 <html>
 	<head>

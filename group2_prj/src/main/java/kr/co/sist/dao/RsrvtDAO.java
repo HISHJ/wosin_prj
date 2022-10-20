@@ -193,10 +193,20 @@ public class RsrvtDAO {
       try {
          con = dc.getConn();
          StringBuilder sb = new StringBuilder();
+         
+         /*
+          * 최정민 테스트
+			select sch.schdate sch_schdate, sch.schtime sch_schtime, sch.schid sch_schid, to_char(to_date(schdate),'dy') sch_day
+			from schedule sch, show sho
+			where (sch.showid = sho.showid) and sho.showid= 'sh_0000203' and to_char(sysdate,'yyyy-mm-dd hh24:mm') < schdate ||' '|| schtime
+			order by schdate, schtime;
+          * 
+          */
          //sb.append(" select sch.schdate sch_schdate, sch.schtime sch_schtime, sch.schid sch_schid ")
          sb.append(" select sch.schdate sch_schdate, sch.schtime sch_schtime, sch.schid sch_schid, to_char(to_date(schdate),'dy') sch_day ")
                .append(" from schedule sch, show sho  ")
                .append(" where (sch.showid = sho.showid) and sho.showid= ? ")
+               .append(" and to_char(sysdate,'yyyy-mm-dd hh24:mm') < schdate ||' '|| schtime ")
                .append(" order by schdate, schtime ");
 
          pstmt = con.prepareStatement(sb.toString());
