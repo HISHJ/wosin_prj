@@ -21,10 +21,9 @@
 
 <!-- 에러처리 -->
 <!-- 10/18 하지윤: 위에꺼는 안건드림. 여기부터 추가한것  -->
-<!-- 절대경로 삽입이 안됨 -->
-<!-- <error-page>
+<error-page>
 	<error-code>401</error-code>
-	<location>/error/401.html</location>
+	<location>/error/401.jsp</location>
 </error-page>
 <error-page>
 	<error-code>404</error-code>
@@ -33,5 +32,5 @@
 <error-page>
 	<error-code>500</error-code>
 	<location>/error/500.html</location>
-</error-page> -->
+</error-page>
 </web-app>
