@@ -413,13 +413,27 @@ div.btn-wrap {
 
 						<ul class="clearfix cont s slick-initialized slick-slider">
 							<%
+							//System.out.println("size : "+swList.size());
+							int[] randomArr = new int[swList.size()];
+							int random ;
+							for(int i=0;i<swList.size();i++){
+								randomArr[i] = (int)(Math.random()*swList.size());
+								for(int j=0;j<i;j++){
+									if(randomArr[i]==randomArr[j]){
+										i--;
+									}
+								}
+							}
+							//for(int i=0;i<swList.size();i++){
+							//	System.out.print(randomArr[i]+" / ");
+							//}
 							for (int i = 0; i < 5; i++) { //swList.size()
 							%>
 							<li class="rel" tabindex="<%=i%>"
 								style="float: left; display: block;"><a
-								href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%=swList.get(i).getShowId()%>">
+								href="http://localhost/group2_prj/reservation/show_info.jsp?showId=<%=swList.get(randomArr[i]).getShowId()%>">
 									<img
-									src="http://localhost/group2_prj/admin/img/<%=swList.get(i).getThImg()%>"
+									src="http://localhost/group2_prj/admin/img/<%=swList.get(randomArr[i]).getThImg()%>"
 									style="width: 209px; height: 294.08px;">
 							</a>
 							<!-- style="width:209px; height:294.08px;" --></li>

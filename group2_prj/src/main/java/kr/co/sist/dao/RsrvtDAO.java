@@ -195,7 +195,7 @@ public class RsrvtDAO {
          StringBuilder sb = new StringBuilder();
          
          /*
-          * 최정민 테스트
+          * 최정민 테스트 현재날짜,시간 이전상영일정은 조회하지않음
 			select sch.schdate sch_schdate, sch.schtime sch_schtime, sch.schid sch_schid, to_char(to_date(schdate),'dy') sch_day
 			from schedule sch, show sho
 			where (sch.showid = sho.showid) and sho.showid= 'sh_0000203' and to_char(sysdate,'yyyy-mm-dd hh24:mm') < schdate ||' '|| schtime
