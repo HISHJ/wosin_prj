@@ -188,7 +188,8 @@ public class AdminScheduleDAO {
 			con = db.getConn();
 			// 3. 쿼리문 생성객체 얻기
 			StringBuilder selectAdminScheduleAll = new StringBuilder();
-			selectAdminScheduleAll.append("select showId, name ").append("from show");
+			selectAdminScheduleAll.append("select showId, name ").append("from show ")
+			.append("where status='공연중'");
 
 			pstmt = con.prepareStatement(selectAdminScheduleAll.toString());
 
@@ -275,7 +276,7 @@ public class AdminScheduleDAO {
 					pstmt.setString(3, aschVO.getSchTime());
 					
 					
-					i = pstmt.executeUpdate();
+					i = pstmt.executeUpdate( );
 
 			}finally {
 				
