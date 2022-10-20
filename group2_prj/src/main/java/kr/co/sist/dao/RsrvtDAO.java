@@ -35,53 +35,7 @@ public class RsrvtDAO {
       return rsrvtDAO;
    }// getInstance
    
-   //페이지네이션을 위한 쿼리문
-	// 사용자가 날짜를 설정했을 때 조회되는 예매내역
-		public int selectRsrvtPagenation(RsrvtInfoVO rVO) throws SQLException {
-			int count = 0;
-
-			DbConnection dc = DbConnection.getInstance();
-
-			Connection con = null;
-			PreparedStatement pstmt = null;
-			ResultSet rs = null;
-
-			try {
-				con = dc.getConn();
-				StringBuilder selectRservt = new StringBuilder();
-
-				selectRservt
-				        .append("select count(*) count")
-				        .append(" from (select to_char(r.inputdate,'yyyy-mm-dd') r_inputdate,r.rsrvtid r_rsrvtid, sho.name sho_name, r.showdate r_showdate, r.totalcnt r_totalcnt, r.totalpice r_totalprice, r.status r_status ")
-						.append(" from rsrvt r, show sho, member m ")
-						.append(" where (r.memberid = m.memberid and r.showid = sho.showid) and m.memberid = ? "
-								+ " and ( ? < to_char(r.inputdate,'yyyy-mm-dd') and to_char(r.inputdate,'yyyy-mm-dd') < ? ) ")
-						.append(" order by r_inputdate )");
-
-				pstmt = con.prepareStatement(selectRservt.toString());
-				pstmt.setString(1, rVO.getMemberId());
-				pstmt.setString(2, rVO.getFindStartDate());
-				pstmt.setString(3, rVO.getFindEndDate());
-
-				rs = pstmt.executeQuery();
-				
-				RsrvtInfoVO vo = null;	
-				
-				while (rs.next()) {
-					vo = new RsrvtInfoVO();
-
-					count = rs.getInt("count");
-
-				}
-
-			} finally {
-				dc.dbClose(rs, pstmt, con);
-			}
-
-			return count;
-		}// selectShow
-
-   
+  
    
 
    // 검증완료✔✔
@@ -208,9 +162,7 @@ public class RsrvtDAO {
       return updateCnt;
    }
 
-   // ✔검증완료a
-   // 예매내역삭제 - 좌석 편 (예매상태로 유효성검사 해야할 듯)
-   // 이 예매코드의 예매상태가 "예매완료"라면 delete X
+   // ✔검증완료
    // "예매취소"라면 delete
    public int deleteSeat(String str) throws SQLException {
       int deleteS = 0;

@@ -36,6 +36,13 @@ String memberId= (String)session.getAttribute("memberId");
 	}
 	</style>
 	<%} %>
+	<%if(memberId != null){%>
+	<style>
+	#nav {
+	margin-right: 40px;
+	}
+	</style>
+	<%} %>
 
 	</head>
 	<body class="homepage is-preload">
