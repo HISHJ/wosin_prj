@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="kr.co.sist.vo.MemberVO"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -217,7 +218,16 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 						
 			</script>			
 							
+		<%
 		
+		   Enumeration se = session.getAttributeNames();
+		   while(se.hasMoreElements()){
+		      String getse = se.nextElement()+"";
+		      System.out.println("find_id.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
+		   }
+		
+		
+		%>
 			
 					
 

@@ -15,7 +15,7 @@
 <%
   request.setCharacterEncoding("UTF-8");
 
-  String id=request.getParameter("memberId");
+  String name=request.getParameter("name");
   String mailchk=request.getParameter("mailChk");
   String smschk=request.getParameter("smsChk");
   String status=request.getParameter("status");
@@ -26,7 +26,7 @@ String key = sc.getInitParameter("keyU");
 
 //키 생성
 //복호화 : 암호화된 문자열을 원본문자열로 변경 
-DataEncrypt de= new DataEncrypt(key);
+
 DataDecrypt dd= new DataDecrypt(key);
 
 //아이디 암호화
@@ -34,13 +34,8 @@ DataDecrypt dd= new DataDecrypt(key);
 
 
 AdminMemberDAO admDAO = AdminMemberDAO.getInstance();
-List<AdminMemberVO> Mlist =null;
+List<AdminMemberVO> Mlist = admDAO.selectMember(name, mailchk, smschk, status);
 
-if(id!=null){
-Mlist =admDAO.selectMember(de.encryption(id),mailchk,smschk,status);   
-}else{
-Mlist =admDAO.selectMember(id,mailchk,smschk,status);   
-}
 
   %> 
   <%
@@ -115,9 +110,9 @@ if( session.getAttribute("adminId") == null){
                             <div class="card-body">
                            <form name="idFrm" id="idFrm">
                            	<div class="dataTable-top"></div>
-                                <label>아이디　</label>
-                           	  	<input type="text"  name="memberId" class="dataTable-input" style="width: auto; display: inline-block;"> 
-                                <input type="button" id="idSearchBtn" name="memberId" value="검색">
+                                <label>이름　</label>
+                           	  	<input type="text"  name="name" class="dataTable-input" style="width: auto; display: inline-block;"> 
+                                <input type="button" id="idSearchBtn" name="name" value="검색">
                              </form>
                            
                            
@@ -155,10 +150,10 @@ if( session.getAttribute("adminId") == null){
                                     </div>
                                     <input type="button"  id="statusSearchBtn" name="showSatusSearchBtn" value="검색">
                                  </form>   
-                                <a href="useBoard.jsp"><button id="addBtn" type="button" class="btn btn-outline-dark float-end mx-md-4" >전체보기</button></a>
+                                <a href="http://localhost/group2_prj/admin/useBoard.jsp"><button id="addBtn" type="button" class="btn btn-outline-dark float-end mx-md-4" >전체보기</button></a>
                                 </div>
                             </div>
-                        	<form id="userFrm" name="userFrm" action="useDetail.jsp" method="post">
+                        	<form id="userFrm" name="userFrm" action="http://localhost/group2_prj/admin/useDetail.jsp" method="post">
                                <input type="hidden" name="memberId" id="memberId">
                                 <table id="datatablesSimple">
                                     <thead>

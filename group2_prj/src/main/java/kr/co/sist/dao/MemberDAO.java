@@ -151,7 +151,7 @@ public MemberVO selectMemberId(String name, String phone) throws SQLException {
 //비밀번호 변경
 public int updatePass(String memberId, String pwd) throws SQLException {
 	
-	
+	int  updatePassCnt=0;
 	DbConnection dc=DbConnection.getInstance();
 	PreparedStatement pstmt=null;
 	Connection con=null;
@@ -167,15 +167,14 @@ public int updatePass(String memberId, String pwd) throws SQLException {
 		pstmt.setString(1,pwd);
 		pstmt.setString(2,memberId);
 		
-		return pstmt.executeUpdate();
-	}catch(Exception e) {
-			e.printStackTrace();
+		 updatePassCnt= pstmt.executeUpdate();
+	
 	}finally {
 		dc.dbClose(rs, pstmt, con);
 	}
 	
 	
-	return -1; 
+	return  updatePassCnt; 
 	
 }//updatePass
 
@@ -435,9 +434,6 @@ public int updateMemberStatus(String memberId, String pwd) throws SQLException{
 		pstmt.setString(2,pwd);
 		updateMbsCnt=pstmt.executeUpdate();
 		
-
-	}catch(Exception e) {
-		e.printStackTrace();
 	}finally {
 		dc.dbClose(null, pstmt, con);
 	}//end finally

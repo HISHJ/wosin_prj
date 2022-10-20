@@ -4,18 +4,18 @@ import java.sql.Date;
 
 public class QuitMemberVO {
 	private String memberId, pwd, reason,mdate;
-	private Date date;
+
 	
 	public QuitMemberVO() {
 	}
 
-	public QuitMemberVO(String memberId, String pwd, String reason, String mdate, Date date) {
+	public QuitMemberVO(String memberId, String pwd, String reason, String mdate) {
 		super();
 		this.memberId = memberId;
 		this.pwd = pwd;
 		this.reason = reason;
 		this.mdate = mdate;
-		this.date = date;
+		
 	}
 
 	public String getMemberId() {
@@ -50,20 +50,14 @@ public class QuitMemberVO {
 		this.mdate = mdate;
 	}
 
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
 	@Override
 	public String toString() {
-		return "QuitMemberVO [memberId=" + memberId + ", pwd=" + pwd + ", reason=" + reason + ", mdate=" + mdate
-				+ ", date=" + date + "]";
+		return "QuitMemberVO [memberId=" + memberId + ", pwd=" + pwd + ", reason=" + reason + ", mdate=" + mdate + "]";
 	}
-	
+
+
+
+
 
 	
 	

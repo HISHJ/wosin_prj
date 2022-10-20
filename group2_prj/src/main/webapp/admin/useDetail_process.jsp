@@ -43,7 +43,9 @@ location="http://localhost/group2_prj/admin/useBoard.jsp";
 						alert("회원탈퇴 성공하였습니다");
 						location="http://localhost/group2_prj/admin/useBoard.jsp";
 					</script>
-					<%}else{%>
+					<%
+					session.removeAttribute("status");
+					}else{%>
 					<script>
 					alert("회원 탈퇴 실패하였습니다. 다시 시도해주세요");
 					location="http://localhost/group2_prj/admin/useDetail.jsp";

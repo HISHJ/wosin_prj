@@ -5,13 +5,13 @@ import java.sql.Date;
 public class AdminMemberVO {
 	private String memberId, pwd, name, birth, gender, zipcode,
 		addr1, addr2, email, phone, hPhone, mailChk, smsChk, status ,mdate;
-	private Date InputDate;
+	
 	public AdminMemberVO() {
 		
 	}
 	public AdminMemberVO(String memberId, String pwd, String name, String birth, String gender, String zipcode,
 			String addr1, String addr2, String email, String phone, String hPhone, String mailChk, String smsChk,
-			String status, String mdate, Date inputDate) {
+			String status, String mdate) {
 		
 		this.memberId = memberId;
 		this.pwd = pwd;
@@ -28,7 +28,7 @@ public class AdminMemberVO {
 		this.smsChk = smsChk;
 		this.status = status;
 		this.mdate = mdate;
-		this.InputDate = inputDate;
+		
 	}
 	public String getMemberId() {
 		return memberId;
@@ -120,18 +120,13 @@ public class AdminMemberVO {
 	public void setMdate(String mdate) {
 		this.mdate = mdate;
 	}
-	public Date getInputDate() {
-		return InputDate;
-	}
-	public void setInputDate(Date inputDate) {
-		InputDate = inputDate;
-	}
+
 	@Override
 	public String toString() {
 		return "AdminMemberVO [memberId=" + memberId + ", pwd=" + pwd + ", name=" + name + ", birth=" + birth
 				+ ", gender=" + gender + ", zipcode=" + zipcode + ", addr1=" + addr1 + ", addr2=" + addr2 + ", email="
 				+ email + ", phone=" + phone + ", hPhone=" + hPhone + ", mailChk=" + mailChk + ", smsChk=" + smsChk
-				+ ", status=" + status + ", mdate=" + mdate + ", InputDate=" + InputDate + "]";
+				+ ", status=" + status + ", mdate=" + mdate + "]";
 	}
 
 	

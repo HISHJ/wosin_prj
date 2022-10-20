@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="java.security.MessageDigest"%>
@@ -212,9 +213,20 @@ section#header {
                  //oIsH+C8NsVu0T10ivouqDg==
                  //oIsH+C8NsVu0T10ivouqDg==
                  System.out.println(name); //네이버
-                 
+             	
+        		
+     		   Enumeration se = session.getAttributeNames();
+     		   while(se.hasMoreElements()){
+     		      String getse = se.nextElement()+"";
+     		      System.out.println("findid_process.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
+     		   }
+     		
+     		
+     		
                
-                       ;%>
+                 
+                 
+                       %>
                 
        
           

@@ -31,7 +31,7 @@ public class AdminMemberDAO {
 	
 	// 회원 조회 :selectMember(AdminMemberVO) : List<AdminMemberVO>
 	//검색설정은 JSP에서 해야하는건가...? 아니면 여기서 where 조건.? 근데 where 조건 넣으면 all은 어캄? 
-	public List<AdminMemberVO> selectMember(String memberId, String mailChk,String smsChk,String status) throws SQLException{
+	public List<AdminMemberVO> selectMember(String name, String mailChk,String smsChk,String status) throws SQLException{
 		
 		List<AdminMemberVO> Mlist = new ArrayList<AdminMemberVO>();
 		AdminMemberVO admVO= null;
@@ -45,18 +45,21 @@ public class AdminMemberDAO {
 			con=dc.getConn();
 			String selectMb = "select name,memberId,to_char(InputDate,'yyyy-MM-dd')mdate,mailChk,smsChk,status from member where 1=1 ";
 //			검색조건(아이디,메일수신,회원탈퇴)
-			if(memberId!=null) {
-				selectMb+=" and memberId Like '%"+memberId.trim()+"%' ";
+			if(name!=null) {
+				selectMb+=" and name Like '%"+name.trim()+"%'  ";
 			}
 			if(mailChk!=null){
 				selectMb+=" and MailChk='Y' ";
 			}
 			if(smsChk!=null) {
-				selectMb+=" and smsChk='Y' ";
+				selectMb+=" and smsChk='Y'  ";
 			}
 			if(status!=null) {
-				selectMb+=" and status='"+status+"' ";
+				selectMb+=" and status='"+status+"' order by status desc ";
 			}
+			
+		
+			
 			System.out.println( selectMb );
 			pstmt=con.prepareStatement(selectMb);
 		

@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="kr.co.sist.vo.MemberVO"%>
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="java.security.MessageDigest"%>
@@ -36,7 +37,9 @@
 										MemberVO mbVO = new MemberVO();
 										MemberDAO mbrDAO =MemberDAO.getInstance();
 									 	mbVO = mbrDAO.selectMemberPass(Id,name,Phone);
-							
+										System.out.println(Id);
+										System.out.println(name);
+										System.out.println(Phone);
 								
 									if(mbVO==null){%>
 											<script>
@@ -50,6 +53,18 @@
 												<script>
 												location.href="http://localhost/group2_prj/login/passModify.jsp";
 												</script>
-											<%} %> 				
+											<%} 
+											
+									   Enumeration se = session.getAttributeNames();
+									   while(se.hasMoreElements()){
+									      String getse = se.nextElement()+"";
+									      System.out.println("findpw_process.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
+									   }
+									   
+											
+											
+											
+											
+											%> 				
 						
 					
