@@ -196,7 +196,7 @@
 						}//phone
 						
 						if(phone3.trim()==""){
-							alert("휴대폰 중간번호를 입력해주세요.");
+							alert("휴대폰 끝번호를 입력해주세요.");
 							$("#tel3").focus();
 							return  ;
 						}//phone
