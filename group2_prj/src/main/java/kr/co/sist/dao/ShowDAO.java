@@ -22,6 +22,16 @@ public class ShowDAO {
 	}//ShowDAO
 	
 	
+	//static method, 반환형 method 공부
+	public static ShowDAO getInstance() {
+		if(showDAO==null) {
+			showDAO=new ShowDAO();
+		}
+		
+		return showDAO;
+	}//getInstance
+	
+	
 		//설빈쓰 꺼
 	   //main검색조회(매개변수 공연명)
 	   public List<ShowVO> selectMainShow(String showName) throws SQLException{
@@ -67,14 +77,6 @@ public class ShowDAO {
 	   
 	
 	
-	//static method, 반환형 method 공부
-	public static ShowDAO getInstance() {
-		if(showDAO==null) {
-			showDAO=new ShowDAO();
-		}
-		
-		return showDAO;
-	}//getInstance
 	
 	
 	//쿼리문 확인완료
@@ -187,66 +189,6 @@ public class ShowDAO {
 	}//검색어 입력
 	
 	
-	
-	
-	//얘는 지워질 운명 ....
-	//얘는 체크 어떻게 하지
-	//공연검색
-	//우선 이거 keep
-	//시작~종료사이에 상영일(이러면 상영코드 가져와야하는거 아님?)응 아님 부등호써서 쿼리문 짜면됨
-	// 기간 버튼 누를때마다 시작~종료일 달라지는건 jsp에서?
-	//매개변수: 날짜? 장르, 공연명
-	//return: VO로받고: 썸네일, 공연명, 기간(첫,끝),장르 ++++++++ 관람등급
-	
-	public ShowVO selectShow(ShowVO sVO) throws SQLException{
-		ShowVO sVO2=null;
-		GenreVO gVO=null;
-		RatingVO rVO=null;
-		
-		DbConnection db=DbConnection.getInstance();
-		Connection con=null;
-		PreparedStatement pstmt=null;
-		ResultSet rs=null;
-		
-		try{
-			con=db.getConn(); 
-			
-			String query=" select s.thImg s_thImg, s.name s_name, s.startDate s_startDate, s.endDate s_endDate, g.genreId g_genreId "
-					+ " from show s, genre g"
-					+" where (s.genreId=g.genreId) ";
-					//+ "and s.startDate<=to_char(sysdate,'yyyy-mm-dd') and s.endDate>=to_char(sysdate,'yyyy-mm-dd')"; //or이 아닌가?
-			
-			
-			if(sVO.getGenreId()!=null){
-				query+=" and g.genreId='"+sVO.getGenreId()+"'";
-			}
-			if(sVO.getName()!=null){
-				query+=" and s.name='"+sVO.getName()+"'";
-			}
-		
-			pstmt = con.prepareStatement(query);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next()) {
-				sVO2=new ShowVO();//이렇게 하는거 맞아 ?
-				gVO=new GenreVO();
-				sVO2.setThImg(rs.getString("s_thImg"));
-				sVO2.setName(rs.getString("s_name"));
-				sVO2.setShowId(rs.getString("showId"));
-				sVO2.setStartDate(rs.getString("s_startDate"));
-				sVO2.setEndDate(rs.getString("s_endDate"));
-				gVO.setGenreType(rs.getString("g_genreId"));
-				
-			}
-				
-		}finally {
-			db.dbClose(rs, pstmt, con);
-			
-		}
-		
-		return sVO2;
-		
-	}//selectShow 
 
 }//class
 
