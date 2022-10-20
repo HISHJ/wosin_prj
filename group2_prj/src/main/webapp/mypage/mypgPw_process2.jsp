@@ -29,8 +29,8 @@ String memberId = (String)session.getAttribute("memberId");
 boolean result= mbrDAO.login(mbVO);
 
 if(result){%>
-<script>
-		location.hrefp="http://localhost/group2_prj/mypage/passModify2.jsp";
+	<script>
+		location.href="http://localhost/group2_prj/mypage/passModify2.jsp";
 		</script>
 <% }else { %>
 	<script>

@@ -35,11 +35,10 @@ String pw=request.getParameter("pwd");
 
 %>
 
+<jsp:setProperty property="memberId" name="mbVO" value="<%=Id%>"/>
+<jsp:setProperty property="pwd" name="mbVO"  value="<%=pwd%>"/> 
 
 
-
-<jsp:setProperty property="memberId" name="mbVO" value="<%=Id %>" />
-<jsp:setProperty property="pwd" name="mbVO"  value="<%=pwd %>"/> 
 
 
 
