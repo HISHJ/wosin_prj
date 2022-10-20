@@ -28,9 +28,11 @@ String memberId = (String)session.getAttribute("memberId");
 	
 boolean result= mbrDAO.login(mbVO);
 
-if(result){
-		response.sendRedirect("http://localhost/group2_prj/mypage/passModify2.jsp");
-}else { %>
+if(result){%>
+<script>
+		location.hrefp="http://localhost/group2_prj/mypage/passModify2.jsp";
+		</script>
+<% }else { %>
 	<script>
 		alert("비밀번호가 일치하지 않습니다.");
 		location.href="http://localhost/group2_prj/mypage/passModify.jsp";
