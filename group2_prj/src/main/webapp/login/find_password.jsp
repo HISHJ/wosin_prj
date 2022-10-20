@@ -209,13 +209,7 @@
 
 
 						<div class="sub_page">
-						<%
-						   Enumeration se = session.getAttributeNames();
-						   while(se.hasMoreElements()){
-						      String getse = se.nextElement()+"";
-						      System.out.println("find_password.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
-						   }
-						%>
+				
 				
 				
 				

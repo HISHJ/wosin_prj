@@ -53,7 +53,7 @@ String pwd=DataEncrypt.messageDigest("SHA-1", pw);
 MemberDAO mbrDAO =MemberDAO.getInstance();
 
  int updateMbsCnt = mbrDAO.updateMemberStatus(mbVO.getMemberId(), mbVO.getPwd());
- int qmCnt=mbrDAO.insertQuitMember(qmVO);
+
 
 %>
 
@@ -64,26 +64,16 @@ MemberDAO mbrDAO =MemberDAO.getInstance();
 						alert("비밀번호를 다시 확인해주세요");
 						location.href="http://localhost/group2_prj/mypage/quitmember.jsp";
 					</script>
-				<%}else if(updateMbsCnt==-1){%>
-				<script>
-				alert("비밀번호를 다시 확인해주세요.");
-				location.href="http://localhost/group2_prj/mypage/quitmember.jsp";
-				</script>
 				<%}else{ 
-					if(qmCnt==-1){%>
-								<script>			
-									alert("비밀번호를 다시 확인해주세요.");
-									location.href="http://localhost/group2_prj/mypage/quitmember.jsp";
-								</script>
-						<%}else{%>						
+					 int qmCnt=mbrDAO.insertQuitMember(qmVO);%>
+					<% if(qmCnt==1&&updateMbsCnt==1){%>						
 								<script>
 							
 								alert("회원탈퇴 되었습니다. 그동안 이용해주셔서 감사합니다.");
 								location.href="http://localhost/group2_prj/main/index.jsp";
 								</script>
-						<%
+						<%}
 								session.invalidate();
-						} 
 					 System.out.println(updateMbsCnt);
 					 System.out.println(qmCnt);
 					 

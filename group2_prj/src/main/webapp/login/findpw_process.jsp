@@ -55,12 +55,7 @@
 												</script>
 											<%} 
 											
-									   Enumeration se = session.getAttributeNames();
-									   while(se.hasMoreElements()){
-									      String getse = se.nextElement()+"";
-									      System.out.println("findpw_process.jsp @@@@session : "+getse+":"+session.getAttribute(getse));
-									   }
-									   
+									
 											
 											
 											

@@ -43,6 +43,13 @@ if(memberId == null){
 		<script src="assets/js/breakpoints.min.js"></script>
 		<script src="assets/js/util.js"></script>
 		<script src="assets/js/main.js"></script>
+		<%if(memberId != null){%>
+   <style>
+   #nav {
+   margin-left: 100px;
+   }
+   </style>
+   <%} %>
 		<style>
 			section#header{
 		 background: url("http://localhost/group2_prj/images/subvisual-common.jpg") no-repeat ; 
@@ -195,8 +202,8 @@ if(memberId == null){
 							 var eng = pass.search(/[a-zA-Z]/);
 							 var spe= pass.search(/[~!@#$%^&*()_+|<>?:{}]/); 
 								//비밀번호 유효성 검사 :영문, 숫자, 특수문자 중 2종류 이상 8~12자 이내
-								if(pass.length < 7 || pass.length >12){
-										  alert("8자리 ~ 21자리 이내로 입력해주세요.");
+								if(pass.length < 8 || pass.length >13){
+										  alert("8자리 ~ 12자리 이내로 입력해주세요.");
 										  $("#pwd").focus();
 										  return ;
 									}else if( (num < 0 && eng < 0) || (eng < 0 && spe < 0) || (spe < 0 && num < 0) ){

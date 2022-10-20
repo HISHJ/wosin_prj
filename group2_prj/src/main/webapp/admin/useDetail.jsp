@@ -1,3 +1,4 @@
+<%@page import="kr.co.sist.vo.AdminQuitMemberVO"%>
 <%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="kr.co.sist.util.cipher.DataDecrypt"%>
 <%@page import="kr.co.sist.dao.AdminMemberDAO"%>
@@ -49,8 +50,8 @@
     </head>
     <body>
      
-    <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="page"/>
-	<jsp:useBean id="aqmVO" class="kr.co.sist.vo.AdminQuitMemberVO" scope="page"/>
+    <jsp:useBean id="admVO" class="kr.co.sist.vo.AdminMemberVO" scope="session"/>
+	<jsp:useBean id="aqmVO" class="kr.co.sist.vo.AdminQuitMemberVO" scope="session"/>
 
     <%
     
@@ -63,9 +64,8 @@
   	AdminMemberDAO admDAO= AdminMemberDAO.getInstance();
  	admVO= admDAO.selectMemberDetail(id);
  	aqmVO = admDAO.selectReason(id);
-	
- 	
- 
+
+
 
  //key가져오기
 	  ServletContext sc = getServletContext();
@@ -77,7 +77,7 @@
  	String addr2= dd.decryption(admVO.getAddr2());
  	
  	String Addr = zipcode+" "+addr1+" "+addr2;
-  
+    session.setAttribute("memberId",id);
  	session.setAttribute("status", admVO.getStatus());
 %>
 	    
