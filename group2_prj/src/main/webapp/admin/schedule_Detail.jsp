@@ -61,11 +61,11 @@ System.out.println(  aschDAO.selectScheduleDetail(schId) );
       //변경      
         	$("#modifyBtn").click(function() {
         		if(confirm("상영일정을 변경하시겠습니까?")){
-        		}
-        		alert("상영일정을 변경 완료하였습니다.");
-        			$("#frm").submit();
-        		
+	        		alert("상영일정을 변경 완료하였습니다.");
+	        			$("#frm").submit();
+        		}else{
         			return;
+        		}
         		
         		
     		 });//modify
