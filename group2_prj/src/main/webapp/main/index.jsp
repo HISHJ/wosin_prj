@@ -403,7 +403,7 @@ div.btn-wrap {
 							<h2 class="t">추천프로그램</h2>
 							<!--<a href="#" class="more">더보기</a>-->
 							<p class="txt">
-								<span class="block-pc"> 오늘의 우신문화회관 </span> <br />추천 프로그램입니다.
+								<span class="block-pc">우신문화회관의 다양한  </span> <br />프로그램 추천드립니다.
 							</p>
 
 
