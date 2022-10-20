@@ -19,8 +19,6 @@
 <param-value>xO4uy3dsdAt1S1iSOJMYAQ==</param-value>
 </context-param>
 
-<!-- 에러처리 -->
-<!-- 10/18 하지윤: 위에꺼는 안건드림. 여기부터 추가한것  -->
 <error-page>
 	<error-code>401</error-code>
 	<location>/error/401.jsp</location>

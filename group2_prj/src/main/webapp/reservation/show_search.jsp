@@ -32,7 +32,11 @@ String memberId = (String)session.getAttribute("memberId");
     /* System.out.println("장르 "+genreId);
     System.out.println("시작일 "+sdate);
     System.out.println("끝일 "+edate); */
-    
+    String totaldate = request.getParameter("totaldate");
+    if(totaldate ==null){
+    	totaldate = "2022-01-01 ~ 2022-12-31";
+    }
+    //System.out.println(totaldate);
     %>   
     
    
@@ -81,6 +85,9 @@ String memberId = (String)session.getAttribute("memberId");
    <script type="text/javascript">
    
    $(function(){
+	   //var total = document.getElementById("totaldate");
+	   //total.text.value = "<%=totaldate%>";
+	   $("#totaldate").val("<%=totaldate%>");
       //장르 클릭
       $("#genreId").change(function() {
          $("#genreFrm").submit();

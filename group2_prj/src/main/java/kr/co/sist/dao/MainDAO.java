@@ -24,21 +24,6 @@ public class MainDAO {
 		return mDAO;
 	}
 
-	//////////////////////////////////////
-//	public static void main(String[] args)throws IOException, SQLException{
-//		
-//		MainDAO mDAO = MainDAO.getInstance();
-//		List<ShowVO> swList = mDAO.selectThImg();
-//		
-//		for(ShowVO sl : swList) {
-//			System.out.print(sl.getShowId()+", ");
-//			System.out.print(sl.getThImg()+", ");
-//			System.out.println(sl.getmImg());
-//		}
-//		
-//	}
-	//////////////////////////////////////
-	
 	// 공연중인목록 조회해서 반환
 	public List<ShowVO> selectThImg() throws SQLException {
 		List<ShowVO> listShow = new ArrayList<ShowVO>();
@@ -54,13 +39,13 @@ public class MainDAO {
 			StringBuilder selectImgs = new StringBuilder();
 
 			selectImgs.append(" select showId, thImg, mImg ").append(" from show ")
-					.append(" where status = '공연중' ");// 공연중인게없어서 일단예정으로 조회 ㅇㅇ 테이블갈면 수정해야함
+					.append(" where status = '공연중' ");
 
 			pstmt = con.prepareStatement(selectImgs.toString());
 
 			rs = pstmt.executeQuery();
 			ShowVO showVO = null;
-			while (rs.next()) { // 조회된 레코드가있으므로 저장하깅위해 VO를 생성
+			while (rs.next()) {
 				 showVO = new ShowVO();
 				showVO.setShowId(rs.getString("showId"));
 				showVO.setThImg(rs.getString("thImg"));
@@ -86,15 +71,7 @@ public class MainDAO {
 		try {
 			con = dc.getConn();
 			StringBuilder selectImgs = new StringBuilder();
-			//selectImgs.append(" select * ").append(" from show ")
-			//.append(" where showid = ? ");
-			/*
-			 * select s.showid,s.name,g.genretype,r.ratingtype,startdate,enddate,runningtime,price,mimg,thimg,infoimg,status,inputdate
-				from show s,genre g,rating r
-				where s.genreid = g.genreid
-					and s.ratingid = r.ratingid
-					and showid = 'sh_0000203';
-			 */
+			
 			// 10-18 장르, 연령 id말고 type 으로 변경 쿼리문 수정
 			selectImgs.append(" select s.showid,s.name,g.genretype,r.ratingtype,startdate,enddate,runningtime,price,mimg,thimg,infoimg,status,inputdate ")
 			.append(" from show s,genre g,rating r ")
@@ -107,7 +84,7 @@ public class MainDAO {
 			
 			rs = pstmt.executeQuery();
 			
-			while (rs.next()) { // 조회된 레코드가있으므로 저장하깅위해 VO를 생성
+			while (rs.next()) { 
 				showVO = new ShowVO();
 				showVO.setShowId(rs.getString("showId"));
 				showVO.setName(rs.getString("name"));

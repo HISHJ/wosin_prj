@@ -13,11 +13,6 @@ import kr.co.sist.common.dao.DbConnection;
 import kr.co.sist.vo.RsrvtInfoVO;
 
 
-/**
- * 반환형인 것들은 오류 안생기게 method 내부에 값만 넣어놨어요
- * 
- * @author user 
- */
 public class RsrvtDAO {
 
    // 싱글톤
@@ -185,11 +180,7 @@ public class RsrvtDAO {
       return deleteS;
    }// deleteSeat
 
-   /////////////////////////////////////////////////////// 위까지
-   /////////////////////////////////////////////////////// 설빈영역/////////////////////////////////////////////////////////
-   ////////////////////////////////////// 1008 show_rsrvt3.jsp 용 최정민 테스트
-   // ✔검증완료ㄱ
-   // ✔공영상영날짜조회(공연코드)
+   // 최정민
    public List<RsrvtInfoVO> selectShowSch(String showId) throws IOException, SQLException {
       List<RsrvtInfoVO> showSchList = new ArrayList<RsrvtInfoVO>();
 
@@ -267,7 +258,7 @@ public class RsrvtDAO {
       return seatlist;
    }//selectSeat
 
-//////////////////////10-08 23:07 show_rsrvt3 페이지 정보뿌리기 위한 쿼리문 테스트
+//////////////////////10-08 23:07 최정민 show_rsrvt3 페이지 정보뿌리기 위한 쿼리문 테스트
    public RsrvtInfoVO selectRsrvtInfo(String schid, int cnt) throws SQLException {
       RsrvtInfoVO rsrvtInfoVO = null;
 
@@ -281,11 +272,6 @@ public class RsrvtDAO {
          con = dc.getConn();
          StringBuilder selectSeat = new StringBuilder();
 
-         /*
-          * select sho.thimg sho_thimg, sho.name sho_name, sch.schdate sch_schdate,
-          * sch.schtime sch_schtime, sho.price sho_price from schedule sch, show sho
-          * where (sch.showid = sho.showid) and sch.schid= 'sctest0009';
-          */
          selectSeat.append(" select sho.name sho_name, sch.schdate sch_schdate,  ")
                .append(" sch.schtime sch_schtime, sho.price sho_price ").append(" from schedule sch, show sho ")
                .append(" where (sch.showid = sho.showid) and sch.schid= ? ");
@@ -310,7 +296,6 @@ public class RsrvtDAO {
    }// selectRsrvtInfo
 
 ////////////////////////10-09 show_rsrvt3_process.jsp  예매, 좌석 insert 위한테스트
-   /* public int insertRsrvtList(List<RsrvtInfoVO> riList) throws SQLException { */
    public int insertRsrvtTest(RsrvtInfoVO riVO) throws SQLException {
       int i = 0;
 
@@ -319,21 +304,12 @@ public class RsrvtDAO {
       Connection con = null;
       PreparedStatement pstmt = null;
 
-      // 1.드라이버로딩
       try {
-         // 2.Connection연결얻기 (DbConnection 클래스의 getConn())
          con = dc.getConn();
-         // 3. 쿼리문 우선작성(bind) memberid,membername 로그인이랑 연결되면 추후 가져와야함
-
-         // 좌석번호는 얘한테 줄필요가없는거?
-         // ? 그럼 반복할 필요가없네 아예?
          String insertRsrvt = " insert into rsrvt(rsrvtid,showid,memberid,membername,totalcnt,showdate,totalpice,status,inputdate) "
                + " values(concat('rs_',lpad(show_seq.nextval,7,0)),?,?,?,?,?,?,'예매완료',to_char(sysdate,'yyyy-mm-dd')) ";
-         // 3-1. 쿼리문 생성객체 얻기
          pstmt = con.prepareStatement(insertRsrvt);
-         // 4. 바인드변수에 값 설정
 
-         /* for(RsrvtInfoVO riVO : riList){ */
          pstmt.setString(1, riVO.getShowId());
          pstmt.setString(2, riVO.getMemberId());
          pstmt.setString(3, riVO.getMemberName());
@@ -343,7 +319,6 @@ public class RsrvtDAO {
 
          // 5. 쿼리문 수행
          i = pstmt.executeUpdate();
-         /* } */
 
       } finally {
          dc.dbClose(null, pstmt, con);
@@ -352,6 +327,7 @@ public class RsrvtDAO {
       return i;
    }// insertRsrvt
 
+   // 최정민
    public int insertSeatTest(List<RsrvtInfoVO> riList, String rsrvtId) throws SQLException {
       int i = 0;
 
@@ -385,7 +361,8 @@ public class RsrvtDAO {
 
       return i;
    }// insertSeat
-
+   
+   // 최정민 예매완료후 예매번호 받아서 좌석insert위한 메서드
    public String selectRsrvtId(RsrvtInfoVO riVO) throws SQLException {
       String rsrvtId = "";
 
@@ -394,16 +371,8 @@ public class RsrvtDAO {
       Connection con = null;
       PreparedStatement pstmt = null;
       ResultSet rs = null;
-      // 1.드라이버로딩
       try {
-         // 2.Connection연결얻기 (DbConnection 클래스의 getConn())
          con = dc.getConn();
-         // 3. 쿼리문 우선작성(bind)
-         /*
-          * select r_rsrvtid from (select r.rsrvtid r_rsrvtid from show sw, rsrvt r,
-          * schedule sc where r.showid = 'showtest77' and r.memberid = 'test24' and
-          * sc.schid = 'sctest0008' order by r_rsrvtid desc ) where rownum = 1;
-          */
          StringBuilder sb = new StringBuilder();
 
          sb.append(" select r_rsrvtid ").append(" from (select r.rsrvtid r_rsrvtid ")
@@ -411,23 +380,13 @@ public class RsrvtDAO {
                .append(" and r.memberid = ? ").append(" order by r_rsrvtid desc) ").append(" where rownum = 1 ");
 
          pstmt = con.prepareStatement(sb.toString());
-         // System.out.println(riVO.getShowId());
-         // System.out.println(riVO.getSchId());
-         // 3-1. 쿼리문 생성객체 얻기
-         // 4.바인드변수에 값 설정
+         
          pstmt.setString(1, riVO.getShowId());
          pstmt.setString(2, riVO.getMemberId());
-         /* pstmt.setString(3, riVO.getSchId()); */
-         /* String test3 = "sctest0008"; */
-         /* pstmt.setString(1, test1); */
-//         String test2 = "test24";
-//         pstmt.setString(2, test2);
 
-         // 5. 쿼리문 수행
          rs = pstmt.executeQuery();
          if (rs.next()) {
             rsrvtId = rs.getString("r_rsrvtid");
-            // System.out.println(rs.getString("r_rsrvtid"));
          } else {
             System.out.println("조회된값없음");
          }
@@ -439,7 +398,7 @@ public class RsrvtDAO {
       return rsrvtId;
    }// selectRsrvtId
 
-   // 10-11 비연결성 처리위한 select 매서드
+   // 10-11 최정민 비연결성 처리위한 select 매서드
    public boolean selectSeatChk(String schid, String[] seats) throws SQLException {
       boolean flag = false;
 
@@ -449,9 +408,6 @@ public class RsrvtDAO {
       ResultSet rs = null;
       try {
          con = dc.getConn();
-         /*
-          * select * from seat where schid = 'sctest0002' and seatid = '3';
-          */
          StringBuilder sb = new StringBuilder();
 
          sb.append(" select * from seat ").append(" where schid = ? and seatid = ? ");
@@ -459,12 +415,11 @@ public class RsrvtDAO {
          pstmt = con.prepareStatement(sb.toString());
 
          for (int i = 0; i < seats.length; i++) {
-            // System.out.println("확인용 : "+schid+","+seats);
             pstmt.setString(1, schid);
             pstmt.setString(2, seats[i]);
             rs = pstmt.executeQuery();
 
-            flag = rs.next(); // 해당 상영일정코드와, 좌석번호가 있다 ㅇㅇ
+            flag = rs.next(); 
             if (flag) {
                break;
             }
@@ -477,11 +432,11 @@ public class RsrvtDAO {
       return flag;
    }
    
-   // 2022-10-15 rsrvt테이블 insert 위한 회원명 조회 메서드 추가////////////////////////////////////////
+   // 2022-10-15 최정민 rsrvt테이블 insert 위한 회원명 조회 메서드 추가////////////////////////////////////////
    
    public String selectMemberName(String mbId) throws SQLException {
 		
-	    String memberName = "없숨";
+	    String memberName = "";
 	    
 		Connection con=null;
 		PreparedStatement pstmt=null;
@@ -513,10 +468,6 @@ public class RsrvtDAO {
     public RsrvtInfoVO selectSchInfo(String schid) throws SQLException {
     	RsrvtInfoVO schInfo = null;
 		
-	    /*
-	     * select schdate, schtime from schedule
-	    where schid='sctest0009';
-	     */
 		Connection con=null;
 		PreparedStatement pstmt=null;
 		ResultSet rs=null;
