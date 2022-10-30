@@ -39,11 +39,11 @@ response.sendRedirect("http://localhost/group2_prj/main/index.jsp");
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 		<!-- Scripts -->
 			<script src="http://localhost/group2_prj/assets/js/jquery.min.js"></script>
-			<script src="https://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
-			<script src="https://localhost/group2_prj/assets/js/browser.min.js"></script>
-			<script src="https://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
-			<script src="https://localhost/group2_prj/assets/js/util.js"></script>
-			<script src="https://localhost/group2_prj/assets/js/main.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/jquery.dropotron.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/browser.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/breakpoints.min.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/util.js"></script>
+			<script src="http://localhost/group2_prj/assets/js/main.js"></script>
 	
 	<%if(memberId == null){%>
 	<style>

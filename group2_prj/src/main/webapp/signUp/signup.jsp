@@ -333,7 +333,7 @@ input[type="date"] {
 							if(!login.result){//파싱한 값
 								msg="사용가능한 아이디";
 								color="#0000FF";
-								
+								$("#chkmemberIdYN").val("Y");
 							}//end else
 							
 							$("#idResult").html(msg);
@@ -395,8 +395,6 @@ input[type="date"] {
 					$("#memberId").focus();
 					return;
 				}
-
-		
 				
 				//아이디 특수문자 제외 영문,숫자 4~20자이내+중복검사 필수
 				 if(!id.match('^[a-zA-Z0-9]{4,20}$')) {
@@ -404,6 +402,13 @@ input[type="date"] {
 						$('#memberId').focus();
 						 return;
 					 }//idcheck
+					 
+				if($("#chkmemberIdYN").val()=="N"){
+					alert("아이디 중복검사를 진행해주세요");
+					
+					return;
+				}
+					
 				
 				var pass=$("#password").val();
 				var pass2=$("#repassword").val();
@@ -653,6 +658,7 @@ input[type="date"] {
 							<div class="cont ck_id">
 								<input type="text" name="memberId" id="memberId" />&nbsp;
 								<button type="button" class="bg-black chkmemberId" id="btnDup2">중복확인</button>
+								<input type="hidden" name="chkmemberIdYN" id="chkmemberIdYN" value="N" /> 
 								<span class="txt ml">특수문자를 제외한 영문, 숫자 4~20자 이내</span>
 								  <span id="idResult"> </span>
 							</div>

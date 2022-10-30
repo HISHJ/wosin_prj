@@ -12,14 +12,15 @@
 
  
 <%request.setCharacterEncoding("UTF-8"); 
-String pw=(String)session.getAttribute("pwd");
+String pw=request.getParameter("pwd");
 String memberId = (String)session.getAttribute("memberId");
 
 
+String pwd=DataEncrypt.messageDigest("SHA-1", pw);
 
 %>
 <jsp:setProperty property="memberId" name="mbVO" value="<%=memberId%>"/>
-<jsp:setProperty property="pwd" name="mbVO"  value="<%=pw%>"/> 
+<jsp:setProperty property="pwd" name="mbVO"  value="<%=pwd%>"/> 
 
 
 

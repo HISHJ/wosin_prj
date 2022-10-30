@@ -55,7 +55,7 @@ public class AdminMemberDAO {
 				selectMb+=" and smsChk='Y'  ";
 			}
 			if(status!=null) {
-				selectMb+=" and status='"+status+"' order by status desc ";
+				selectMb+=" and status='"+status+"' ";
 			}
 			
 		

@@ -1,10 +1,9 @@
-<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="java.security.MessageDigest"%>
+<%@page import="kr.co.sist.util.cipher.DataEncrypt"%>
 <%@page import="kr.co.sist.dao.MemberDAO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" info="비밀번호 변경과정 process"%>
+    pageEncoding="UTF-8" info=""%>
     
-
 
 
  <jsp:useBean id="mbVO" class="kr.co.sist.vo.MemberVO" scope="page"/>
@@ -15,13 +14,16 @@
   <%
   request.setCharacterEncoding("UTF-8"); 
   
-  String id= (String)session.getAttribute("memberId");
-  String pw=(String)session.getAttribute("pwd");
+  String id=(String)session.getAttribute("memberId");
+  String pw=request.getParameter("pwd");
+  String pwd=DataEncrypt.messageDigest("SHA-1", pw);
 
 
-	int updatePassCnt=0;	
+  
+
+ 	int updatePassCnt=0;	
 	MemberDAO mbrDAO=MemberDAO.getInstance();
-	updatePassCnt= mbrDAO.updatePass(id, pw);
+	updatePassCnt= mbrDAO.updatePass(id, pwd);
 	
 if(updatePassCnt==0){	
 %>   
@@ -36,3 +38,4 @@ if(updatePassCnt==0){
 	location.href="http://localhost/group2_prj/mypage/memberMng.jsp";
 </script>
 <%} %>
+

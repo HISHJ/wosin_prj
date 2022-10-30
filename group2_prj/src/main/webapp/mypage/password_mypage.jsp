@@ -160,12 +160,12 @@ if(memberId == null){
 				<li>
 					<li>
 							<div class="rel">
-									<a href="http://localhost/group2_prj/mypage/memberMng.jsp" ><span>개인화서비스</span></a>
+									<a href="#" ><span>개인화서비스</span></a>
 									<ul class="depth">
-									<li><a href="http://localhost/group2_prj/mypage/memberMng.jsp" ><span>개인화서비스</span></a></li>
-									<li><a href="http://localhost/group2_prj/mypage/passModify.jsp" ><span>비밀번호변경</span></a></li>
-									<li><a href="http://localhost/group2_prj/mypage/mypage.jsp" ><span>회원정보 수정</span></a></li>
-									<li><a href="http://localhost/group2_prj/reservation/ticket_page.jsp" ><span>예매내역 확인·취소</span></a></li>
+									<li><a href="#" ><span>개인화서비스</span></a></li>
+									<li><a href="#" ><span>비밀번호변경</span></a></li>
+									<li><a href="#" ><span>회원정보 수정</span></a></li>
+									<li><a href="#" ><span>예매내역 확인·취소</span></a></li>
 									</ul>
 									</div>
 					</li>
