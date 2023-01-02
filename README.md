@@ -36,7 +36,7 @@
 ## :pushpin: 담당역할
 
 
-### 로그인
+### 로그인-[상세보기](https://github.com/HISHJ/wosin_prj/wiki/%EB%8B%B4%EB%8B%B9%EC%97%AD%ED%95%A0(%EB%A1%9C%EA%B7%B8%EC%9D%B8))
 - DB값 검증
 - ID찾기,PW찾기
 - 로그인 했을때 session생성
