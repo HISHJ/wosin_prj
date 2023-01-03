@@ -36,5 +36,6 @@ if(updatePassCnt==0){
 <script>
 	alert("비밀번호 변경 완료되었습니다.");
 	location.href="http://localhost/group2_prj/main/index.jsp";
+	session.removeAttribute("Id")
 </script>
 <%} %>
