@@ -55,6 +55,6 @@
 - PW변경,회원정보수정,회원탈퇴
 - 주소API사용
 
-### 회원관리(관리자)-[상세보기](https://github.com/HISHJ/wosin_prj/wiki/%EB%8B%B4%EB%8B%B9%EC%97%AD%ED%95%A0(%EB%A1%9C%EA%B7%B8%EC%9D%B8))
+### 회원관리(관리자)-[상세보기](https://github.com/HISHJ/wosin_prj/wiki/%EB%8B%B4%EB%8B%B9%EC%97%AD%ED%95%A0(%ED%9A%8C%EC%9B%90%EA%B4%80%EB%A6%AC))
 - DB값 수정
 - 회원 탈퇴
