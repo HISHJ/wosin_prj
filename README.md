@@ -42,19 +42,19 @@
 - ID찾기,PW찾기
 - 로그인 했을때 session생성
 
-### 회원가입
+### 회원가입-[상세보기](https://github.com/HISHJ/wosin_prj/wiki/%EB%8B%B4%EB%8B%B9%EC%97%AD%ED%95%A0(%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85))
 - DB값 추가
 - 아이디,비밀번호,회원정보 암호화
 - 주소API사용
 - 아이디 중복검사
 - 아이디 비연결성 : 동시에 동일한 아이디가 입력되어도 한개만 DB에 추가됨
 
-### 마이페이지
+### 마이페이지-[상세보기](https://github.com/HISHJ/wosin_prj/wiki/%EB%8B%B4%EB%8B%B9%EC%97%AD%ED%95%A0(%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80))
 - DB값 수정
 - 회원정보 복호화
 - PW변경,회원정보수정,회원탈퇴
 - 주소API사용
 
-### 회원관리(관리자)
+### 회원관리(관리자)-[상세보기](https://github.com/HISHJ/wosin_prj/wiki/%EB%8B%B4%EB%8B%B9%EC%97%AD%ED%95%A0(%EB%A1%9C%EA%B7%B8%EC%9D%B8))
 - DB값 수정
 - 회원 탈퇴
